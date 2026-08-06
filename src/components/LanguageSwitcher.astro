@@ -1,0 +1,63 @@
+---
+import { languages, useTranslations, type Locale } from '../i18n/ui';
+
+const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
+const t = useTranslations(currentLocale);
+
+// Swap the leading /<locale>/ segment of the current path for each language,
+// so switching language keeps you on the equivalent page once it exists.
+const segments = Astro.url.pathname.split('/').filter(Boolean);
+const rest = segments.slice(1).join('/');
+---
+
+<nav class="language-switcher" aria-label={t('common.languageLabel')}>
+  <ul>
+    {
+      Object.entries(languages).map(([code, label]) => (
+        <li>
+          <a
+            href={`/${code}/${rest}`}
+            data-locale={code}
+            aria-current={code === currentLocale ? 'true' : undefined}
+          >
+            {label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  // Remember the visitor's explicit choice so the root redirect (see src/pages/index.astro)
+  // honours it on the next visit instead of re-guessing from navigator.language.
+  document
+    .querySelectorAll<HTMLAnchorElement>('.language-switcher a[data-locale]')
+    .forEach((link) => {
+      link.addEventListener('click', () => {
+        localStorage.setItem('myvipservice:locale', link.dataset.locale ?? '');
+      });
+    });
+</script>
+
+<style>
+  .language-switcher ul {
+    display: flex;
+    gap: var(--space-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.85rem;
+  }
+
+  .language-switcher a {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .language-switcher a:hover,
+  .language-switcher a[aria-current='true'] {
+    color: var(--color-accent);
+  }
+</style>

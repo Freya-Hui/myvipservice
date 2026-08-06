@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+import { languages } from '../i18n/ui';
+
+// No server available at request time (static build), so language detection
+// happens client-side: check the saved preference first, then navigator.language,
+// falling back to English. The links below are the no-JS / crawler fallback.
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>MYVIPSERVICE</title>
+    <meta name="description" content="MYVIPSERVICE — private concierge and bespoke travel." />
+  </head>
+  <body>
+    <main class="gate">
+      <h1>MYVIPSERVICE</h1>
+      <p class="visually-hidden">Redirecting to your language…</p>
+      <ul class="gate__links">
+        {
+          Object.entries(languages).map(([code, label]) => (
+            <li>
+              <a href={`/${code}/`}>{label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </body>
+</html>
+
+<style>
+  .gate {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-4);
+  }
+
+  .gate h1 {
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+  }
+
+  .gate__links {
+    display: flex;
+    gap: var(--space-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .gate__links a {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+  }
+
+  .gate__links a:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+</style>
+
+<script>
+  const KEY = 'myvipservice:locale';
+  const SUPPORTED = ['en', 'zh', 'fr', 'ru'] as const;
+  type Supported = (typeof SUPPORTED)[number];
+
+  function isSupported(value: string | null): value is Supported {
+    return !!value && (SUPPORTED as readonly string[]).includes(value);
+  }
+
+  const saved = localStorage.getItem(KEY);
+  let target: Supported;
+
+  if (isSupported(saved)) {
+    target = saved;
+  } else {
+    const browserLangs = navigator.languages?.length ? navigator.languages : [navigator.language];
+    target = 'en';
+    for (const lang of browserLangs) {
+      const primary = lang.toLowerCase().split('-')[0];
+      if (isSupported(primary)) {
+        target = primary;
+        break;
+      }
+    }
+    localStorage.setItem(KEY, target);
+  }
+
+  location.replace(`/${target}/`);
+</script>
