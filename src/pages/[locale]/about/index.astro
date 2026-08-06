@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import ContentSection from '../../../components/ContentSection.astro';
+import InquiryCTA from '../../../components/home/InquiryCTA.astro';
+import { languages, useTranslations, type Locale } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const t = useTranslations(locale);
+
+const [about] = await getCollection('about', (entry) => entry.id === `${locale}/about`);
+const { data } = about;
+---
+
+<BaseLayout
+  title={t('nav.about')}
+  description="MYVIPSERVICE — our story, philosophy and international service network."
+  path="about"
+>
+  <PageHero
+    eyebrow={t('about.hero.eyebrow')}
+    title="MYVIPSERVICE"
+    subtitle={t('about.hero.subtitle')}
+  />
+
+  <ContentSection title={data.brandStoryTitle} body={data.brandStoryBody} />
+  <ContentSection title={data.philosophyTitle} body={data.philosophyBody} />
+  <ContentSection title={data.whatWeDoTitle} body={data.whatWeDoBody} />
+  <ContentSection
+    id="international-service-network"
+    title={data.networkTitle}
+    body={data.networkBody}
+  />
+  <ContentSection title={data.howWeWorkTitle} body={data.howWeWorkBody} />
+  <ContentSection title={data.privacyTitle} body={data.privacyBody} />
+
+  <InquiryCTA
+    title={t('about.cta.title')}
+    body={t('about.cta.body')}
+    ctaLabel={t('about.cta.button')}
+    ctaHref={`/${locale}/contact/`}
+  />
+</BaseLayout>

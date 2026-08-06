@@ -1,26 +1,95 @@
 :root {
-  /* Colour: deep, understated luxury palette — dark navy ground, warm gold accent */
+  /* ---- Colour ---------------------------------------------------------
+     Deep, understated luxury palette: dark navy ground, warm gold accent.
+     Kept deliberately narrow — no secondary hue family — so nothing reads
+     as decorative. Status colours are desaturated to match the register. */
   --color-bg: #0b0f19;
   --color-bg-elevated: #121829;
+  --color-bg-inset: #171f33;
   --color-text: #f2efe8;
   --color-text-muted: #a8a79e;
+  /* #82817a against --color-bg clears 4.5:1 (WCAG AA for small text); the
+     previous #6f6e68 only cleared ~3.6:1 — keep this at or lighter. */
+  --color-text-faint: #82817a;
   --color-accent: #b9975a;
+  --color-accent-strong: #d3b378;
+  --color-on-accent: #0b0f19;
   --color-border: rgb(242 239 232 / 14%);
+  --color-border-strong: rgb(242 239 232 / 28%);
+  --color-focus-ring: #d3b378;
 
-  /* Type: system stacks only for now — no webfont dependency until Phase 2 design pass */
+  --color-success: #8fae8b;
+  --color-error: #c98b7a;
+
+  /* ---- Type -------------------------------------------------------------
+     System stacks only — no webfont dependency until a later design pass. */
   --font-display: Georgia, 'Times New Roman', serif;
   --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Spacing scale */
+  --text-eyebrow: 0.75rem;
+  --text-small: 0.875rem;
+  --text-body: 1rem;
+  --text-body-lg: 1.125rem;
+  --text-h4: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-h3: clamp(1.5rem, 1.3rem + 0.9vw, 1.875rem);
+  --text-h2: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+  /* Low minimum matters here: MYVIPSERVICE is one unbroken word — at 320px
+     wide anything above ~1.9rem overflows the viewport. */
+  --text-h1: clamp(1.85rem, 1.3rem + 3vw, 4rem);
+
+  --leading-tight: 1.15;
+  --leading-heading: 1.25;
+  --leading-body: 1.65;
+
+  --tracking-eyebrow: 0.15em;
+  --tracking-wordmark: 0.08em;
+  --tracking-button: 0.04em;
+
+  /* ---- Spacing (fluid — narrows automatically on small viewports) ------ */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
-  --space-3: 1rem;
-  --space-4: 1.5rem;
-  --space-5: 2.5rem;
-  --space-6: 4rem;
-  --space-7: 6rem;
+  --space-3: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+  --space-4: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --space-5: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --space-6: clamp(2.5rem, 1.8rem + 2.8vw, 4rem);
+  --space-7: clamp(3rem, 1.8rem + 5vw, 6rem);
 
-  /* Layout */
+  /* Section vertical rhythm — one token, used by every homepage section */
+  --section-padding-block: clamp(3rem, 2.2rem + 3.2vw, 5.5rem);
+
+  /* ---- Layout ------------------------------------------------------------ */
   --content-max-width: 72rem;
+  --prose-max-width: 42rem;
   --radius: 2px;
+  --radius-sm: 1px;
+
+  /* ---- Components --------------------------------------------------------- */
+  --button-padding-block: 0.85rem;
+  --button-padding-inline: var(--space-5);
+  --button-min-height: 2.75rem; /* ≥44px touch target */
+  --button-border-width: 1px;
+
+  --card-padding: var(--space-4);
+  --card-border: 1px solid var(--color-border);
+  --card-gap: var(--space-4);
+
+  /* Image aspect ratios, applied via `aspect-ratio` on figure/img wrappers */
+  --ratio-hero: 16 / 9;
+  --ratio-portrait: 4 / 5;
+  --ratio-standard: 4 / 3;
+  --ratio-wide: 16 / 9;
+
+  /* ---- Motion -------------------------------------------------------------- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
 }
+
+/* Breakpoints are used as raw values (no custom-media support without a
+   PostCSS build step) — documented here so every component references the
+   same set instead of inventing new ones:
+     mobile:  0–479px   (base styles)
+     large phone / small tablet: 480–767px
+     tablet:  768–1023px
+     desktop: 1024–1439px
+     wide:    1440px+
+*/

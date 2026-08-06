@@ -5,6 +5,8 @@ import { z } from 'astro/zod';
 // Each collection is a flat glob across all four locale sub-folders
 // (services/en/*.md, services/zh/*.md, ...), so an entry's `id` is
 // always `<locale>/<slug>` — that's how pages filter by language.
+// `draft: true` marks non-English placeholder copy pending real
+// localization (Phase 3) — never render draft copy as if it were final.
 
 const services = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
@@ -12,6 +14,41 @@ const services = defineCollection({
     title: z.string(),
     summary: z.string(),
     order: z.number().default(0),
+    /** Matches an id in src/data/image-attributions.ts */
+    image: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+const destinations = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/destinations' }),
+  schema: z.object({
+    name: z.string(),
+    region: z.string(),
+    summary: z.string(),
+    order: z.number().default(0),
+    /** Matches an id in src/data/image-attributions.ts */
+    image: z.string(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+const about = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/about' }),
+  schema: z.object({
+    brandStoryTitle: z.string(),
+    brandStoryBody: z.string(),
+    philosophyTitle: z.string(),
+    philosophyBody: z.string(),
+    whatWeDoTitle: z.string(),
+    whatWeDoBody: z.string(),
+    networkTitle: z.string(),
+    networkBody: z.string(),
+    howWeWorkTitle: z.string(),
+    howWeWorkBody: z.string(),
+    privacyTitle: z.string(),
+    privacyBody: z.string(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -40,6 +77,7 @@ const caseStudies = defineCollection({
     title: z.string(),
     summary: z.string(),
     coverImage: z.string().optional(),
+    order: z.number().default(0),
   }),
 });
 
@@ -51,4 +89,12 @@ const legal = defineCollection({
   }),
 });
 
-export const collections = { services, hotels, experiences, caseStudies, legal };
+export const collections = {
+  services,
+  destinations,
+  about,
+  hotels,
+  experiences,
+  caseStudies,
+  legal,
+};

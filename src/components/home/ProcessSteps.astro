@@ -1,0 +1,64 @@
+---
+import type { SiteDataItem } from '../../data/site-content';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  steps: SiteDataItem[];
+}
+
+const { eyebrow, title, steps } = Astro.props;
+---
+
+<section class="section process">
+  <div class="container">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{title}</h2>
+    <ol class="process__list">
+      {
+        steps.map((step, index) => (
+          <li>
+            <span class="process__index" aria-hidden="true">
+              {index + 1}
+            </span>
+            <h3>{step.title}</h3>
+            <p class="text-small">{step.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: var(--card-gap);
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    counter-reset: none;
+  }
+
+  .process__index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 50%;
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    margin-bottom: var(--space-3);
+  }
+
+  .process__list h3 {
+    margin-bottom: var(--space-2);
+  }
+
+  .process__list p {
+    color: var(--color-text-muted);
+  }
+</style>

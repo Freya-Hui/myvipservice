@@ -1,0 +1,41 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  body: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+const { eyebrow, title, body, ctaLabel, ctaHref } = Astro.props;
+---
+
+<section class="section concierge">
+  <div class="container concierge__inner">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{title}</h2>
+    <p class="concierge__body">{body}</p>
+    <a class="button" href={ctaHref}>{ctaLabel}</a>
+  </div>
+</section>
+
+<style>
+  .concierge__inner {
+    max-width: var(--prose-max-width);
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .concierge .eyebrow {
+    justify-content: center;
+  }
+
+  .concierge__body {
+    color: var(--color-text-muted);
+    font-size: var(--text-body-lg);
+  }
+
+  .concierge .button {
+    margin-inline: auto;
+  }
+</style>

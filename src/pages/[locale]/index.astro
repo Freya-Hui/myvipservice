@@ -1,7 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/home/Hero.astro';
+import IntroSection from '../../components/home/IntroSection.astro';
+import DestinationGrid from '../../components/home/DestinationGrid.astro';
+import AccommodationFeature from '../../components/home/AccommodationFeature.astro';
+import TravelTypes from '../../components/home/TravelTypes.astro';
+import ExperienceFeature from '../../components/home/ExperienceFeature.astro';
+import ConciergeOverview from '../../components/home/ConciergeOverview.astro';
+import ProcessSteps from '../../components/home/ProcessSteps.astro';
+import ServiceNetwork from '../../components/home/ServiceNetwork.astro';
+import JournalPreview from '../../components/home/JournalPreview.astro';
+import InquiryCTA from '../../components/home/InquiryCTA.astro';
 import { languages, useTranslations, type Locale } from '../../i18n/ui';
+import { travelTypes, processSteps, networkHighlights } from '../../data/site-content';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((locale) => ({ params: { locale } }));
@@ -10,105 +22,114 @@ export function getStaticPaths() {
 const { locale } = Astro.params as { locale: Locale };
 const t = useTranslations(locale);
 
-const allServices = await getCollection('services', (entry) => entry.id.startsWith(`${locale}/`));
-const services = allServices.sort((a, b) => a.data.order - b.data.order);
+function bySlug(entries: CollectionEntry<'services'>[], slug: string) {
+  const entry = entries.find((item) => item.id === `${locale}/${slug}`);
+  if (!entry) throw new Error(`Missing services entry "${slug}" for locale "${locale}"`);
+  return entry.data;
+}
+
+const services = (
+  await getCollection('services', (entry) => entry.id.startsWith(`${locale}/`))
+).sort((a, b) => a.data.order - b.data.order);
+const destinations = (
+  await getCollection('destinations', (entry) => entry.id.startsWith(`${locale}/`))
+).sort((a, b) => a.data.order - b.data.order);
+const journalEntries = (
+  await getCollection('caseStudies', (entry) => entry.id.startsWith(`${locale}/`))
+).sort((a, b) => a.data.order - b.data.order);
+
+const hotelsService = bySlug(services, 'hotel-villa-reservations');
+const experiencesService = bySlug(services, 'private-experiences');
+const conciergeService = bySlug(services, 'personal-concierge');
 ---
 
 <BaseLayout
   title={t('nav.home')}
   description="MYVIPSERVICE — private concierge and bespoke travel, based in Paris."
+  path=""
 >
-  <section class="hero container">
-    <p class="hero__eyebrow">Paris · Est. 2015</p>
-    <h1>MYVIPSERVICE</h1>
-    <p class="hero__tagline">
-      Based in France, welcoming the world. Private concierge and bespoke travel, built on genuine
-      access and strict discretion.
-    </p>
-    <a class="cta" href={`/${locale}/contact`}>{t('common.cta')}</a>
-  </section>
+  <Hero
+    eyebrow={t('home.hero.eyebrow')}
+    tagline={t('home.hero.tagline')}
+    ctaLabel={t('common.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
 
-  <section class="services container">
-    <h2>{t('nav.services')}</h2>
-    <ul class="services__grid">
-      {
-        services.map((service) => (
-          <li>
-            <h3>{service.data.title}</h3>
-            <p>{service.data.summary}</p>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+  <IntroSection
+    eyebrow={t('home.intro.eyebrow')}
+    title={t('home.intro.title')}
+    body={t('home.intro.body')}
+  />
+
+  <DestinationGrid
+    eyebrow={t('home.destinations.eyebrow')}
+    title={t('home.destinations.title')}
+    destinations={destinations.map((d) => d.data)}
+  />
+
+  <AccommodationFeature
+    eyebrow={t('home.hotels.eyebrow')}
+    title={hotelsService.title}
+    body={hotelsService.summary}
+    ctaLabel={t('home.hotels.cta')}
+    ctaHref={`/${locale}/services/#hotel-villa-reservations`}
+    imageId="service-hotels-villas"
+  />
+
+  <TravelTypes
+    eyebrow={t('home.travelTypes.eyebrow')}
+    title={t('home.travelTypes.title')}
+    items={travelTypes[locale]}
+    ctaLabel={t('home.travelTypes.cta')}
+    ctaHref={`/${locale}/services/#tailor-made-travel-planning`}
+  />
+
+  <ExperienceFeature
+    eyebrow={t('home.experience.eyebrow')}
+    title={experiencesService.title}
+    body={experiencesService.summary}
+    ctaLabel={t('home.experience.cta')}
+    ctaHref={`/${locale}/services/#private-experiences`}
+    imageId="service-private-experiences"
+  />
+
+  <ConciergeOverview
+    eyebrow={t('home.concierge.eyebrow')}
+    title={t('home.concierge.title')}
+    body={conciergeService.summary}
+    ctaLabel={t('home.concierge.cta')}
+    ctaHref={`/${locale}/services/#personal-concierge`}
+  />
+
+  <ProcessSteps
+    eyebrow={t('home.process.eyebrow')}
+    title={t('home.process.title')}
+    steps={processSteps[locale]}
+  />
+
+  <ServiceNetwork
+    eyebrow={t('home.network.eyebrow')}
+    title={t('home.network.title')}
+    items={networkHighlights[locale]}
+    ctaLabel={t('home.network.cta')}
+    ctaHref={`/${locale}/about/#international-service-network`}
+  />
+
+  <JournalPreview
+    eyebrow={t('home.journal.eyebrow')}
+    title={t('home.journal.title')}
+    entries={journalEntries.map((entry) => ({
+      title: entry.data.title,
+      summary: entry.data.summary,
+      coverImage: entry.data.coverImage,
+    }))}
+    comingSoonNote={t('common.comingSoon')}
+  />
+
+  <InquiryCTA
+    title={t('home.inquiry.title')}
+    body={t('home.inquiry.body')}
+    ctaLabel={t('home.inquiry.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
 </BaseLayout>
-
-<style>
-  .hero {
-    padding-block: var(--space-7);
-    max-width: 42rem;
-  }
-
-  .hero__eyebrow {
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 0.75rem;
-    margin-bottom: var(--space-3);
-  }
-
-  .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    letter-spacing: 0.04em;
-  }
-
-  .hero__tagline {
-    color: var(--color-text-muted);
-    font-size: 1.1rem;
-    max-width: 34rem;
-  }
-
-  .cta {
-    display: inline-block;
-    margin-top: var(--space-4);
-    padding: var(--space-3) var(--space-5);
-    border: 1px solid var(--color-accent);
-    color: var(--color-accent);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    font-size: 0.9rem;
-  }
-
-  .cta:hover {
-    background: var(--color-accent);
-    color: var(--color-bg);
-  }
-
-  .services {
-    padding-block: var(--space-6);
-  }
-
-  .services__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: var(--space-4);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .services__grid li {
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-3);
-  }
-
-  .services__grid h3 {
-    font-size: 1.1rem;
-    margin-bottom: var(--space-2);
-  }
-
-  .services__grid p {
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
-  }
-</style>

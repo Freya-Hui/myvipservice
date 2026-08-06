@@ -5,38 +5,84 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 const t = useTranslations(currentLocale);
 
+const currentPath = Astro.url.pathname;
 const navItems: Array<{ href: string; label: string }> = [
   { href: `/${currentLocale}/`, label: t('nav.home') },
-  { href: `/${currentLocale}/about`, label: t('nav.about') },
-  { href: `/${currentLocale}/services`, label: t('nav.services') },
-  { href: `/${currentLocale}/bespoke-travel`, label: t('nav.bespokeTravel') },
-  { href: `/${currentLocale}/hotels-villas`, label: t('nav.hotelsVillas') },
-  { href: `/${currentLocale}/experiences`, label: t('nav.experiences') },
-  { href: `/${currentLocale}/contact`, label: t('nav.contact') },
+  { href: `/${currentLocale}/about/`, label: t('nav.about') },
+  { href: `/${currentLocale}/services/`, label: t('nav.services') },
+  { href: `/${currentLocale}/contact/`, label: t('nav.contact') },
 ];
 ---
 
 <header class="site-header">
   <div class="container site-header__bar">
     <a class="wordmark" href={`/${currentLocale}/`}>MYVIPSERVICE</a>
-    <nav aria-label="Primary">
-      <ul class="nav-list">
-        {
-          navItems.map((item) => (
-            <li>
-              <a href={item.href}>{item.label}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-    <LanguageSwitcher />
+
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-panel"
+    >
+      <span class="visually-hidden">{t('nav.menuToggle')}</span>
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+        <path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="1.5"></path>
+      </svg>
+    </button>
+
+    <div class="nav-panel" id="nav-panel">
+      <nav aria-label="Primary">
+        <ul class="nav-list">
+          {
+            navItems.map((item) => (
+              <li>
+                <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <LanguageSwitcher />
+      <a class="button button--primary plan-journey" href={`/${currentLocale}/contact/`}>
+        {t('header.planJourney')}
+      </a>
+    </div>
   </div>
 </header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const panel = document.getElementById('nav-panel');
+
+  function closeMenu() {
+    panel?.classList.remove('is-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = panel?.classList.toggle('is-open') ?? false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && panel?.classList.contains('is-open')) {
+      closeMenu();
+      toggle?.focus();
+    }
+  });
+
+  panel?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
 
 <style>
   .site-header {
     border-bottom: 1px solid var(--color-border);
+    position: relative;
   }
 
   .site-header__bar {
@@ -45,25 +91,43 @@ const navItems: Array<{ href: string; label: string }> = [
     justify-content: space-between;
     gap: var(--space-4);
     padding-block: var(--space-3);
-    flex-wrap: wrap;
   }
 
   .wordmark {
     font-family: var(--font-display);
     font-size: 1.25rem;
-    letter-spacing: 0.08em;
+    letter-spacing: var(--tracking-wordmark);
     text-decoration: none;
     color: var(--color-text);
+  }
+
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: var(--button-min-height);
+    height: var(--button-min-height);
+    background: transparent;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .nav-panel {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
   }
 
   .nav-list {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-4);
+    gap: var(--space-3);
     list-style: none;
     margin: 0;
     padding: 0;
-    font-size: 0.9rem;
+    font-size: var(--text-small);
   }
 
   .nav-list a {
@@ -73,5 +137,44 @@ const navItems: Array<{ href: string; label: string }> = [
 
   .nav-list a:hover {
     color: var(--color-accent);
+  }
+
+  .nav-list a[aria-current='page'] {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .plan-journey {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 767px) {
+    .menu-toggle {
+      display: inline-flex;
+    }
+
+    .nav-panel {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+      position: absolute;
+      inset-inline: 0;
+      top: 100%;
+      background: var(--color-bg-elevated);
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-4);
+      z-index: 20;
+    }
+
+    .nav-panel.is-open {
+      display: flex;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
   }
 </style>

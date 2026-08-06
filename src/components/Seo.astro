@@ -1,0 +1,36 @@
+---
+import { languages, type Locale } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path relative to /<locale>/, e.g. '' for the homepage or 'about' — no leading/trailing slash. */
+  path: string;
+}
+
+const { title, description, path } = Astro.props;
+const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
+
+const suffix = path ? `/${path}/` : '/';
+const canonicalPath = `/${currentLocale}${suffix}`;
+const canonicalUrl = new URL(canonicalPath, Astro.site);
+const ogImage = new URL('/images/hero-paris.jpg', Astro.site);
+---
+
+<title>{title} · MYVIPSERVICE</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+{
+  Object.keys(languages).map((locale) => (
+    <link rel="alternate" hreflang={locale} href={new URL(`/${locale}${suffix}`, Astro.site)} />
+  ))
+}
+<link rel="alternate" hreflang="x-default" href={new URL(`/en${suffix}`, Astro.site)} />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={`${title} · MYVIPSERVICE`} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={currentLocale} />

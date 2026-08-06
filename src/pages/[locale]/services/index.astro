@@ -1,0 +1,108 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import { getImage } from '../../../data/image-attributions';
+import { languages, useTranslations, type Locale } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const t = useTranslations(locale);
+
+const services = (
+  await getCollection('services', (entry) => entry.id.startsWith(`${locale}/`))
+).sort((a, b) => a.data.order - b.data.order);
+
+function slugOf(id: string) {
+  return id.split('/').slice(1).join('/');
+}
+---
+
+<BaseLayout
+  title={t('nav.services')}
+  description="MYVIPSERVICE — eight ways we support our clients, from a single reservation to a fully managed private event."
+  path="services"
+>
+  <PageHero
+    eyebrow={t('services.hero.eyebrow')}
+    title={t('services.hero.title')}
+    subtitle={t('services.hero.subtitle')}
+  />
+
+  <section class="section services">
+    <div class="container">
+      <ul class="services__grid">
+        {
+          services.map((service, index) => {
+            const slug = slugOf(service.id);
+            const image = service.data.image ? getImage(service.data.image) : null;
+            return (
+              <li class="card service-card" id={slug}>
+                {image ? (
+                  <div class="figure figure--standard">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      width="1600"
+                      height="1200"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : (
+                  <span class="service-card__index" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                )}
+                <h2>{service.data.title}</h2>
+                <p class="text-small service-card__summary">{service.data.summary}</p>
+                <a class="button button--quiet" href={`/${locale}/contact/`}>
+                  {t('services.cardCta')} →
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <p class="text-small services__note">{t('services.comingSoonNote')}</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: var(--space-5);
+    list-style: none;
+    margin: 0 0 var(--space-5);
+    padding: 0;
+  }
+
+  .service-card {
+    scroll-margin-top: var(--space-5);
+  }
+
+  .service-card__index {
+    display: inline-flex;
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    margin-bottom: var(--space-2);
+  }
+
+  .service-card h2 {
+    font-size: var(--text-h4);
+    margin-bottom: var(--space-2);
+  }
+
+  .service-card__summary {
+    color: var(--color-text-muted);
+  }
+
+  .services__note {
+    color: var(--color-text-faint);
+  }
+</style>

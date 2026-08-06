@@ -1,0 +1,23 @@
+---
+interface Props {
+  id?: string;
+  title: string;
+  body: string;
+}
+
+const { id, title, body } = Astro.props;
+---
+
+<section class="section content-section" id={id}>
+  <div class="container prose">
+    <h2>{title}</h2>
+    <p class="content-section__body">{body}</p>
+  </div>
+</section>
+
+<style>
+  .content-section__body {
+    color: var(--color-text-muted);
+    font-size: var(--text-body-lg);
+  }
+</style>

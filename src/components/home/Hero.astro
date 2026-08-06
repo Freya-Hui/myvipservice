@@ -1,0 +1,68 @@
+---
+import { getImage } from '../../data/image-attributions';
+
+interface Props {
+  eyebrow: string;
+  tagline: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+const { eyebrow, tagline, ctaLabel, ctaHref } = Astro.props;
+const heroImage = getImage('hero-paris');
+---
+
+<section class="hero">
+  <div class="hero__media figure">
+    <img
+      src={heroImage.src}
+      alt={heroImage.alt}
+      width="2400"
+      height="1350"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+  <div class="container hero__content">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>MYVIPSERVICE</h1>
+    <p class="hero__tagline">{tagline}</p>
+    <a class="button button--primary" href={ctaHref}>{ctaLabel}</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    color: var(--color-text);
+  }
+
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  .hero__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(11 15 25 / 55%) 0%, rgb(11 15 25 / 88%) 100%);
+  }
+
+  .hero__content {
+    padding-block: clamp(5rem, 4rem + 5vw, 9rem) var(--space-7);
+    max-width: 42rem;
+  }
+
+  .hero h1 {
+    font-size: var(--text-h1);
+    letter-spacing: var(--tracking-wordmark);
+  }
+
+  .hero__tagline {
+    color: var(--color-text-muted);
+    font-size: var(--text-body-lg);
+    max-width: 34rem;
+  }
+</style>

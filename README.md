@@ -11,15 +11,15 @@ Planning docs: [docs/PLAN.md](docs/PLAN.md) (full implementation plan) · [docs/
 ## Commands
 
 | Command                | Action                                          |
-| :---------------------- | :----------------------------------------------- |
-| `npm install`            | Install dependencies                             |
-| `npm run dev`             | Start the local dev server at `localhost:4321`   |
-| `npm run build`           | Build the production site to `./dist/`           |
-| `npm run preview`         | Preview the production build locally             |
-| `npm run check`           | Type-check `.astro`/`.ts` files (`astro check`)  |
-| `npm run lint`            | Lint with ESLint                                 |
-| `npm run format`          | Format all files with Prettier                   |
-| `npm run format:check`    | Check formatting without writing                 |
+| :--------------------- | :---------------------------------------------- |
+| `npm install`          | Install dependencies                            |
+| `npm run dev`          | Start the local dev server at `localhost:4321`  |
+| `npm run build`        | Build the production site to `./dist/`          |
+| `npm run preview`      | Preview the production build locally            |
+| `npm run check`        | Type-check `.astro`/`.ts` files (`astro check`) |
+| `npm run lint`         | Lint with ESLint                                |
+| `npm run format`       | Format all files with Prettier                  |
+| `npm run format:check` | Check formatting without writing                |
 
 Run `check`, `lint`, and `format:check` before committing — there is no CI wired up yet, so this is the whole safety net.
 

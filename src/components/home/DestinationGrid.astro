@@ -1,0 +1,68 @@
+---
+import { getImage } from '../../data/image-attributions';
+
+interface Destination {
+  name: string;
+  region: string;
+  summary: string;
+  image: string;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  destinations: Destination[];
+}
+
+const { eyebrow, title, destinations } = Astro.props;
+---
+
+<section class="section destinations">
+  <div class="container">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{title}</h2>
+    <ul class="destinations__grid">
+      {
+        destinations.map((destination) => {
+          const image = getImage(destination.image);
+          return (
+            <li class="destination-card">
+              <div class="figure figure--portrait">
+                <img src={image.src} alt={image.alt} width="1200" height="1500" loading="lazy" />
+              </div>
+              <p class="destination-card__region text-small">{destination.region}</p>
+              <h3>{destination.name}</h3>
+              <p class="text-small">{destination.summary}</p>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .destinations__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--card-gap);
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+  }
+
+  .destination-card__region {
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    margin-block: var(--space-3) var(--space-1);
+  }
+
+  .destination-card h3 {
+    margin-bottom: var(--space-2);
+  }
+
+  .destination-card p.text-small {
+    color: var(--color-text-muted);
+  }
+</style>

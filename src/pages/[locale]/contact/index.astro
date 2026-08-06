@@ -1,0 +1,242 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import { languages, useTranslations, type Locale } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const t = useTranslations(locale);
+
+const enquiryTypes = [
+  { value: 'general', label: t('contact.section.general') },
+  { value: 'travel', label: t('contact.section.travel') },
+  { value: 'partnership', label: t('contact.section.partnership') },
+  { value: 'media', label: t('contact.section.media') },
+];
+
+const infoRows = [
+  { label: t('contact.info.email'), value: t('contact.info.emailPlaceholder') },
+  { label: t('contact.info.phone'), value: t('contact.info.phonePlaceholder') },
+  { label: t('contact.info.wechat'), value: t('contact.info.wechatPlaceholder') },
+  { label: t('contact.info.whatsapp'), value: t('contact.info.whatsappPlaceholder') },
+  { label: t('contact.info.hours'), value: t('contact.info.hoursPlaceholder') },
+];
+---
+
+<BaseLayout
+  title={t('nav.contact')}
+  description="MYVIPSERVICE — get in touch to start planning your trip."
+  path="contact"
+>
+  <PageHero
+    eyebrow={t('contact.hero.eyebrow')}
+    title={t('contact.hero.title')}
+    subtitle={t('contact.hero.subtitle')}
+  />
+
+  <section class="section contact">
+    <div class="container contact__grid">
+      <div class="contact__info">
+        <dl>
+          {
+            infoRows.map((row) => (
+              <div class="contact__info-row">
+                <dt class="text-small">{row.label}</dt>
+                <dd class="text-small">{row.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+
+      <form class="contact__form" id="contact-form" novalidate>
+        <p class="demo-banner" role="note">{t('common.demoNotice')}</p>
+
+        <h2>{t('contact.form.heading')}</h2>
+
+        <fieldset>
+          <legend>{t('contact.form.enquiryType')}</legend>
+          {
+            enquiryTypes.map((type, index) => (
+              <label class="radio-label" for={`enquiry-${type.value}`}>
+                <input
+                  type="radio"
+                  id={`enquiry-${type.value}`}
+                  name="enquiryType"
+                  value={type.value}
+                  checked={index === 0}
+                />
+                {type.label}
+              </label>
+            ))
+          }
+        </fieldset>
+
+        <div class="field">
+          <label for="name">{t('contact.form.name')}</label>
+          <input type="text" id="name" name="name" autocomplete="name" required />
+        </div>
+
+        <div class="field">
+          <label for="email">{t('contact.form.email')}</label>
+          <input type="email" id="email" name="email" autocomplete="email" required />
+        </div>
+
+        <div class="field">
+          <label for="phoneWechat">
+            {t('contact.form.phoneWechat')}
+            <span class="text-small">({t('common.optional')})</span>
+          </label>
+          <input type="text" id="phoneWechat" name="phoneWechat" autocomplete="tel" />
+        </div>
+
+        <div class="field">
+          <label for="destination">
+            {t('contact.form.destination')}
+            <span class="text-small">({t('common.optional')})</span>
+          </label>
+          <input type="text" id="destination" name="destination" />
+        </div>
+
+        <fieldset class="field-group">
+          <legend>
+            {t('contact.form.dates')}
+            <span class="text-small">({t('common.optional')})</span>
+          </legend>
+          <div class="field-group__row">
+            <div class="field">
+              <label for="dateStart">{t('contact.form.dateStart')}</label>
+              <input type="date" id="dateStart" name="dateStart" />
+            </div>
+            <div class="field">
+              <label for="dateEnd">{t('contact.form.dateEnd')}</label>
+              <input type="date" id="dateEnd" name="dateEnd" />
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="travellers">
+            {t('contact.form.travellers')}
+            <span class="text-small">({t('common.optional')})</span>
+          </label>
+          <input type="number" id="travellers" name="travellers" min="1" step="1" />
+        </div>
+
+        <div class="field">
+          <label for="budget">
+            {t('contact.form.budget')}
+            <span class="text-small">({t('common.optional')})</span>
+          </label>
+          <input type="text" id="budget" name="budget" />
+        </div>
+
+        <div class="field">
+          <label for="details">{t('contact.form.details')}</label>
+          <textarea id="details" name="details" rows="5" required></textarea>
+        </div>
+
+        <button class="button button--primary" type="submit">{t('contact.form.submit')}</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline define:vars={{ successMessage: t('contact.form.successDemo') }}>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (status) status.textContent = successMessage;
+  });
+</script>
+
+<style>
+  .contact__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    /* Grid items default to a content-based min-width that can overflow a
+       narrow track (the classic "min-width: auto" issue) — reset it. */
+    min-width: 0;
+  }
+
+  .contact__grid > * {
+    min-width: 0;
+  }
+
+  .contact__info dl {
+    margin: 0;
+  }
+
+  .contact__info-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-3);
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .contact__info-row dt {
+    color: var(--color-text-muted);
+  }
+
+  .contact__info-row dd {
+    margin: 0;
+    color: var(--color-text);
+  }
+
+  .demo-banner {
+    background: var(--color-bg-inset);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    color: var(--color-accent);
+    font-size: var(--text-small);
+    margin-bottom: var(--space-4);
+  }
+
+  .field {
+    margin-bottom: var(--space-4);
+  }
+
+  .field-group {
+    margin-bottom: var(--space-4);
+  }
+
+  .field-group__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-body);
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  .radio-label input {
+    width: auto;
+  }
+
+  .form-status {
+    margin-top: var(--space-3);
+    color: var(--color-success);
+  }
+
+  @media (min-width: 900px) {
+    .contact__grid {
+      grid-template-columns: 1fr 1.4fr;
+    }
+  }
+</style>

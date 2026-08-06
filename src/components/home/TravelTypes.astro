@@ -1,0 +1,64 @@
+---
+import type { SiteDataItem } from '../../data/site-content';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  items: SiteDataItem[];
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+const { eyebrow, title, items, ctaLabel, ctaHref } = Astro.props;
+---
+
+<section class="section travel-types">
+  <div class="container">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{title}</h2>
+    <ul class="travel-types__grid">
+      {
+        items.map((item, index) => (
+          <li>
+            <span class="travel-types__index" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3>{item.title}</h3>
+            <p class="text-small">{item.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <a class="button" href={ctaHref}>{ctaLabel}</a>
+  </div>
+</section>
+
+<style>
+  .travel-types__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--card-gap);
+    list-style: none;
+    margin: var(--space-5) 0;
+    padding: 0;
+  }
+
+  .travel-types__grid li {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-3);
+  }
+
+  .travel-types__index {
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: var(--text-h4);
+  }
+
+  .travel-types__grid h3 {
+    margin-block: var(--space-2);
+  }
+
+  .travel-types__grid p {
+    color: var(--color-text-muted);
+  }
+</style>

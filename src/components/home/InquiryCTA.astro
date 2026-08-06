@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+const { title, body, ctaLabel, ctaHref } = Astro.props;
+---
+
+<section class="section inquiry-cta">
+  <div class="container inquiry-cta__inner">
+    <h2>{title}</h2>
+    <p class="inquiry-cta__body">{body}</p>
+    <a class="button button--primary" href={ctaHref}>{ctaLabel}</a>
+  </div>
+</section>
+
+<style>
+  .inquiry-cta {
+    background: var(--color-bg-elevated);
+  }
+
+  .inquiry-cta__inner {
+    text-align: center;
+    max-width: var(--prose-max-width);
+    margin-inline: auto;
+  }
+
+  .inquiry-cta__body {
+    color: var(--color-text-muted);
+  }
+
+  .inquiry-cta .button {
+    margin-inline: auto;
+  }
+</style>
