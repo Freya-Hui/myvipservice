@@ -1,17 +1,43 @@
 ---
 import { languages, useTranslations, type Locale } from '../i18n/ui';
 import { KNOWN_PAGE_SLUGS } from '../i18n/routes';
+import { getDetailSwitchUrl, type LinkableCollection } from '../lib/content';
 
+interface Props {
+  /** Set on detail pages so each language link resolves to the matching translation, not a 404 or the wrong content. */
+  translationContext?: { collection: LinkableCollection; translationKey: string };
+}
+
+const { translationContext } = Astro.props;
 const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 const t = useTranslations(currentLocale);
 
-// Swap the leading /<locale>/ segment of the current path for each language.
-// If the rest of the path isn't a page we know exists in every locale yet,
-// fall back to that locale's homepage instead of a dead link.
+// Static pages: swap the leading /<locale>/ segment. If the rest of the path
+// isn't a page we know exists in every locale, fall back to that locale's
+// homepage instead of a dead link. Detail pages (translationContext set)
+// override this per-locale below with a translationKey lookup instead.
 const segments = Astro.url.pathname.split('/').filter(Boolean);
 const rest = segments.slice(1).join('/');
 const isKnownPage = (KNOWN_PAGE_SLUGS as readonly string[]).includes(rest);
-const targetPath = isKnownPage ? rest : '';
+const fallbackPath = isKnownPage ? rest : '';
+
+const targets = await Promise.all(
+  Object.keys(languages).map(async (code) => {
+    if (code === currentLocale) {
+      return [code, `/${code}/${fallbackPath}`] as const;
+    }
+    if (translationContext) {
+      const url = await getDetailSwitchUrl(
+        translationContext.collection,
+        code as Locale,
+        translationContext.translationKey,
+      );
+      return [code, url] as const;
+    }
+    return [code, `/${code}/${fallbackPath}`] as const;
+  }),
+);
+const hrefByLocale = Object.fromEntries(targets);
 ---
 
 <nav class="language-switcher" aria-label={t('common.languageLabel')}>
@@ -20,7 +46,7 @@ const targetPath = isKnownPage ? rest : '';
       Object.entries(languages).map(([code, label]) => (
         <li>
           <a
-            href={`/${code}/${targetPath}`}
+            href={hrefByLocale[code]}
             data-locale={code}
             lang={code}
             aria-current={code === currentLocale ? 'true' : undefined}

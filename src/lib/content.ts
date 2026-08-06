@@ -129,5 +129,7 @@ export async function getDetailSwitchUrl(
   translationKey: string,
 ): Promise<string> {
   const match = await getEntryByTranslationKey(collection, targetLocale, translationKey);
-  return match ? `/${targetLocale}/${collection}/${match.data.slug}/` : `/${targetLocale}/${collection}/`;
+  return match
+    ? `/${targetLocale}/${collection}/${match.data.slug}/`
+    : `/${targetLocale}/${collection}/`;
 }

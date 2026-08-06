@@ -17,16 +17,25 @@ export function getStaticPaths() {
 const { locale } = Astro.params as { locale: Locale };
 const t = useTranslations(locale);
 
-const REGIONS = ['Europe', 'Asia', 'Middle East', 'Indian Ocean', 'Americas', 'Africa'] as const;
+const CATEGORIES = [
+  'Art & Culture',
+  'Food & Wine',
+  'Family',
+  'Wellness',
+  'Nature',
+  'Fashion',
+  'Celebration',
+  'Private Access',
+] as const;
 
-const all = await getLocaleEntries('destinations', locale);
+const all = await getLocaleEntries('experiences', locale);
 const featured = all.filter((entry) => entry.data.featured);
 
 function toCard(entry: (typeof all)[number]) {
   return {
-    href: `/${locale}/destinations/${entry.data.slug}/`,
+    href: `/${locale}/experiences/${entry.data.slug}/`,
     imageId: entry.data.coverImage,
-    eyebrow: t(`region.${entry.data.region}` as never),
+    eyebrow: t(`category.${entry.data.category}` as never),
     title: entry.data.title,
     summary: entry.data.description,
     draftLabel: entry.data.draft ? t('badge.draftTranslation') : undefined,
@@ -35,26 +44,29 @@ function toCard(entry: (typeof all)[number]) {
 ---
 
 <BaseLayout
-  title={t('nav.destinations')}
-  description="MYVIPSERVICE — destinations we know well enough to plan a trip around."
-  path="destinations"
+  title={t('experiences.hero.title')}
+  description="MYVIPSERVICE — private experiences we use to test the experience template."
+  path="experiences"
 >
   <div class="container">
     <Breadcrumbs
-      items={[{ label: t('nav.home'), href: `/${locale}/` }, { label: t('nav.destinations') }]}
+      items={[
+        { label: t('nav.home'), href: `/${locale}/` },
+        { label: t('experiences.hero.title') },
+      ]}
     />
   </div>
 
   <PageHero
-    eyebrow={t('destinations.hero.eyebrow')}
-    title={t('destinations.hero.title')}
-    subtitle={t('destinations.hero.subtitle')}
+    eyebrow={t('experiences.hero.eyebrow')}
+    title={t('experiences.hero.title')}
+    subtitle={t('experiences.hero.subtitle')}
   />
 
   {
     all.length === 0 ? (
       <div class="container">
-        <EmptyState message={t('destinations.emptyState')} />
+        <EmptyState message={t('experiences.emptyState')} />
       </div>
     ) : (
       <Fragment>
@@ -62,8 +74,8 @@ function toCard(entry: (typeof all)[number]) {
           <section class="section">
             <div class="container">
               <SectionHeading
-                eyebrow={t('destinations.hero.eyebrow')}
-                title={t('destinations.featuredHeading')}
+                eyebrow={t('experiences.hero.eyebrow')}
+                title={t('experiences.featuredHeading')}
               />
               <ContentGrid>
                 {featured.map((entry) => (
@@ -74,29 +86,26 @@ function toCard(entry: (typeof all)[number]) {
           </section>
         )}
 
-        <section class="section">
-          <div class="container">
-            <SectionHeading
-              eyebrow={t('destinations.hero.eyebrow')}
-              title={t('destinations.allHeading')}
-            />
-            {REGIONS.map((region) => {
-              const entries = all.filter((entry) => entry.data.region === region);
-              return (
-                entries.length > 0 && (
-                  <div class="region-group">
-                    <h3>{t(`region.${region}` as never)}</h3>
-                    <ContentGrid>
-                      {entries.map((entry) => (
-                        <ContentCard {...toCard(entry)} />
-                      ))}
-                    </ContentGrid>
-                  </div>
-                )
-              );
-            })}
-          </div>
-        </section>
+        {CATEGORIES.map((category) => {
+          const entries = all.filter((entry) => entry.data.category === category);
+          return (
+            entries.length > 0 && (
+              <section class="section">
+                <div class="container">
+                  <SectionHeading
+                    eyebrow={t('experiences.hero.eyebrow')}
+                    title={t(`category.${category}` as never)}
+                  />
+                  <ContentGrid>
+                    {entries.map((entry) => (
+                      <ContentCard {...toCard(entry)} />
+                    ))}
+                  </ContentGrid>
+                </div>
+              </section>
+            )
+          );
+        })}
       </Fragment>
     )
   }
@@ -108,17 +117,3 @@ function toCard(entry: (typeof all)[number]) {
     ctaHref={`/${locale}/contact/`}
   />
 </BaseLayout>
-
-<style>
-  .region-group + .region-group {
-    margin-top: var(--space-6);
-  }
-
-  .region-group h3 {
-    margin-bottom: var(--space-2);
-  }
-
-  .region-group .content-grid {
-    margin-top: var(--space-4);
-  }
-</style>

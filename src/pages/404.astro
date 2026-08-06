@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import { languages, ui } from '../i18n/ui';
+
+// A bare 404 has no locale in the URL by definition, so it can't go through
+// BaseLayout (which needs Astro.currentLocale resolved) — this stands alone,
+// showing all four languages so whoever lands here can read it regardless
+// of which language they were browsing in.
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>404 · MYVIPSERVICE</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <main class="not-found">
+      <p class="wordmark">MYVIPSERVICE</p>
+      <ul class="not-found__list">
+        {
+          Object.keys(languages).map((code) => (
+            <li lang={code}>
+              <p class="not-found__title">{ui[code as keyof typeof ui]['notFound.title']}</p>
+              <p class="not-found__body text-small">
+                {ui[code as keyof typeof ui]['notFound.body']}
+              </p>
+              <p class="not-found__links text-small">
+                <a href={`/${code}/`}>{ui[code as keyof typeof ui]['notFound.homeLink']}</a>
+                <span aria-hidden="true">·</span>
+                <a href={`/${code}/destinations/`}>
+                  {ui[code as keyof typeof ui]['notFound.exploreLink']}
+                </a>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </body>
+</html>
+
+<style>
+  .not-found {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-6);
+    padding: var(--space-5);
+    text-align: center;
+  }
+
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: var(--tracking-wordmark);
+  }
+
+  .not-found__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--space-5);
+    max-width: 48rem;
+  }
+
+  .not-found__title {
+    font-family: var(--font-display);
+    font-size: var(--text-h4);
+    margin-bottom: var(--space-2);
+  }
+
+  .not-found__body {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .not-found__links a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .not-found__links a:hover {
+    text-decoration: underline;
+  }
+
+  .not-found__links span {
+    color: var(--color-text-faint);
+    margin-inline: var(--space-2);
+  }
+</style>

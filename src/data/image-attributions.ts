@@ -140,7 +140,8 @@ export const imageAttributions: ImageAttribution[] = [
   {
     id: 'accommodation-villa-geneva',
     src: '/images/accommodation-villa-geneva.jpg',
-    sourceUrl: 'https://unsplash.com/photos/spacious-green-lawn-and-swimming-pool-with-lounge-chairs-3Jb1wgUwG4M',
+    sourceUrl:
+      'https://unsplash.com/photos/spacious-green-lawn-and-swimming-pool-with-lounge-chairs-3Jb1wgUwG4M',
     sourceName: 'Unsplash',
     author: 'Aziz Kouri',
     license: 'Unsplash License',
@@ -151,7 +152,8 @@ export const imageAttributions: ImageAttribution[] = [
   {
     id: 'experience-art-gallery',
     src: '/images/experience-art-gallery.jpg',
-    sourceUrl: 'https://unsplash.com/photos/a-large-painting-hanging-on-the-wall-of-a-museum-uJCubgWo-0E',
+    sourceUrl:
+      'https://unsplash.com/photos/a-large-painting-hanging-on-the-wall-of-a-museum-uJCubgWo-0E',
     sourceName: 'Unsplash',
     author: 'Declan Sun',
     license: 'Unsplash License',

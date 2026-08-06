@@ -19,6 +19,13 @@ const services = (
 function slugOf(id: string) {
   return id.split('/').slice(1).join('/');
 }
+
+// A couple of service cards now have a real list page behind them; the rest
+// still route to Contact until their own listing exists.
+const LIST_PAGE_BY_SLUG: Record<string, string> = {
+  'hotel-villa-reservations': 'accommodations',
+  'private-experiences': 'experiences',
+};
 ---
 
 <BaseLayout
@@ -39,6 +46,9 @@ function slugOf(id: string) {
           services.map((service, index) => {
             const slug = slugOf(service.id);
             const image = service.data.image ? getImage(service.data.image) : null;
+            const listPage = LIST_PAGE_BY_SLUG[slug];
+            const href = listPage ? `/${locale}/${listPage}/` : `/${locale}/contact/`;
+            const cta = listPage ? t('common.viewDetails') : t('services.cardCta');
             return (
               <li class="card service-card" id={slug}>
                 {image ? (
@@ -58,8 +68,8 @@ function slugOf(id: string) {
                 )}
                 <h2>{service.data.title}</h2>
                 <p class="text-small service-card__summary">{service.data.summary}</p>
-                <a class="button button--quiet" href={`/${locale}/contact/`}>
-                  {t('services.cardCta')} →
+                <a class="button button--quiet" href={href}>
+                  {cta} →
                 </a>
               </li>
             );

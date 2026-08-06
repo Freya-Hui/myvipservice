@@ -29,7 +29,13 @@ const t = useTranslations(currentLocale);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <Seo title={title} description={description} path={path} imageId={imageId} structuredData={structuredData} />
+    <Seo
+      title={title}
+      description={description}
+      path={path}
+      imageId={imageId}
+      structuredData={structuredData}
+    />
   </head>
   <body>
     <a class="skip-link" href="#main-content">{t('a11y.skipToContent')}</a>

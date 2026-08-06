@@ -41,7 +41,11 @@ function localeSlugId({ entry, data }: { entry: string; data: Record<string, unk
 }
 
 const destinations = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/destinations', generateId: localeSlugId }),
+  loader: glob({
+    pattern: '**/*.md',
+    base: './src/content/destinations',
+    generateId: localeSlugId,
+  }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
@@ -71,7 +75,11 @@ const destinations = defineCollection({
 });
 
 const accommodations = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/accommodations', generateId: localeSlugId }),
+  loader: glob({
+    pattern: '**/*.md',
+    base: './src/content/accommodations',
+    generateId: localeSlugId,
+  }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),

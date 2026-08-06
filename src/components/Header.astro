@@ -1,7 +1,13 @@
 ---
 import { useTranslations, type Locale } from '../i18n/ui';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import type { LinkableCollection } from '../lib/content';
 
+interface Props {
+  translationContext?: { collection: LinkableCollection; translationKey: string };
+}
+
+const { translationContext } = Astro.props;
 const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 const t = useTranslations(currentLocale);
 
@@ -10,6 +16,7 @@ const navItems: Array<{ href: string; label: string }> = [
   { href: `/${currentLocale}/`, label: t('nav.home') },
   { href: `/${currentLocale}/about/`, label: t('nav.about') },
   { href: `/${currentLocale}/services/`, label: t('nav.services') },
+  { href: `/${currentLocale}/destinations/`, label: t('nav.destinations') },
   { href: `/${currentLocale}/contact/`, label: t('nav.contact') },
 ];
 ---
@@ -45,7 +52,7 @@ const navItems: Array<{ href: string; label: string }> = [
           }
         </ul>
       </nav>
-      <LanguageSwitcher />
+      <LanguageSwitcher translationContext={translationContext} />
       <a class="button button--primary plan-journey" href={`/${currentLocale}/contact/`}>
         {t('header.planJourney')}
       </a>
@@ -149,7 +156,10 @@ const navItems: Array<{ href: string; label: string }> = [
     white-space: nowrap;
   }
 
-  @media (max-width: 767px) {
+  /* Five nav items + language switcher + CTA is tight in one row — this
+     threshold gives every locale (Russian labels run longest) real margin
+     instead of fitting exactly at one viewport width. */
+  @media (max-width: 1099px) {
     .menu-toggle {
       display: inline-flex;
     }

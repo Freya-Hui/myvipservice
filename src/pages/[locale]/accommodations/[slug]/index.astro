@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PageHero from '../../../../components/PageHero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Gallery from '../../../../components/Gallery.astro';
+import SectionHeading from '../../../../components/SectionHeading.astro';
+import ContentSection from '../../../../components/ContentSection.astro';
+import KeyFacts from '../../../../components/KeyFacts.astro';
+import RelatedContent from '../../../../components/RelatedContent.astro';
+import ContentStatusBadge from '../../../../components/ContentStatusBadge.astro';
+import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
+import {
+  getDetailStaticPaths,
+  resolveRelated,
+  getEntryByTranslationKey,
+} from '../../../../lib/content';
+import { useTranslations, type Locale } from '../../../../i18n/ui';
+
+export const getStaticPaths = () => getDetailStaticPaths('accommodations');
+
+const { locale } = Astro.params as { locale: Locale };
+const { entry } = Astro.props as Awaited<ReturnType<typeof getDetailStaticPaths>>[number]['props'];
+const { data } = entry;
+const t = useTranslations(locale);
+
+const destination = await getEntryByTranslationKey('destinations', locale, data.destinationKey);
+const experiences = await resolveRelated(
+  'experiences',
+  locale,
+  data.relatedExperienceKeys,
+  data.translationKey,
+);
+const relatedAccommodations = await resolveRelated(
+  'accommodations',
+  locale,
+  data.relatedAccommodationKeys,
+  data.translationKey,
+);
+
+const keyFacts = [
+  { label: t('accommodations.detail.typeLabel'), value: t(`type.${data.type}` as never) },
+  { label: t('accommodations.detail.locationTitle'), value: `${data.city}, ${data.country}` },
+  ...(data.suitableFor.length > 0
+    ? [{ label: t('accommodations.detail.suitableForLabel'), value: data.suitableFor.join(', ') }]
+    : []),
+];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'LodgingBusiness',
+    name: data.title,
+    description: data.description,
+    url: new URL(`/${locale}/accommodations/${data.slug}/`, Astro.site).toString(),
+  },
+];
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.seoDescription ?? data.description}
+  path={`accommodations/${data.slug}`}
+  imageId={data.coverImage}
+  structuredData={structuredData}
+  translationContext={{ collection: 'accommodations', translationKey: data.translationKey }}
+>
+  <div class="container">
+    <Breadcrumbs
+      items={[
+        { label: t('nav.home'), href: `/${locale}/` },
+        { label: t('accommodations.hero.title'), href: `/${locale}/accommodations/` },
+        { label: data.title },
+      ]}
+    />
+  </div>
+
+  <PageHero eyebrow={t(`type.${data.type}` as never)} title={data.title} />
+  <div class="container badge-row">
+    <ContentStatusBadge tone="demo" label={t('badge.demoListing')} />
+    {data.draft && <ContentStatusBadge tone="draft" label={t('badge.draftTranslation')} />}
+  </div>
+
+  <div class="container">
+    <Gallery images={data.gallery.length > 0 ? data.gallery : [data.coverImage]} />
+  </div>
+
+  <ContentSection title={t('accommodations.detail.overviewTitle')} body={data.description} />
+
+  {
+    data.servicePerspective && (
+      <ContentSection
+        title={t('accommodations.detail.perspectiveTitle')}
+        body={data.servicePerspective}
+      />
+    )
+  }
+
+  <section class="section">
+    <div class="container">
+      <KeyFacts facts={keyFacts} />
+    </div>
+  </section>
+
+  {
+    data.highlights.length > 0 && (
+      <section class="section">
+        <div class="container prose">
+          <SectionHeading
+            eyebrow={t(`type.${data.type}` as never)}
+            title={t('accommodations.detail.highlightsTitle')}
+          />
+          <ul class="highlight-list">
+            {data.highlights.map((item: string) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    data.familyNotes && (
+      <ContentSection title={t('accommodations.detail.familyNotesTitle')} body={data.familyNotes} />
+    )
+  }
+
+  {
+    data.diningWellness && (
+      <ContentSection
+        title={t('accommodations.detail.diningWellnessTitle')}
+        body={data.diningWellness}
+      />
+    )
+  }
+
+  <RelatedContent
+    eyebrow={t(`type.${data.type}` as never)}
+    title={t('accommodations.detail.relatedDestinationHeading')}
+    items={destination
+      ? [
+          {
+            href: `/${locale}/destinations/${destination.data.slug}/`,
+            imageId: destination.data.coverImage,
+            eyebrow: t(`region.${destination.data.region}` as never),
+            title: destination.data.title,
+            summary: destination.data.description,
+            draftLabel: destination.data.draft ? t('badge.draftTranslation') : undefined,
+          },
+        ]
+      : []}
+  />
+
+  <RelatedContent
+    eyebrow={t(`type.${data.type}` as never)}
+    title={t('accommodations.detail.nearbyExperiencesHeading')}
+    items={experiences.map((item) => ({
+      href: `/${locale}/experiences/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t(`category.${item.data.category}` as never),
+      title: item.data.title,
+      summary: item.data.description,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
+
+  <RelatedContent
+    eyebrow={t(`type.${data.type}` as never)}
+    title={t('accommodations.detail.relatedAccommodationsHeading')}
+    items={relatedAccommodations.map((item) => ({
+      href: `/${locale}/accommodations/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t(`type.${item.data.type}` as never),
+      title: item.data.title,
+      summary: item.data.description,
+      meta: `${item.data.city}, ${item.data.country}`,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
+
+  <section class="section price-notice-section">
+    <div class="container">
+      <p class="price-notice">{t('accommodations.detail.priceNotice')}</p>
+    </div>
+  </section>
+
+  <InquiryCTA
+    title={t('home.inquiry.title')}
+    body={t('home.inquiry.body')}
+    ctaLabel={t('common.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
+</BaseLayout>
+
+<style>
+  .badge-row {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .highlight-list {
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .price-notice-section {
+    padding-block: var(--space-4);
+  }
+
+  .price-notice {
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    color: var(--color-text-muted);
+  }
+</style>

@@ -11,4 +11,7 @@ export const KNOWN_PAGE_SLUGS = [
   'contact',
   'privacy-policy',
   'legal-notice',
+  'destinations',
+  'accommodations',
+  'experiences',
 ] as const;

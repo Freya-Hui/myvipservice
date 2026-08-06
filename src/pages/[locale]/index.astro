@@ -3,7 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/home/Hero.astro';
 import IntroSection from '../../components/home/IntroSection.astro';
-import DestinationGrid from '../../components/home/DestinationGrid.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
 import AccommodationFeature from '../../components/home/AccommodationFeature.astro';
 import TravelTypes from '../../components/home/TravelTypes.astro';
 import ExperienceFeature from '../../components/home/ExperienceFeature.astro';
@@ -12,6 +12,7 @@ import ProcessSteps from '../../components/home/ProcessSteps.astro';
 import ServiceNetwork from '../../components/home/ServiceNetwork.astro';
 import JournalPreview from '../../components/home/JournalPreview.astro';
 import InquiryCTA from '../../components/home/InquiryCTA.astro';
+import { getLocaleEntries } from '../../lib/content';
 import { languages, useTranslations, type Locale } from '../../i18n/ui';
 import { travelTypes, processSteps, networkHighlights } from '../../data/site-content';
 
@@ -31,9 +32,8 @@ function bySlug(entries: CollectionEntry<'services'>[], slug: string) {
 const services = (
   await getCollection('services', (entry) => entry.id.startsWith(`${locale}/`))
 ).sort((a, b) => a.data.order - b.data.order);
-const destinations = (
-  await getCollection('destinations', (entry) => entry.id.startsWith(`${locale}/`))
-).sort((a, b) => a.data.order - b.data.order);
+const destinations = await getLocaleEntries('destinations', locale);
+const featuredDestinations = destinations.filter((entry) => entry.data.featured);
 const journalEntries = (
   await getCollection('caseStudies', (entry) => entry.id.startsWith(`${locale}/`))
 ).sort((a, b) => a.data.order - b.data.order);
@@ -61,10 +61,17 @@ const conciergeService = bySlug(services, 'personal-concierge');
     body={t('home.intro.body')}
   />
 
-  <DestinationGrid
+  <RelatedContent
     eyebrow={t('home.destinations.eyebrow')}
     title={t('home.destinations.title')}
-    destinations={destinations.map((d) => d.data)}
+    items={featuredDestinations.map((entry) => ({
+      href: `/${locale}/destinations/${entry.data.slug}/`,
+      imageId: entry.data.coverImage,
+      eyebrow: t(`region.${entry.data.region}` as never),
+      title: entry.data.title,
+      summary: entry.data.description,
+      draftLabel: entry.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
   />
 
   <AccommodationFeature
@@ -72,7 +79,7 @@ const conciergeService = bySlug(services, 'personal-concierge');
     title={hotelsService.title}
     body={hotelsService.summary}
     ctaLabel={t('home.hotels.cta')}
-    ctaHref={`/${locale}/services/#hotel-villa-reservations`}
+    ctaHref={`/${locale}/accommodations/`}
     imageId="service-hotels-villas"
   />
 
@@ -89,7 +96,7 @@ const conciergeService = bySlug(services, 'personal-concierge');
     title={experiencesService.title}
     body={experiencesService.summary}
     ctaLabel={t('home.experience.cta')}
-    ctaHref={`/${locale}/services/#private-experiences`}
+    ctaHref={`/${locale}/experiences/`}
     imageId="service-private-experiences"
   />
 

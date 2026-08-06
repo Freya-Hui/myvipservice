@@ -8,7 +8,7 @@ region: 'Europe'
 featured: true
 status: 'published'
 coverImage: 'destination-paris'
-gallery: ['destination-paris', 'hero-paris']
+gallery: ['destination-paris']
 bestTime: 'April–June and September–October, when the city is lively but not at its most crowded.'
 suggestedStay: '3–5 nights'
 highlights:

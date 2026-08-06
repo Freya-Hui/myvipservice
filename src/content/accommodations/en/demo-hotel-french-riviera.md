@@ -12,7 +12,8 @@ featured: false
 status: 'published'
 coverImage: 'destination-french-riviera'
 gallery: ['destination-french-riviera']
-highlights: ['Sea-view terraces', 'Private beach access (illustrative)', 'Chauffeur desk on request']
+highlights:
+  ['Sea-view terraces', 'Private beach access (illustrative)', 'Chauffeur desk on request']
 suitableFor: ['Couples', 'Families']
 familyNotes: 'Demo listing — not a confirmed family policy.'
 diningWellness: 'Demo listing — illustrative only, pending confirmation with a real property.'

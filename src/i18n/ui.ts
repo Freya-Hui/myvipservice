@@ -339,7 +339,8 @@ export const ui = {
 
     'destinations.hero.eyebrow': '目的地',
     'destinations.hero.title': '我们带您去的地方',
-    'destinations.hero.subtitle': '我们熟悉并能为您规划行程的目的地列表——每一处都关联对应的住宿与体验。',
+    'destinations.hero.subtitle':
+      '我们熟悉并能为您规划行程的目的地列表——每一处都关联对应的住宿与体验。',
     'destinations.featuredHeading': '精选目的地',
     'destinations.allHeading': '全部目的地',
     'destinations.emptyState': '暂无已发布的目的地，敬请期待。',
@@ -370,7 +371,8 @@ export const ui = {
     'accommodations.detail.relatedDestinationHeading': '相关目的地',
     'accommodations.detail.nearbyExperiencesHeading': '周边体验',
     'accommodations.detail.relatedAccommodationsHeading': '相关住宿',
-    'accommodations.detail.priceNotice': '价格面议——每次入住均为量身定制，我们将在了解您的需求后提供报价。',
+    'accommodations.detail.priceNotice':
+      '价格面议——每次入住均为量身定制，我们将在了解您的需求后提供报价。',
 
     'experiences.hero.eyebrow': '私人体验',
     'experiences.hero.title': '体验',

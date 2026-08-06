@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PageHero from '../../../../components/PageHero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Gallery from '../../../../components/Gallery.astro';
+import SectionHeading from '../../../../components/SectionHeading.astro';
+import ContentSection from '../../../../components/ContentSection.astro';
+import KeyFacts from '../../../../components/KeyFacts.astro';
+import RelatedContent from '../../../../components/RelatedContent.astro';
+import ContentStatusBadge from '../../../../components/ContentStatusBadge.astro';
+import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
+import {
+  getDetailStaticPaths,
+  resolveRelated,
+  getEntryByTranslationKey,
+} from '../../../../lib/content';
+import { useTranslations, type Locale } from '../../../../i18n/ui';
+
+export const getStaticPaths = () => getDetailStaticPaths('experiences');
+
+const { locale } = Astro.params as { locale: Locale };
+const { entry } = Astro.props as Awaited<ReturnType<typeof getDetailStaticPaths>>[number]['props'];
+const { data } = entry;
+const t = useTranslations(locale);
+
+const destination = data.destinationKey
+  ? await getEntryByTranslationKey('destinations', locale, data.destinationKey)
+  : undefined;
+const accommodations = await resolveRelated(
+  'accommodations',
+  locale,
+  data.relatedAccommodationKeys,
+  data.translationKey,
+);
+const relatedExperiences = await resolveRelated(
+  'experiences',
+  locale,
+  data.relatedExperienceKeys,
+  data.translationKey,
+);
+
+const keyFacts = [
+  ...(destination
+    ? [{ label: t('experiences.detail.locationTitle'), value: destination.data.title }]
+    : []),
+  ...(data.duration
+    ? [{ label: t('experiences.detail.durationLabel'), value: data.duration }]
+    : []),
+  ...(data.suitableFor.length > 0
+    ? [{ label: t('experiences.detail.suitableForLabel'), value: data.suitableFor.join(', ') }]
+    : []),
+  ...(data.familySuitable !== undefined
+    ? [
+        {
+          label: t('experiences.detail.familySuitableLabel'),
+          value: data.familySuitable ? t('common.yes') : t('common.no'),
+        },
+      ]
+    : []),
+  ...(data.languages.length > 0
+    ? [{ label: t('experiences.detail.languagesLabel'), value: data.languages.join(', ') }]
+    : []),
+];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    name: data.title,
+    description: data.description,
+    url: new URL(`/${locale}/experiences/${data.slug}/`, Astro.site).toString(),
+  },
+];
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.seoDescription ?? data.description}
+  path={`experiences/${data.slug}`}
+  imageId={data.coverImage}
+  structuredData={structuredData}
+  translationContext={{ collection: 'experiences', translationKey: data.translationKey }}
+>
+  <div class="container">
+    <Breadcrumbs
+      items={[
+        { label: t('nav.home'), href: `/${locale}/` },
+        { label: t('experiences.hero.title'), href: `/${locale}/experiences/` },
+        { label: data.title },
+      ]}
+    />
+  </div>
+
+  <PageHero eyebrow={t(`category.${data.category}` as never)} title={data.title} />
+  <div class="container badge-row">
+    <ContentStatusBadge tone="demo" label={t('badge.demoListing')} />
+    {data.draft && <ContentStatusBadge tone="draft" label={t('badge.draftTranslation')} />}
+  </div>
+
+  <div class="container">
+    <Gallery images={data.gallery.length > 0 ? data.gallery : [data.coverImage]} />
+  </div>
+
+  <ContentSection title={t('experiences.detail.overviewTitle')} body={data.description} />
+
+  {
+    data.highlights.length > 0 && (
+      <section class="section">
+        <div class="container prose">
+          <SectionHeading
+            eyebrow={t(`category.${data.category}` as never)}
+            title={t('experiences.detail.highlightsTitle')}
+          />
+          <ul class="highlight-list">
+            {data.highlights.map((item: string) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    keyFacts.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <KeyFacts facts={keyFacts} />
+        </div>
+      </section>
+    )
+  }
+
+  {
+    data.customisationNotes && (
+      <ContentSection
+        title={t('experiences.detail.customisationTitle')}
+        body={data.customisationNotes}
+      />
+    )
+  }
+
+  <RelatedContent
+    eyebrow={t(`category.${data.category}` as never)}
+    title={t('experiences.detail.relatedDestinationHeading')}
+    items={destination
+      ? [
+          {
+            href: `/${locale}/destinations/${destination.data.slug}/`,
+            imageId: destination.data.coverImage,
+            eyebrow: t(`region.${destination.data.region}` as never),
+            title: destination.data.title,
+            summary: destination.data.description,
+            draftLabel: destination.data.draft ? t('badge.draftTranslation') : undefined,
+          },
+        ]
+      : []}
+  />
+
+  <RelatedContent
+    eyebrow={t(`category.${data.category}` as never)}
+    title={t('experiences.detail.nearbyAccommodationsHeading')}
+    items={accommodations.map((item) => ({
+      href: `/${locale}/accommodations/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t(`type.${item.data.type}` as never),
+      title: item.data.title,
+      summary: item.data.description,
+      meta: `${item.data.city}, ${item.data.country}`,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
+
+  <RelatedContent
+    eyebrow={t(`category.${data.category}` as never)}
+    title={t('experiences.detail.relatedExperiencesHeading')}
+    items={relatedExperiences.map((item) => ({
+      href: `/${locale}/experiences/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t(`category.${item.data.category}` as never),
+      title: item.data.title,
+      summary: item.data.description,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
+
+  <InquiryCTA
+    title={t('home.inquiry.title')}
+    body={t('home.inquiry.body')}
+    ctaLabel={t('common.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
+</BaseLayout>
+
+<style>
+  .badge-row {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .highlight-list {
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+</style>
