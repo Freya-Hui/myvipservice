@@ -1,10 +1,13 @@
 ---
-name: 'Paris'
-region: 'Île-de-France'
-summary: "Notre ville d'origine — un accès privilégié à la mode, à la gastronomie et à des adresses rarement ouvertes au public."
-order: 1
-image: destination-paris
+title: 'Paris'
+slug: 'paris'
+locale: 'fr'
+translationKey: 'paris'
+description: "Notre ville d'origine — un accès privilégié à la mode, à la gastronomie et à des adresses rarement ouvertes au public. (Brouillon)"
+region: 'Europe'
+status: 'published'
+coverImage: 'destination-paris'
+relatedAccommodationKeys: ['demo-hotel-paris']
+relatedExperienceKeys: ['demo-private-museum-evening-access']
 draft: true
 ---
-
-Contenu provisoire — la version française définitive sera rédigée en Phase 3.

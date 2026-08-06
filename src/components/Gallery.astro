@@ -1,0 +1,35 @@
+---
+import { getImageSafe } from '../data/image-attributions';
+
+interface Props {
+  images: string[];
+}
+
+const { images } = Astro.props;
+---
+
+{
+  images.length > 0 && (
+    <ul class="gallery">
+      {images.map((id) => {
+        const image = getImageSafe(id);
+        return (
+          <li class="figure figure--standard">
+            <img src={image.src} alt={image.alt} loading="lazy" width="1600" height="1200" />
+          </li>
+        );
+      })}
+    </ul>
+  )
+}
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: var(--space-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

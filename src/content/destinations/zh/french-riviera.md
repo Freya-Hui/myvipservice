@@ -1,10 +1,13 @@
 ---
-name: '法国里维埃拉'
-region: '蔚蓝海岸'
-summary: '沿欧洲最负盛名的海岸线，探索滨海小镇与私人游艇泊位。'
-order: 2
-image: destination-french-riviera
+title: '法国里维埃拉'
+slug: 'french-riviera'
+locale: 'zh'
+translationKey: 'french-riviera'
+description: '沿欧洲最负盛名的海岸线，探索滨海小镇与私人游艇泊位。（草稿）'
+region: 'Europe'
+status: 'published'
+coverImage: 'destination-french-riviera'
+relatedAccommodationKeys: ['demo-hotel-french-riviera']
+relatedExperienceKeys: ['demo-private-riviera-yacht-afternoon']
 draft: true
 ---
-
-草稿内容，正式中文文案将在 Phase 3 完成。

@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import ContentGrid from '../../../components/ContentGrid.astro';
+import ContentCard from '../../../components/ContentCard.astro';
+import EmptyState from '../../../components/EmptyState.astro';
+import InquiryCTA from '../../../components/home/InquiryCTA.astro';
+import { getLocaleEntries } from '../../../lib/content';
+import { languages, useTranslations, type Locale } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const t = useTranslations(locale);
+
+const REGIONS = ['Europe', 'Asia', 'Middle East', 'Indian Ocean', 'Americas', 'Africa'] as const;
+
+const all = await getLocaleEntries('destinations', locale);
+const featured = all.filter((entry) => entry.data.featured);
+
+function toCard(entry: (typeof all)[number]) {
+  return {
+    href: `/${locale}/destinations/${entry.data.slug}/`,
+    imageId: entry.data.coverImage,
+    eyebrow: t(`region.${entry.data.region}` as never),
+    title: entry.data.title,
+    summary: entry.data.description,
+    draftLabel: entry.data.draft ? t('badge.draftTranslation') : undefined,
+  };
+}
+---
+
+<BaseLayout
+  title={t('nav.destinations')}
+  description="MYVIPSERVICE — destinations we know well enough to plan a trip around."
+  path="destinations"
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: t('nav.home'), href: `/${locale}/` }, { label: t('nav.destinations') }]} />
+  </div>
+
+  <PageHero eyebrow={t('destinations.hero.eyebrow')} title={t('destinations.hero.title')} subtitle={t('destinations.hero.subtitle')} />
+
+  {
+    all.length === 0 ? (
+      <div class="container">
+        <EmptyState message={t('destinations.emptyState')} />
+      </div>
+    ) : (
+      <Fragment>
+        {featured.length > 0 && (
+          <section class="section">
+            <div class="container">
+              <SectionHeading eyebrow={t('destinations.hero.eyebrow')} title={t('destinations.featuredHeading')} />
+              <ContentGrid>
+                {featured.map((entry) => (
+                  <ContentCard {...toCard(entry)} />
+                ))}
+              </ContentGrid>
+            </div>
+          </section>
+        )}
+
+        <section class="section">
+          <div class="container">
+            <SectionHeading eyebrow={t('destinations.hero.eyebrow')} title={t('destinations.allHeading')} />
+            {REGIONS.map((region) => {
+              const entries = all.filter((entry) => entry.data.region === region);
+              return (
+                entries.length > 0 && (
+                  <div class="region-group">
+                    <h3>{t(`region.${region}` as never)}</h3>
+                    <ContentGrid>
+                      {entries.map((entry) => (
+                        <ContentCard {...toCard(entry)} />
+                      ))}
+                    </ContentGrid>
+                  </div>
+                )
+              );
+            })}
+          </div>
+        </section>
+      </Fragment>
+    )
+  }
+
+  <InquiryCTA
+    title={t('home.inquiry.title')}
+    body={t('home.inquiry.body')}
+    ctaLabel={t('common.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
+</BaseLayout>
+
+<style>
+  .region-group + .region-group {
+    margin-top: var(--space-6);
+  }
+
+  .region-group h3 {
+    margin-bottom: var(--space-2);
+  }
+
+  .region-group .content-grid {
+    margin-top: var(--space-4);
+  }
+</style>

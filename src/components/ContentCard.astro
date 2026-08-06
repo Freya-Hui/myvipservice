@@ -1,0 +1,74 @@
+---
+import { getImageSafe } from '../data/image-attributions';
+import ContentStatusBadge from './ContentStatusBadge.astro';
+
+interface Props {
+  href: string;
+  imageId: string;
+  eyebrow: string;
+  title: string;
+  summary: string;
+  meta?: string;
+  draftLabel?: string;
+}
+
+const { href, imageId, eyebrow, title, summary, meta, draftLabel } = Astro.props;
+const image = getImageSafe(imageId);
+---
+
+<li class="content-card">
+  <a href={href}>
+    <div class="figure figure--standard">
+      <img src={image.src} alt={image.alt} loading="lazy" width="1600" height="1200" />
+    </div>
+    <div class="content-card__body">
+      <p class="content-card__eyebrow text-small">{eyebrow}</p>
+      <h3>{title}</h3>
+      <p class="text-small content-card__summary">{summary}</p>
+      {meta && <p class="text-small content-card__meta">{meta}</p>}
+      {draftLabel && <ContentStatusBadge tone="draft" label={draftLabel} />}
+    </div>
+  </a>
+</li>
+
+<style>
+  .content-card {
+    list-style: none;
+  }
+
+  .content-card a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .content-card__body {
+    padding-top: var(--space-3);
+  }
+
+  .content-card__eyebrow {
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    margin-bottom: var(--space-2);
+  }
+
+  .content-card h3 {
+    font-size: var(--text-h4);
+    margin-bottom: var(--space-2);
+    transition: color var(--transition-fast);
+  }
+
+  .content-card a:hover h3 {
+    color: var(--color-accent);
+  }
+
+  .content-card__summary {
+    color: var(--color-text-muted);
+  }
+
+  .content-card__meta {
+    color: var(--color-text-faint);
+    margin-top: var(--space-2);
+  }
+</style>

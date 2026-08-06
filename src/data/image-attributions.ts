@@ -116,6 +116,49 @@ export const imageAttributions: ImageAttribution[] = [
     usageStatus: 'temporary',
     alt: 'People sitting at a café terrace on a Paris street.',
   },
+  {
+    id: 'destination-geneva',
+    src: '/images/destination-geneva.jpg',
+    sourceUrl: 'https://unsplash.com/photos/a-view-of-a-city-from-above-4BcxkctzeUM',
+    sourceName: 'Unsplash',
+    author: 'Tom Podmore',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    alt: 'An aerial view of Geneva, Switzerland, in the morning.',
+  },
+  {
+    id: 'destination-japan',
+    src: '/images/destination-japan.jpg',
+    sourceUrl:
+      'https://unsplash.com/photos/a-pagoda-with-a-tree-in-front-of-it-with-kiyomizu-dera-in-the-background-ZNBg8Pinuak',
+    sourceName: 'Unsplash',
+    author: 'Shinichi Kotoku',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    alt: 'A pagoda near Kiyomizu-dera temple in Kyoto, Japan.',
+  },
+  {
+    id: 'accommodation-villa-geneva',
+    src: '/images/accommodation-villa-geneva.jpg',
+    sourceUrl: 'https://unsplash.com/photos/spacious-green-lawn-and-swimming-pool-with-lounge-chairs-3Jb1wgUwG4M',
+    sourceName: 'Unsplash',
+    author: 'Aziz Kouri',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    alt: 'A villa garden with a swimming pool and lounge chairs.',
+    notes: 'Generic villa exterior — does not depict any named, real property.',
+  },
+  {
+    id: 'experience-art-gallery',
+    src: '/images/experience-art-gallery.jpg',
+    sourceUrl: 'https://unsplash.com/photos/a-large-painting-hanging-on-the-wall-of-a-museum-uJCubgWo-0E',
+    sourceName: 'Unsplash',
+    author: 'Declan Sun',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    alt: 'A large painting displayed in an art museum gallery.',
+    notes: 'Generic gallery interior — does not depict the Louvre or any named institution.',
+  },
 ];
 
 export function getImage(id: string): ImageAttribution {
@@ -124,4 +167,14 @@ export function getImage(id: string): ImageAttribution {
     throw new Error(`Unknown image id "${id}" — add it to src/data/image-attributions.ts first.`);
   }
   return image;
+}
+
+/**
+ * Same lookup, but never throws — content-driven callers (cards, galleries)
+ * shouldn't fail a build over one bad image id in a Markdown file. Falls
+ * back to the hero image, which always exists.
+ */
+export function getImageSafe(id: string | undefined, fallbackId = 'hero-paris'): ImageAttribution {
+  const image = imageAttributions.find((entry) => entry.id === id);
+  return image ?? getImage(fallbackId);
 }

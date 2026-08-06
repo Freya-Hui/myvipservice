@@ -1,0 +1,43 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import ContentGrid from './ContentGrid.astro';
+import ContentCard from './ContentCard.astro';
+
+interface Item {
+  href: string;
+  imageId: string;
+  eyebrow: string;
+  title: string;
+  summary: string;
+  meta?: string;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  items: Item[];
+}
+
+const { eyebrow, title, items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section class="section related-content">
+      <div class="container">
+        <SectionHeading eyebrow={eyebrow} title={title} />
+        <ContentGrid>
+          {items.map((item) => (
+            <ContentCard {...item} />
+          ))}
+        </ContentGrid>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .related-content .content-grid {
+    margin-top: var(--space-5);
+  }
+</style>

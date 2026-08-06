@@ -14,6 +14,12 @@ Phase 1 使用的所有图片均为**临时素材**，来自 Unsplash（Unsplash
 | service-hotels-villas       | `/images/service-hotels-villas.jpg`       | Hotels & Villas 板块          | Quang Nguyen Vinh | [Unsplash](https://unsplash.com/photos/a-hotel-lobby-with-a-chandelier-hanging-from-the-ceiling-WR1bkBstInw)   | Unsplash License | temporary |
 | service-private-experiences | `/images/service-private-experiences.jpg` | Private Experiences 板块      | Zac Cain          | [Unsplash](https://unsplash.com/photos/a-table-is-set-with-candles-and-plates-of-food-HCFqhYC_Hvw)             | Unsplash License | temporary |
 | journal-preview-paris-cafe  | `/images/journal-preview-paris-cafe.jpg`  | Journal Preview 板块          | Alex Harmuth      | [Unsplash](https://unsplash.com/photos/people-sitting-on-chair-near-building-during-daytime-bOICdD-Gulk)       | Unsplash License | temporary |
+| destination-geneva          | `/images/destination-geneva.jpg`          | Destinations — Geneva (Phase 2A) | Tom Podmore    | [Unsplash](https://unsplash.com/photos/a-view-of-a-city-from-above-4BcxkctzeUM)                                 | Unsplash License | temporary |
+| destination-japan           | `/images/destination-japan.jpg`           | Destinations — Japan (Phase 2A)  | Shinichi Kotoku | [Unsplash](https://unsplash.com/photos/a-pagoda-with-a-tree-in-front-of-it-with-kiyomizu-dera-in-the-background-ZNBg8Pinuak) | Unsplash License | temporary |
+| accommodation-villa-geneva  | `/images/accommodation-villa-geneva.jpg`  | Demo Villa — Geneva (Phase 2A)   | Aziz Kouri      | [Unsplash](https://unsplash.com/photos/spacious-green-lawn-and-swimming-pool-with-lounge-chairs-3Jb1wgUwG4M)   | Unsplash License | temporary |
+| experience-art-gallery      | `/images/experience-art-gallery.jpg`      | Demo Experience — Art & Culture (Phase 2A) | Declan Sun | [Unsplash](https://unsplash.com/photos/a-large-painting-hanging-on-the-wall-of-a-museum-uJCubgWo-0E)           | Unsplash License | temporary |
+
+`destination-french-alps` and `destination-provence` (downloaded in Phase 1) are kept — Phase 1's Provence/French Alps destination entries were replaced by Geneva/Japan in Phase 2A, but `destination-french-alps.jpg` is reused as the cover image for the demo "Alpine Wellness Retreat" experience, so it's still referenced. `destination-provence.jpg` is currently unused; left in place in case a Provence destination returns in a later phase.
 
 ## 排除项（未使用）
 

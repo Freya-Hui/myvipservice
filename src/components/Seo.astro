@@ -1,20 +1,30 @@
 ---
 import { languages, type Locale } from '../i18n/ui';
+import { getImageSafe } from '../data/image-attributions';
 
 interface Props {
   title: string;
   description: string;
   /** Path relative to /<locale>/, e.g. '' for the homepage or 'about' — no leading/trailing slash. */
   path: string;
+  /** Matches an id in src/data/image-attributions.ts — defaults to the hero shot. */
+  imageId?: string;
+  /** One JSON-LD object, or several (e.g. BreadcrumbList + TouristDestination). */
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, path } = Astro.props;
+const { title, description, path, imageId, structuredData } = Astro.props;
 const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 
 const suffix = path ? `/${path}/` : '/';
 const canonicalPath = `/${currentLocale}${suffix}`;
 const canonicalUrl = new URL(canonicalPath, Astro.site);
-const ogImage = new URL('/images/hero-paris.jpg', Astro.site);
+const ogImage = new URL(getImageSafe(imageId).src, Astro.site);
+const structuredDataList = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : [];
 ---
 
 <title>{title} · MYVIPSERVICE</title>
@@ -34,3 +44,9 @@ const ogImage = new URL('/images/hero-paris.jpg', Astro.site);
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:image" content={ogImage} />
 <meta property="og:locale" content={currentLocale} />
+
+{
+  structuredDataList.map((entry) => (
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(entry)} />
+  ))
+}

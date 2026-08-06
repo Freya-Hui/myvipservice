@@ -1,0 +1,48 @@
+---
+// Never rely on colour alone: every tone renders with its own icon glyph
+// plus a text label passed in by the caller (already translated).
+interface Props {
+  tone: 'draft' | 'demo';
+  label: string;
+}
+
+const { tone, label } = Astro.props;
+---
+
+<span class={`status-badge status-badge--${tone}`}>
+  {
+    tone === 'draft' ? (
+      <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+        <path d="M2 8.5 8.5 2M2 2h6.5v6.5" stroke="currentColor" stroke-width="1.3" fill="none" />
+      </svg>
+    ) : (
+      <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+        <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.3" fill="none" />
+        <path d="M6 3.5v3l2 1.2" stroke="currentColor" stroke-width="1.3" fill="none" />
+      </svg>
+    )
+  }
+  {label}
+</span>
+
+<style>
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 0.2rem 0.55rem;
+    border: 1px solid currentColor;
+    border-radius: var(--radius);
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .status-badge--draft {
+    color: var(--color-text-faint);
+  }
+
+  .status-badge--demo {
+    color: var(--color-accent);
+  }
+</style>
