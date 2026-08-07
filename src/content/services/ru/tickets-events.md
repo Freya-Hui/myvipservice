@@ -2,6 +2,7 @@
 title: 'Билеты и мероприятия'
 summary: 'Индивидуальная помощь с билетами на популярные достопримечательности, музеи, театр, концерты и спортивные события — при наличии возможности.'
 order: 6
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-tickets-events
 highlights:

@@ -2,6 +2,7 @@
 title: 'Мода и шопинг'
 summary: 'Индивидуальные шопинг-встречи, посещение ателье и доступ к примеркам в модных столицах Европы.'
 order: 3
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-fashion-shopping
 highlights:

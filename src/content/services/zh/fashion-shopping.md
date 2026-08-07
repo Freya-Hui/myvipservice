@@ -2,6 +2,7 @@
 title: '时尚与购物'
 summary: '欧洲时尚之都的私人导购预约、工坊探访与专属试装机会。'
 order: 3
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-fashion-shopping
 highlights:

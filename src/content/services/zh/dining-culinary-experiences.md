@@ -2,6 +2,7 @@
 title: '餐饮与美食体验'
 summary: '预订难以获取的米其林餐厅席位，或安排专属私人用餐体验。'
 order: 5
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-dining
 highlights:

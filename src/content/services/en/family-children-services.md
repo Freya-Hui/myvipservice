@@ -2,6 +2,7 @@
 title: 'Family & Children Services'
 summary: "Trusted childcare, family-friendly itineraries and activities planned around your children's ages and interests."
 order: 8
+group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-family
 highlights:

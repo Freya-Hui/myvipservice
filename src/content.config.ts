@@ -23,8 +23,21 @@ const services = defineCollection({
     order: z.number().default(0),
     /** Matches an id in src/data/image-attributions.ts */
     image: z.string().optional(),
-    /** Phase 2C: optional grouping for a future 3-column Services layout. */
-    group: z.enum(['Travel Planning', 'Access & Experiences', 'Personal Support']).optional(),
+    /**
+     * Phase 2D: user-task grouping for the Services overview page, per
+     * AGENTS.md principle 5 ("产品架构从用户任务出发") — was defined but
+     * never actually assigned to any service or rendered anywhere; this is
+     * the first real use. Display grouping only — no URL/slug changes.
+     */
+    group: z
+      .enum([
+        'Private Travel',
+        'Hotels & Villas',
+        'Private Chauffeur',
+        'Concierge & Lifestyle',
+        'Groups & Corporate',
+      ])
+      .optional(),
     /** Phase 2D: concrete inclusions shown as a bullet list on the detail page. */
     highlights: z.array(z.string()).default([]),
     /**

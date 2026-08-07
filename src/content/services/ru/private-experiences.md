@@ -2,6 +2,7 @@
 title: 'Частные впечатления'
 summary: 'Свадьбы, знаковые торжества и частные мероприятия на самых выразительных площадках Европы.'
 order: 7
+group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-private-experiences
 highlights:

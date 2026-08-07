@@ -2,6 +2,7 @@
 title: 'Услуги для семей с детьми'
 summary: 'Проверенная помощь с детьми и маршруты, подобранные с учётом возраста и интересов ребёнка.'
 order: 8
+group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-family
 highlights:

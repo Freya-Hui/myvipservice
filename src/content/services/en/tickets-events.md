@@ -2,6 +2,7 @@
 title: 'Tickets & Events'
 summary: 'Tailored ticketing assistance for popular attractions, museums, theatre, concerts and sporting fixtures — subject to availability.'
 order: 6
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-tickets-events
 highlights:

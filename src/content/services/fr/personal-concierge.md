@@ -2,6 +2,7 @@
 title: 'Conciergerie personnelle'
 summary: 'Une conciergerie disponible 24h/24, des demandes du quotidien aux occasions exceptionnelles.'
 order: 9
+group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-concierge
 highlights:

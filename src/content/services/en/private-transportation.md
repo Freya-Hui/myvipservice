@@ -2,6 +2,7 @@
 title: 'Private Transportation'
 summary: 'Private terminal access, gate-side meet-and-assist, and a premium chauffeured fleet across Europe.'
 order: 4
+group: 'Private Chauffeur'
 investmentTier: 'light'
 image: service-private-transportation
 highlights:

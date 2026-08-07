@@ -2,6 +2,7 @@
 title: "Réservations d'hôtels et de villas"
 summary: "Accès à des hôtels emblématiques et des villas privées à travers l'Europe, avec des avantages qu'une réservation en ligne ne permet pas."
 order: 1
+group: 'Hotels & Villas'
 investmentTier: 'standard'
 image: service-hotels-villas
 highlights:

@@ -2,6 +2,7 @@
 title: '私人礼宾'
 summary: '全天候贴身管家式服务，涵盖日常需求到重要时刻的一切安排。'
 order: 9
+group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-concierge
 highlights:

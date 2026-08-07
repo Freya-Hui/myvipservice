@@ -2,6 +2,7 @@
 title: 'Частный трансфер'
 summary: 'Доступ в частный терминал, встреча у трапа и премиальный автопарк с водителем по всей Европе.'
 order: 4
+group: 'Private Chauffeur'
 investmentTier: 'light'
 image: service-private-transportation
 highlights:

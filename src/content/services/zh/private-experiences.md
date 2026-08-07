@@ -2,6 +2,7 @@
 title: '私人体验'
 summary: '婚礼、里程碑庆典与私人活动，在欧洲最具特色的场地举办。'
 order: 7
+group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-private-experiences
 highlights:

@@ -2,6 +2,7 @@
 title: '定制旅行规划'
 summary: '围绕葡萄酒、时尚、教育、体育与滑雪等主题，规划并全程管理专属行程。'
 order: 2
+group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-travel-planning
 ---

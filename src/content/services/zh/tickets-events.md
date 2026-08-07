@@ -2,6 +2,7 @@
 title: '票务与活动'
 summary: '热门景点、博物馆、剧院、音乐会及体育赛事的定制票务协助——视供应情况而定。'
 order: 6
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-tickets-events
 highlights:

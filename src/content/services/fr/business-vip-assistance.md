@@ -2,6 +2,7 @@
 title: 'Assistance business et VIP'
 summary: 'Logistique de réunions, interprètes et mises en relation pour vos déplacements professionnels en Europe.'
 order: 10
+group: 'Groups & Corporate'
 investmentTier: 'standard'
 image: service-business
 highlights:
