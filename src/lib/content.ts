@@ -2,12 +2,12 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import type { Locale } from '../i18n/ui';
 
 /**
- * The three content types that cross-link to each other via translationKey
- * and share the same status/draft/locale/slug shape. Journal (case-studies),
- * services, about and legal don't participate in this — they're simpler and
- * don't need cross-collection relations.
+ * Content types that cross-link to each other via translationKey and share
+ * the same status/draft/locale/slug shape. Journal (case-studies), services,
+ * about and legal don't participate in this — they're simpler and don't
+ * need cross-collection relations.
  */
-export type LinkableCollection = 'destinations' | 'accommodations' | 'experiences';
+export type LinkableCollection = 'destinations' | 'accommodations' | 'experiences' | 'journeys';
 
 /**
  * `status: 'draft'` hides an item from production builds entirely (it's not

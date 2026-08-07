@@ -239,6 +239,41 @@ const experiences = defineCollection({
   }),
 });
 
+// Site-logic-realignment: themed multi-experience journeys, the primary
+// way the site now presents Experiences (a client request — browse by
+// themed journey, not a flat grid of single bookings). A journey never
+// invents its own activities: `includedExperienceKeys` must resolve to
+// real, already-published entries in the `experiences` collection.
+const journeys = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/journeys', generateId: localeSlugId }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    locale,
+    translationKey: z.string(),
+    description: z.string(),
+    /** Free-text theme/region label, e.g. "South of France" — not an enum,
+     *  journeys don't need to share a fixed taxonomy the way destinations do. */
+    theme: z.string(),
+    /** translationKey values of the destinations collection this journey spans. */
+    destinationKeys: z.array(z.string()).default([]),
+    /** translationKey values of real experiences.md entries this journey bundles. */
+    includedExperienceKeys: z.array(z.string()).default([]),
+    featured: z.boolean().default(false),
+    status: contentStatus,
+    coverImage: z.string(),
+    gallery: z.array(z.string()).default([]),
+    duration: z.string().optional(),
+    highlights: z.array(z.string()).default([]),
+    customisationNotes: z.string().optional(),
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
+    publishedAt: z.date().optional(),
+    updatedAt: z.date().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 const about = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/about' }),
   schema: z.object({
@@ -281,6 +316,7 @@ export const collections = {
   destinations,
   accommodations,
   experiences,
+  journeys,
   about,
   caseStudies,
   legal,
