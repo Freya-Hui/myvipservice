@@ -17,6 +17,23 @@ const enquiryTypes = [
   { value: 'media', label: t('contact.section.media') },
 ];
 
+// Ranges rather than free text — the client wants budget to qualify
+// enquiries up front, not just describe them.
+const budgetRanges = [
+  { value: 'under-5k', label: t('contact.form.budget.under5k') },
+  { value: '5k-15k', label: t('contact.form.budget.5kTo15k') },
+  { value: '15k-50k', label: t('contact.form.budget.15kTo50k') },
+  { value: '50k-150k', label: t('contact.form.budget.50kTo150k') },
+  { value: 'over-150k', label: t('contact.form.budget.over150k') },
+];
+
+const hotelBudgetRanges = [
+  { value: 'under-500', label: t('contact.form.hotelBudget.under500') },
+  { value: '500-1500', label: t('contact.form.hotelBudget.500To1500') },
+  { value: '1500-5000', label: t('contact.form.hotelBudget.1500To5000') },
+  { value: 'over-5000', label: t('contact.form.hotelBudget.over5000') },
+];
+
 // Email, address and direct lines are company facts — identical in every
 // locale, so they're plain strings here rather than duplicated translation
 // keys. WeChat/WhatsApp/office hours have no confirmed value yet.
@@ -138,7 +155,21 @@ const infoRows = [
             {t('contact.form.budget')}
             <span class="text-small">({t('common.optional')})</span>
           </label>
-          <input type="text" id="budget" name="budget" />
+          <select id="budget" name="budget">
+            <option value="">{t('contact.form.budgetPlaceholder')}</option>
+            {budgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="hotelBudget">
+            {t('contact.form.hotelBudget')}
+            <span class="text-small">({t('common.optional')})</span>
+          </label>
+          <select id="hotelBudget" name="hotelBudget">
+            <option value="">{t('contact.form.hotelBudgetPlaceholder')}</option>
+            {hotelBudgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
+          </select>
         </div>
 
         <div class="field">
