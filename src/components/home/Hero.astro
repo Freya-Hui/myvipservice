@@ -1,22 +1,24 @@
 ---
 import { getImage } from '../../data/image-attributions';
+import type { Locale } from '../../i18n/ui';
 
 interface Props {
   eyebrow: string;
   tagline: string;
   ctaLabel: string;
   ctaHref: string;
+  locale: Locale;
 }
 
-const { eyebrow, tagline, ctaLabel, ctaHref } = Astro.props;
-const heroImage = getImage('hero-paris');
+const { eyebrow, tagline, ctaLabel, ctaHref, locale } = Astro.props;
+const heroImage = getImage('hero-home');
 ---
 
 <section class="hero">
   <div class="hero__media figure">
     <img
       src={heroImage.src}
-      alt={heroImage.alt}
+      alt={heroImage.altByLocale[locale]}
       width="2400"
       height="1350"
       loading="eager"

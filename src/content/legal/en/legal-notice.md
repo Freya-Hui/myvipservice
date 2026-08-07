@@ -2,4 +2,4 @@
 title: 'Legal Notice'
 ---
 
-Pending confirmation — see `docs/legal-notice-draft.md` for the draft awaiting sign-off. This page is not final.
+Pending confirmation — this page will be completed once the site's publication details (registered office, publication director and hosting provider) are confirmed.

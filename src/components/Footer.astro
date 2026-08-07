@@ -1,11 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
-import { useTranslations, type Locale } from '../i18n/ui';
-import LanguageSwitcher from './LanguageSwitcher.astro';
+import { languages, useTranslations, type Locale } from '../i18n/ui';
+import { getStaticLocaleHref } from '../i18n/routes';
 
 const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 const t = useTranslations(currentLocale);
 const year = new Date().getFullYear();
+const pathname = Astro.url.pathname;
 
 const allServices = await getCollection('services', (entry) =>
   entry.id.startsWith(`${currentLocale}/`),
@@ -40,7 +41,7 @@ function slugOf(id: string) {
         {
           services.map((service) => (
             <li>
-              <a href={`/${currentLocale}/services/#${slugOf(service.id)}`}>{service.data.title}</a>
+              <a href={`/${currentLocale}/services/${slugOf(service.id)}/`}>{service.data.title}</a>
             </li>
           ))
         }
@@ -50,16 +51,31 @@ function slugOf(id: string) {
     <div>
       <h2 class="text-small footer-heading">{t('footer.contactHeading')}</h2>
       <ul class="footer-list">
-        <li>{t('contact.info.email')}: {t('contact.info.emailPlaceholder')}</li>
-        <li>{t('contact.info.phone')}: {t('contact.info.phonePlaceholder')}</li>
+        <li>{t('contact.info.email')}: contact@myvipservice.com</li>
+        <li>{t('contact.info.address')}: 29 rue de Mogador, 75009 Paris</li>
+        <li><a href="https://wa.me/33628802679">WhatsApp</a></li>
       </ul>
       <a class="button button--quiet" href={`/${currentLocale}/contact/`}>{t('nav.contact')} →</a>
     </div>
 
-    <div>
+    <nav aria-label={t('footer.languageHeading')}>
       <h2 class="text-small footer-heading">{t('footer.languageHeading')}</h2>
-      <LanguageSwitcher />
-    </div>
+      <ul class="footer-list footer-list--inline">
+        {
+          Object.entries(languages).map(([code, label]) => (
+            <li>
+              <a
+                href={getStaticLocaleHref(pathname, code as Locale)}
+                lang={code}
+                aria-current={code === currentLocale ? 'true' : undefined}
+              >
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </div>
 
   <div class="container site-footer__bottom">
@@ -70,8 +86,6 @@ function slugOf(id: string) {
         <li><a href={`/${currentLocale}/privacy-policy/`}>{t('footer.privacyPolicy')}</a></li>
         <li><a href={`/${currentLocale}/legal-notice/`}>{t('footer.legalNotice')}</a></li>
       </ul>
-      <p class="text-small placeholder-note">{t('footer.icpPlaceholder')}</p>
-      <p class="text-small placeholder-note">{t('footer.socialPlaceholder')}</p>
     </div>
   </div>
 </footer>
@@ -131,6 +145,12 @@ function slugOf(id: string) {
     color: var(--color-accent);
   }
 
+  .footer-list a[aria-current='true'] {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
   .site-footer__bottom {
     border-top: 1px solid var(--color-border);
     padding-top: var(--space-4);
@@ -145,9 +165,5 @@ function slugOf(id: string) {
     flex-wrap: wrap;
     gap: var(--space-4);
     align-items: center;
-  }
-
-  .placeholder-note {
-    color: var(--color-text-faint);
   }
 </style>

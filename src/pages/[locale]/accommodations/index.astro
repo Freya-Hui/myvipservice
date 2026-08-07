@@ -19,17 +19,27 @@ const t = useTranslations(locale);
 
 const all = await getLocaleEntries('accommodations', locale);
 const featured = all.filter((entry) => entry.data.featured);
-const hotels = all.filter((entry) => entry.data.type === 'hotel');
-const villas = all.filter((entry) => entry.data.type === 'villa');
+// Type-grouped sections below only show entries not already shown above,
+// so the same property never appears twice on this page.
+const remaining = all.filter((entry) => !entry.data.featured);
+const hotels = remaining.filter((entry) => entry.data.type === 'hotel');
+const villas = remaining.filter((entry) => entry.data.type === 'villa');
 
 function toCard(entry: (typeof all)[number]) {
+  // A positioning tag (e.g. "Palace", "Design-Led") is more useful here than
+  // repeating the city — most of our current hotel network sits in Paris, so
+  // "Paris, France" on every card would just be noise, not a filter.
+  const meta = entry.data.positioning[0]
+    ? t(`positioning.${entry.data.positioning[0]}` as never)
+    : `${entry.data.city}, ${entry.data.country}`;
   return {
     href: `/${locale}/accommodations/${entry.data.slug}/`,
     imageId: entry.data.coverImage,
+    logo: entry.data.logo,
     eyebrow: t(`type.${entry.data.type}` as never),
     title: entry.data.title,
     summary: entry.data.description,
-    meta: `${entry.data.city}, ${entry.data.country}`,
+    meta,
     draftLabel: entry.data.draft ? t('badge.draftTranslation') : undefined,
   };
 }
@@ -37,7 +47,7 @@ function toCard(entry: (typeof all)[number]) {
 
 <BaseLayout
   title={t('accommodations.hero.title')}
-  description="MYVIPSERVICE — hotels and villas we use to test the accommodation template."
+  description={t('accommodations.hero.subtitle')}
   path="accommodations"
 >
   <div class="container">
@@ -71,7 +81,7 @@ function toCard(entry: (typeof all)[number]) {
               />
               <ContentGrid>
                 {featured.map((entry) => (
-                  <ContentCard {...toCard(entry)} />
+                  <ContentCard {...toCard(entry)} locale={locale} />
                 ))}
               </ContentGrid>
             </div>
@@ -87,7 +97,7 @@ function toCard(entry: (typeof all)[number]) {
               />
               <ContentGrid>
                 {hotels.map((entry) => (
-                  <ContentCard {...toCard(entry)} />
+                  <ContentCard {...toCard(entry)} locale={locale} />
                 ))}
               </ContentGrid>
             </div>
@@ -103,7 +113,7 @@ function toCard(entry: (typeof all)[number]) {
               />
               <ContentGrid>
                 {villas.map((entry) => (
-                  <ContentCard {...toCard(entry)} />
+                  <ContentCard {...toCard(entry)} locale={locale} />
                 ))}
               </ContentGrid>
             </div>

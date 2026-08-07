@@ -1,6 +1,7 @@
 ---
 import { getImageSafe } from '../data/image-attributions';
 import ContentStatusBadge from './ContentStatusBadge.astro';
+import type { Locale } from '../i18n/ui';
 
 interface Props {
   href: string;
@@ -9,17 +10,33 @@ interface Props {
   title: string;
   summary: string;
   meta?: string;
+  /** Optional brand logo badge (e.g. a named partner hotel), shown over the image. */
+  logo?: string;
   draftLabel?: string;
+  locale: Locale;
 }
 
-const { href, imageId, eyebrow, title, summary, meta, draftLabel } = Astro.props;
+const { href, imageId, eyebrow, title, summary, meta, logo, draftLabel, locale } = Astro.props;
 const image = getImageSafe(imageId);
 ---
 
 <li class="content-card">
   <a href={href}>
     <div class="figure figure--standard">
-      <img src={image.src} alt={image.alt} loading="lazy" width="1600" height="1200" />
+      <img
+        src={image.src}
+        alt={image.altByLocale[locale]}
+        loading="lazy"
+        width="1600"
+        height="1200"
+      />
+      {
+        logo && (
+          <span class="content-card__logo">
+            <img src={logo} alt="" loading="lazy" />
+          </span>
+        )
+      }
     </div>
     <div class="content-card__body">
       <p class="content-card__eyebrow text-small">{eyebrow}</p>
@@ -40,6 +57,28 @@ const image = getImageSafe(imageId);
     display: block;
     text-decoration: none;
     color: inherit;
+  }
+
+  .content-card .figure {
+    position: relative;
+  }
+
+  .content-card__logo {
+    position: absolute;
+    left: var(--space-3);
+    bottom: var(--space-3);
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--space-2) var(--space-3);
+    display: inline-flex;
+    max-width: 60%;
+  }
+
+  .content-card__logo img {
+    width: auto;
+    height: 1.75rem;
+    max-width: 100%;
+    object-fit: contain;
   }
 
   .content-card__body {

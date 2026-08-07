@@ -17,9 +17,16 @@ const enquiryTypes = [
   { value: 'media', label: t('contact.section.media') },
 ];
 
+// Email, address and direct lines are company facts — identical in every
+// locale, so they're plain strings here rather than duplicated translation
+// keys. WeChat/WhatsApp/office hours have no confirmed value yet.
 const infoRows = [
-  { label: t('contact.info.email'), value: t('contact.info.emailPlaceholder') },
-  { label: t('contact.info.phone'), value: t('contact.info.phonePlaceholder') },
+  { label: t('contact.info.email'), value: 'contact@myvipservice.com' },
+  {
+    label: t('contact.info.phone'),
+    value: 'Eva +33 6 28 80 26 79 · Liuliu +33 6 59 97 71 54 · Freya +33 6 51 35 33 73',
+  },
+  { label: t('contact.info.address'), value: '29 rue de Mogador, 75009 Paris' },
   { label: t('contact.info.wechat'), value: t('contact.info.wechatPlaceholder') },
   { label: t('contact.info.whatsapp'), value: t('contact.info.whatsappPlaceholder') },
   { label: t('contact.info.hours'), value: t('contact.info.hoursPlaceholder') },

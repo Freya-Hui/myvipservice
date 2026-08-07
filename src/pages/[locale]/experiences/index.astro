@@ -79,7 +79,7 @@ function toCard(entry: (typeof all)[number]) {
               />
               <ContentGrid>
                 {featured.map((entry) => (
-                  <ContentCard {...toCard(entry)} />
+                  <ContentCard {...toCard(entry)} locale={locale} />
                 ))}
               </ContentGrid>
             </div>
@@ -98,7 +98,7 @@ function toCard(entry: (typeof all)[number]) {
                   />
                   <ContentGrid>
                     {entries.map((entry) => (
-                      <ContentCard {...toCard(entry)} />
+                      <ContentCard {...toCard(entry)} locale={locale} />
                     ))}
                   </ContentGrid>
                 </div>

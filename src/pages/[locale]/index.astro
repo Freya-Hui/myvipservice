@@ -6,7 +6,6 @@ import IntroSection from '../../components/home/IntroSection.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
 import AccommodationFeature from '../../components/home/AccommodationFeature.astro';
 import TravelTypes from '../../components/home/TravelTypes.astro';
-import ExperienceFeature from '../../components/home/ExperienceFeature.astro';
 import ConciergeOverview from '../../components/home/ConciergeOverview.astro';
 import ProcessSteps from '../../components/home/ProcessSteps.astro';
 import ServiceNetwork from '../../components/home/ServiceNetwork.astro';
@@ -14,7 +13,13 @@ import JournalPreview from '../../components/home/JournalPreview.astro';
 import InquiryCTA from '../../components/home/InquiryCTA.astro';
 import { getLocaleEntries } from '../../lib/content';
 import { languages, useTranslations, type Locale } from '../../i18n/ui';
-import { travelTypes, processSteps, networkHighlights } from '../../data/site-content';
+import {
+  travelTypes,
+  processSteps,
+  whyUsPoints,
+  networkHighlights,
+  destinationCountryGroups,
+} from '../../data/site-content';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((locale) => ({ params: { locale } }));
@@ -33,13 +38,22 @@ const services = (
   await getCollection('services', (entry) => entry.id.startsWith(`${locale}/`))
 ).sort((a, b) => a.data.order - b.data.order);
 const destinations = await getLocaleEntries('destinations', locale);
-const featuredDestinations = destinations.filter((entry) => entry.data.featured);
+// France first, then the rest of Europe — same priority order as the
+// Destinations list page's country grouping, so both pages agree.
+const destinationPriority = destinationCountryGroups.flatMap((group) => group.translationKeys);
+const featuredDestinations = destinations
+  .filter((entry) => entry.data.featured)
+  .sort(
+    (a, b) =>
+      destinationPriority.indexOf(a.data.translationKey) -
+      destinationPriority.indexOf(b.data.translationKey),
+  );
 const journalEntries = (
   await getCollection('caseStudies', (entry) => entry.id.startsWith(`${locale}/`))
 ).sort((a, b) => a.data.order - b.data.order);
+const experiences = await getLocaleEntries('experiences', locale);
 
 const hotelsService = bySlug(services, 'hotel-villa-reservations');
-const experiencesService = bySlug(services, 'private-experiences');
 const conciergeService = bySlug(services, 'personal-concierge');
 ---
 
@@ -53,6 +67,7 @@ const conciergeService = bySlug(services, 'personal-concierge');
     tagline={t('home.hero.tagline')}
     ctaLabel={t('common.cta')}
     ctaHref={`/${locale}/contact/`}
+    locale={locale}
   />
 
   <IntroSection
@@ -61,13 +76,49 @@ const conciergeService = bySlug(services, 'personal-concierge');
     body={t('home.intro.body')}
   />
 
+  <ProcessSteps
+    eyebrow={t('home.whyUs.eyebrow')}
+    title={t('home.whyUs.title')}
+    steps={whyUsPoints[locale]}
+  />
+
+  <TravelTypes
+    eyebrow={t('home.travelTypes.eyebrow')}
+    title={t('home.travelTypes.title')}
+    subtitle={t('home.travelTypes.subtitle')}
+    items={travelTypes[locale].filter((item) => item.featured).sort((a, b) => a.order - b.order)}
+    ctaLabel={t('home.travelTypes.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
+
   <RelatedContent
+    locale={locale}
     eyebrow={t('home.destinations.eyebrow')}
     title={t('home.destinations.title')}
     items={featuredDestinations.map((entry) => ({
       href: `/${locale}/destinations/${entry.data.slug}/`,
       imageId: entry.data.coverImage,
       eyebrow: t(`region.${entry.data.region}` as never),
+      title: entry.data.title,
+      summary: entry.data.description,
+      draftLabel: entry.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
+
+  <IntroSection
+    eyebrow={t('home.realLife.eyebrow')}
+    title={t('home.realLife.title')}
+    body={t('home.realLife.body')}
+  />
+
+  <RelatedContent
+    locale={locale}
+    eyebrow={t('home.experience.eyebrow')}
+    title={t('home.experience.title')}
+    items={experiences.map((entry) => ({
+      href: `/${locale}/experiences/${entry.data.slug}/`,
+      imageId: entry.data.coverImage,
+      eyebrow: t(`category.${entry.data.category}` as never),
       title: entry.data.title,
       summary: entry.data.description,
       draftLabel: entry.data.draft ? t('badge.draftTranslation') : undefined,
@@ -81,23 +132,7 @@ const conciergeService = bySlug(services, 'personal-concierge');
     ctaLabel={t('home.hotels.cta')}
     ctaHref={`/${locale}/accommodations/`}
     imageId="service-hotels-villas"
-  />
-
-  <TravelTypes
-    eyebrow={t('home.travelTypes.eyebrow')}
-    title={t('home.travelTypes.title')}
-    items={travelTypes[locale]}
-    ctaLabel={t('home.travelTypes.cta')}
-    ctaHref={`/${locale}/services/#tailor-made-travel-planning`}
-  />
-
-  <ExperienceFeature
-    eyebrow={t('home.experience.eyebrow')}
-    title={experiencesService.title}
-    body={experiencesService.summary}
-    ctaLabel={t('home.experience.cta')}
-    ctaHref={`/${locale}/experiences/`}
-    imageId="service-private-experiences"
+    locale={locale}
   />
 
   <ConciergeOverview
@@ -131,6 +166,7 @@ const conciergeService = bySlug(services, 'personal-concierge');
       coverImage: entry.data.coverImage,
     }))}
     comingSoonNote={t('common.comingSoon')}
+    locale={locale}
   />
 
   <InquiryCTA

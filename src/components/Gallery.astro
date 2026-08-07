@@ -1,11 +1,13 @@
 ---
 import { getImageSafe } from '../data/image-attributions';
+import type { Locale } from '../i18n/ui';
 
 interface Props {
   images: string[];
+  locale: Locale;
 }
 
-const { images } = Astro.props;
+const { images, locale } = Astro.props;
 ---
 
 {
@@ -15,7 +17,13 @@ const { images } = Astro.props;
         const image = getImageSafe(id);
         return (
           <li class="figure figure--standard">
-            <img src={image.src} alt={image.alt} loading="lazy" width="1600" height="1200" />
+            <img
+              src={image.src}
+              alt={image.altByLocale[locale]}
+              loading="lazy"
+              width="1600"
+              height="1200"
+            />
           </li>
         );
       })}

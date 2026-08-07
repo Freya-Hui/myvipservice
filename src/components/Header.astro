@@ -16,6 +16,7 @@ const navItems: Array<{ href: string; label: string }> = [
   { href: `/${currentLocale}/`, label: t('nav.home') },
   { href: `/${currentLocale}/about/`, label: t('nav.about') },
   { href: `/${currentLocale}/services/`, label: t('nav.services') },
+  { href: `/${currentLocale}/accommodations/`, label: t('nav.hotels') },
   { href: `/${currentLocale}/destinations/`, label: t('nav.destinations') },
   { href: `/${currentLocale}/contact/`, label: t('nav.contact') },
 ];
@@ -52,6 +53,7 @@ const navItems: Array<{ href: string; label: string }> = [
           }
         </ul>
       </nav>
+      <a class="wechat-link" href={`/${currentLocale}/contact/`}>{t('contact.info.wechat')}</a>
       <LanguageSwitcher translationContext={translationContext} />
       <a class="button button--primary plan-journey" href={`/${currentLocale}/contact/`}>
         {t('header.planJourney')}
@@ -74,12 +76,21 @@ const navItems: Array<{ href: string; label: string }> = [
     toggle.setAttribute('aria-expanded', String(isOpen));
   });
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && panel?.classList.contains('is-open')) {
+  // Capture phase, so this runs before LanguageSwitcher's own Escape handler
+  // (bubble phase) closes the language dropdown — otherwise a single Escape
+  // press while the dropdown is open inside the mobile menu would collapse
+  // both at once instead of just the dropdown first.
+  document.addEventListener(
+    'keydown',
+    (event) => {
+      if (event.key !== 'Escape' || !panel?.classList.contains('is-open')) return;
+      const langPanel = document.getElementById('lang-panel');
+      if (langPanel && !langPanel.hasAttribute('hidden')) return;
       closeMenu();
       toggle?.focus();
-    }
-  });
+    },
+    true,
+  );
 
   panel?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);
@@ -154,6 +165,17 @@ const navItems: Array<{ href: string; label: string }> = [
 
   .plan-journey {
     white-space: nowrap;
+  }
+
+  .wechat-link {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .wechat-link:hover {
+    color: var(--color-accent);
   }
 
   /* Five nav items + language switcher + CTA is tight in one row — this

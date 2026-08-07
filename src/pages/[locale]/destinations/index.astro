@@ -9,6 +9,7 @@ import EmptyState from '../../../components/EmptyState.astro';
 import InquiryCTA from '../../../components/home/InquiryCTA.astro';
 import { getLocaleEntries } from '../../../lib/content';
 import { languages, useTranslations, type Locale } from '../../../i18n/ui';
+import { destinationCountryGroups } from '../../../data/site-content';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((locale) => ({ params: { locale } }));
@@ -16,8 +17,6 @@ export function getStaticPaths() {
 
 const { locale } = Astro.params as { locale: Locale };
 const t = useTranslations(locale);
-
-const REGIONS = ['Europe', 'Asia', 'Middle East', 'Indian Ocean', 'Americas', 'Africa'] as const;
 
 const all = await getLocaleEntries('destinations', locale);
 const featured = all.filter((entry) => entry.data.featured);
@@ -67,7 +66,7 @@ function toCard(entry: (typeof all)[number]) {
               />
               <ContentGrid>
                 {featured.map((entry) => (
-                  <ContentCard {...toCard(entry)} />
+                  <ContentCard {...toCard(entry)} locale={locale} />
                 ))}
               </ContentGrid>
             </div>
@@ -80,15 +79,17 @@ function toCard(entry: (typeof all)[number]) {
               eyebrow={t('destinations.hero.eyebrow')}
               title={t('destinations.allHeading')}
             />
-            {REGIONS.map((region) => {
-              const entries = all.filter((entry) => entry.data.region === region);
+            {destinationCountryGroups.map((group) => {
+              const entries = group.translationKeys
+                .map((key) => all.find((entry) => entry.data.translationKey === key))
+                .filter((entry): entry is (typeof all)[number] => entry !== undefined);
               return (
                 entries.length > 0 && (
                   <div class="region-group">
-                    <h3>{t(`region.${region}` as never)}</h3>
+                    <h3>{t(group.labelKey as never)}</h3>
                     <ContentGrid>
                       {entries.map((entry) => (
-                        <ContentCard {...toCard(entry)} />
+                        <ContentCard {...toCard(entry)} locale={locale} />
                       ))}
                     </ContentGrid>
                   </div>

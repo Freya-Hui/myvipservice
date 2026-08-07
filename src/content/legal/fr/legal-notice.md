@@ -2,4 +2,4 @@
 title: 'Mentions légales'
 ---
 
-En attente de confirmation — voir le brouillon dans `docs/legal-notice-draft.md`. Cette page n'est pas définitive.
+En attente de confirmation — cette page sera complétée une fois les informations de publication du site (siège social, directeur de la publication et hébergeur) confirmées.

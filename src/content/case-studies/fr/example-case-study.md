@@ -1,6 +1,7 @@
 ---
-title: "Exemple d'étude de cas"
-summary: 'Entrée provisoire — à remplacer par une étude de cas réelle et validée par le client.'
+title: 'Guides de destination, bientôt disponibles'
+summary: "Des guides approfondis sur les lieux que nous connaissons le mieux, en commençant par nos coups de cœur en France — Paris, la Provence et la Côte d'Azur."
+order: 1
 ---
 
-Contenu provisoire.
+Bientôt disponible.

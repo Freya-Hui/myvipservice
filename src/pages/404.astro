@@ -34,6 +34,10 @@ import { languages, ui } from '../i18n/ui';
                 <a href={`/${code}/destinations/`}>
                   {ui[code as keyof typeof ui]['notFound.exploreLink']}
                 </a>
+                <span aria-hidden="true">·</span>
+                <a href={`/${code}/contact/`}>
+                  {ui[code as keyof typeof ui]['notFound.contactLink']}
+                </a>
               </p>
             </li>
           ))

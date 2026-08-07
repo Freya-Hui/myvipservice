@@ -1,7 +1,7 @@
 ---
-title: 'Example Journal Entry'
-summary: 'Placeholder entry — replace with a real, client-approved story once the Journal section is built out.'
+title: 'Stories From Our Clients'
+summary: 'Real journeys, shared with our clients’ approval — the first will be published once we have a story ready to tell.'
 order: 2
 ---
 
-Placeholder body copy.
+Coming soon.

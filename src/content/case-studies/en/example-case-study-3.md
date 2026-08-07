@@ -1,7 +1,7 @@
 ---
-title: 'Example Journal Entry'
-summary: 'Placeholder entry — replace with a real, client-approved story once the Journal section is built out.'
+title: 'Behind the Scenes at MYVIPSERVICE'
+summary: 'A closer look at how we plan, source and deliver — from our team’s perspective.'
 order: 3
 ---
 
-Placeholder body copy.
+Coming soon.

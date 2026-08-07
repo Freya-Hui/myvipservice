@@ -19,18 +19,11 @@ const services = (
 function slugOf(id: string) {
   return id.split('/').slice(1).join('/');
 }
-
-// A couple of service cards now have a real list page behind them; the rest
-// still route to Contact until their own listing exists.
-const LIST_PAGE_BY_SLUG: Record<string, string> = {
-  'hotel-villa-reservations': 'accommodations',
-  'private-experiences': 'experiences',
-};
 ---
 
 <BaseLayout
   title={t('nav.services')}
-  description="MYVIPSERVICE — eight ways we support our clients, from a single reservation to a fully managed private event."
+  description="MYVIPSERVICE — ten ways we support our clients, from a single reservation to a fully managed private event."
   path="services"
 >
   <PageHero
@@ -46,16 +39,13 @@ const LIST_PAGE_BY_SLUG: Record<string, string> = {
           services.map((service, index) => {
             const slug = slugOf(service.id);
             const image = service.data.image ? getImage(service.data.image) : null;
-            const listPage = LIST_PAGE_BY_SLUG[slug];
-            const href = listPage ? `/${locale}/${listPage}/` : `/${locale}/contact/`;
-            const cta = listPage ? t('common.viewDetails') : t('services.cardCta');
             return (
               <li class="card service-card" id={slug}>
                 {image ? (
                   <div class="figure figure--standard">
                     <img
                       src={image.src}
-                      alt={image.alt}
+                      alt={image.altByLocale[locale]}
                       width="1600"
                       height="1200"
                       loading="lazy"
@@ -68,15 +58,19 @@ const LIST_PAGE_BY_SLUG: Record<string, string> = {
                 )}
                 <h2>{service.data.title}</h2>
                 <p class="text-small service-card__summary">{service.data.summary}</p>
-                <a class="button button--quiet" href={href}>
-                  {cta} →
+                {service.data.investmentTier && (
+                  <p class="text-small service-card__tier">
+                    {t(`services.tier.${service.data.investmentTier}` as never)}
+                  </p>
+                )}
+                <a class="button button--quiet" href={`/${locale}/services/${slug}/`}>
+                  {t('common.viewDetails')} →
                 </a>
               </li>
             );
           })
         }
       </ul>
-      <p class="text-small services__note">{t('services.comingSoonNote')}</p>
     </div>
   </section>
 </BaseLayout>
@@ -112,7 +106,10 @@ const LIST_PAGE_BY_SLUG: Record<string, string> = {
     color: var(--color-text-muted);
   }
 
-  .services__note {
-    color: var(--color-text-faint);
+  .service-card__tier {
+    color: var(--color-accent);
+    margin-top: var(--space-2);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
   }
 </style>

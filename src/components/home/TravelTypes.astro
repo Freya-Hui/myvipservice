@@ -1,21 +1,23 @@
 ---
-import type { SiteDataItem } from '../../data/site-content';
+import type { TravelType } from '../../data/site-content';
 
 interface Props {
   eyebrow: string;
   title: string;
-  items: SiteDataItem[];
+  subtitle?: string;
+  items: TravelType[];
   ctaLabel: string;
   ctaHref: string;
 }
 
-const { eyebrow, title, items, ctaLabel, ctaHref } = Astro.props;
+const { eyebrow, title, subtitle, items, ctaLabel, ctaHref } = Astro.props;
 ---
 
 <section class="section travel-types">
   <div class="container">
     <p class="eyebrow">{eyebrow}</p>
     <h2>{title}</h2>
+    {subtitle && <p class="travel-types__subtitle">{subtitle}</p>}
     <ul class="travel-types__grid">
       {
         items.map((item, index) => (
@@ -34,6 +36,12 @@ const { eyebrow, title, items, ctaLabel, ctaHref } = Astro.props;
 </section>
 
 <style>
+  .travel-types__subtitle {
+    color: var(--color-text-muted);
+    margin-top: var(--space-2);
+    max-width: 42rem;
+  }
+
   .travel-types__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));

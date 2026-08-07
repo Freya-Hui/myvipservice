@@ -1,7 +1,7 @@
 ---
-title: 'Example Journal Entry'
-summary: 'Placeholder entry — replace with a real, client-approved story once the Journal section is built out.'
+title: 'Destination Guides, Coming Soon'
+summary: 'In-depth guides to the places we know best, starting with our France favourites — Paris, Provence and the French Riviera.'
 order: 1
 ---
 
-Placeholder body copy.
+Coming soon.

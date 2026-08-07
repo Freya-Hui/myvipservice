@@ -85,7 +85,7 @@ const structuredData = [
   }
 
   <div class="container">
-    <Gallery images={data.gallery.length > 0 ? data.gallery : [data.coverImage]} />
+    <Gallery images={data.gallery.length > 0 ? data.gallery : [data.coverImage]} locale={locale} />
   </div>
 
   <ContentSection title={t('destinations.detail.overviewTitle')} body={data.description} />
@@ -119,6 +119,7 @@ const structuredData = [
   }
 
   <RelatedContent
+    locale={locale}
     eyebrow={t('destinations.hero.eyebrow')}
     title={t('destinations.detail.accommodationsHeading')}
     items={accommodations.map((item) => ({
@@ -132,6 +133,7 @@ const structuredData = [
   />
 
   <RelatedContent
+    locale={locale}
     eyebrow={t('destinations.hero.eyebrow')}
     title={t('destinations.detail.experiencesHeading')}
     items={experiences.map((item) => ({
@@ -151,6 +153,7 @@ const structuredData = [
   }
 
   <RelatedContent
+    locale={locale}
     eyebrow={t('destinations.hero.eyebrow')}
     title={t('destinations.detail.relatedHeading')}
     items={relatedDestinations.map((item) => ({

@@ -2,6 +2,7 @@
 import SectionHeading from './SectionHeading.astro';
 import ContentGrid from './ContentGrid.astro';
 import ContentCard from './ContentCard.astro';
+import type { Locale } from '../i18n/ui';
 
 interface Item {
   href: string;
@@ -17,9 +18,10 @@ interface Props {
   eyebrow: string;
   title: string;
   items: Item[];
+  locale: Locale;
 }
 
-const { eyebrow, title, items } = Astro.props;
+const { eyebrow, title, items, locale } = Astro.props;
 ---
 
 {
@@ -29,7 +31,7 @@ const { eyebrow, title, items } = Astro.props;
         <SectionHeading eyebrow={eyebrow} title={title} />
         <ContentGrid>
           {items.map((item) => (
-            <ContentCard {...item} />
+            <ContentCard {...item} locale={locale} />
           ))}
         </ContentGrid>
       </div>

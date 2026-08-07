@@ -1,6 +1,6 @@
 ---
 import { languages, useTranslations, type Locale } from '../i18n/ui';
-import { KNOWN_PAGE_SLUGS } from '../i18n/routes';
+import { getStaticLocaleHref } from '../i18n/routes';
 import { getDetailSwitchUrl, type LinkableCollection } from '../lib/content';
 
 interface Props {
@@ -12,21 +12,9 @@ const { translationContext } = Astro.props;
 const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 const t = useTranslations(currentLocale);
 
-// Static pages: swap the leading /<locale>/ segment. If the rest of the path
-// isn't a page we know exists in every locale, fall back to that locale's
-// homepage instead of a dead link. Detail pages (translationContext set)
-// override this per-locale below with a translationKey lookup instead.
-const segments = Astro.url.pathname.split('/').filter(Boolean);
-const rest = segments.slice(1).join('/');
-const isKnownPage = (KNOWN_PAGE_SLUGS as readonly string[]).includes(rest);
-const fallbackPath = isKnownPage ? rest : '';
-
 const targets = await Promise.all(
   Object.keys(languages).map(async (code) => {
-    if (code === currentLocale) {
-      return [code, `/${code}/${fallbackPath}`] as const;
-    }
-    if (translationContext) {
+    if (code !== currentLocale && translationContext) {
       const url = await getDetailSwitchUrl(
         translationContext.collection,
         code as Locale,
@@ -34,67 +22,183 @@ const targets = await Promise.all(
       );
       return [code, url] as const;
     }
-    return [code, `/${code}/${fallbackPath}`] as const;
+    return [code, getStaticLocaleHref(Astro.url.pathname, code as Locale)] as const;
   }),
 );
 const hrefByLocale = Object.fromEntries(targets);
 ---
 
-<nav class="language-switcher" aria-label={t('common.languageLabel')}>
-  <ul>
+<div class="language-switcher">
+  <button
+    type="button"
+    class="language-switcher__toggle"
+    id="lang-toggle"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="lang-panel"
+    aria-label={`${t('common.languageLabel')}: ${languages[currentLocale]}`}
+  >
+    <span>{languages[currentLocale]}</span>
+    <svg
+      class="language-switcher__chevron"
+      width="10"
+      height="6"
+      viewBox="0 0 10 6"
+      aria-hidden="true"
+    >
+      <path
+        d="M1 1l4 4 4-4"
+        stroke="currentColor"
+        stroke-width="1.4"
+        fill="none"
+        stroke-linecap="round"></path>
+    </svg>
+  </button>
+  <ul class="language-switcher__panel" id="lang-panel" hidden>
     {
-      Object.entries(languages).map(([code, label]) => (
-        <li>
-          <a
-            href={hrefByLocale[code]}
-            data-locale={code}
-            lang={code}
-            aria-current={code === currentLocale ? 'true' : undefined}
-          >
-            {label}
-          </a>
-        </li>
-      ))
+      Object.entries(languages).map(([code, label]) => {
+        const isCurrent = code === currentLocale;
+        return (
+          <li>
+            <a
+              href={hrefByLocale[code]}
+              data-locale={code}
+              lang={code}
+              aria-current={isCurrent ? 'true' : undefined}
+            >
+              <span>{label}</span>
+              {isCurrent && (
+                <svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true">
+                  <path
+                    d="M1 5l3.5 3.5L11 1"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                </svg>
+              )}
+            </a>
+          </li>
+        );
+      })
     }
   </ul>
-</nav>
+</div>
 
 <script>
+  const toggle = document.getElementById('lang-toggle');
+  const panel = document.getElementById('lang-panel');
+
+  function closePanel() {
+    panel?.setAttribute('hidden', '');
+    toggle?.setAttribute('aria-expanded', 'false');
+  }
+
+  function openPanel() {
+    panel?.removeAttribute('hidden');
+    toggle?.setAttribute('aria-expanded', 'true');
+  }
+
+  toggle?.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    if (isOpen) closePanel();
+    else openPanel();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      closePanel();
+      toggle.focus();
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!panel || panel.hasAttribute('hidden')) return;
+    const target = event.target as Node;
+    if (!panel.contains(target) && target !== toggle && !toggle?.contains(target)) {
+      closePanel();
+    }
+  });
+
   // Remember the visitor's explicit choice so the root redirect (see src/pages/index.astro)
   // honours it on the next visit instead of re-guessing from navigator.language.
-  document
-    .querySelectorAll<HTMLAnchorElement>('.language-switcher a[data-locale]')
-    .forEach((link) => {
-      link.addEventListener('click', () => {
-        localStorage.setItem('myvipservice:locale', link.dataset.locale ?? '');
-      });
+  panel?.querySelectorAll<HTMLAnchorElement>('a[data-locale]').forEach((link) => {
+    link.addEventListener('click', () => {
+      localStorage.setItem('myvipservice:locale', link.dataset.locale ?? '');
+      closePanel();
     });
+  });
 </script>
 
 <style>
-  .language-switcher ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-size: var(--text-small);
+  .language-switcher {
+    position: relative;
   }
 
-  .language-switcher a {
+  .language-switcher__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: transparent;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    padding: 0.4rem 0.75rem;
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: var(--text-small);
+    cursor: pointer;
+  }
+
+  .language-switcher__toggle:hover {
+    color: var(--color-accent);
+  }
+
+  .language-switcher__chevron {
+    transition: transform var(--transition-fast);
+  }
+
+  .language-switcher__toggle[aria-expanded='true'] .language-switcher__chevron {
+    transform: rotate(180deg);
+  }
+
+  .language-switcher__panel {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    left: 0;
+    z-index: 30;
+    min-width: 9rem;
+    margin: 0;
+    padding: var(--space-2);
+    list-style: none;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+  }
+
+  .language-switcher__panel a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-2);
     text-decoration: none;
     color: var(--color-text-muted);
-    letter-spacing: 0.02em;
+    font-size: var(--text-small);
+    border-radius: var(--radius);
   }
 
-  .language-switcher a:hover {
+  .language-switcher__panel a:hover {
+    background: var(--color-bg-inset);
+    color: var(--color-text);
+  }
+
+  .language-switcher__panel a[aria-current='true'] {
     color: var(--color-accent);
   }
 
-  .language-switcher a[aria-current='true'] {
+  .language-switcher__panel svg {
     color: var(--color-accent);
-    text-decoration: underline;
-    text-underline-offset: 0.3em;
+    flex-shrink: 0;
   }
 </style>

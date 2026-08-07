@@ -23,6 +23,22 @@ const services = defineCollection({
     order: z.number().default(0),
     /** Matches an id in src/data/image-attributions.ts */
     image: z.string().optional(),
+    /** Phase 2C: optional grouping for a future 3-column Services layout. */
+    group: z.enum(['Travel Planning', 'Access & Experiences', 'Personal Support']).optional(),
+    /** Phase 2D: concrete inclusions shown as a bullet list on the detail page. */
+    highlights: z.array(z.string()).default([]),
+    /**
+     * Site-logic-realignment Phase B: a coarse, non-numeric scale signal
+     * (no confirmed pricing exists to publish real "from €X" figures) so a
+     * visitor can tell a single-item request apart from a fully managed
+     * programme before enquiring.
+     */
+    investmentTier: z.enum(['light', 'standard', 'bespoke']).optional(),
+    /** Phase 2C: forward-looking relation fields, unused by any page yet. */
+    relatedExperienceKeys: z.array(z.string()).default([]),
+    relatedJournalKeys: z.array(z.string()).default([]),
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
@@ -54,6 +70,21 @@ const destinations = defineCollection({
     translationKey: z.string(),
     description: z.string(),
     region: z.enum(['Europe', 'Asia', 'Middle East', 'Indian Ocean', 'Americas', 'Africa']),
+    /**
+     * Phase 2C: optional 3-level hierarchy support (see
+     * docs/content-architecture.md#destinations). `parentKey` points at
+     * another destination's `translationKey`; `destinationType` says which
+     * level this entry is. Both optional so existing flat content (all
+     * currently `city`-equivalent, no parent) keeps working unchanged —
+     * nothing consumes these fields yet.
+     */
+    destinationType: z.enum(['country', 'region', 'city', 'sub-destination']).default('city'),
+    parentKey: z.string().optional(),
+    /** ISO 3166-1 alpha-2, e.g. 'FR'. Optional until content is backfilled. */
+    countryCode: z.string().length(2).optional(),
+    /** Sort weight for future per-list ordering; unused by current pages,
+     *  which still sort via destinationCountryGroups in site-content.ts. */
+    priority: z.number().default(0),
     featured: z.boolean().default(false),
     status: contentStatus,
     /** Matches an id in src/data/image-attributions.ts */
@@ -66,6 +97,7 @@ const destinations = defineCollection({
     /** translationKey values of accommodations/experiences collections */
     relatedAccommodationKeys: z.array(z.string()).default([]),
     relatedExperienceKeys: z.array(z.string()).default([]),
+    relatedJournalKeys: z.array(z.string()).default([]),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     publishedAt: z.date().optional(),
@@ -86,23 +118,61 @@ const accommodations = defineCollection({
     locale,
     translationKey: z.string(),
     description: z.string(),
-    type: z.enum(['hotel', 'villa']),
+    // Widened in Phase 2C to cover the property types named in
+    // docs/taxonomy.md; 'hotel'/'villa' (all current content) stay valid.
+    type: z.enum(['hotel', 'villa', 'chalet', 'apartment', 'château', 'estate', 'resort']),
     /** translationKey of the destinations entry this property is in */
     destinationKey: z.string(),
     city: z.string(),
     country: z.string(),
+    /** Phase 2C taxonomy fields — both multi-select, both optional/empty by
+     *  default so no existing content needs updating. See docs/taxonomy.md. */
+    positioning: z
+      .array(
+        z.enum([
+          'Palace',
+          'Luxury',
+          'Boutique',
+          'Family-Friendly',
+          'Design-Led',
+          'Private Residence',
+        ]),
+      )
+      .default([]),
+    travelFit: z
+      .array(
+        z.enum([
+          'Family',
+          'Romantic',
+          'Business',
+          'Wellness',
+          'Ski',
+          'Beach',
+          'Long Stay',
+          'Celebration',
+        ]),
+      )
+      .default([]),
     featured: z.boolean().default(false),
     status: contentStatus,
     coverImage: z.string(),
     gallery: z.array(z.string()).default([]),
+    /**
+     * Site-logic-realignment: a trademarked brand logo (e.g. a named partner
+     * hotel), not photography — served straight from /public, not the
+     * Unsplash-photography-only image-attributions.ts registry.
+     */
+    logo: z.string().optional(),
     highlights: z.array(z.string()).default([]),
     suitableFor: z.array(z.string()).default([]),
     familyNotes: z.string().optional(),
     diningWellness: z.string().optional(),
+    locationNotes: z.string().optional(),
     /** The "MYVIPSERVICE Perspective" section */
     servicePerspective: z.string().optional(),
     relatedExperienceKeys: z.array(z.string()).default([]),
     relatedAccommodationKeys: z.array(z.string()).default([]),
+    relatedJournalKeys: z.array(z.string()).default([]),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     publishedAt: z.date().optional(),
@@ -110,6 +180,21 @@ const accommodations = defineCollection({
     draft: z.boolean().default(false),
   }),
 });
+
+// Widened in Phase 2C with 'Seasonal' and 'Sports' (see docs/taxonomy.md);
+// all 8 previously-existing values stay valid.
+const experienceCategory = z.enum([
+  'Art & Culture',
+  'Food & Wine',
+  'Family',
+  'Wellness',
+  'Nature',
+  'Fashion',
+  'Celebration',
+  'Private Access',
+  'Seasonal',
+  'Sports',
+]);
 
 const experiences = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/experiences', generateId: localeSlugId }),
@@ -119,18 +204,18 @@ const experiences = defineCollection({
     locale,
     translationKey: z.string(),
     description: z.string(),
-    category: z.enum([
-      'Art & Culture',
-      'Food & Wine',
-      'Family',
-      'Wellness',
-      'Nature',
-      'Fashion',
-      'Celebration',
-      'Private Access',
-    ]),
+    category: experienceCategory,
+    /** Phase 2C: a secondary category is allowed but optional/empty by default. */
+    secondaryCategories: z.array(experienceCategory).default([]),
     /** translationKey of the destinations entry, if this experience is tied to one place */
     destinationKey: z.string().optional(),
+    /** Phase 2C: plural companion to destinationKey for experiences valid
+     *  across several destinations (e.g. a touring wine tasting). Optional,
+     *  additive — destinationKey remains the primary single-place link. */
+    destinationKeys: z.array(z.string()).default([]),
+    /** translationKey values matching future Travel Styles entries; the data
+     *  file today lives at src/data/site-content.ts#travelTypes. */
+    travelStyleKeys: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
     status: contentStatus,
     coverImage: z.string(),
@@ -138,11 +223,14 @@ const experiences = defineCollection({
     duration: z.string().optional(),
     suitableFor: z.array(z.string()).default([]),
     familySuitable: z.boolean().optional(),
+    ageNotes: z.string().optional(),
     languages: z.array(z.string()).default([]),
     highlights: z.array(z.string()).default([]),
     customisationNotes: z.string().optional(),
+    availabilityNotes: z.string().optional(),
     relatedAccommodationKeys: z.array(z.string()).default([]),
     relatedExperienceKeys: z.array(z.string()).default([]),
+    relatedJournalKeys: z.array(z.string()).default([]),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     publishedAt: z.date().optional(),

@@ -1,14 +1,22 @@
 ---
-title: 'Демо — Частный вечерний доступ в музей'
+title: 'Частный вечерний доступ в музей'
 slug: 'demo-private-museum-evening-access'
 locale: 'ru'
 translationKey: 'demo-private-museum-evening-access'
-description: 'Временный контент для проверки шаблона впечатлений — посещение в малой группе вне часов работы. (Черновик)'
+description: 'Доступ в малой группе к значимой коллекции вне часов работы для посетителей, с гидом, а не самостоятельно.'
 category: 'Art & Culture'
 destinationKey: 'paris'
+featured: true
 status: 'published'
 coverImage: 'experience-art-gallery'
-relatedAccommodationKeys: ['demo-hotel-paris']
+gallery: ['experience-art-gallery']
+duration: '2–3 часа, вечером'
+suitableFor: ['Пары', 'Небольшие группы', 'Коллекционеры искусства']
+familySuitable: false
+languages: ['Английский', 'Французский', 'Китайский']
+highlights: ['Доступ вне часов работы для посетителей', 'Частный гид', 'Формат малой группы']
+customisationNotes: 'Условия доступа согласовываются напрямую с площадкой для каждого запроса — размер группы и предпочтительный вечер лучше сообщить как можно раньше.'
+relatedAccommodationKeys: ['ritz-paris']
 relatedExperienceKeys: []
-draft: true
+publishedAt: 2026-08-06
 ---

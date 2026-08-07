@@ -1,5 +1,7 @@
 # build output
 dist/
+# local netlify-cli deploy state
+.netlify/
 # generated types
 .astro/
 
