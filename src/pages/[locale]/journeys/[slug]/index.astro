@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PageHero from '../../../../components/PageHero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Gallery from '../../../../components/Gallery.astro';
+import SectionHeading from '../../../../components/SectionHeading.astro';
+import ContentSection from '../../../../components/ContentSection.astro';
+import KeyFacts from '../../../../components/KeyFacts.astro';
+import RelatedContent from '../../../../components/RelatedContent.astro';
+import ContentStatusBadge from '../../../../components/ContentStatusBadge.astro';
+import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
+import { getDetailStaticPaths, resolveRelated } from '../../../../lib/content';
+import { useTranslations, type Locale } from '../../../../i18n/ui';
+
+export const getStaticPaths = () => getDetailStaticPaths('journeys');
+
+const { locale } = Astro.params as { locale: Locale };
+const { entry } = Astro.props as Awaited<ReturnType<typeof getDetailStaticPaths>>[number]['props'];
+const { data } = entry;
+const t = useTranslations(locale);
+
+const includedExperiences = await resolveRelated(
+  'experiences',
+  locale,
+  data.includedExperienceKeys,
+);
+const destinationsCovered = await resolveRelated('destinations', locale, data.destinationKeys);
+
+const keyFacts = [
+  { label: t('journeys.detail.themeLabel'), value: data.theme },
+  ...(data.duration ? [{ label: t('journeys.detail.durationLabel'), value: data.duration }] : []),
+];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: data.title,
+    description: data.description,
+    url: new URL(`/${locale}/journeys/${data.slug}/`, Astro.site).toString(),
+  },
+];
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.seoDescription ?? data.description}
+  path={`journeys/${data.slug}`}
+  imageId={data.coverImage}
+  structuredData={structuredData}
+  translationContext={{ collection: 'journeys', translationKey: data.translationKey }}
+>
+  <div class="container">
+    <Breadcrumbs
+      items={[
+        { label: t('nav.home'), href: `/${locale}/` },
+        { label: t('journeys.hero.title'), href: `/${locale}/journeys/` },
+        { label: data.title },
+      ]}
+    />
+  </div>
+
+  <PageHero eyebrow={data.theme} title={data.title} />
+  {
+    data.draft && (
+      <div class="container badge-row">
+        <ContentStatusBadge tone="draft" label={t('badge.draftTranslation')} />
+      </div>
+    )
+  }
+
+  <div class="container">
+    <Gallery images={data.gallery.length > 0 ? data.gallery : [data.coverImage]} locale={locale} />
+  </div>
+
+  <ContentSection title={t('journeys.detail.overviewTitle')} body={data.description} />
+
+  {
+    data.highlights.length > 0 && (
+      <section class="section">
+        <div class="container prose">
+          <SectionHeading eyebrow={data.theme} title={t('journeys.detail.highlightsTitle')} />
+          <ul class="highlight-list">
+            {data.highlights.map((item: string) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    keyFacts.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <KeyFacts facts={keyFacts} />
+        </div>
+      </section>
+    )
+  }
+
+  {
+    data.customisationNotes && (
+      <ContentSection
+        title={t('journeys.detail.customisationTitle')}
+        body={data.customisationNotes}
+      />
+    )
+  }
+
+  <RelatedContent
+    locale={locale}
+    eyebrow={data.theme}
+    title={t('journeys.detail.includedExperiencesHeading')}
+    items={includedExperiences.map((item) => ({
+      href: `/${locale}/experiences/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t(`category.${item.data.category}` as never),
+      title: item.data.title,
+      summary: item.data.description,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
+
+  <RelatedContent
+    locale={locale}
+    eyebrow={data.theme}
+    title={t('journeys.detail.destinationsHeading')}
+    items={destinationsCovered.map((item) => ({
+      href: `/${locale}/destinations/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t(`region.${item.data.region}` as never),
+      title: item.data.title,
+      summary: item.data.description,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
+
+  <InquiryCTA
+    title={t('home.inquiry.title')}
+    body={t('home.inquiry.body')}
+    ctaLabel={t('common.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
+</BaseLayout>
+
+<style>
+  .badge-row {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+
+  .highlight-list {
+    display: grid;
+    gap: var(--space-2);
+    padding-left: 1.25em;
+  }
+</style>

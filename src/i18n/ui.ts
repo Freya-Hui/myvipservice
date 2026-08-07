@@ -227,12 +227,18 @@ export const ui = {
     'accommodations.detail.priceNotice':
       'Price on request — every stay is tailored, so we quote after we understand what you need.',
 
-    'experiences.hero.eyebrow': 'Private Experiences',
-    'experiences.hero.title': 'Experiences',
-    'experiences.hero.subtitle':
-      "A growing list of experiences we can arrange with confidence — each one linked to the destinations and stays we'd pair it with.",
-    'experiences.featuredHeading': 'Featured Experiences',
-    'experiences.emptyState': 'No experiences are published yet — check back soon.',
+    'journeys.hero.eyebrow': 'Themed Journeys',
+    'journeys.hero.title': 'Journeys',
+    'journeys.hero.subtitle':
+      'Multi-day themes built from real experiences we can arrange, focused on Europe — each journey names exactly what it includes.',
+    'journeys.emptyState': 'No journeys are published yet — check back soon.',
+    'journeys.detail.overviewTitle': 'Journey Overview',
+    'journeys.detail.highlightsTitle': 'Highlights',
+    'journeys.detail.themeLabel': 'Theme',
+    'journeys.detail.durationLabel': 'Duration',
+    'journeys.detail.customisationTitle': 'Customisation Notes',
+    'journeys.detail.includedExperiencesHeading': 'Included Experiences',
+    'journeys.detail.destinationsHeading': 'Destinations Covered',
     'experiences.detail.overviewTitle': 'Experience Overview',
     'experiences.detail.highlightsTitle': 'Highlights',
     'experiences.detail.locationTitle': 'Location',
@@ -462,11 +468,18 @@ export const ui = {
     'accommodations.detail.priceNotice':
       '价格面议——每次入住均为量身定制，我们将在了解您的需求后提供报价。',
 
-    'experiences.hero.eyebrow': '私人体验',
-    'experiences.hero.title': '体验',
-    'experiences.hero.subtitle': '用于测试模板的体验示例列表——尚非正式体验目录。',
-    'experiences.featuredHeading': '精选体验',
-    'experiences.emptyState': '暂无已发布的体验，敬请期待。',
+    'journeys.hero.eyebrow': '主题游',
+    'journeys.hero.title': '主题游',
+    'journeys.hero.subtitle':
+      '由真实可安排的体验组成的多日主题行程，主要聚焦欧洲——每条主题游都明确列出包含哪些体验。',
+    'journeys.emptyState': '暂无已发布的主题游，敬请期待。',
+    'journeys.detail.overviewTitle': '行程概览',
+    'journeys.detail.highlightsTitle': '亮点',
+    'journeys.detail.themeLabel': '主题',
+    'journeys.detail.durationLabel': '建议时长',
+    'journeys.detail.customisationTitle': '定制说明',
+    'journeys.detail.includedExperiencesHeading': '包含体验',
+    'journeys.detail.destinationsHeading': '涉及目的地',
     'experiences.detail.overviewTitle': '体验概览',
     'experiences.detail.highlightsTitle': '亮点',
     'experiences.detail.locationTitle': '位置',
@@ -704,12 +717,18 @@ export const ui = {
     'accommodations.detail.priceNotice':
       'Prix sur demande — chaque séjour est sur mesure, nous établissons un devis une fois vos besoins compris.',
 
-    'experiences.hero.eyebrow': 'Expériences privées',
-    'experiences.hero.title': 'Expériences',
-    'experiences.hero.subtitle':
-      'Une liste de travail utilisée pour tester ce modèle — pas encore un catalogue réel.',
-    'experiences.featuredHeading': 'Expériences en vedette',
-    'experiences.emptyState': 'Aucune expérience publiée pour le moment — revenez bientôt.',
+    'journeys.hero.eyebrow': 'Voyages thématiques',
+    'journeys.hero.title': 'Voyages',
+    'journeys.hero.subtitle':
+      "Des thèmes de plusieurs jours construits à partir d'expériences réelles que nous pouvons organiser, centrés sur l'Europe — chaque voyage précise exactement ce qu'il inclut.",
+    'journeys.emptyState': 'Aucun voyage publié pour le moment — revenez bientôt.',
+    'journeys.detail.overviewTitle': 'Aperçu du voyage',
+    'journeys.detail.highlightsTitle': 'Points forts',
+    'journeys.detail.themeLabel': 'Thème',
+    'journeys.detail.durationLabel': 'Durée',
+    'journeys.detail.customisationTitle': 'Notes de personnalisation',
+    'journeys.detail.includedExperiencesHeading': 'Expériences incluses',
+    'journeys.detail.destinationsHeading': 'Destinations couvertes',
     'experiences.detail.overviewTitle': "Aperçu de l'expérience",
     'experiences.detail.highlightsTitle': 'Points forts',
     'experiences.detail.locationTitle': 'Emplacement',
@@ -946,12 +965,18 @@ export const ui = {
     'accommodations.detail.priceNotice':
       'Цена по запросу — каждое размещение индивидуально, стоимость сообщается после уточнения деталей.',
 
-    'experiences.hero.eyebrow': 'Частные впечатления',
-    'experiences.hero.title': 'Впечатления',
-    'experiences.hero.subtitle':
-      'Рабочий список впечатлений для проверки шаблона — пока не действующий каталог.',
-    'experiences.featuredHeading': 'Рекомендуемые впечатления',
-    'experiences.emptyState': 'Пока нет опубликованных впечатлений — загляните позже.',
+    'journeys.hero.eyebrow': 'Тематические путешествия',
+    'journeys.hero.title': 'Путешествия',
+    'journeys.hero.subtitle':
+      'Многодневные тематические программы из реальных впечатлений, которые мы можем организовать, с акцентом на Европу — каждое путешествие точно указывает, что в него входит.',
+    'journeys.emptyState': 'Пока нет опубликованных путешествий — загляните позже.',
+    'journeys.detail.overviewTitle': 'Обзор путешествия',
+    'journeys.detail.highlightsTitle': 'Особенности',
+    'journeys.detail.themeLabel': 'Тема',
+    'journeys.detail.durationLabel': 'Продолжительность',
+    'journeys.detail.customisationTitle': 'Примечания по индивидуализации',
+    'journeys.detail.includedExperiencesHeading': 'Включённые впечатления',
+    'journeys.detail.destinationsHeading': 'Охваченные направления',
     'experiences.detail.overviewTitle': 'Обзор впечатления',
     'experiences.detail.highlightsTitle': 'Особенности',
     'experiences.detail.locationTitle': 'Расположение',
