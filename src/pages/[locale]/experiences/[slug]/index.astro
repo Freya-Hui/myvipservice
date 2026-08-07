@@ -62,6 +62,11 @@ const keyFacts = [
     : []),
 ];
 
+// Only the original placeholder listings (translationKey prefixed
+// "demo-") are unconfirmed sample content — see accommodations/[slug]
+// for the same convention.
+const isDemoListing = data.translationKey.startsWith('demo-');
+
 const structuredData = [
   {
     '@context': 'https://schema.org',
@@ -93,7 +98,7 @@ const structuredData = [
 
   <PageHero eyebrow={t(`category.${data.category}` as never)} title={data.title} />
   <div class="container badge-row">
-    <ContentStatusBadge tone="demo" label={t('badge.demoListing')} />
+    {isDemoListing && <ContentStatusBadge tone="demo" label={t('badge.demoListing')} />}
     {data.draft && <ContentStatusBadge tone="draft" label={t('badge.draftTranslation')} />}
   </div>
 
