@@ -48,9 +48,9 @@ const featuredDestinations = destinations
       destinationPriority.indexOf(a.data.translationKey) -
       destinationPriority.indexOf(b.data.translationKey),
   );
-const journalEntries = (
-  await getCollection('caseStudies', (entry) => entry.id.startsWith(`${locale}/`))
-).sort((a, b) => a.data.order - b.data.order);
+const journalEntries = (await getLocaleEntries('journal', locale))
+  .sort((a, b) => (b.data.publishedAt?.getTime() ?? 0) - (a.data.publishedAt?.getTime() ?? 0))
+  .slice(0, 3);
 const experiences = await getLocaleEntries('experiences', locale);
 
 const hotelsService = bySlug(services, 'hotel-villa-reservations');
@@ -161,11 +161,14 @@ const conciergeService = bySlug(services, 'personal-concierge');
     eyebrow={t('home.journal.eyebrow')}
     title={t('home.journal.title')}
     entries={journalEntries.map((entry) => ({
+      href: `/${locale}/journal/${entry.data.slug}/`,
       title: entry.data.title,
-      summary: entry.data.summary,
+      summary: entry.data.excerpt,
       coverImage: entry.data.coverImage,
     }))}
-    comingSoonNote={t('common.comingSoon')}
+    emptyNote={t('journal.emptyState')}
+    viewAllLabel={t('journal.viewAll')}
+    viewAllHref={`/${locale}/journal/`}
     locale={locale}
   />
 

@@ -3,6 +3,7 @@ import { getImage } from '../../data/image-attributions';
 import type { Locale } from '../../i18n/ui';
 
 interface Entry {
+  href: string;
   title: string;
   summary: string;
   coverImage?: string;
@@ -12,11 +13,13 @@ interface Props {
   eyebrow: string;
   title: string;
   entries: Entry[];
-  comingSoonNote: string;
+  emptyNote?: string;
+  viewAllLabel: string;
+  viewAllHref: string;
   locale: Locale;
 }
 
-const { eyebrow, title, entries, comingSoonNote, locale } = Astro.props;
+const { eyebrow, title, entries, emptyNote, viewAllLabel, viewAllHref, locale } = Astro.props;
 const fallbackImage = getImage('journal-preview-paris-cafe');
 ---
 
@@ -24,29 +27,37 @@ const fallbackImage = getImage('journal-preview-paris-cafe');
   <div class="container">
     <p class="eyebrow">{eyebrow}</p>
     <h2>{title}</h2>
-    <ul class="journal__grid">
-      {
-        entries.map((entry) => {
-          const image = entry.coverImage ? getImage(entry.coverImage) : fallbackImage;
-          return (
-            <li>
-              <div class="figure figure--standard">
-                <img
-                  src={image.src}
-                  alt={image.altByLocale[locale]}
-                  width="1600"
-                  height="1200"
-                  loading="lazy"
-                />
-              </div>
-              <h3>{entry.title}</h3>
-              <p class="text-small">{entry.summary}</p>
-            </li>
-          );
-        })
-      }
-    </ul>
-    <p class="text-small journal__note">{comingSoonNote}</p>
+    {
+      entries.length > 0 ? (
+        <ul class="journal__grid">
+          {entries.map((entry) => {
+            const image = entry.coverImage ? getImage(entry.coverImage) : fallbackImage;
+            return (
+              <li>
+                <a href={entry.href}>
+                  <div class="figure figure--standard">
+                    <img
+                      src={image.src}
+                      alt={image.altByLocale[locale]}
+                      width="1600"
+                      height="1200"
+                      loading="lazy"
+                    />
+                  </div>
+                  <h3>{entry.title}</h3>
+                  <p class="text-small">{entry.summary}</p>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        emptyNote && <p class="text-small journal__note">{emptyNote}</p>
+      )
+    }
+    <a class="text-small journal__view-all" href={viewAllHref}>
+      {viewAllLabel}
+    </a>
   </div>
 </section>
 
@@ -60,8 +71,19 @@ const fallbackImage = getImage('journal-preview-paris-cafe');
     padding: 0;
   }
 
+  .journal__grid a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
   .journal__grid h3 {
     margin-block: var(--space-3) var(--space-2);
+    transition: color var(--transition-fast);
+  }
+
+  .journal__grid a:hover h3 {
+    color: var(--color-accent);
   }
 
   .journal__grid p {
@@ -70,5 +92,12 @@ const fallbackImage = getImage('journal-preview-paris-cafe');
 
   .journal__note {
     color: var(--color-text-faint);
+    margin-bottom: var(--space-3);
+  }
+
+  .journal__view-all {
+    display: inline-block;
+    margin-top: var(--space-3);
+    color: var(--color-accent);
   }
 </style>

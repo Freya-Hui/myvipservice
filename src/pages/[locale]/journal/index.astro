@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ContentGrid from '../../../components/ContentGrid.astro';
+import ContentCard from '../../../components/ContentCard.astro';
+import EmptyState from '../../../components/EmptyState.astro';
+import InquiryCTA from '../../../components/home/InquiryCTA.astro';
+import { getLocaleEntries } from '../../../lib/content';
+import { languages, useTranslations, type Locale } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const t = useTranslations(locale);
+
+const articles = (await getLocaleEntries('journal', locale)).sort((a, b) => {
+  const aDate = a.data.publishedAt?.getTime() ?? 0;
+  const bDate = b.data.publishedAt?.getTime() ?? 0;
+  return bDate - aDate;
+});
+---
+
+<BaseLayout
+  title={t('journal.hero.title')}
+  description="MYVIPSERVICE Journal — practical guides drawn from the destinations, stays and experiences we arrange."
+  path="journal"
+>
+  <div class="container">
+    <Breadcrumbs
+      items={[{ label: t('nav.home'), href: `/${locale}/` }, { label: t('journal.hero.title') }]}
+    />
+  </div>
+
+  <PageHero
+    eyebrow={t('journal.hero.eyebrow')}
+    title={t('journal.hero.title')}
+    subtitle={t('journal.hero.subtitle')}
+  />
+
+  <section class="section">
+    <div class="container">
+      {
+        articles.length === 0 ? (
+          <EmptyState message={t('journal.emptyState')} />
+        ) : (
+          <ContentGrid>
+            {articles.map((entry) => (
+              <ContentCard
+                href={`/${locale}/journal/${entry.data.slug}/`}
+                imageId={entry.data.coverImage}
+                eyebrow={t(`journalCategory.${entry.data.category}` as never)}
+                title={entry.data.title}
+                summary={entry.data.excerpt}
+                draftLabel={entry.data.draft ? t('badge.draftTranslation') : undefined}
+                locale={locale}
+              />
+            ))}
+          </ContentGrid>
+        )
+      }
+    </div>
+  </section>
+
+  <InquiryCTA
+    title={t('home.inquiry.title')}
+    body={t('home.inquiry.body')}
+    ctaLabel={t('common.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
+</BaseLayout>

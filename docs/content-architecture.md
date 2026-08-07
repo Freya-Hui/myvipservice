@@ -221,21 +221,19 @@
 
 **用途**：编辑向内容（目的地指南、酒店灵感、体验故事、季节性专题等），用于 SEO 长尾流量和品牌叙事，不涉及具体客户隐私。
 
-**Collection**：规划为独立 Collection（`journal`），**本阶段未创建**——现有的 `caseStudies` collection（`src/content/case-studies`）是 Phase 1 时期的占位实现，字段极简（`title`/`summary`/`coverImage`/`order`），目前用于首页 "Journal Preview" 模块的三张占位卡片。它在概念上更接近这里定义的 Journal，而不是下一节的 Client Stories——命名 `caseStudies`是历史遗留，容易和 Client Stories 混淆，**建议未来实现 Journal 时把它重命名为 `journal` 并迁移到本节字段**（迁移说明见下）。
+**Collection**：**已实现**（`src/content/journal`，schema 见 `src/content.config.ts`）——`caseStudies` 占位 collection 已按本节建议重命名为 `journal` 并迁移到下方字段设计，3 条占位内容已替换为真实文章，不是"升级"占位数据。
 
-**详情页/列表页**：规划需要两者，本阶段不建。
+**详情页/列表页**：均已实现（`/journal/`、`/journal/[slug]/`），首页 "Journal Preview" 模块已改为从 `journal` collection 读取真实内容。首批内容为 4 篇中文文章（目的地指南、亲子出行、季节旅行、私人体验各一篇），按本文档"多语言策略"不强制四语言同步首发；en/fr/ru 列表页在无内容时显示空状态，不是伪造的"敬请期待"占位。
 
 ### 分类（不过多）
 
 Destination Guides / Hotel Inspiration / Private Experiences / Family Travel / Food & Dining / Seasonal Travel / Art & Culture / Fashion & Shopping / Travel Advice / MYVIPSERVICE Stories——10 类，单选，足够覆盖当前业务范围又不至于让编辑难以选择。**不做自由标签**（自由标签容易产生 taxonomy.md 里警告的近义重复问题），如果未来确实需要更细粒度的发现方式，优先考虑给 Journal 加 `relatedDestinationKeys`/`relatedTravelStyleKeys` 驱动的"相关文章"区块，而不是开放标签系统。
 
-### 字段设计（规划）
+### 字段设计（已实现）
 
-`title` / `translationKey` / `locale` / `slug` / `category`（上述 10 类单选）/ `excerpt` / `author` / `publishedAt` / `updatedAt` / `coverImage` / `body`（Markdown 正文）/ `relatedDestinationKeys` / `relatedAccommodationKeys` / `relatedExperienceKeys` / `relatedTravelStyleKeys` / `relatedTicketEventKeys` / `seoTitle` / `seoDescription` / `status` / `draft`。
+`title` / `translationKey` / `locale` / `slug` / `category`（上述 10 类单选）/ `excerpt` / `author`（可选，未虚构人名，当前内容均未填）/ `publishedAt` / `updatedAt` / `coverImage` / `body`（Markdown 正文，页面用 `render()` 渲染）/ `relatedDestinationKeys` / `relatedAccommodationKeys` / `relatedExperienceKeys` / `relatedJourneyKeys`（本文档写作时 `journeys` collection 尚不存在，后补）/ `seoTitle` / `seoDescription` / `status` / `draft`。`relatedTravelStyleKeys`/`relatedTicketEventKeys` 暂未加入——对应的 Travel Styles/Tickets & Events 均未成为独立可关联的 collection，等这两者存在后再补，不提前加空字段。
 
 **多语言策略**：与 Destinations 一致——每语言一个文件，`translationKey` 做跨语言关联，允许某语言暂缺（不强制四语言同时首发）。
-
-**从 `caseStudies` 迁移的影响**（仅记录，本阶段不执行）：现有 3 条占位内容（`title`/`summary`/`coverImage`/`order`）字段是新 schema 的子集，直接兼容；需要补齐 `translationKey`/`locale`/`slug`/`category`/`status` 等字段后才能满足新 schema。因为现有内容本来就是占位文字（"Example Journal Entry"），建议届时直接重新起草，而不是"升级"占位数据。
 
 ---
 
@@ -257,13 +255,9 @@ Destination Guides / Hotel Inspiration / Private Experiences / Family Travel / F
 
 **用途**：旅行灵感范例（"像这样的 7 天普罗旺斯之旅"），明确是**灵感展示，不是固定可购买的套餐**——页面必须显著标注 "itinerary for inspiration / fully customisable / price on request / subject to availability"。
 
-**Collection**：规划为独立 Collection（`journeys`），**本阶段未创建**。**详情页/列表页**：规划需要两者，本阶段不建。
+**Collection 命名已被占用**：客户直接要求"体验页面改成主题游形式，而不是单一体验"，已实现为 `journeys` collection（`src/content/journeys`）——概念上和本节高度重合（多日主题、非固定套餐、聚焦欧洲），但字段更简单：`includedExperienceKeys` 直接关联真实的 `experiences` 条目（而不是本节规划的 `dayByDay`/`suggestedRoute` 逐日行程字段），没有单独的 `duration`/`travelStyleKeys`/`season` 维度。**同样明确不加价格字段**，这条约束已经遵守。
 
-### 字段设计（规划）
-
-`title` / `translationKey` / `locale` / `slug` / `destinationKeys` / `duration` / `travelStyleKeys` / `suggestedRoute` / `dayByDay` / `accommodationKeys` / `experienceKeys` / `highlights` / `suitableFor` / `season` / `coverImage` / `gallery` / `seoTitle` / `seoDescription` / `status` / `draft`。
-
-**明确不做**：不加 `price`/`sku`/`bookNow` 之类暗示"可直接购买"的字段——这类字段一旦存在，未来很容易被误用为电商结构，与"灵感展示"的定位冲突。如果未来真的要做"可询价套餐"，应该是一个新的、明确标注价格性质的内容类型，不是给 Journey Inspirations 加字段。
+如果未来确实需要本节规划的更详细逐日行程结构，应该给已实现的 `journeys` collection 加字段（`dayByDay` 等），而不是新建一个同名或近似命名的 collection——名字已经被用掉了，两个"journeys"并存只会造成混淆。
 
 ---
 

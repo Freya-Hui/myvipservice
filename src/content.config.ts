@@ -293,13 +293,46 @@ const about = defineCollection({
   }),
 });
 
-const caseStudies = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/case-studies' }),
+// Renamed from the Phase 1 `caseStudies` placeholder per
+// docs/content-architecture.md#7-journal — editorial content (guides,
+// inspiration, seasonal pieces), not customer case studies. Unlike the
+// core pages, Journal doesn't require all 4 locales for every entry: a
+// translationKey can exist in only one language.
+const journalCategory = z.enum([
+  'Destination Guides',
+  'Hotel Inspiration',
+  'Private Experiences',
+  'Family Travel',
+  'Food & Dining',
+  'Seasonal Travel',
+  'Art & Culture',
+  'Fashion & Shopping',
+  'Travel Advice',
+  'MYVIPSERVICE Stories',
+]);
+
+const journal = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/journal', generateId: localeSlugId }),
   schema: z.object({
     title: z.string(),
-    summary: z.string(),
-    coverImage: z.string().optional(),
-    order: z.number().default(0),
+    slug: z.string(),
+    locale,
+    translationKey: z.string(),
+    category: journalCategory,
+    excerpt: z.string(),
+    author: z.string().optional(),
+    coverImage: z.string(),
+    relatedDestinationKeys: z.array(z.string()).default([]),
+    relatedAccommodationKeys: z.array(z.string()).default([]),
+    relatedExperienceKeys: z.array(z.string()).default([]),
+    /** Added post-spec: docs/content-architecture.md predates the `journeys` collection. */
+    relatedJourneyKeys: z.array(z.string()).default([]),
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
+    status: contentStatus,
+    publishedAt: z.date().optional(),
+    updatedAt: z.date().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -318,6 +351,6 @@ export const collections = {
   experiences,
   journeys,
   about,
-  caseStudies,
+  journal,
   legal,
 };

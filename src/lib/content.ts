@@ -3,11 +3,12 @@ import type { Locale } from '../i18n/ui';
 
 /**
  * Content types that cross-link to each other via translationKey and share
- * the same status/draft/locale/slug shape. Journal (case-studies), services,
- * about and legal don't participate in this — they're simpler and don't
- * need cross-collection relations.
+ * the same status/draft/locale/slug shape. Services, about and legal don't
+ * participate in this — they're simpler and don't need cross-collection
+ * relations.
  */
-export type LinkableCollection = 'destinations' | 'accommodations' | 'experiences' | 'journeys';
+export type LinkableCollection =
+  'destinations' | 'accommodations' | 'experiences' | 'journeys' | 'journal';
 
 /**
  * `status: 'draft'` hides an item from production builds entirely (it's not
