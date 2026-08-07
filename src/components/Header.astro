@@ -180,10 +180,13 @@ const navItems: Array<{ href: string; label: string }> = [
     color: var(--color-accent);
   }
 
-  /* Five nav items + language switcher + CTA is tight in one row — this
-     threshold gives every locale (Russian labels run longest) real margin
-     instead of fitting exactly at one viewport width. */
-  @media (max-width: 1099px) {
+  /* Eight nav items (grew from five as Hotels/Destinations/Journeys/Journal
+     were added) + wechat link + language switcher + CTA no longer fits in
+     one row at the old 1099px threshold — the Russian locale (longest
+     labels) needs ~1240-1260px of content width alone at this font size,
+     which was wrapping onto two lines well into normal desktop widths.
+     Raised with real margin, not just enough to barely fit. */
+  @media (max-width: 1400px) {
     .menu-toggle {
       display: inline-flex;
     }
