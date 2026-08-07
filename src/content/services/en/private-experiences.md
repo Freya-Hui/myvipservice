@@ -2,6 +2,7 @@
 title: 'Private Experiences'
 summary: "Weddings, milestone celebrations and private events, staged at some of Europe's most distinctive venues."
 order: 7
+group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-private-experiences
 highlights:

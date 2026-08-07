@@ -2,6 +2,7 @@
 title: 'Бронирование отелей и вилл'
 summary: 'Доступ к знаковым отелям и частным виллам по всей Европе с привилегиями, недоступными при обычном онлайн-бронировании.'
 order: 1
+group: 'Hotels & Villas'
 investmentTier: 'standard'
 image: service-hotels-villas
 highlights:

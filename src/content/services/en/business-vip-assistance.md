@@ -2,6 +2,7 @@
 title: 'Business & VIP Assistance'
 summary: 'Meeting logistics, interpreters and introductions arranged for business travel across Europe.'
 order: 10
+group: 'Groups & Corporate'
 investmentTier: 'standard'
 image: service-business
 highlights:

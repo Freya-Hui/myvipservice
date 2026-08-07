@@ -2,6 +2,7 @@
 title: 'Hotel & Villa Reservations'
 summary: "Access to landmark hotels and private villas across Europe, with the kind of benefits that aren't available by simply booking online."
 order: 1
+group: 'Hotels & Villas'
 investmentTier: 'standard'
 image: service-hotels-villas
 highlights:

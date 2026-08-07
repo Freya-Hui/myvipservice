@@ -2,6 +2,7 @@
 title: 'Tailor-Made Travel Planning'
 summary: 'Modular, fully personalised itineraries across wine, fashion, education, sport and skiing — planned and managed end to end.'
 order: 2
+group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-travel-planning
 ---

@@ -2,6 +2,7 @@
 title: 'Бизнес- и VIP-сопровождение'
 summary: 'Организация встреч, переводчиков и деловых знакомств для бизнес-поездок по Европе.'
 order: 10
+group: 'Groups & Corporate'
 investmentTier: 'standard'
 image: service-business
 highlights:

@@ -2,6 +2,7 @@
 title: 'Services pour familles et enfants'
 summary: "Garde d'enfants de confiance et itinéraires adaptés à l'âge et aux centres d'intérêt de chaque enfant."
 order: 8
+group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-family
 highlights:

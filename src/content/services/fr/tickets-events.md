@@ -2,6 +2,7 @@
 title: 'Billetterie & Événements'
 summary: 'Assistance billetterie sur mesure pour attractions, musées, théâtre, concerts et événements sportifs — sous réserve de disponibilité.'
 order: 6
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-tickets-events
 highlights:

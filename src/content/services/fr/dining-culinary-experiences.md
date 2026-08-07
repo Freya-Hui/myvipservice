@@ -2,6 +2,7 @@
 title: 'Restauration et expériences culinaires'
 summary: 'Des tables réservées dans des adresses étoilées ou confidentielles, ainsi que des expériences culinaires privées sur mesure.'
 order: 5
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-dining
 highlights:

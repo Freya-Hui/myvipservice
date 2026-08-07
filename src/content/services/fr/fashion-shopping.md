@@ -2,6 +2,7 @@
 title: 'Mode & Shopping'
 summary: 'Rendez-vous de shopping personnalisé, ateliers et accès à des essayages dans les capitales de la mode européennes.'
 order: 3
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-fashion-shopping
 highlights:

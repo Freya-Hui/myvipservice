@@ -2,6 +2,7 @@
 title: 'Гастрономия и кулинарные впечатления'
 summary: 'Столики в ресторанах со звездой Мишлен и частных заведениях, а также индивидуальные гастрономические впечатления.'
 order: 5
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-dining
 highlights:

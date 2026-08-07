@@ -2,6 +2,7 @@
 title: 'Индивидуальное планирование поездок'
 summary: 'Полностью персонализированные маршруты в сфере вина, моды, образования, спорта и горнолыжного отдыха — от планирования до сопровождения.'
 order: 2
+group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-travel-planning
 ---

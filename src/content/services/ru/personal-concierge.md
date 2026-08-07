@@ -2,6 +2,7 @@
 title: 'Персональный консьерж'
 summary: 'Круглосуточный персональный консьерж — от повседневных просьб до особых событий.'
 order: 9
+group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-concierge
 highlights:

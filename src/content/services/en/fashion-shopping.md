@@ -2,6 +2,7 @@
 title: 'Fashion & Shopping'
 summary: "Personal shopping appointments, ateliers and access to fittings across Europe's fashion capitals."
 order: 3
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-fashion-shopping
 highlights:

@@ -2,6 +2,7 @@
 title: 'Personal Concierge'
 summary: 'Round-the-clock personal concierge — from everyday requests to landmark occasions, handled with discretion.'
 order: 9
+group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-concierge
 highlights:

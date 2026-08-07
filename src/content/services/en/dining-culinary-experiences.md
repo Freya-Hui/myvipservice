@@ -2,6 +2,7 @@
 title: 'Dining & Culinary Experiences'
 summary: 'Tables secured at hard-to-book, Michelin-starred and private addresses, plus bespoke dining arranged wherever you are.'
 order: 5
+group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-dining
 highlights:

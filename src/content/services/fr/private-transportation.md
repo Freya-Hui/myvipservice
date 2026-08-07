@@ -2,6 +2,7 @@
 title: 'Transport privé'
 summary: 'Accès en terminal privé, accueil dès la porte d’embarquement et flotte de véhicules haut de gamme à travers l’Europe.'
 order: 4
+group: 'Private Chauffeur'
 investmentTier: 'light'
 image: service-private-transportation
 highlights:
