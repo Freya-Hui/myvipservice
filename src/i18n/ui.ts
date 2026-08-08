@@ -341,7 +341,7 @@ export const ui = {
     'home.hotels.cta': '查看酒店与别墅服务',
     'home.travelTypes.eyebrow': '定制旅行',
     'home.travelTypes.title': '我们塑造旅程的几种方式',
-    'home.travelTypes.subtitle': '以上仅为示例——每一次旅行都可以根据您的需求重新设计。',
+    'home.travelTypes.subtitle': '以下仅为示例——每一次旅行都可以根据您的需求重新设计。',
     'home.travelTypes.cta': '告诉我们您的想法',
     'home.experience.eyebrow': '私人体验',
     'home.experience.title': '臻选体验',
