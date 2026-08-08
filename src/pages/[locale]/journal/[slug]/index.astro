@@ -60,7 +60,7 @@ const structuredData = [
 ---
 
 <BaseLayout
-  title={data.title}
+  title={data.seoTitle ?? data.title}
   description={data.seoDescription ?? data.excerpt}
   path={`journal/${data.slug}`}
   imageId={data.coverImage}
