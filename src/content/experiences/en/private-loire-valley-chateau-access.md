@@ -9,7 +9,7 @@ destinationKey: 'loire-valley'
 featured: false
 status: 'published'
 coverImage: 'destination-loire-valley'
-gallery: ['destination-loire-valley']
+gallery: ['destination-loire-valley', 'experience-art-gallery']
 duration: '2–3 hours, morning'
 suitableFor: ['Couples', 'Families', 'Small groups']
 familySuitable: true

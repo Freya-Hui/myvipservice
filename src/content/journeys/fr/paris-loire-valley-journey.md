@@ -18,7 +18,7 @@ highlights:
     "Une soirée privée au musée en dehors des heures d'ouverture à Paris",
     'Un accès privé à un château et ses jardins avant ouverture',
   ]
-customisationNotes: "Le nombre de jours passés à Paris et dans la Vallée de la Loire, ainsi que la présence d'un chauffeur entre les deux, s'adaptent à vos plans."
+customisationNotes: "Le nombre de jours passés à Paris et dans la Vallée de la Loire, ainsi que la présence d'un chauffeur entre les deux, s'adaptent à vos plans. De nombreux châteaux de la Loire réduisent leurs horaires ou ferment partiellement certaines ailes de novembre à mars, et leurs jardins à la française sont au mieux d'avril à septembre — un élément à prendre en compte selon la saison choisie."
 publishedAt: 2026-08-07
 draft: false
 ---

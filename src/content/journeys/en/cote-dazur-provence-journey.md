@@ -25,7 +25,7 @@ highlights:
     'An evening on the water in Monaco',
     'A vineyard lunch in Provence',
   ]
-customisationNotes: 'The order of stops, nights spent in each place and which of the three experiences are included are all adjusted around your dates and pace — this is a starting point, not a fixed itinerary.'
+customisationNotes: 'The order of stops, nights spent in each place and which of the three experiences are included are all adjusted around your dates and pace — this is a starting point, not a fixed itinerary. Late spring (May–June) and September tend to be the most comfortable months for this route — July–August bring the heaviest heat and crowds, and Monaco is especially tight around the Grand Prix in May.'
 publishedAt: 2026-08-07
 draft: false
 ---

@@ -20,7 +20,7 @@ highlights:
     'A private off-piste ski day with a certified guide',
     'A morning on Lake Geneva',
   ]
-customisationNotes: 'This theme suits both a ski-season and a warmer-weather version — tell us your dates and ability level and we adjust the balance between mountain and lake time.'
+customisationNotes: 'This theme suits both a ski-season and a warmer-weather version — tell us your dates and ability level and we adjust the balance between mountain and lake time. The ski-season version suits confident, active groups; the warmer-weather version (roughly May–September) suits families or anyone who would rather swap the ski day for more lake time.'
 publishedAt: 2026-08-07
 draft: false
 ---

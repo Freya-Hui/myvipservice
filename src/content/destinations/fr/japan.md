@@ -20,6 +20,6 @@ highlights:
   ]
 travelNotes: "Les dates de floraison des cerisiers et des feuillages d'automne varient chaque année et sont difficiles à prévoir plusieurs semaines à l'avance ; garder quelques jours de flexibilité autour des dates prévues facilite la coïncidence avec la floraison réelle."
 relatedAccommodationKeys: []
-relatedExperienceKeys: ['demo-kyoto-tea-ceremony']
+relatedExperienceKeys: []
 publishedAt: 2026-08-06
 ---

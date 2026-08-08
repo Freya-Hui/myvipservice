@@ -20,7 +20,7 @@ highlights:
   ]
 travelNotes: 'Cherry blossom and autumn foliage dates shift year to year and can be hard to predict more than a few weeks out; keeping a few days’ flexibility either side of your planned dates makes it easier to align with the actual bloom.'
 relatedAccommodationKeys: []
-relatedExperienceKeys: ['demo-kyoto-tea-ceremony']
+relatedExperienceKeys: []
 publishedAt: 2026-08-06
 draft: false
 ---

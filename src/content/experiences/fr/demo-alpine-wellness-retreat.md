@@ -9,7 +9,7 @@ destinationKey: 'french-alps'
 featured: false
 status: 'published'
 coverImage: 'destination-french-alps'
-gallery: ['destination-french-alps']
+gallery: ['destination-french-alps', 'destination-french-alps-chalet']
 duration: 'Journée complète'
 suitableFor: ['Voyageurs seuls', 'Couples']
 familySuitable: false

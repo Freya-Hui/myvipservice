@@ -20,7 +20,7 @@ coverImage: 'destination-french-riviera-yacht'
 gallery: ['destination-french-riviera-yacht', 'destination-monaco', 'destination-provence-vineyard']
 duration: '5-7 天'
 highlights: ['里维埃拉私人游艇下午时光', '摩纳哥港湾夜游', '普罗旺斯酒庄午宴']
-customisationNotes: '三站的先后顺序、每站停留几晚，以及三项体验中包含哪几项，都会根据您的出行日期与节奏调整——这是一个起点，不是固定行程。全程司机接送，行李与酒店入住无需操心。'
+customisationNotes: '三站的先后顺序、每站停留几晚，以及三项体验中包含哪几项，都会根据您的出行日期与节奏调整——这是一个起点，不是固定行程。全程司机接送，行李与酒店入住无需操心。初夏（5-6月）和 9 月通常是这条路线最舒适的时间——7-8 月气温和人流都是全年高峰，摩纳哥在 5 月大奖赛前后尤其紧张。'
 publishedAt: 2026-08-07
 draft: false
 ---

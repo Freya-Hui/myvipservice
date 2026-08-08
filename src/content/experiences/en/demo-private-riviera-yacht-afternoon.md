@@ -9,7 +9,7 @@ destinationKey: 'french-riviera'
 featured: false
 status: 'published'
 coverImage: 'destination-french-riviera'
-gallery: ['destination-french-riviera']
+gallery: ['destination-french-riviera', 'destination-french-riviera-yacht']
 duration: 'Half day'
 suitableFor: ['Couples', 'Small groups']
 familySuitable: true

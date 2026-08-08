@@ -9,7 +9,7 @@ destinationKey: 'paris'
 featured: true
 status: 'published'
 coverImage: 'experience-art-gallery'
-gallery: ['experience-art-gallery']
+gallery: ['experience-art-gallery', 'destination-paris']
 duration: '2 à 3 heures, en soirée'
 suitableFor: ['Couples', 'Petits groupes', "Collectionneurs d'art"]
 familySuitable: false
