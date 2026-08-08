@@ -22,8 +22,11 @@
   --color-error: #c98b7a;
 
   /* ---- Type -------------------------------------------------------------
-     System stacks only — no webfont dependency until a later design pass. */
-  --font-display: Georgia, 'Times New Roman', serif;
+     Playfair Display (self-hosted, see global.css @font-face) for headings
+     and the wordmark; system serif as fallback while it loads and for CJK
+     text, which the font doesn't cover. Body copy stays on the system
+     stack — no webfont weight for reading-length text. */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --text-eyebrow: 0.75rem;
@@ -60,8 +63,14 @@
   /* ---- Layout ------------------------------------------------------------ */
   --content-max-width: 72rem;
   --prose-max-width: 42rem;
-  --radius: 2px;
-  --radius-sm: 1px;
+  --radius: 6px;
+  --radius-sm: 3px;
+
+  /* Neutral (black-based) elevation — not a palette colour, so it stays
+     within the "no new colours" rule while giving cards and hovers real
+     depth against the flat dark ground. */
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 20%);
+  --shadow-elevated: 0 12px 32px -8px rgb(0 0 0 / 45%);
 
   /* ---- Components --------------------------------------------------------- */
   --button-padding-block: 0.85rem;
