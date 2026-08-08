@@ -24,6 +24,7 @@ suitableFor: ['注重私密性的情侣', '长住需求']
 servicePerspective: '长期合作酒店，特别适合偏好小型、私密地址的客人——视具体情况，可协助安排房型升级与优先餐厅预订。'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['bulgari', 'mandarin-oriental']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

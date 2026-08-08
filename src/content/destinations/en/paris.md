@@ -21,6 +21,7 @@ highlights:
 travelNotes: 'Comfortable walking shoes and a light layer for evenings by the Seine are recommended year-round. Most museums and ateliers need several days’ notice for private access, so it helps to share your interests before you arrive.'
 relatedAccommodationKeys: ['ritz-paris', 'four-seasons-george-v', 'plaza-athenee', 'cheval-blanc']
 relatedExperienceKeys: ['demo-private-museum-evening-access']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-06
 draft: false
 ---

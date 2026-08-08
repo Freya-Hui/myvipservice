@@ -21,5 +21,6 @@ highlights:
 travelNotes: '村庄之间车程不长，但山路多弯——尤其是品尝过当地美酒的午后，配备私人司机能省去自驾的顾虑。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['provence-five-day-itinerary-guide']
 publishedAt: 2026-08-06
 ---

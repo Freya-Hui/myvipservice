@@ -18,6 +18,7 @@ highlights: ['私人游船与船长', '湖面眺望阿尔卑斯山景', '航线�
 customisationNotes: '航线、时长以及是否需要船上早餐都可按团体情况调整——请告知同行人数与希望出发的时间。带孩子的家庭可提前说明孩子年龄，方便安排合适的活动节奏。'
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

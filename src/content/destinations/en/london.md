@@ -22,6 +22,7 @@ highlights:
 travelNotes: 'Traffic and travel times can vary sharply around major events; building extra time into transfers on those dates avoids missed bookings.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

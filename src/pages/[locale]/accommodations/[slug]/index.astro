@@ -36,6 +36,7 @@ const relatedAccommodations = await resolveRelated(
   data.relatedAccommodationKeys,
   data.translationKey,
 );
+const journalArticles = await resolveRelated('journal', locale, data.relatedJournalKeys);
 
 const keyFacts = [
   { label: t('accommodations.detail.typeLabel'), value: t(`type.${data.type}` as never) },
@@ -200,6 +201,20 @@ const structuredData = [
       title: item.data.title,
       summary: item.data.description,
       meta: `${item.data.city}, ${item.data.country}`,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
+
+  <RelatedContent
+    locale={locale}
+    eyebrow={t(`type.${data.type}` as never)}
+    title={t('accommodations.detail.journalHeading')}
+    items={journalArticles.map((item) => ({
+      href: `/${locale}/journal/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t(`journalCategory.${item.data.category}` as never),
+      title: item.data.title,
+      summary: item.data.excerpt,
       draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
     }))}
   />

@@ -22,6 +22,7 @@ highlights:
 travelNotes: 'Неделя Гран-при (май) заполняет отели и поднимает цены по всей Ривьере, а не только в Монако — стоит бронировать заранее либо выбрать соседние недели для более спокойного визита.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['monaco-private-yacht-evening-celebration-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

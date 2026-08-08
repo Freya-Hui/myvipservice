@@ -19,6 +19,7 @@ highlights:
 customisationNotes: "L'itinéraire, la durée et la possibilité de prendre le petit-déjeuner à bord s'adaptent à votre groupe — indiquez-nous le nombre de participants et l'heure de départ souhaitée."
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

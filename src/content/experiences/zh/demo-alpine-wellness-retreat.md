@@ -18,5 +18,6 @@ highlights: ['水疗与温泉浴场', '山景景观', '专车接送']
 customisationNotes: '节奏、疗程与场地都可以调整——有些客户希望安排完整一天，也有客户只想在行程间隙享受几个小时的宁静。'
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-06
 ---

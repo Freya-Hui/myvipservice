@@ -21,5 +21,6 @@ highlights:
 travelNotes: 'Круглый год рекомендуется удобная обувь для прогулок и лёгкий слой одежды для вечеров на набережной Сены. Большинству музеев и ателье для частного доступа требуется несколько дней на подготовку — сообщите нам о своих интересах заранее.'
 relatedAccommodationKeys: ['ritz-paris', 'four-seasons-george-v', 'plaza-athenee', 'cheval-blanc']
 relatedExperienceKeys: ['demo-private-museum-evening-access']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-06
 ---

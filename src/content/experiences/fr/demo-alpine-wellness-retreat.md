@@ -18,5 +18,6 @@ highlights: ['Circuit spa et thermal', 'Vue sur les montagnes', 'Transfert priv�
 customisationNotes: "Le rythme, les soins et le cadre peuvent être ajustés — certains clients souhaitent une journée complète, d'autres seulement quelques heures de calme entre deux activités."
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-06
 ---

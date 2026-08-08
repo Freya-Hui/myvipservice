@@ -24,6 +24,7 @@ suitableFor: ['情侣', '特殊庆祝场合']
 servicePerspective: '长期合作酒店——视具体情况，可协助安排房型升级与优先餐厅预订。'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['ritz-paris', 'le-meurice']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

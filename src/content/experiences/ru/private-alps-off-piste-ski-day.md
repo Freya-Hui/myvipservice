@@ -23,6 +23,7 @@ highlights:
 customisationNotes: 'Сообщите нам ваш уровень катания и размер группы — гид подтверждает точный маршрут утром в день выезда с учётом условий, день может быть организован на полдня или на весь день.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-07
 draft: false
 ---

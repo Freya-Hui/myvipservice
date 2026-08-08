@@ -24,6 +24,7 @@ suitableFor: ['Voyageurs passionnés de design', 'Couples']
 servicePerspective: 'Un hôtel partenaire de longue date — selon disponibilité, nous pouvons organiser surclassements et réservations prioritaires en restaurant.'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['la-reserve', 'mandarin-oriental']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

@@ -22,6 +22,7 @@ highlights:
 travelNotes: 'Les temps de trajet peuvent varier fortement autour des grands événements ; prévoir une marge supplémentaire pour les transferts ces jours-là évite de manquer une réservation.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

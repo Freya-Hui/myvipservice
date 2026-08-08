@@ -272,6 +272,7 @@ const journeys = defineCollection({
     destinationKeys: z.array(z.string()).default([]),
     /** translationKey values of real experiences.md entries this journey bundles. */
     includedExperienceKeys: z.array(z.string()).default([]),
+    relatedJournalKeys: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
     status: contentStatus,
     coverImage: z.string(),

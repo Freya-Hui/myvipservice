@@ -207,6 +207,7 @@ export const ui = {
     'destinations.detail.experiencesHeading': 'Featured Experiences',
     'destinations.detail.travelNotesTitle': 'Travel Notes',
     'destinations.detail.relatedHeading': 'Related Destinations',
+    'destinations.detail.journalHeading': 'From the Journal',
 
     'accommodations.hero.eyebrow': 'Hotels & Villas',
     'accommodations.hero.title': 'Accommodations',
@@ -228,6 +229,7 @@ export const ui = {
     'accommodations.detail.relatedDestinationHeading': 'Related Destination',
     'accommodations.detail.nearbyExperiencesHeading': 'Nearby Experiences',
     'accommodations.detail.relatedAccommodationsHeading': 'Related Accommodations',
+    'accommodations.detail.journalHeading': 'From the Journal',
     'accommodations.detail.priceNotice':
       'Price on request — every stay is tailored, so we quote after we understand what you need.',
 
@@ -243,6 +245,7 @@ export const ui = {
     'journeys.detail.customisationTitle': 'Customisation Notes',
     'journeys.detail.includedExperiencesHeading': 'Included Experiences',
     'journeys.detail.destinationsHeading': 'Destinations Covered',
+    'journeys.detail.journalHeading': 'From the Journal',
 
     'journal.hero.eyebrow': 'Journal',
     'journal.hero.title': 'Journal',
@@ -279,6 +282,7 @@ export const ui = {
     'experiences.detail.relatedDestinationHeading': 'Related Destination',
     'experiences.detail.nearbyAccommodationsHeading': 'Nearby Accommodations',
     'experiences.detail.relatedExperiencesHeading': 'Related Experiences',
+    'experiences.detail.journalHeading': 'From the Journal',
 
     'notFound.title': 'Page Not Found',
     'notFound.body': "The page you're looking for doesn't exist or may have moved.",
@@ -477,6 +481,7 @@ export const ui = {
     'destinations.detail.experiencesHeading': '精选体验',
     'destinations.detail.travelNotesTitle': '旅行提示',
     'destinations.detail.relatedHeading': '相关目的地',
+    'destinations.detail.journalHeading': 'Journal 相关文章',
 
     'accommodations.hero.eyebrow': '酒店与别墅',
     'accommodations.hero.title': '住宿',
@@ -498,6 +503,7 @@ export const ui = {
     'accommodations.detail.relatedDestinationHeading': '相关目的地',
     'accommodations.detail.nearbyExperiencesHeading': '周边体验',
     'accommodations.detail.relatedAccommodationsHeading': '相关住宿',
+    'accommodations.detail.journalHeading': 'Journal 相关文章',
     'accommodations.detail.priceNotice':
       '价格面议——每次入住均为量身定制，我们将在了解您的需求后提供报价。',
 
@@ -513,6 +519,7 @@ export const ui = {
     'journeys.detail.customisationTitle': '定制说明',
     'journeys.detail.includedExperiencesHeading': '包含体验',
     'journeys.detail.destinationsHeading': '涉及目的地',
+    'journeys.detail.journalHeading': 'Journal 相关文章',
 
     'journal.hero.eyebrow': 'Journal',
     'journal.hero.title': '深度指南',
@@ -549,6 +556,7 @@ export const ui = {
     'experiences.detail.relatedDestinationHeading': '相关目的地',
     'experiences.detail.nearbyAccommodationsHeading': '周边住宿',
     'experiences.detail.relatedExperiencesHeading': '相关体验',
+    'experiences.detail.journalHeading': 'Journal 相关文章',
 
     'notFound.title': '页面未找到',
     'notFound.body': '您访问的页面不存在，或已被移动。',
@@ -755,6 +763,7 @@ export const ui = {
     'destinations.detail.experiencesHeading': 'Expériences en vedette',
     'destinations.detail.travelNotesTitle': 'Notes de voyage',
     'destinations.detail.relatedHeading': 'Destinations similaires',
+    'destinations.detail.journalHeading': 'Dans le Journal',
 
     'accommodations.hero.eyebrow': 'Hôtels & Villas',
     'accommodations.hero.title': 'Hébergements',
@@ -776,6 +785,7 @@ export const ui = {
     'accommodations.detail.relatedDestinationHeading': 'Destination associée',
     'accommodations.detail.nearbyExperiencesHeading': 'Expériences à proximité',
     'accommodations.detail.relatedAccommodationsHeading': 'Hébergements similaires',
+    'accommodations.detail.journalHeading': 'Dans le Journal',
     'accommodations.detail.priceNotice':
       'Prix sur demande — chaque séjour est sur mesure, nous établissons un devis une fois vos besoins compris.',
 
@@ -791,6 +801,7 @@ export const ui = {
     'journeys.detail.customisationTitle': 'Notes de personnalisation',
     'journeys.detail.includedExperiencesHeading': 'Expériences incluses',
     'journeys.detail.destinationsHeading': 'Destinations couvertes',
+    'journeys.detail.journalHeading': 'Dans le Journal',
 
     'journal.hero.eyebrow': 'Journal',
     'journal.hero.title': 'Journal',
@@ -827,6 +838,7 @@ export const ui = {
     'experiences.detail.relatedDestinationHeading': 'Destination associée',
     'experiences.detail.nearbyAccommodationsHeading': 'Hébergements à proximité',
     'experiences.detail.relatedExperiencesHeading': 'Expériences similaires',
+    'experiences.detail.journalHeading': 'Dans le Journal',
 
     'notFound.title': 'Page introuvable',
     'notFound.body': "La page que vous recherchez n'existe pas ou a peut-être été déplacée.",
@@ -1032,6 +1044,7 @@ export const ui = {
     'destinations.detail.experiencesHeading': 'Рекомендуемые впечатления',
     'destinations.detail.travelNotesTitle': 'Заметки для путешественников',
     'destinations.detail.relatedHeading': 'Похожие направления',
+    'destinations.detail.journalHeading': 'Из журнала',
 
     'accommodations.hero.eyebrow': 'Отели и виллы',
     'accommodations.hero.title': 'Размещение',
@@ -1053,6 +1066,7 @@ export const ui = {
     'accommodations.detail.relatedDestinationHeading': 'Связанное направление',
     'accommodations.detail.nearbyExperiencesHeading': 'Впечатления поблизости',
     'accommodations.detail.relatedAccommodationsHeading': 'Похожие варианты размещения',
+    'accommodations.detail.journalHeading': 'Из журнала',
     'accommodations.detail.priceNotice':
       'Цена по запросу — каждое размещение индивидуально, стоимость сообщается после уточнения деталей.',
 
@@ -1068,6 +1082,7 @@ export const ui = {
     'journeys.detail.customisationTitle': 'Примечания по индивидуализации',
     'journeys.detail.includedExperiencesHeading': 'Включённые впечатления',
     'journeys.detail.destinationsHeading': 'Охваченные направления',
+    'journeys.detail.journalHeading': 'Из журнала',
 
     'journal.hero.eyebrow': 'Журнал',
     'journal.hero.title': 'Журнал',
@@ -1104,6 +1119,7 @@ export const ui = {
     'experiences.detail.relatedDestinationHeading': 'Связанное направление',
     'experiences.detail.nearbyAccommodationsHeading': 'Размещение поблизости',
     'experiences.detail.relatedExperiencesHeading': 'Похожие впечатления',
+    'experiences.detail.journalHeading': 'Из журнала',
 
     'notFound.title': 'Страница не найдена',
     'notFound.body': 'Запрашиваемая страница не существует или была перемещена.',

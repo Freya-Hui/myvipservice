@@ -21,5 +21,6 @@ highlights:
 travelNotes: 'Компактный город, удобный для пеших прогулок — большинство адресов у озера и деловых встреч находятся в нескольких минутах езды от аэропорта, что делает Женеву удобной остановкой на одну-две ночи до или после поездки в Альпы.'
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-06
 ---

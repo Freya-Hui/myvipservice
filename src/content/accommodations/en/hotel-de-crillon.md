@@ -24,6 +24,7 @@ suitableFor: ['Couples', 'Special occasions']
 servicePerspective: 'A long-standing partner hotel — where available, we can arrange upgrades and priority dining reservations.'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['ritz-paris', 'le-meurice']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

@@ -21,5 +21,6 @@ highlights:
 travelNotes: "Des chaussures de marche confortables et une veste légère pour les soirées au bord de la Seine sont recommandées toute l'année. La plupart des musées et ateliers demandent plusieurs jours de préavis pour un accès privé — partagez vos centres d'intérêt avant votre arrivée pour faciliter l'organisation."
 relatedAccommodationKeys: ['ritz-paris', 'four-seasons-george-v', 'plaza-athenee', 'cheval-blanc']
 relatedExperienceKeys: ['demo-private-museum-evening-access']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-06
 ---

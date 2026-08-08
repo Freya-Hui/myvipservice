@@ -23,6 +23,7 @@ highlights:
 customisationNotes: 'Расскажите нам, что вы отмечаете и сколько гостей будет с вами — время на воде, ресторан и темп вечера выстраиваются вокруг этого.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['monaco-private-yacht-evening-celebration-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

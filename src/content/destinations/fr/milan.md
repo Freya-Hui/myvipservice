@@ -22,6 +22,7 @@ highlights:
 travelNotes: "La Fashion Week et le Salone del Mobile attirent tous deux une forte affluence et saturent les hôtels des mois à l'avance — mieux vaut anticiper si votre séjour coïncide avec l'un ou l'autre."
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['milan-private-shopping-appointment-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

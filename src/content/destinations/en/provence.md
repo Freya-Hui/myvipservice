@@ -21,6 +21,7 @@ highlights:
 travelNotes: 'Distances between villages are short but the roads wind through hills; a private driver removes the need to navigate, especially after a long lunch with local wine.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['provence-five-day-itinerary-guide']
 publishedAt: 2026-08-06
 draft: false
 ---

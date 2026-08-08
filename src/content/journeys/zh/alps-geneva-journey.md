@@ -8,6 +8,7 @@ theme: '阿尔卑斯山与日内瓦湖'
 destinationKeys: ['french-alps', 'geneva']
 includedExperienceKeys:
   ['demo-alpine-wellness-retreat', 'private-alps-off-piste-ski-day', 'private-geneva-lake-morning']
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 featured: true
 status: 'published'
 coverImage: 'destination-french-alps-chalet'

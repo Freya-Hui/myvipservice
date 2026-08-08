@@ -24,6 +24,7 @@ suitableFor: ['Couples seeking privacy', 'Longer stays']
 servicePerspective: 'A long-standing partner hotel, well suited to guests who prefer a smaller, more private address — where available, we can arrange upgrades and priority dining reservations.'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['bulgari', 'mandarin-oriental']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

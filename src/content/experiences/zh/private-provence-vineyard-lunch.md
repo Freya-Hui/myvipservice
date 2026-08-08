@@ -18,6 +18,7 @@ highlights: ['庄主亲自带领的葡萄园漫步', '当季主厨菜单', '酒�
 customisationNotes: '菜单、酒款与用餐时长都会按团体情况调整——请告知同行人数，以及是否希望庄主全程陪同用餐。司机会在庄园入口等候，用餐结束后随时可以出发前往下一站。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['provence-five-day-itinerary-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

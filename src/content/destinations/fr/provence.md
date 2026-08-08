@@ -21,5 +21,6 @@ highlights:
 travelNotes: "Les distances entre villages sont courtes, mais les routes serpentent à travers les collines — un chauffeur privé évite d'avoir à conduire, surtout après un long déjeuner arrosé de vin local."
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['provence-five-day-itinerary-guide']
 publishedAt: 2026-08-06
 ---

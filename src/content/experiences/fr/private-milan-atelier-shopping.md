@@ -23,6 +23,7 @@ highlights:
 customisationNotes: "Indiquez-nous les maisons qui vous intéressent et ce que vous recherchez — nous confirmons les horaires directement avec chaque atelier et construisons l'itinéraire autour d'eux."
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['milan-private-shopping-appointment-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

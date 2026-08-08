@@ -18,6 +18,7 @@ highlights: ['专柜私人预约，无需排队等候', '可配私人造型顾�
 customisationNotes: '告诉我们您在意哪些品牌、想找什么类型的单品——我们会直接与各专柜确认预约时段，并据此规划当天路线，全程可用中文沟通确认行程细节。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['milan-private-shopping-appointment-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

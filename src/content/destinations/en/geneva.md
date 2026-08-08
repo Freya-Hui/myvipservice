@@ -21,6 +21,7 @@ highlights:
 travelNotes: 'A compact, walkable city — most lakeside and business addresses sit a short drive from the airport, making Geneva an easy one- or two-night stop before or after an Alpine stay.'
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-06
 draft: false
 ---

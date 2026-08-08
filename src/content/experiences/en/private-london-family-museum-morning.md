@@ -24,6 +24,7 @@ highlights:
 customisationNotes: 'Tell us the ages of the children joining and which museum or subjects interest them — the route and pacing are built around that.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

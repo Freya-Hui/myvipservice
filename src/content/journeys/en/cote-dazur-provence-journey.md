@@ -12,6 +12,8 @@ includedExperienceKeys:
     'private-monaco-harbour-evening',
     'private-provence-vineyard-lunch',
   ]
+relatedJournalKeys:
+  ['provence-five-day-itinerary-guide', 'monaco-private-yacht-evening-celebration-guide']
 featured: true
 status: 'published'
 coverImage: 'destination-french-riviera-yacht'

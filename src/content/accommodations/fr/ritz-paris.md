@@ -24,6 +24,7 @@ suitableFor: ['Couples', 'Occasions spéciales', 'Premier séjour à Paris']
 servicePerspective: "L'un de nos hôtels partenaires de plus longue date — selon disponibilité, nous pouvons organiser surclassements, arrivée anticipée et réservations prioritaires en restaurant."
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['four-seasons-george-v', 'hotel-de-crillon']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

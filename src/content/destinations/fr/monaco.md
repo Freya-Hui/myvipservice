@@ -22,6 +22,7 @@ highlights:
 travelNotes: "La semaine du Grand Prix (mai) sature les hôtels et fait grimper les tarifs sur toute la Côte d'Azur, pas seulement à Monaco — mieux vaut réserver bien à l'avance, ou envisager les semaines voisines pour un séjour plus calme."
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['monaco-private-yacht-evening-celebration-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

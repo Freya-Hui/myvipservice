@@ -18,6 +18,7 @@ highlights: ['港湾私人游船时光', '收尾晚宴已预留餐桌', '整晚�
 customisationNotes: '告诉我们这是什么样的庆祝场合、同行人数——游船时长、餐厅选择与整晚节奏都会据此安排。生日、纪念日等特殊安排（如香槟、鲜花）可提前告知。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['monaco-private-yacht-evening-celebration-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

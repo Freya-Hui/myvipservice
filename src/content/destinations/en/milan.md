@@ -22,6 +22,7 @@ highlights:
 travelNotes: 'Fashion Week and Salone del Mobile both draw major crowds and book hotels out months ahead — earlier planning matters if your visit lines up with either.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['milan-private-shopping-appointment-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

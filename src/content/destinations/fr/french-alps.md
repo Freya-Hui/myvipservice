@@ -21,5 +21,6 @@ highlights:
 travelNotes: "Les semaines de pointe — Noël et les vacances de février — voient chalets et moniteurs réservés jusqu'à un an à l'avance ; anticiper compte ici plus que dans la plupart des destinations."
 relatedAccommodationKeys: []
 relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-06
 ---

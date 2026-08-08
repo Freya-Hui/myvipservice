@@ -24,6 +24,7 @@ suitableFor: ['Пары, ценящие приватность', 'Длитель
 servicePerspective: 'Давний партнёрский отель, особенно подходящий гостям, предпочитающим более камерный и приватный адрес — при наличии возможности мы можем организовать повышение категории номера и приоритетное бронирование ресторанов.'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['bulgari', 'mandarin-oriental']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

@@ -23,6 +23,7 @@ highlights:
 customisationNotes: 'Tell us what you are celebrating and how many are joining — the boat time, restaurant and pace of the evening are all set around that.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['monaco-private-yacht-evening-celebration-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

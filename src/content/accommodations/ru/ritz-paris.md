@@ -24,6 +24,7 @@ suitableFor: ['Пары', 'Особые случаи', 'Гости, впервы
 servicePerspective: 'Один из наших давних партнёрских отелей — при наличии возможности мы можем организовать повышение категории номера, ранний заезд и приоритетное бронирование ресторанов.'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['four-seasons-george-v', 'hotel-de-crillon']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

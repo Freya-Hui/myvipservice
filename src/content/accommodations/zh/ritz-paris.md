@@ -24,6 +24,7 @@ suitableFor: ['情侣', '特殊庆祝场合', '首次到访巴黎的旅客']
 servicePerspective: '我们合作时间最长的酒店之一——视具体情况，可协助安排房型升级、提前入住与优先餐厅预订。'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['four-seasons-george-v', 'hotel-de-crillon']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

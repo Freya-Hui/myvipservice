@@ -24,6 +24,7 @@ suitableFor: ['Пары', 'Особые случаи']
 servicePerspective: 'Давний партнёрский отель — при наличии возможности мы можем организовать повышение категории номера и приоритетное бронирование ресторанов.'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['ritz-paris', 'le-meurice']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

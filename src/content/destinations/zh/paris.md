@@ -21,5 +21,6 @@ highlights:
 travelNotes: '建议全年准备舒适的步行鞋，塞纳河畔的夜晚也可备一件薄外套。大多数博物馆与工坊需提前数日申请私享通道，出行前告知我们您的兴趣方向会更顺畅。'
 relatedAccommodationKeys: ['ritz-paris', 'four-seasons-george-v', 'plaza-athenee', 'cheval-blanc']
 relatedExperienceKeys: ['demo-private-museum-evening-access']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-06
 ---

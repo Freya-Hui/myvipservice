@@ -21,5 +21,6 @@ highlights:
 travelNotes: "Une ville compacte et facile à parcourir à pied — la plupart des adresses au bord du lac et d'affaires se trouvent à quelques minutes de l'aéroport, ce qui fait de Genève une étape idéale d'une ou deux nuits avant ou après un séjour alpin."
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-06
 ---

@@ -21,5 +21,6 @@ highlights:
 travelNotes: '这是一座紧凑、适合步行的城市——湖畔与商务地址大多距机场车程不远，很适合作为阿尔卑斯山行程前后一到两晚的中转站。'
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-06
 ---

@@ -22,6 +22,7 @@ highlights:
 travelNotes: 'Время в пути может значительно меняться вокруг крупных событий; закладывая дополнительный запас времени на трансферы в такие даты, легче избежать пропущенных встреч.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

@@ -22,6 +22,7 @@ highlights:
 travelNotes: 'Неделя моды и Salone del Mobile привлекают большие толпы и заполняют отели за месяцы вперёд — если поездка совпадает с одним из этих событий, планировать стоит заранее.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['milan-private-shopping-appointment-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

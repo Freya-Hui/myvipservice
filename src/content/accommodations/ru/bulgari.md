@@ -24,6 +24,7 @@ suitableFor: ['Путешественники, интересующиеся ди
 servicePerspective: 'Давний партнёрский отель — при наличии возможности мы можем организовать повышение категории номера и приоритетное бронирование ресторанов.'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['la-reserve', 'mandarin-oriental']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

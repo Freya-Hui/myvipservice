@@ -38,6 +38,7 @@ const relatedExperiences = await resolveRelated(
   data.relatedExperienceKeys,
   data.translationKey,
 );
+const journalArticles = await resolveRelated('journal', locale, data.relatedJournalKeys);
 
 const keyFacts = [
   ...(destination
@@ -188,6 +189,20 @@ const structuredData = [
       eyebrow: t(`category.${item.data.category}` as never),
       title: item.data.title,
       summary: item.data.description,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
+
+  <RelatedContent
+    locale={locale}
+    eyebrow={t(`category.${data.category}` as never)}
+    title={t('experiences.detail.journalHeading')}
+    items={journalArticles.map((item) => ({
+      href: `/${locale}/journal/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t(`journalCategory.${item.data.category}` as never),
+      title: item.data.title,
+      summary: item.data.excerpt,
       draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
     }))}
   />
