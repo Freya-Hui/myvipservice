@@ -78,6 +78,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Private dinners, secluded stays and quiet corners of Europe, planned around two people.',
       featured: true,
       order: 2,
+      href: '/en/services/romantic-travel/',
     },
     {
       id: 'art-culture',
@@ -210,6 +211,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: '私享晚餐、静谧居所与欧洲僻静角落，专为两人规划。',
       featured: true,
       order: 2,
+      href: '/zh/services/romantic-travel/',
     },
     {
       id: 'art-culture',
@@ -277,6 +279,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         "Dîners privés, adresses discrètes et coins tranquilles d'Europe, pensés pour deux.",
       featured: true,
       order: 2,
+      href: '/fr/services/romantic-travel/',
     },
     {
       id: 'art-culture',
@@ -346,6 +349,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: 'Частные ужины и тихие уголки Европы, продуманные для двоих.',
       featured: true,
       order: 2,
+      href: '/ru/services/romantic-travel/',
     },
     {
       id: 'art-culture',

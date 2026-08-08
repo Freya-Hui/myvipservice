@@ -1,0 +1,21 @@
+---
+title: 'Voyage romantique'
+summary: 'Lunes de miel, anniversaires et séances photo pré-mariage — dîners privés, adresses discrètes et coins tranquilles d’Europe, pensés pour deux.'
+order: 11
+group: 'Private Travel'
+investmentTier: 'bespoke'
+image: service-romantic-travel
+highlights:
+  [
+    'Séances photo pré-mariage et de lune de miel, avec des photographes et stylistes dont le portfolio inclut de grandes campagnes de mode et des séances avec des personnalités publiques',
+    'Dîners privés aux chandelles sur des toits-terrasses, en bord de fleuve ou dans des cours discrètes',
+    'Organisation de demandes en mariage, du repérage des lieux à la coordination discrète le jour J',
+    'Coins tranquilles et peu fréquentés de Paris et de la campagne française, choisis pour leur intimité plutôt que leur affluence',
+  ]
+---
+
+Un voyage romantique fonctionne mieux lorsqu'il est pensé pour deux personnes plutôt que construit autour d'une liste de lieux à voir — le rythme, les décors et l'intimité comptent davantage que le nombre d'endroits visités.
+
+Les séances photo pré-mariage font partie des demandes les plus fréquentes de ce service : une journée entière, voire deux, organisée autour des décors emblématiques de Paris et d'alternatives plus discrètes, loin de la foule. Les photographes et stylistes avec lesquels nous travaillons ont un portfolio qui inclut de grandes campagnes de mode et des séances avec des personnalités publiques reconnues — des collaborations organisées et créditées en privé, comme il est d'usage dans ce secteur, plutôt que présentées ici comme un partenariat nommé.
+
+Au-delà de la photographie, ce service couvre l'ensemble d'un voyage à deux : un dîner privé sur un toit-terrasse ou en bord de fleuve, une demande en mariage organisée avec discrétion, un itinéraire de lune de miel privilégiant les adresses tranquilles plutôt que les lieux fréquentés. Les décors précis et les disponibilités sont confirmés une fois vos dates connues.
