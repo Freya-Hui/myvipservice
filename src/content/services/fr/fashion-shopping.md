@@ -1,19 +1,22 @@
 ---
 title: 'Mode & Shopping'
-summary: 'Rendez-vous de shopping personnalisé, ateliers et accès à des essayages dans les capitales de la mode européennes.'
+summary: 'Rendez-vous de shopping personnalisé et un réseau de collaborations en haute joaillerie, haute horlogerie et haute couture.'
 order: 3
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-fashion-shopping
 highlights:
   [
-    'Fashion Week et Haute Couture : demandes de places, essayages individuels et accès organisé au cas par cas',
-    'Rendez-vous de shopping personnalisé dans les boutiques phares de l’avenue Montaigne et de la rue Saint-Honoré, avec accès aux salons VIP et assistance à la détaxe dans les grands magasins',
+    'Accès à la haute joaillerie via un réseau incluant Van Cleef & Arpels, Cartier, De Beers, Graff, Harry Winston, Cindy Chao, Boucheron, Piaget, Buccellati et Damiani',
+    'Introductions en haute horlogerie avec Patek Philippe, F.P. Journe, Richard Mille et Audemars Piguet',
+    'Accès à la haute couture avec Giorgio Armani, Elie Saab, Georges Hobeika, Zuhair Murad et Stephane Rolland, avec essayages et demandes de places en Fashion Week selon disponibilité',
+    'Rendez-vous de shopping personnalisé dans les boutiques phares de l’avenue Montaigne et de la rue Saint-Honoré — dont Hermès, Chanel, Brunello Cucinelli et Loro Piana — avec accès aux salons privés et assistance à la détaxe',
     'Moments liés aux festivals de cinéma de Cannes, Berlin et Venise, avec coiffure, maquillage et accompagnement photo sur demande',
-    'Présentations privées de pièces de haute joaillerie, lorsque réellement disponibles',
   ]
 ---
 
-Notre réseau donne accès aux ateliers et boutiques que nos clients souhaitent découvrir — rendez-vous de shopping personnalisé, essayages privés et, lorsque cela est réellement possible, des moments liés au calendrier de la mode. L'accès est toujours confirmé directement et n'implique jamais de partenariat officiel avec une maison de couture.
+L'accès à la mode et à la joaillerie est l'un des domaines où notre réseau est le plus profond — des années passées à construire des relations avec les maisons que nos clients connaissent déjà par leur nom, des maisons de haute joaillerie de la place Vendôme jusqu'aux ateliers derrière le premier rang de la haute couture.
 
-Cela peut signifier un essayage discret avant l'ouverture d'une boutique au public, un rendez-vous avec un styliste qui connaît déjà vos préférences, ou simplement quelqu'un pour naviguer dans les ateliers d'une ville à votre place, pendant que vous vous concentrez sur le reste.
+Ce réseau couvre trois domaines. En haute joaillerie : Van Cleef & Arpels, Cartier, De Beers, Graff, Harry Winston, Cindy Chao, Boucheron, Piaget, Buccellati et Damiani. En haute horlogerie : Patek Philippe, F.P. Journe, Richard Mille et Audemars Piguet. En haute couture : Giorgio Armani, Elie Saab, Georges Hobeika, Zuhair Murad et Stephane Rolland. La disponibilité est toujours confirmée au cas par cas — une présentation privée, un essayage ou une place à un défilé — jamais supposée à l'avance.
+
+Au-delà de ces relations, nous organisons des rendez-vous de shopping personnalisé dans les boutiques phares de l'avenue Montaigne et de la rue Saint-Honoré, dont Hermès, Chanel, Brunello Cucinelli et Loro Piana, avec accès aux salons privés et assistance à la détaxe dans les grands magasins. Autour des festivals de Cannes, Berlin et Venise, coiffure, maquillage et accompagnement photo peuvent être organisés pour les moments sur tapis rouge.

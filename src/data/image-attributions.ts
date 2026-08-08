@@ -370,6 +370,21 @@ export const imageAttributions: ImageAttribution[] = [
     notes: 'Generic — does not depict any named boutique or brand MYVIPSERVICE is affiliated with.',
   },
   {
+    id: 'service-romantic-travel',
+    src: '/images/service-romantic-travel.jpg',
+    sourceUrl: 'https://unsplash.com/photos/dinner-table-is-set-at-sunset-Epwi_z04Tgo',
+    sourceName: 'Unsplash',
+    author: 'Lilian Do Khac',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'A candlelit table set for two on a terrace at sunset.',
+      zh: '夕阳下露台上为两人布置的烛光晚餐桌。',
+      fr: 'Une table dressée aux chandelles pour deux, sur une terrasse au coucher du soleil.',
+      ru: 'Стол при свечах, накрытый на двоих, на террасе на закате.',
+    },
+  },
+  {
     id: 'destination-french-riviera-yacht',
     src: '/images/destination-french-riviera-yacht.jpg',
     sourceUrl:
