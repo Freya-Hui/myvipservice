@@ -18,6 +18,7 @@ highlights: ['Частная яхта и шкипер', 'Виды на Альп�
 customisationNotes: 'Маршрут, продолжительность и завтрак на борту подстраиваются под вашу группу — сообщите нам число участников и удобное время начала.'
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

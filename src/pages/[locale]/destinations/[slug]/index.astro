@@ -36,6 +36,7 @@ const experiences = await resolveRelated(
   data.translationKey,
 );
 const relatedDestinations = await getRelatedDestinations(locale, data.translationKey, data.region);
+const journalArticles = await resolveRelated('journal', locale, data.relatedJournalKeys);
 
 const keyFacts = [
   ...(data.bestTime
@@ -151,6 +152,20 @@ const structuredData = [
       <ContentSection title={t('destinations.detail.travelNotesTitle')} body={data.travelNotes} />
     )
   }
+
+  <RelatedContent
+    locale={locale}
+    eyebrow={t('destinations.hero.eyebrow')}
+    title={t('destinations.detail.journalHeading')}
+    items={journalArticles.map((item) => ({
+      href: `/${locale}/journal/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t(`journalCategory.${item.data.category}` as never),
+      title: item.data.title,
+      summary: item.data.excerpt,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
 
   <RelatedContent
     locale={locale}

@@ -19,6 +19,7 @@ highlights:
 customisationNotes: 'The menu, wine selection and length of the lunch are set around your group — tell us how many are joining and whether you would like the winemaker to stay for the full meal.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['provence-five-day-itinerary-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

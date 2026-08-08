@@ -21,6 +21,7 @@ highlights:
 travelNotes: 'Peak weeks — Christmas and February half-term — book out chalets and instructors up to a year ahead; earlier planning matters more here than in most destinations.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-06
 draft: false
 ---

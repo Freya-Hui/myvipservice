@@ -23,6 +23,7 @@ highlights:
 customisationNotes: 'Tell us which houses matter to you and what you are shopping for — we confirm appointment times directly with each atelier and build the route around them.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['milan-private-shopping-appointment-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

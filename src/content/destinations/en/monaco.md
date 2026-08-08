@@ -22,6 +22,7 @@ highlights:
 travelNotes: 'Grand Prix week (May) sells out hotels and drives rates up across the whole Riviera, not just Monaco itself — book well ahead, or consider the weeks either side for a quieter visit.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['monaco-private-yacht-evening-celebration-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

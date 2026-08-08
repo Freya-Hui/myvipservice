@@ -23,6 +23,7 @@ highlights:
 customisationNotes: "Indiquez-nous votre niveau et la taille du groupe — le guide confirme l'itinéraire exact le matin même selon les conditions, et la journée peut être organisée en demi-journée ou journée complète."
 relatedAccommodationKeys: []
 relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-07
 draft: false
 ---

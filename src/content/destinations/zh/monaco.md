@@ -22,6 +22,7 @@ highlights:
 travelNotes: '大奖赛周（5 月）不仅摩纳哥本身，整个里维埃拉的酒店都会订满、价格上涨——建议提前预订，或选择前后几周出行以获得更宁静的体验。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['monaco-private-yacht-evening-celebration-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

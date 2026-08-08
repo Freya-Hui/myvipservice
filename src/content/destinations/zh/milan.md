@@ -22,6 +22,7 @@ highlights:
 travelNotes: '时装周与米兰设计周都会吸引大量人潮，酒店提前数月即被订满——若行程与其中之一重合，越早规划越好。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['milan-private-shopping-appointment-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

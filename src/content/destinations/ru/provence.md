@@ -21,5 +21,6 @@ highlights:
 travelNotes: 'Расстояния между деревнями невелики, но дороги петляют по холмам — частный водитель избавляет от необходимости садиться за руль самим, особенно после долгого обеда с местным вином.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['provence-five-day-itinerary-guide']
 publishedAt: 2026-08-06
 ---

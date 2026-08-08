@@ -24,6 +24,7 @@ highlights:
 customisationNotes: 'Сообщите нам возраст детей и их интересы, а также какой музей вы предпочитаете — маршрут и темп строятся вокруг этого.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

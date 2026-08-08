@@ -23,6 +23,7 @@ highlights:
 customisationNotes: "Dites-nous ce que vous célébrez et le nombre de convives — le temps en bateau, le restaurant et le rythme de la soirée s'organisent autour de cela."
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['monaco-private-yacht-evening-celebration-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

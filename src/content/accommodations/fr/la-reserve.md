@@ -24,6 +24,7 @@ suitableFor: ['Couples en quête d’intimité', 'Séjours prolongés']
 servicePerspective: 'Un hôtel partenaire de longue date, particulièrement adapté aux clients qui préfèrent une adresse plus petite et plus confidentielle — selon disponibilité, nous pouvons organiser surclassements et réservations prioritaires en restaurant.'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['bulgari', 'mandarin-oriental']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

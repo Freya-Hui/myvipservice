@@ -23,6 +23,7 @@ highlights:
 customisationNotes: 'Сообщите нам, какие дома моды вам интересны и что вы ищете — мы согласуем время напрямую с каждым ателье и построим маршрут вокруг этого.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['milan-private-shopping-appointment-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

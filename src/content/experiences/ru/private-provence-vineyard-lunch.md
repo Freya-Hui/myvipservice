@@ -18,6 +18,7 @@ highlights: ['Экскурсия по винограднику с винодел
 customisationNotes: 'Меню, подбор вин и продолжительность обеда адаптируются под вашу группу — сообщите нам число гостей и хотите ли вы, чтобы винодел остался на весь обед.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['provence-five-day-itinerary-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

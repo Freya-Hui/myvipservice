@@ -24,6 +24,7 @@ highlights:
 customisationNotes: "Indiquez-nous l'âge des enfants et les sujets qui les intéressent — l'itinéraire et le rythme sont construits autour de cela."
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

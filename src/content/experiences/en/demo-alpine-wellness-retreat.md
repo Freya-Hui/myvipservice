@@ -18,6 +18,7 @@ highlights: ['Spa and thermal circuit', 'Mountain views', 'Private transfer']
 customisationNotes: 'The pace, treatments and setting can be adjusted — some clients want a full day, others just a few quiet hours between activities.'
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-06
 draft: false
 ---

@@ -19,6 +19,7 @@ highlights:
 customisationNotes: 'Route, duration and whether you would like breakfast served on board are all set around your group — tell us how many are joining and what time you would like to start.'
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

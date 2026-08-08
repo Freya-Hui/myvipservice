@@ -21,5 +21,6 @@ highlights:
 travelNotes: '圣诞与 2 月学校假期是预订高峰，木屋与教练档期常提前近一年被订满——在阿尔卑斯山，提前规划比多数目的地更为关键。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-06
 ---

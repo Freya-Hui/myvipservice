@@ -21,5 +21,6 @@ highlights:
 travelNotes: 'Пиковые недели — Рождество и февральские школьные каникулы — шале и инструкторы бронируются почти за год вперёд; заблаговременное планирование здесь важнее, чем в большинстве направлений.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-06
 ---

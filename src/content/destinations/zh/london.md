@@ -22,6 +22,7 @@ highlights:
 travelNotes: '重大活动期间交通与行程时间波动较大——在这些日期为接驳预留更充裕的时间，可避免错过预约。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

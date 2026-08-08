@@ -23,6 +23,7 @@ highlights:
 customisationNotes: 'Tell us your ability level and group size — the guide confirms the exact route the morning of, based on conditions, and the day can run half or full length.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-07
 draft: false
 ---

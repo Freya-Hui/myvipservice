@@ -18,5 +18,6 @@ highlights: ['Спа и термальный комплекс', 'Виды на �
 customisationNotes: 'Темп, процедуры и обстановку можно скорректировать — одни клиенты хотят провести здесь целый день, другим достаточно нескольких спокойных часов между активностями.'
 relatedAccommodationKeys: ['demo-villa-geneva']
 relatedExperienceKeys: []
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-06
 ---

@@ -18,6 +18,7 @@ highlights: ['Visite du vignoble avec le vigneron', 'Menu de saison', 'Accord me
 customisationNotes: "Le menu, la sélection des vins et la durée du déjeuner s'adaptent à votre groupe — indiquez-nous le nombre de convives et si vous souhaitez que le vigneron reste pour tout le repas."
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['provence-five-day-itinerary-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

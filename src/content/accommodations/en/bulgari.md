@@ -24,6 +24,7 @@ suitableFor: ['Design-focused travellers', 'Couples']
 servicePerspective: 'A long-standing partner hotel — where available, we can arrange upgrades and priority dining reservations.'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['la-reserve', 'mandarin-oriental']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

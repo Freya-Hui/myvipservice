@@ -19,6 +19,7 @@ highlights: ['擅长带孩子的专业向导', '小团体参观，非公开团',
 customisationNotes: '请告知同行孩子的年龄与兴趣方向，以及希望参观哪座博物馆——路线与节奏会据此安排。行程期间司机全程等候，方便随时接送。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
+relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07
 draft: false
 ---

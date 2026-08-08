@@ -24,6 +24,7 @@ suitableFor: ['Couples', 'Special occasions', 'First-time Paris visitors']
 servicePerspective: 'One of our longest-standing partner hotels — where available, we can arrange upgrades, early check-in and priority restaurant reservations.'
 relatedExperienceKeys: []
 relatedAccommodationKeys: ['four-seasons-george-v', 'hotel-de-crillon']
+relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 draft: false
 ---

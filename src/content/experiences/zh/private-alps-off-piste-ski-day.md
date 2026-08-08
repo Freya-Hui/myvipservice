@@ -18,6 +18,7 @@ highlights: ['持证私人高山向导', '路线按个人水平定制', '提供�
 customisationNotes: '请告知您的滑雪水平与同行人数——向导会在当天早上根据雪况确认具体路线，行程可安排半天或全天。此项目对滑雪能力有一定要求，建议提前沟通实际水平以确保安全与体验匹配。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-07
 draft: false
 ---
