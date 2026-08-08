@@ -207,6 +207,15 @@ export const ui = {
     'destinations.detail.experiencesHeading': 'Featured Experiences',
     'destinations.detail.travelNotesTitle': 'Travel Notes',
     'destinations.detail.relatedHeading': 'Related Destinations',
+    'destinations.detail.whyUsTitle': 'Why Plan This Through MYVIPSERVICE',
+    'destinations.detail.whyUsPoint1':
+      'Real access, not promises — museum evenings outside public hours, and direct relationships with the Palace and boutique hotels we recommend, not just booking links.',
+    'destinations.detail.whyUsPoint2':
+      'One point of contact from arrival to departure — a driver waiting, a concierge team reachable throughout, not a different agent for each booking.',
+    'destinations.detail.whyUsPoint3':
+      'Planned in your language — our team works in Chinese, English and French, with WeChat as a real, working contact channel.',
+    'destinations.detail.whyUsPoint4':
+      'Built around your itinerary, not a fixed package — every recommendation on this page can be adjusted, combined or replaced.',
     'destinations.detail.journalHeading': 'From the Journal',
 
     'accommodations.hero.eyebrow': 'Hotels & Villas',
@@ -481,6 +490,15 @@ export const ui = {
     'destinations.detail.experiencesHeading': '精选体验',
     'destinations.detail.travelNotesTitle': '旅行提示',
     'destinations.detail.relatedHeading': '相关目的地',
+    'destinations.detail.whyUsTitle': '为什么通过 MYVIPSERVICE 安排这趟行程',
+    'destinations.detail.whyUsPoint1':
+      '真实的准入，不是空话——博物馆非营业时段参观、与页面上推荐的 Palace 及精品酒店的直接合作关系，而不只是一个预订链接。',
+    'destinations.detail.whyUsPoint2':
+      '从落地到离开只对接一个团队——司机全程等候，礼宾团队随时可联系，不需要为每一项预订单独找人。',
+    'destinations.detail.whyUsPoint3':
+      '用您的语言沟通——我们的团队可以用中文、英文、法语沟通，微信是真实可用的联络渠道。',
+    'destinations.detail.whyUsPoint4':
+      '围绕您的行程定制，不是固定套餐——页面上的每一项推荐都可以调整、组合或替换。',
     'destinations.detail.journalHeading': 'Journal 相关文章',
 
     'accommodations.hero.eyebrow': '酒店与别墅',
@@ -763,6 +781,15 @@ export const ui = {
     'destinations.detail.experiencesHeading': 'Expériences en vedette',
     'destinations.detail.travelNotesTitle': 'Notes de voyage',
     'destinations.detail.relatedHeading': 'Destinations similaires',
+    'destinations.detail.whyUsTitle': 'Pourquoi organiser ce voyage avec MYVIPSERVICE',
+    'destinations.detail.whyUsPoint1':
+      "Un accès réel, pas de promesses — soirées privées au musée en dehors des heures d'ouverture, et relations directes avec les hôtels Palace et boutique recommandés ici, pas de simples liens de réservation.",
+    'destinations.detail.whyUsPoint2':
+      'Un seul interlocuteur du début à la fin — un chauffeur qui attend, une équipe de conciergerie joignable en continu, pas un agent différent pour chaque réservation.',
+    'destinations.detail.whyUsPoint3':
+      'Un accompagnement dans votre langue — notre équipe travaille en français, anglais et chinois, avec WeChat comme canal de contact réel.',
+    'destinations.detail.whyUsPoint4':
+      'Construit autour de votre itinéraire, pas un forfait fixe — chaque recommandation de cette page peut être ajustée, combinée ou remplacée.',
     'destinations.detail.journalHeading': 'Dans le Journal',
 
     'accommodations.hero.eyebrow': 'Hôtels & Villas',
@@ -1044,6 +1071,15 @@ export const ui = {
     'destinations.detail.experiencesHeading': 'Рекомендуемые впечатления',
     'destinations.detail.travelNotesTitle': 'Заметки для путешественников',
     'destinations.detail.relatedHeading': 'Похожие направления',
+    'destinations.detail.whyUsTitle': 'Почему стоит планировать эту поездку через MYVIPSERVICE',
+    'destinations.detail.whyUsPoint1':
+      'Реальный доступ, а не обещания — вечера в музее вне часов работы для публики и прямые отношения с отелями Palace и бутик-отелями, рекомендованными на этой странице, а не просто ссылки на бронирование.',
+    'destinations.detail.whyUsPoint2':
+      'Один контакт от прибытия до отъезда — водитель ожидает, команда консьержей на связи постоянно, а не разные агенты для каждого бронирования.',
+    'destinations.detail.whyUsPoint3':
+      'Общение на понятном вам языке — наша команда работает на английском, французском и китайском, а WeChat — реально рабочий канал связи.',
+    'destinations.detail.whyUsPoint4':
+      'Всё выстроено вокруг вашего маршрута, а не фиксированного пакета — любую рекомендацию на этой странице можно скорректировать, объединить или заменить.',
     'destinations.detail.journalHeading': 'Из журнала',
 
     'accommodations.hero.eyebrow': 'Отели и виллы',

@@ -13,6 +13,7 @@ import {
   getDetailStaticPaths,
   resolveRelated,
   getRelatedDestinations,
+  getEntriesByDestination,
 } from '../../../../lib/content';
 import { useTranslations, type Locale } from '../../../../i18n/ui';
 
@@ -23,18 +24,35 @@ const { entry } = Astro.props as Awaited<ReturnType<typeof getDetailStaticPaths>
 const { data } = entry;
 const t = useTranslations(locale);
 
-const accommodations = await resolveRelated(
-  'accommodations',
-  locale,
-  data.relatedAccommodationKeys,
-  data.translationKey,
-);
-const experiences = await resolveRelated(
-  'experiences',
-  locale,
-  data.relatedExperienceKeys,
-  data.translationKey,
-);
+// Merge the manually curated list with a reverse lookup by the item's own
+// destinationKey — the manual list drifts out of sync as new accommodations/
+// experiences are added (it did: several real experiences never made it
+// onto their destination's list), so the reverse lookup is the safety net.
+function dedupeByTranslationKey<T extends { data: { translationKey: string } }>(entries: T[]): T[] {
+  const seen = new Set<string>();
+  return entries.filter((entry) => {
+    if (seen.has(entry.data.translationKey)) return false;
+    seen.add(entry.data.translationKey);
+    return true;
+  });
+}
+
+const [
+  accommodationsManual,
+  accommodationsByDestination,
+  experiencesManual,
+  experiencesByDestination,
+] = await Promise.all([
+  resolveRelated('accommodations', locale, data.relatedAccommodationKeys, data.translationKey),
+  getEntriesByDestination('accommodations', locale, data.translationKey),
+  resolveRelated('experiences', locale, data.relatedExperienceKeys, data.translationKey),
+  getEntriesByDestination('experiences', locale, data.translationKey),
+]);
+const accommodations = dedupeByTranslationKey([
+  ...accommodationsManual,
+  ...accommodationsByDestination,
+]);
+const experiences = dedupeByTranslationKey([...experiencesManual, ...experiencesByDestination]);
 const relatedDestinations = await getRelatedDestinations(locale, data.translationKey, data.region);
 const journalArticles = await resolveRelated('journal', locale, data.relatedJournalKeys);
 
@@ -180,6 +198,21 @@ const structuredData = [
       draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
     }))}
   />
+
+  <section class="section">
+    <div class="container prose">
+      <SectionHeading
+        eyebrow={t('destinations.hero.eyebrow')}
+        title={t('destinations.detail.whyUsTitle')}
+      />
+      <ul class="highlight-list">
+        <li>{t('destinations.detail.whyUsPoint1')}</li>
+        <li>{t('destinations.detail.whyUsPoint2')}</li>
+        <li>{t('destinations.detail.whyUsPoint3')}</li>
+        <li>{t('destinations.detail.whyUsPoint4')}</li>
+      </ul>
+    </div>
+  </section>
 
   <InquiryCTA
     title={t('home.inquiry.title')}
