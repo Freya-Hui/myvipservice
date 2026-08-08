@@ -6,7 +6,7 @@ translationKey: 'private-monaco-harbour-evening'
 description: 'Вечер начинается на воде перед гаванью и продолжается за столом, зарезервированным для вас — вечер, выстроенный вокруг повода для торжества, а не списка достопримечательностей.'
 category: 'Celebration'
 destinationKey: 'monaco'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-monaco'
 gallery: ['destination-monaco', 'destination-french-riviera-yacht']

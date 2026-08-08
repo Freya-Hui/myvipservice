@@ -6,7 +6,7 @@ translationKey: 'private-milan-atelier-shopping'
 description: 'A private appointment at ateliers across the Quadrilatero della Moda, scheduled outside normal hours where possible and paced around what you actually want to find.'
 category: 'Fashion'
 destinationKey: 'milan'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-milan'
 gallery: ['destination-milan', 'service-fashion-shopping']

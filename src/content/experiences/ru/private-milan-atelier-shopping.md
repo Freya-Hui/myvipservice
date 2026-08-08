@@ -6,7 +6,7 @@ translationKey: 'private-milan-atelier-shopping'
 description: 'Частная встреча в домах моды квартала Quadrilatero della Moda, назначенная по возможности вне обычных часов работы — в темпе, который задаёте именно вы.'
 category: 'Fashion'
 destinationKey: 'milan'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-milan'
 gallery: ['destination-milan', 'service-fashion-shopping']

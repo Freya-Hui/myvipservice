@@ -6,7 +6,7 @@ translationKey: 'private-provence-vineyard-lunch'
 description: 'A long lunch at a working vineyard in the Luberon hills, with the winemaker walking you through the rows before the table is set among them.'
 category: 'Food & Wine'
 destinationKey: 'provence'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-provence-vineyard'
 gallery: ['destination-provence-vineyard', 'destination-provence']

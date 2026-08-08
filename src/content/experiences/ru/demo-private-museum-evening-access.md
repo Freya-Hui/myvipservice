@@ -6,7 +6,7 @@ translationKey: 'demo-private-museum-evening-access'
 description: 'Доступ в малой группе к значимой коллекции вне часов работы для посетителей, с гидом, а не самостоятельно.'
 category: 'Art & Culture'
 destinationKey: 'paris'
-featured: true
+featured: false
 status: 'published'
 coverImage: 'experience-art-gallery'
 gallery: ['experience-art-gallery', 'destination-paris']

@@ -6,7 +6,7 @@ translationKey: 'private-monaco-harbour-evening'
 description: "Une soirée qui commence sur l'eau face au port et se poursuit à une table réservée pour vous — le genre de soirée construite autour d'une célébration, pas d'une liste de lieux à voir."
 category: 'Celebration'
 destinationKey: 'monaco'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-monaco'
 gallery: ['destination-monaco', 'destination-french-riviera-yacht']

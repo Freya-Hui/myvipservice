@@ -6,7 +6,7 @@ translationKey: 'private-milan-atelier-shopping'
 description: "Un rendez-vous privé dans les maisons du Quadrilatero della Moda, programmé en dehors des horaires habituels lorsque c'est possible, et organisé au rythme de ce que vous cherchez réellement."
 category: 'Fashion'
 destinationKey: 'milan'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-milan'
 gallery: ['destination-milan', 'service-fashion-shopping']

@@ -403,58 +403,6 @@ export const travelTypes: Record<Locale, TravelType[]> = {
   ],
 };
 
-export const processSteps: Record<Locale, SiteDataItem[]> = {
-  en: [
-    {
-      title: 'Enquire',
-      description: 'Share your dates, destination and what matters most to you.',
-    },
-    {
-      title: 'We Design',
-      description:
-        'Our team builds a tailored proposal, drawing on our network across France and Europe.',
-    },
-    { title: 'Confirm', description: 'Review, refine and confirm every detail before you travel.' },
-    {
-      title: "We're With You",
-      description: 'Round-the-clock support throughout your trip, from arrival to departure.',
-    },
-  ],
-  zh: [
-    { title: '发起咨询', description: '告诉我们出行日期、目的地与您最看重的需求。' },
-    { title: '方案设计', description: '团队依托法国与欧洲网络，为您定制专属方案。' },
-    { title: '确认行程', description: '确认每一处细节后再出发。' },
-    { title: '全程支持', description: '行程期间全天候支持，直至旅程结束。' },
-  ],
-  fr: [
-    {
-      title: 'Votre demande',
-      description: 'Partagez vos dates, votre destination et vos priorités.',
-    },
-    {
-      title: 'Notre proposition',
-      description: 'Nous concevons une offre sur mesure grâce à notre réseau.',
-    },
-    {
-      title: 'Confirmation',
-      description: 'Chaque détail est validé avant votre départ.',
-    },
-    {
-      title: 'À vos côtés',
-      description: 'Un accompagnement continu du départ au retour.',
-    },
-  ],
-  ru: [
-    { title: 'Запрос', description: 'Расскажите о датах, направлении и приоритетах.' },
-    { title: 'Разработка', description: 'Команда готовит индивидуальное предложение.' },
-    {
-      title: 'Подтверждение',
-      description: 'Каждая деталь согласовывается перед поездкой.',
-    },
-    { title: 'Сопровождение', description: 'Поддержка на протяжении всей поездки.' },
-  ],
-};
-
 export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
   en: [
     {
@@ -534,66 +482,6 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       title: 'До, во время и после поездки',
       description:
         'Поддержка не заканчивается на бронировании — мы на связи в течение поездки и после возвращения домой.',
-    },
-  ],
-};
-
-export const networkHighlights: Record<Locale, SiteDataItem[]> = {
-  en: [
-    {
-      title: 'France',
-      description:
-        'The home of fashion and art, with privileged access to luxury-brand executives, runway shows and private receptions.',
-    },
-    {
-      title: 'Europe-Wide Network',
-      description:
-        'Trusted partners across the UK, Switzerland, Italy, Spain and other leading destinations ensure seamless travel.',
-    },
-    {
-      title: 'Compliance & Privacy',
-      description:
-        'European professional ethics, rigorous client confidentiality and professional standards throughout.',
-    },
-  ],
-  zh: [
-    {
-      title: '法国',
-      description: '时尚与艺术之都，通向奢侈品牌高层与私人活动的资源渠道。',
-    },
-    { title: '欧洲网络', description: '英国、瑞士、意大利、西班牙等地的可信赖合作伙伴。' },
-    { title: '合规与隐私', description: '遵循欧洲职业道德，严格保护客户隐私。' },
-  ],
-  fr: [
-    {
-      title: 'France',
-      description:
-        'La patrie de la mode et de l’art, avec un accès privilégié aux dirigeants des maisons de luxe, aux défilés et aux réceptions privées.',
-    },
-    {
-      title: 'Réseau européen',
-      description:
-        "Des partenaires de confiance au Royaume-Uni, en Suisse, en Italie, en Espagne et dans d'autres destinations majeures garantissent un voyage sans accroc.",
-    },
-    {
-      title: 'Conformité & confidentialité',
-      description: 'Éthique professionnelle européenne et confidentialité stricte.',
-    },
-  ],
-  ru: [
-    {
-      title: 'Франция',
-      description:
-        'Родина моды и искусства, с привилегированным доступом к руководству люксовых домов, показам и частным приёмам.',
-    },
-    {
-      title: 'Европейская сеть',
-      description:
-        'Надёжные партнёры в Великобритании, Швейцарии, Италии, Испании и других ведущих направлениях обеспечивают беспрепятственные поездки.',
-    },
-    {
-      title: 'Комплаенс и конфиденциальность',
-      description: 'Европейская профессиональная этика и строгая конфиденциальность.',
     },
   ],
 };
