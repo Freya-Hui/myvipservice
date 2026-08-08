@@ -9,7 +9,7 @@ destinationKey: 'paris'
 featured: true
 status: 'published'
 coverImage: 'experience-art-gallery'
-gallery: ['experience-art-gallery']
+gallery: ['experience-art-gallery', 'destination-paris']
 duration: '2–3 小时，晚间'
 suitableFor: ['情侣', '小型团体', '艺术收藏家']
 familySuitable: false

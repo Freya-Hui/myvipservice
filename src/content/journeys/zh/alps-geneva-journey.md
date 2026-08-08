@@ -15,7 +15,7 @@ coverImage: 'destination-french-alps-chalet'
 gallery: ['destination-french-alps-chalet', 'destination-french-alps', 'destination-geneva-lake']
 duration: '4-6 天'
 highlights: ['山间疗养晨间时光', '持证向导带领的私人野雪滑雪日', '日内瓦湖私人游船晨间']
-customisationNotes: '此主题既适合滑雪季，也有暖季版本——告知我们出行日期与滑雪水平，我们会相应调整山地与湖畔行程的比例。带娃家庭也可安排更适合亲子的版本。'
+customisationNotes: '此主题既适合滑雪季，也有暖季版本——告知我们出行日期与滑雪水平，我们会相应调整山地与湖畔行程的比例。带娃家庭也可安排更适合亲子的版本。滑雪季版本更适合体能好、爱冒险的团体；暖季版本（大致 5-9 月）更适合带娃家庭，或者想把滑雪日换成更多湖上时光的客人。'
 publishedAt: 2026-08-07
 draft: false
 ---

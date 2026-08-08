@@ -87,7 +87,7 @@ const structuredData = [
   }
 
   <div class="container">
-    <Gallery images={[data.coverImage]} locale={locale} />
+    <Gallery images={data.gallery.length > 0 ? data.gallery : [data.coverImage]} locale={locale} />
   </div>
 
   <section class="section">

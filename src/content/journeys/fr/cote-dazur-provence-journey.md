@@ -25,7 +25,7 @@ highlights:
     'Une soirée sur l’eau à Monaco',
     'Un déjeuner dans un domaine viticole en Provence',
   ]
-customisationNotes: "L'ordre des étapes, le nombre de nuits passées à chaque endroit et les expériences incluses parmi les trois s'adaptent à vos dates et à votre rythme — c'est un point de départ, pas un itinéraire fixe."
+customisationNotes: "L'ordre des étapes, le nombre de nuits passées à chaque endroit et les expériences incluses parmi les trois s'adaptent à vos dates et à votre rythme — c'est un point de départ, pas un itinéraire fixe. La fin du printemps (mai-juin) et septembre sont généralement les mois les plus agréables pour cet itinéraire — juillet-août apportent la chaleur et l'affluence les plus fortes, et Monaco est particulièrement chargé autour du Grand Prix en mai."
 publishedAt: 2026-08-07
 draft: false
 ---

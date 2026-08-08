@@ -20,6 +20,6 @@ highlights:
   ]
 travelNotes: '樱花与红叶的具体花期每年都会浮动，提前数周很难精确预测；出行日期前后预留几天弹性，能更容易赶上真正的花期。'
 relatedAccommodationKeys: []
-relatedExperienceKeys: ['demo-kyoto-tea-ceremony']
+relatedExperienceKeys: []
 publishedAt: 2026-08-06
 ---

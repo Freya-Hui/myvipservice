@@ -336,6 +336,7 @@ const journal = defineCollection({
     excerpt: z.string(),
     author: z.string().optional(),
     coverImage: z.string(),
+    gallery: z.array(z.string()).default([]),
     relatedDestinationKeys: z.array(z.string()).default([]),
     relatedAccommodationKeys: z.array(z.string()).default([]),
     relatedExperienceKeys: z.array(z.string()).default([]),

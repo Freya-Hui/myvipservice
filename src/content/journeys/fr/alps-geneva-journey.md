@@ -20,7 +20,7 @@ highlights:
     'Une journée privée de ski hors-piste avec un guide certifié',
     'Une matinée sur le lac Léman',
   ]
-customisationNotes: "Ce thème convient aussi bien à une version en saison de ski qu'à une version par temps plus doux — indiquez-nous vos dates et votre niveau, nous ajustons l'équilibre entre montagne et lac."
+customisationNotes: "Ce thème convient aussi bien à une version en saison de ski qu'à une version par temps plus doux — indiquez-nous vos dates et votre niveau, nous ajustons l'équilibre entre montagne et lac. La version en saison de ski convient aux groupes actifs et confiants ; la version par temps plus doux (environ mai-septembre) convient aux familles ou à ceux qui préfèrent remplacer la journée de ski par plus de temps sur le lac."
 publishedAt: 2026-08-07
 draft: false
 ---

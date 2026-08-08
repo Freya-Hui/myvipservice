@@ -9,7 +9,7 @@ destinationKey: 'monaco'
 featured: false
 status: 'published'
 coverImage: 'destination-monaco'
-gallery: ['destination-monaco']
+gallery: ['destination-monaco', 'destination-french-riviera-yacht']
 duration: '晚间'
 suitableFor: ['情侣', '小型团体', '庆祝场合']
 familySuitable: false

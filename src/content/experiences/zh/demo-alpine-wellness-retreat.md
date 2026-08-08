@@ -9,7 +9,7 @@ destinationKey: 'french-alps'
 featured: false
 status: 'published'
 coverImage: 'destination-french-alps'
-gallery: ['destination-french-alps']
+gallery: ['destination-french-alps', 'destination-french-alps-chalet']
 duration: '全天'
 suitableFor: ['独自出行者', '情侣']
 familySuitable: false

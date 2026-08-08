@@ -20,6 +20,6 @@ highlights:
   ]
 travelNotes: 'Даты цветения сакуры и осенней листвы меняются год от года и трудно предсказуемы за несколько недель — несколько дней гибкости вокруг запланированных дат облегчают совпадение с реальным пиком сезона.'
 relatedAccommodationKeys: []
-relatedExperienceKeys: ['demo-kyoto-tea-ceremony']
+relatedExperienceKeys: []
 publishedAt: 2026-08-06
 ---

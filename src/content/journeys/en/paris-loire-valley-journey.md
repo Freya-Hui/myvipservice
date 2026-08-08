@@ -18,7 +18,7 @@ highlights:
     'A private museum evening outside public hours in Paris',
     'Private access to a château and its gardens before opening',
   ]
-customisationNotes: 'How many days are spent in Paris versus the Loire Valley, and whether a driver takes you between the two, are set around your plans.'
+customisationNotes: 'How many days are spent in Paris versus the Loire Valley, and whether a driver takes you between the two, are set around your plans. Many Loire châteaux run shorter hours or partial closures from November to March, and their formal gardens look their best April through September — worth factoring into which season you travel.'
 publishedAt: 2026-08-07
 draft: false
 ---

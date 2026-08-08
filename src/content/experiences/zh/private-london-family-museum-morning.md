@@ -9,7 +9,7 @@ destinationKey: 'london'
 featured: false
 status: 'published'
 coverImage: 'destination-london'
-gallery: ['destination-london']
+gallery: ['destination-london', 'service-family']
 duration: '2-3 小时，上午'
 suitableFor: ['家庭', '小型团体']
 familySuitable: true

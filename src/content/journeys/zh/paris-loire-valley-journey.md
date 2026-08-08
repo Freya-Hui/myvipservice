@@ -14,7 +14,7 @@ coverImage: 'destination-loire-valley'
 gallery: ['destination-loire-valley', 'experience-art-gallery']
 duration: '4-5 天'
 highlights: ['巴黎博物馆闭馆后私享夜场', '开馆前私享城堡与花园通道']
-customisationNotes: '在巴黎与卢瓦河谷各停留几天、是否需要司机全程接送往返两地，都可以根据您的行程安排调整。'
+customisationNotes: '在巴黎与卢瓦河谷各停留几天、是否需要司机全程接送往返两地，都可以根据您的行程安排调整。卢瓦河谷的不少城堡在 11 月到次年 3 月会缩短开放时间甚至部分区域闭馆，花园则在 4-9 月最好看——这点值得纳入出行季节的考虑。'
 publishedAt: 2026-08-07
 draft: false
 ---

@@ -9,7 +9,7 @@ destinationKey: 'french-riviera'
 featured: false
 status: 'published'
 coverImage: 'destination-french-riviera'
-gallery: ['destination-french-riviera']
+gallery: ['destination-french-riviera', 'destination-french-riviera-yacht']
 duration: '半天'
 suitableFor: ['情侣', '小型团体']
 familySuitable: true

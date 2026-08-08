@@ -9,7 +9,7 @@ destinationKey: 'london'
 featured: false
 status: 'published'
 coverImage: 'destination-london'
-gallery: ['destination-london']
+gallery: ['destination-london', 'service-family']
 duration: '2 à 3 heures, le matin'
 suitableFor: ['Familles', 'Petits groupes']
 familySuitable: true
