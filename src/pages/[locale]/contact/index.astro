@@ -10,9 +10,16 @@ export function getStaticPaths() {
 const { locale } = Astro.params as { locale: Locale };
 const t = useTranslations(locale);
 
+// Aligned to the real service lines (same taxonomy as the Services page
+// grouping) instead of a generic general/travel split, so an enquiry tells
+// the team what kind of request it actually is. Partnership/Media stay at
+// the end — real channels, but not trip-planning categories.
 const enquiryTypes = [
-  { value: 'general', label: t('contact.section.general') },
-  { value: 'travel', label: t('contact.section.travel') },
+  { value: 'private-travel', label: t('servicesGroup.Private Travel') },
+  { value: 'hotels-villas', label: t('servicesGroup.Hotels & Villas') },
+  { value: 'private-chauffeur', label: t('servicesGroup.Private Chauffeur') },
+  { value: 'concierge-lifestyle', label: t('servicesGroup.Concierge & Lifestyle') },
+  { value: 'groups-corporate', label: t('servicesGroup.Groups & Corporate') },
   { value: 'partnership', label: t('contact.section.partnership') },
   { value: 'media', label: t('contact.section.media') },
 ];
@@ -111,26 +118,20 @@ const contactEmail = 'contact@myvipservice.com';
         </div>
 
         <div class="field">
-          <label for="destination">
-            {t('contact.form.destination')}
-            <span class="text-small">({t('common.optional')})</span>
-          </label>
-          <input type="text" id="destination" name="destination" />
+          <label for="destination">{t('contact.form.destination')}</label>
+          <input type="text" id="destination" name="destination" required />
         </div>
 
         <fieldset class="field-group">
-          <legend>
-            {t('contact.form.dates')}
-            <span class="text-small">({t('common.optional')})</span>
-          </legend>
+          <legend>{t('contact.form.dates')}</legend>
           <div class="field-group__row">
             <div class="field">
               <label for="dateStart">{t('contact.form.dateStart')}</label>
-              <input type="date" id="dateStart" name="dateStart" />
+              <input type="date" id="dateStart" name="dateStart" required />
             </div>
             <div class="field">
               <label for="dateEnd">{t('contact.form.dateEnd')}</label>
-              <input type="date" id="dateEnd" name="dateEnd" />
+              <input type="date" id="dateEnd" name="dateEnd" required />
             </div>
           </div>
         </fieldset>
@@ -144,11 +145,8 @@ const contactEmail = 'contact@myvipservice.com';
         </div>
 
         <div class="field">
-          <label for="budget">
-            {t('contact.form.budget')}
-            <span class="text-small">({t('common.optional')})</span>
-          </label>
-          <select id="budget" name="budget">
+          <label for="budget">{t('contact.form.budget')}</label>
+          <select id="budget" name="budget" required>
             <option value="">{t('contact.form.budgetPlaceholder')}</option>
             {budgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
           </select>

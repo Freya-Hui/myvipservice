@@ -55,7 +55,6 @@ const navItems: Array<{ href: string; label: string }> = [
           }
         </ul>
       </nav>
-      <a class="wechat-link" href={`/${currentLocale}/contact/`}>{t('contact.info.wechat')}</a>
       <LanguageSwitcher translationContext={translationContext} />
       <a class="button button--primary plan-journey" href={`/${currentLocale}/contact/`}>
         {t('header.planJourney')}
@@ -169,23 +168,12 @@ const navItems: Array<{ href: string; label: string }> = [
     white-space: nowrap;
   }
 
-  .wechat-link {
-    font-size: var(--text-small);
-    color: var(--color-text-muted);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .wechat-link:hover {
-    color: var(--color-accent);
-  }
-
   /* Eight nav items (grew from five as Hotels/Destinations/Journeys/Journal
-     were added) + wechat link + language switcher + CTA no longer fits in
-     one row at the old 1099px threshold — the Russian locale (longest
-     labels) needs ~1240-1260px of content width alone at this font size,
-     which was wrapping onto two lines well into normal desktop widths.
-     Raised with real margin, not just enough to barely fit. */
+     were added) + language switcher + CTA no longer fits in one row at the
+     old 1099px threshold — the Russian locale (longest labels) needs
+     ~1240-1260px of content width alone at this font size, which was
+     wrapping onto two lines well into normal desktop widths. Raised with
+     real margin, not just enough to barely fit. */
   @media (max-width: 1400px) {
     .menu-toggle {
       display: inline-flex;
