@@ -14,3 +14,7 @@ highlights:
 ---
 
 Whatever the request, our concierge team is reachable around the clock and handles every detail with the same discretion, whether it is a landmark occasion or a simple everyday need.
+
+For an event or private occasion, that starts with the venue itself — sourcing a historic property or distinctive address and managing the full spatial installation, then shaping the atmosphere through floral design, lighting and visual styling chosen for the occasion rather than pulled from a standard package.
+
+Throughout, identity protection and, where needed, professional on-site security are arranged as a matter of course rather than an add-on — the same standard of discretion whether the request is a single evening or a longer stay.

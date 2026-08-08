@@ -15,3 +15,7 @@ highlights:
 ---
 
 De l'accueil dès la porte d'embarquement à un terminal privé, chaque arrivée et chaque départ sont pris en charge par une équipe dédiée et une flotte de véhicules haut de gamme avec chauffeur.
+
+La location de jet privé s'adapte au trajet plutôt qu'à un type d'appareil fixe — Gulfstream, Bombardier et appareils similaires couvrent aussi bien une liaison régionale courte qu'un vol intercontinental. À l'aéroport Paris Charles de Gaulle, nos clients peuvent être accueillis au pied de l'avion et conduits via un terminal privé (FBO), à l'écart des zones publiques de l'aéroport, avec les formalités de détaxe prises en charge en chemin.
+
+Au sol, une flotte de véhicules Mercedes Classe S et Classe V est disponible 24h/24, avec le choix entre un chauffeur international expérimenté ou un chauffeur-concierge parlant chinois. Chaque transfert est planifié en tenant compte du reste du programme de la journée, plutôt que réservé isolément.
