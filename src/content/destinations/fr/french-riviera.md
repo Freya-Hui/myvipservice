@@ -18,8 +18,26 @@ highlights:
     'Restauration étoilée en bord de mer',
     'Accès, selon les disponibilités, à la vie mondaine estivale et aux périodes de festivals de cinéma',
   ]
+seoTitle: 'Guide de voyage sur la Côte d’Azur : villes, villages et déplacements'
+seoDescription: "Un guide pratique de la Côte d'Azur — arriver par Nice, la ligne côtière reliant Nice à Menton, quels villages perchés méritent une demi-journée, et la meilleure période pour y aller."
 travelNotes: 'Juillet et août sont les mois les plus fréquentés et les plus chers sur la côte ; mai, juin et septembre offrent un rythme plus calme, une météo tout aussi clémente et des réservations de restaurant plus faciles.'
 relatedAccommodationKeys: ['demo-hotel-french-riviera']
 relatedExperienceKeys: ['demo-private-riviera-yacht-afternoon']
+relatedJourneyKeys: ['cote-dazur-provence-journey']
 publishedAt: 2026-08-06
+updatedAt: 2026-08-08
 ---
+
+La Côte d'Azur est en réalité un chapelet de villes le long d'un même littoral, chacune avec un caractère bien distinct — c'est pourquoi le choix de sa base compte ici plus que presque partout ailleurs en France.
+
+## Arriver et se déplacer le long de la côte
+
+L'aéroport de Nice Côte d'Azur (NCE), le deuxième de France par le trafic, est la porte d'entrée naturelle, à 20-30 minutes environ du centre de Nice selon la circulation. Une ligne ferroviaire régionale longe la côte et relie Nice, Antibes, Cannes et Menton, avec Monaco entre les deux — pratique pour une excursion à la journée, même si la plupart de nos clients se déplacent en voiture privée, notamment pour des soirées qui ne collent pas aux horaires des trains.
+
+## Villes et villages à connaître
+
+Nice offre le plus large choix d'hôtels et de restaurants, ainsi que le vieux Nice, le plus agréable à parcourir à pied. Cannes est plus tranquille en dehors des semaines de festival et possède un véritable port de plaisance, au-delà de sa réputation cinématographique. Antibes et sa presqu'île du Cap d'Antibes ont un caractère plus résidentiel et discret, appréciées des clients qui veulent la côte sans l'agitation mondaine. Plus en hauteur, dans les terres, Èze est un village médiéval construit à flanc de falaise avec une vue dégagée sur la mer — à visiter tôt le matin ou en fin de journée, une fois les cars de tourisme repartis. Plus loin dans les terres, Saint-Paul-de-Vence est connu pour la Fondation Maeght, musée d'art moderne, et pour la concentration de galeries dans ce village perché entouré de remparts.
+
+## Bon à savoir
+
+Juillet et août sont les mois les plus fréquentés et les plus chers, avec des réservations de restaurant nettement plus tendues ; fin mai, juin et septembre conservent la même météo clémente avec beaucoup plus de disponibilités. Le stationnement dans les vieilles villes est limité et rarement rentable en effort — c'est une destination où un chauffeur se justifie rien que par la frustration évitée.
