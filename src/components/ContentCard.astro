@@ -61,6 +61,14 @@ const image = getImageSafe(imageId);
 
   .content-card .figure {
     position: relative;
+    transition:
+      box-shadow var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .content-card a:hover .figure {
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-4px);
   }
 
   .content-card__logo {
