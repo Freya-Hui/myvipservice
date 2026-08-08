@@ -54,6 +54,8 @@ export interface TravelType extends SiteDataItem {
   id: string;
   featured: boolean;
   order: number;
+  /** Locale-prefixed path to the closest matching Journey/Service/Experience page. Omitted where no real match exists. */
+  href?: string;
 }
 
 // English carries the full 16-item taxonomy; zh/fr/ru cover only the 8
@@ -67,6 +69,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Itineraries paced for every generation, from childcare support to activities the whole family can share.',
       featured: true,
       order: 1,
+      href: '/en/services/family-children-services/',
     },
     {
       id: 'romantic-escapes',
@@ -83,6 +86,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Private museum access, gallery visits and cultural itineraries shaped around what moves you.',
       featured: true,
       order: 3,
+      href: '/en/journeys/paris-loire-valley-journey/',
     },
     {
       id: 'food-wine',
@@ -91,6 +95,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Estate visits across Bordeaux, Burgundy and beyond, alongside private dining with chefs and sommeliers.',
       featured: true,
       order: 4,
+      href: '/en/services/dining-culinary-experiences/',
     },
     {
       id: 'celebrations',
@@ -99,6 +104,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Anniversaries, milestone birthdays and family gatherings, staged in venues that suit the occasion.',
       featured: true,
       order: 5,
+      href: '/en/services/private-experiences/',
     },
     {
       id: 'business-vip',
@@ -107,6 +113,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Meeting logistics, discreet transport and introductions arranged around a demanding schedule.',
       featured: true,
       order: 6,
+      href: '/en/services/business-vip-assistance/',
     },
     {
       id: 'fashion-shopping',
@@ -131,6 +138,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Ski-in/ski-out chalets, private instructors and mountain dining across the Alps.',
       featured: true,
       order: 9,
+      href: '/en/journeys/alps-geneva-journey/',
     },
     {
       id: 'coastal-yacht',
@@ -138,6 +146,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: 'Private moorings, coastal towns and days on the water along the Mediterranean.',
       featured: true,
       order: 10,
+      href: '/en/journeys/cote-dazur-provence-journey/',
     },
     {
       id: 'multi-generational',
@@ -193,6 +202,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: '兼顾各年龄段的行程安排，包含儿童看护支持与全家共享的活动。',
       featured: true,
       order: 1,
+      href: '/zh/services/family-children-services/',
     },
     {
       id: 'romantic-escapes',
@@ -207,6 +217,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: '私享博物馆通道、画廊参观与量身定制的文化行程。',
       featured: true,
       order: 3,
+      href: '/zh/journeys/paris-loire-valley-journey/',
     },
     {
       id: 'food-wine',
@@ -214,6 +225,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: '探访波尔多、勃艮第等产区酒庄，与主厨和侍酒师共享私宴。',
       featured: true,
       order: 4,
+      href: '/zh/services/dining-culinary-experiences/',
     },
     {
       id: 'celebrations',
@@ -221,6 +233,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: '纪念日、里程碑生日与家庭聚会，在合适的场地举办。',
       featured: true,
       order: 5,
+      href: '/zh/services/private-experiences/',
     },
     {
       id: 'business-vip',
@@ -228,6 +241,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: '围绕繁忙行程安排会议后勤、专属接送与商务引荐。',
       featured: true,
       order: 6,
+      href: '/zh/services/business-vip-assistance/',
     },
     {
       id: 'ski-alpine',
@@ -235,6 +249,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: '阿尔卑斯山脉的滑雪进出木屋、私人教练与山间美食。',
       featured: true,
       order: 9,
+      href: '/zh/journeys/alps-geneva-journey/',
     },
     {
       id: 'coastal-yacht',
@@ -242,6 +257,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: '地中海沿岸的私人泊位、滨海小镇与海上时光。',
       featured: true,
       order: 10,
+      href: '/zh/journeys/cote-dazur-provence-journey/',
     },
   ],
   fr: [
@@ -252,6 +268,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Itinéraires adaptés à chaque génération, avec accompagnement pour les enfants et des activités que toute la famille peut partager.',
       featured: true,
       order: 1,
+      href: '/fr/services/family-children-services/',
     },
     {
       id: 'romantic-escapes',
@@ -268,6 +285,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Accès privé aux musées, visites de galeries et itinéraires culturels sur mesure.',
       featured: true,
       order: 3,
+      href: '/fr/journeys/paris-loire-valley-journey/',
     },
     {
       id: 'food-wine',
@@ -276,6 +294,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Domaines de Bordeaux, de Bourgogne et au-delà, dîners privés avec chefs et sommeliers.',
       featured: true,
       order: 4,
+      href: '/fr/services/dining-culinary-experiences/',
     },
     {
       id: 'celebrations',
@@ -283,6 +302,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: 'Anniversaires et réunions de famille, organisés dans des lieux adaptés.',
       featured: true,
       order: 5,
+      href: '/fr/services/private-experiences/',
     },
     {
       id: 'business-vip',
@@ -291,6 +311,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         "Logistique de réunions et transport discret autour d'un emploi du temps exigeant.",
       featured: true,
       order: 6,
+      href: '/fr/services/business-vip-assistance/',
     },
     {
       id: 'ski-alpine',
@@ -298,6 +319,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: 'Chalets ski-in/ski-out, moniteurs privés et tables de montagne dans les Alpes.',
       featured: true,
       order: 9,
+      href: '/fr/journeys/alps-geneva-journey/',
     },
     {
       id: 'coastal-yacht',
@@ -305,6 +327,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: 'Mouillages privés et journées en mer le long de la Méditerranée.',
       featured: true,
       order: 10,
+      href: '/fr/journeys/cote-dazur-provence-journey/',
     },
   ],
   ru: [
@@ -315,6 +338,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Маршруты для всех поколений, с поддержкой по уходу за детьми и мероприятиями для всей семьи.',
       featured: true,
       order: 1,
+      href: '/ru/services/family-children-services/',
     },
     {
       id: 'romantic-escapes',
@@ -329,6 +353,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: 'Частный доступ в музеи и индивидуальные культурные маршруты.',
       featured: true,
       order: 3,
+      href: '/ru/journeys/paris-loire-valley-journey/',
     },
     {
       id: 'food-wine',
@@ -337,6 +362,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
         'Винодельни Бордо, Бургундии и других регионов, частные ужины с шефами и сомелье.',
       featured: true,
       order: 4,
+      href: '/ru/services/dining-culinary-experiences/',
     },
     {
       id: 'celebrations',
@@ -344,6 +370,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: 'Юбилеи и семейные встречи в подходящих местах.',
       featured: true,
       order: 5,
+      href: '/ru/services/private-experiences/',
     },
     {
       id: 'business-vip',
@@ -351,6 +378,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: 'Логистика встреч и деликатный трансфер при плотном графике.',
       featured: true,
       order: 6,
+      href: '/ru/services/business-vip-assistance/',
     },
     {
       id: 'ski-alpine',
@@ -358,6 +386,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: 'Шале ski-in/ski-out, частные инструкторы и горные рестораны в Альпах.',
       featured: true,
       order: 9,
+      href: '/ru/journeys/alps-geneva-journey/',
     },
     {
       id: 'coastal-yacht',
@@ -365,6 +394,7 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       description: 'Частные стоянки и дни на воде вдоль Средиземноморья.',
       featured: true,
       order: 10,
+      href: '/ru/journeys/cote-dazur-provence-journey/',
     },
   ],
 };

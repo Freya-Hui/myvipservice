@@ -20,15 +20,19 @@ const { eyebrow, title, subtitle, items, ctaLabel, ctaHref } = Astro.props;
     {subtitle && <p class="travel-types__subtitle">{subtitle}</p>}
     <ul class="travel-types__grid">
       {
-        items.map((item, index) => (
-          <li>
-            <span class="travel-types__index" aria-hidden="true">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            <h3>{item.title}</h3>
-            <p class="text-small">{item.description}</p>
-          </li>
-        ))
+        items.map((item, index) => {
+          const index_ = String(index + 1).padStart(2, '0');
+          const body = (
+            <>
+              <span class="travel-types__index" aria-hidden="true">
+                {index_}
+              </span>
+              <h3>{item.title}</h3>
+              <p class="text-small">{item.description}</p>
+            </>
+          );
+          return <li>{item.href ? <a href={item.href}>{body}</a> : body}</li>;
+        })
       }
     </ul>
     <a class="button" href={ctaHref}>{ctaLabel}</a>
@@ -54,6 +58,16 @@ const { eyebrow, title, subtitle, items, ctaLabel, ctaHref } = Astro.props;
   .travel-types__grid li {
     border-top: 1px solid var(--color-border);
     padding-top: var(--space-3);
+  }
+
+  .travel-types__grid a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .travel-types__grid a:hover h3 {
+    color: var(--color-accent);
   }
 
   .travel-types__index {
