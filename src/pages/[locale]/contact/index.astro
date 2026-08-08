@@ -34,20 +34,9 @@ const hotelBudgetRanges = [
   { value: 'over-5000', label: t('contact.form.hotelBudget.over5000') },
 ];
 
-// Email, address and direct lines are company facts — identical in every
-// locale, so they're plain strings here rather than duplicated translation
-// keys. WeChat/WhatsApp/office hours have no confirmed value yet.
-const infoRows = [
-  { label: t('contact.info.email'), value: 'contact@myvipservice.com' },
-  {
-    label: t('contact.info.phone'),
-    value: 'Eva +33 6 28 80 26 79 · Liuliu +33 6 59 97 71 54 · Freya +33 6 51 35 33 73',
-  },
-  { label: t('contact.info.address'), value: '29 rue de Mogador, 75009 Paris' },
-  { label: t('contact.info.wechat'), value: t('contact.info.wechatPlaceholder') },
-  { label: t('contact.info.whatsapp'), value: t('contact.info.whatsappPlaceholder') },
-  { label: t('contact.info.hours'), value: t('contact.info.hoursPlaceholder') },
-];
+// Personal phone lines and unconfirmed WeChat/WhatsApp/hours placeholders
+// are intentionally not shown — email is the single public contact channel.
+const infoRows = [{ label: t('contact.info.email'), value: 'contact@myvipservice.com' }];
 ---
 
 <BaseLayout
@@ -76,8 +65,21 @@ const infoRows = [
         </dl>
       </div>
 
-      <form class="contact__form" id="contact-form" novalidate>
-        <p class="demo-banner" role="note">{t('common.demoNotice')}</p>
+      <form
+        class="contact__form"
+        id="contact-form"
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="visually-hidden">
+          <label>
+            Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off" />
+          </label>
+        </p>
 
         <h2>{t('contact.form.heading')}</h2>
 
@@ -184,13 +186,34 @@ const infoRows = [
   </section>
 </BaseLayout>
 
-<script is:inline define:vars={{ successMessage: t('contact.form.successDemo') }}>
+<script
+  is:inline
+  define:vars={{ successMessage: t('contact.form.success'), errorMessage: t('contact.form.error') }}
+>
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
 
+  function encodeFormData(data) {
+    return Object.keys(data)
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  }
+
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (status) status.textContent = successMessage;
+    const data = Object.fromEntries(new FormData(form).entries());
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeFormData(data),
+    })
+      .then(() => {
+        if (status) status.textContent = successMessage;
+        form.reset();
+      })
+      .catch(() => {
+        if (status) status.textContent = errorMessage;
+      });
   });
 </script>
 
@@ -228,16 +251,6 @@ const infoRows = [
   .contact__info-row dd {
     margin: 0;
     color: var(--color-text);
-  }
-
-  .demo-banner {
-    background: var(--color-bg-inset);
-    border: 1px solid var(--color-border-strong);
-    border-radius: var(--radius);
-    padding: var(--space-3);
-    color: var(--color-accent);
-    font-size: var(--text-small);
-    margin-bottom: var(--space-4);
   }
 
   .field {
