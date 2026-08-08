@@ -6,7 +6,7 @@ translationKey: 'private-provence-vineyard-lunch'
 description: 'Неспешный обед на действующей винодельне в холмах Люберона: винодел проведёт вас между рядами лозы прежде, чем вы сядете за стол, накрытый прямо среди виноградников.'
 category: 'Food & Wine'
 destinationKey: 'provence'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-provence-vineyard'
 gallery: ['destination-provence-vineyard', 'destination-provence']

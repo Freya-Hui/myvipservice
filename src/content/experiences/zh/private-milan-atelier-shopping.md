@@ -6,7 +6,7 @@ translationKey: 'private-milan-atelier-shopping'
 description: '在米兰"时尚四方街"各大品牌专柜安排私人预约，尽量避开营业高峰时段，节奏完全按您想找的东西来定，不走马观花。'
 category: 'Fashion'
 destinationKey: 'milan'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-milan'
 gallery: ['destination-milan', 'service-fashion-shopping']

@@ -6,7 +6,7 @@ translationKey: 'private-loire-valley-chateau-access'
 description: "Une visite privée d'un château et de ses jardins avant l'ouverture au public, avec un guide qui peut approfondir l'histoire autant que vous le souhaitez."
 category: 'Art & Culture'
 destinationKey: 'loire-valley'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-loire-valley'
 gallery: ['destination-loire-valley', 'experience-art-gallery']

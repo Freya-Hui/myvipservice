@@ -6,7 +6,7 @@ translationKey: 'private-provence-vineyard-lunch'
 description: '在吕贝隆山区一座仍在正常运营的酒庄享用一顿悠长的午餐，庄主会先带您走一圈葡萄园，再入座葡萄藤间已备好的餐桌。'
 category: 'Food & Wine'
 destinationKey: 'provence'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-provence-vineyard'
 gallery: ['destination-provence-vineyard', 'destination-provence']

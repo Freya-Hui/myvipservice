@@ -6,7 +6,7 @@ translationKey: 'private-monaco-harbour-evening'
 description: '夜晚从港湾水上开始，随后前往为您预留的餐桌收尾——整场行程围绕一个值得庆祝的时刻设计，而不是景点打卡清单。'
 category: 'Celebration'
 destinationKey: 'monaco'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-monaco'
 gallery: ['destination-monaco', 'destination-french-riviera-yacht']

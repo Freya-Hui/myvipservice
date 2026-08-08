@@ -6,7 +6,7 @@ translationKey: 'private-provence-vineyard-lunch'
 description: "Un déjeuner qui s'étire dans un domaine viticole en activité dans le Luberon, avec le vigneron qui vous fait découvrir les rangs de vigne avant que la table ne soit dressée au milieu d'elles."
 category: 'Food & Wine'
 destinationKey: 'provence'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-provence-vineyard'
 gallery: ['destination-provence-vineyard', 'destination-provence']

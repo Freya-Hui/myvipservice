@@ -6,7 +6,7 @@ translationKey: 'private-loire-valley-chateau-access'
 description: 'Частная прогулка по замку и его садам до открытия для публики, с гидом, готовым рассказать об истории ровно настолько подробно, насколько вам интересно.'
 category: 'Art & Culture'
 destinationKey: 'loire-valley'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-loire-valley'
 gallery: ['destination-loire-valley', 'experience-art-gallery']

@@ -8,18 +8,11 @@ import AccommodationFeature from '../../components/home/AccommodationFeature.ast
 import TravelTypes from '../../components/home/TravelTypes.astro';
 import ConciergeOverview from '../../components/home/ConciergeOverview.astro';
 import ProcessSteps from '../../components/home/ProcessSteps.astro';
-import ServiceNetwork from '../../components/home/ServiceNetwork.astro';
 import JournalPreview from '../../components/home/JournalPreview.astro';
 import InquiryCTA from '../../components/home/InquiryCTA.astro';
 import { getLocaleEntries } from '../../lib/content';
 import { languages, useTranslations, type Locale } from '../../i18n/ui';
-import {
-  travelTypes,
-  processSteps,
-  whyUsPoints,
-  networkHighlights,
-  destinationCountryGroups,
-} from '../../data/site-content';
+import { travelTypes, whyUsPoints, destinationCountryGroups } from '../../data/site-content';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((locale) => ({ params: { locale } }));
@@ -51,7 +44,9 @@ const featuredDestinations = destinations
 const journalEntries = (await getLocaleEntries('journal', locale))
   .sort((a, b) => (b.data.publishedAt?.getTime() ?? 0) - (a.data.publishedAt?.getTime() ?? 0))
   .slice(0, 3);
-const experiences = await getLocaleEntries('experiences', locale);
+const experiences = (await getLocaleEntries('experiences', locale)).filter(
+  (entry) => entry.data.featured,
+);
 
 const hotelsService = bySlug(services, 'hotel-villa-reservations');
 const conciergeService = bySlug(services, 'personal-concierge');
@@ -105,12 +100,6 @@ const conciergeService = bySlug(services, 'personal-concierge');
     }))}
   />
 
-  <IntroSection
-    eyebrow={t('home.realLife.eyebrow')}
-    title={t('home.realLife.title')}
-    body={t('home.realLife.body')}
-  />
-
   <RelatedContent
     locale={locale}
     eyebrow={t('home.experience.eyebrow')}
@@ -141,20 +130,6 @@ const conciergeService = bySlug(services, 'personal-concierge');
     body={conciergeService.summary}
     ctaLabel={t('home.concierge.cta')}
     ctaHref={`/${locale}/services/#personal-concierge`}
-  />
-
-  <ProcessSteps
-    eyebrow={t('home.process.eyebrow')}
-    title={t('home.process.title')}
-    steps={processSteps[locale]}
-  />
-
-  <ServiceNetwork
-    eyebrow={t('home.network.eyebrow')}
-    title={t('home.network.title')}
-    items={networkHighlights[locale]}
-    ctaLabel={t('home.network.cta')}
-    ctaHref={`/${locale}/about/#international-service-network`}
   />
 
   <JournalPreview
