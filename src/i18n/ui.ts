@@ -27,7 +27,6 @@ export const ui = {
     'common.languageLabel': 'Language',
     'common.cookieNotice':
       'This site uses only essential cookies required for it to function. No tracking cookies are used.',
-    'common.demoNotice': 'Demo form — submissions are not yet connected to a backend.',
     'common.required': 'Required',
     'common.optional': 'Optional',
 
@@ -146,8 +145,10 @@ export const ui = {
     'contact.form.hotelBudget.1500To5000': '€1,500 – €5,000',
     'contact.form.hotelBudget.over5000': '€5,000+',
     'contact.form.details': 'Tell Us About Your Requirements',
-    'contact.form.submit': 'Send Enquiry (Demo)',
-    'contact.form.successDemo': 'This is a demo — your message was not actually sent.',
+    'contact.form.submit': 'Send Enquiry',
+    'contact.form.success': "Thank you — your message has been sent. We'll be in touch shortly.",
+    'contact.form.error':
+      'Something went wrong sending your message. Please try again, or email us directly at contact@myvipservice.com.',
 
     'badge.draftTranslation': 'Draft translation',
     'badge.demoListing': 'Demo listing',
@@ -315,7 +316,6 @@ export const ui = {
     'common.cta': '预约专属礼宾服务',
     'common.languageLabel': '语言',
     'common.cookieNotice': '本网站仅使用维持网站运行所必需的基本 Cookie，不使用任何追踪类 Cookie。',
-    'common.demoNotice': '演示表单——尚未接入正式提交功能。',
     'common.required': '必填',
     'common.optional': '选填',
 
@@ -429,8 +429,9 @@ export const ui = {
     'contact.form.hotelBudget.1500To5000': '1,500 – 5,000 欧元',
     'contact.form.hotelBudget.over5000': '5,000 欧元以上',
     'contact.form.details': '请描述您的具体需求',
-    'contact.form.submit': '发送咨询（演示）',
-    'contact.form.successDemo': '这是一个演示——您的信息实际上并未发送。',
+    'contact.form.submit': '发送咨询',
+    'contact.form.success': '感谢您的留言——我们已收到，会尽快与您联系。',
+    'contact.form.error': '发送失败，请重试，或直接发邮件至 contact@myvipservice.com 联系我们。',
 
     'badge.draftTranslation': '译文草稿',
     'badge.demoListing': '示例房源',
@@ -599,7 +600,6 @@ export const ui = {
     'common.languageLabel': 'Langue',
     'common.cookieNotice':
       "Ce site utilise uniquement les cookies essentiels à son fonctionnement. Aucun cookie de suivi n'est utilisé.",
-    'common.demoNotice': 'Formulaire de démonstration — les envois ne sont pas encore connectés.',
     'common.required': 'Obligatoire',
     'common.optional': 'Facultatif',
 
@@ -719,9 +719,11 @@ export const ui = {
     'contact.form.hotelBudget.1500To5000': '1 500 – 5 000 €',
     'contact.form.hotelBudget.over5000': 'Plus de 5 000 €',
     'contact.form.details': 'Décrivez vos besoins',
-    'contact.form.submit': 'Envoyer la demande (démo)',
-    'contact.form.successDemo':
-      "Ceci est une démonstration — votre message n'a pas été réellement envoyé.",
+    'contact.form.submit': 'Envoyer la demande',
+    'contact.form.success':
+      'Merci — votre message a bien été envoyé. Nous vous répondrons rapidement.',
+    'contact.form.error':
+      "Une erreur s'est produite lors de l'envoi. Merci de réessayer, ou écrivez-nous directement à contact@myvipservice.com.",
 
     'badge.draftTranslation': 'Traduction provisoire',
     'badge.demoListing': 'Annonce de démonstration',
@@ -890,7 +892,6 @@ export const ui = {
     'common.languageLabel': 'Язык',
     'common.cookieNotice':
       'Этот сайт использует только необходимые для работы файлы cookie. Отслеживающие cookie не используются.',
-    'common.demoNotice': 'Демонстрационная форма — отправка пока не подключена.',
     'common.required': 'Обязательно',
     'common.optional': 'Необязательно',
 
@@ -1010,8 +1011,11 @@ export const ui = {
     'contact.form.hotelBudget.1500To5000': '1 500 – 5 000 €',
     'contact.form.hotelBudget.over5000': 'Более 5 000 €',
     'contact.form.details': 'Опишите ваши пожелания',
-    'contact.form.submit': 'Отправить запрос (демо)',
-    'contact.form.successDemo': 'Это демонстрация — сообщение не было отправлено на самом деле.',
+    'contact.form.submit': 'Отправить запрос',
+    'contact.form.success':
+      'Спасибо — ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.',
+    'contact.form.error':
+      'Не удалось отправить сообщение. Попробуйте ещё раз или напишите нам напрямую на contact@myvipservice.com.',
 
     'badge.draftTranslation': 'Черновой перевод',
     'badge.demoListing': 'Демо-объект',
