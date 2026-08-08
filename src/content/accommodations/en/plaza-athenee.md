@@ -12,7 +12,7 @@ positioning: ['Palace']
 travelFit: ['Romantic', 'Celebration']
 featured: true
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-plaza-athenee'
 logo: '/images/hotel-logos/plaza-athenee.png'
 highlights:
   [

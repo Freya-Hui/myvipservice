@@ -12,7 +12,7 @@ positioning: ['Palace']
 travelFit: ['Romantic', 'Family', 'Celebration']
 featured: false
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-shangri-la'
 logo: '/images/hotel-logos/shangri-la.png'
 highlights:
   ['曾是罗兰·波拿巴亲王的私人官邸', '多间客房可直接眺望埃菲尔铁塔', '步行可达特罗卡德罗与塞纳河畔']

@@ -12,7 +12,7 @@ positioning: ['Palace']
 travelFit: ['Romantic', 'Business', 'Celebration']
 featured: false
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-the-peninsula'
 logo: '/images/hotel-logos/the-peninsula.png'
 highlights:
   [

@@ -12,7 +12,7 @@ positioning: ['Palace']
 travelFit: ['Romantic', 'Celebration', 'Business']
 featured: false
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-hotel-de-crillon'
 logo: '/images/hotel-logos/hotel-de-crillon.png'
 highlights:
   [

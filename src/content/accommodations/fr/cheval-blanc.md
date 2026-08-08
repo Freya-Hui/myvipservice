@@ -12,7 +12,7 @@ positioning: ['Palace', 'Design-Led']
 travelFit: ['Romantic', 'Business', 'Celebration']
 featured: false
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-cheval-blanc'
 logo: '/images/hotel-logos/cheval-blanc.png'
 highlights:
   [

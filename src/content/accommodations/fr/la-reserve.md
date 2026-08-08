@@ -12,7 +12,7 @@ positioning: ['Boutique', 'Private Residence']
 travelFit: ['Romantic', 'Long Stay']
 featured: false
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-la-reserve'
 logo: '/images/hotel-logos/la-reserve.png'
 highlights:
   [

@@ -12,7 +12,7 @@ positioning: ['Palace']
 travelFit: ['Romantic', 'Family', 'Celebration']
 featured: false
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-shangri-la'
 logo: '/images/hotel-logos/shangri-la.png'
 highlights:
   [

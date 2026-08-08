@@ -15,6 +15,11 @@ const { images, locale } = Astro.props;
     <ul class="gallery">
       {images.map((id) => {
         const image = getImageSafe(id);
+        {
+          /* Unsplash License needs no credit; other licenses (e.g. Wikimedia
+          Commons CC BY-SA) are conditioned on attribution, so surface it. */
+        }
+        const needsCredit = image.license !== 'Unsplash License';
         return (
           <li class="figure figure--standard">
             <img
@@ -24,6 +29,15 @@ const { images, locale } = Astro.props;
               width="1600"
               height="1200"
             />
+            {needsCredit && (
+              <p class="gallery__credit text-small">
+                Photo:{' '}
+                <a href={image.sourceUrl} target="_blank" rel="noopener noreferrer">
+                  {image.author} / {image.sourceName}
+                </a>
+                , {image.license}
+              </p>
+            )}
           </li>
         );
       })}
@@ -39,5 +53,14 @@ const { images, locale } = Astro.props;
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  .gallery__credit {
+    color: var(--color-text-faint);
+    margin-top: var(--space-1);
+  }
+
+  .gallery__credit a {
+    color: inherit;
   }
 </style>

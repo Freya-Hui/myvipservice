@@ -12,7 +12,7 @@ positioning: ['Palace']
 travelFit: ['Romantic', 'Business']
 featured: false
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-le-meurice'
 logo: '/images/hotel-logos/le-meurice.png'
 highlights: ['正对杜乐丽花园', 'Philippe Starck 设计的餐厅与酒吧', '步行可达卢浮宫与圣奥诺雷街']
 suitableFor: ['情侣', '关注艺术与设计的旅客']

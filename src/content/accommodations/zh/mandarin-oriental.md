@@ -12,7 +12,7 @@ positioning: ['Palace', 'Design-Led']
 travelFit: ['Romantic', 'Wellness', 'Business']
 featured: false
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-mandarin-oriental'
 logo: '/images/hotel-logos/mandarin-oriental.png'
 highlights:
   [

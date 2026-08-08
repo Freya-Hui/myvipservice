@@ -12,7 +12,7 @@ positioning: ['Palace']
 travelFit: ['Romantic', 'Business']
 featured: false
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-le-meurice'
 logo: '/images/hotel-logos/le-meurice.png'
 highlights:
   [
