@@ -12,7 +12,7 @@ positioning: ['Palace']
 travelFit: ['Romantic', 'Celebration', 'Business']
 featured: true
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-ritz-paris'
 logo: '/images/hotel-logos/ritz-paris.png'
 highlights:
   [

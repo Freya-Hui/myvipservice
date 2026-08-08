@@ -12,7 +12,7 @@ positioning: ['Palace']
 travelFit: ['Romantic', 'Business', 'Celebration']
 featured: true
 status: 'published'
-coverImage: 'service-hotels-villas'
+coverImage: 'accommodation-four-seasons-george-v'
 logo: '/images/hotel-logos/four-seasons-george-v.png'
 highlights:
   [

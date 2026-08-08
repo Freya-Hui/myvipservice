@@ -606,6 +606,181 @@ export const imageAttributions: ImageAttribution[] = [
       ru: 'Историческое здание в Дижоне, столице Бургундии, Франция.',
     },
   },
+  {
+    id: 'accommodation-ritz-paris',
+    src: '/images/accommodation-ritz-paris.jpg',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:H%C3%B4tel_Ritz_Paris,_21_June_2008.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Wolfgang Jung',
+    license: 'CC BY-SA 2.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'The Ritz Paris facade and entrance awnings on Place Vendôme.',
+      zh: '巴黎丽兹酒店位于旺多姆广场的正面外观与入口雨篷。',
+      fr: "La façade et les auvents d'entrée du Ritz Paris, place Vendôme.",
+      ru: 'Фасад и навесы у входа отеля Ritz Paris на Вандомской площади.',
+    },
+    notes:
+      'A genuine, identifiable exterior photo of this specific property — not a generic stand-in.',
+  },
+  {
+    id: 'accommodation-four-seasons-george-v',
+    src: '/images/accommodation-four-seasons-george-v.jpg',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:H%C3%B4tel_George-V,_31_avenue_George-V,_Paris_8e_1.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Polymagou',
+    license: 'CC BY-SA 4.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'The Four Seasons Hotel George V entrance on avenue George-V, Paris.',
+      zh: '巴黎乔治五世大道上四季酒店的入口。',
+      fr: "L'entrée du Four Seasons Hôtel George V, avenue George-V, à Paris.",
+      ru: 'Вход в отель Four Seasons George V на авеню Georges V в Париже.',
+    },
+    notes:
+      'A genuine, identifiable exterior photo of this specific property — not a generic stand-in.',
+  },
+  {
+    id: 'accommodation-hotel-de-crillon',
+    src: '/images/accommodation-hotel-de-crillon.jpg',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Hotel-de-Crillon-Paris-02-2018.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Gunnar Klack',
+    license: 'CC BY-SA 4.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: "The Hôtel de Crillon's colonnaded facade on Place de la Concorde, Paris.",
+      zh: '巴黎协和广场上丽兹卡尔顿·丽晶酒店（Hôtel de Crillon）的柱廊立面。',
+      fr: "La façade à colonnes de l'Hôtel de Crillon, place de la Concorde, à Paris.",
+      ru: 'Колоннада фасада отеля Crillon на площади Согласия в Париже.',
+    },
+    notes:
+      'A genuine, identifiable exterior photo of this specific property — not a generic stand-in.',
+  },
+  {
+    id: 'accommodation-le-meurice',
+    src: '/images/accommodation-le-meurice.jpg',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:H%C3%B4tel_Meurice_-_Paris.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Axou',
+    license: 'CC BY-SA 3.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: "Le Meurice's arcaded facade on Rue de Rivoli, Paris.",
+      zh: '巴黎里沃利街上勒梅里斯酒店的拱廊立面。',
+      fr: 'La façade à arcades du Meurice, rue de Rivoli, à Paris.',
+      ru: 'Аркадный фасад отеля Le Meurice на улице Риволи в Париже.',
+    },
+    notes:
+      'A genuine, identifiable exterior photo of this specific property — not a generic stand-in.',
+  },
+  {
+    id: 'accommodation-plaza-athenee',
+    src: '/images/accommodation-plaza-athenee.jpg',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Paris_75008_Avenue_Montaigne_23_H%C3%B4tel_Plaza-Ath%C3%A9n%C3%A9e_20130810_facade.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Alexander Baranov',
+    license: 'CC BY 2.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: "The Plaza Athénée's signature red awnings on avenue Montaigne, Paris.",
+      zh: '巴黎蒙田大道上巴黎雅典娜广场酒店标志性的红色雨篷。',
+      fr: 'Les célèbres auvents rouges du Plaza Athénée, avenue Montaigne, à Paris.',
+      ru: 'Фирменные красные навесы отеля Plaza Athénée на авеню Монтень в Париже.',
+    },
+    notes:
+      'A genuine, identifiable exterior photo of this specific property — not a generic stand-in.',
+  },
+  {
+    id: 'accommodation-mandarin-oriental',
+    src: '/images/accommodation-mandarin-oriental.jpg',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Mandarin_Oriental_Paris,_2_August_2015_001.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Norio NAKAYAMA',
+    license: 'CC BY-SA 2.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'The Mandarin Oriental Paris entrance signage on Rue Saint-Honoré.',
+      zh: '巴黎圣奥诺雷街上文华东方酒店的入口招牌。',
+      fr: "L'enseigne d'entrée du Mandarin Oriental, Paris, rue Saint-Honoré.",
+      ru: 'Вывеска у входа в отель Mandarin Oriental Paris на улице Сент-Оноре.',
+    },
+    notes:
+      'A genuine, identifiable exterior photo of this specific property — not a generic stand-in.',
+  },
+  {
+    id: 'accommodation-shangri-la',
+    src: '/images/accommodation-shangri-la.jpg',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Awning_of_the_Shangri-La_hotel_in_Paris,_23_January_2014.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'FLLL',
+    license: 'CC BY-SA 4.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'The Shangri-La Paris entrance canopy, in the former Bonaparte residence.',
+      zh: '巴黎香格里拉酒店入口雨篷，原为波拿巴亲王官邸。',
+      fr: "L'auvent d'entrée du Shangri-La Paris, dans l'ancienne résidence Bonaparte.",
+      ru: 'Навес у входа в отель Shangri-La Paris, бывшую резиденцию Бонапарта.',
+    },
+    notes:
+      'A genuine, identifiable exterior photo of this specific property — not a generic stand-in.',
+  },
+  {
+    id: 'accommodation-the-peninsula',
+    src: '/images/accommodation-the-peninsula.jpg',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:The_Peninsula_Paris,_23_June_2014.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'PPR 19',
+    license: 'CC BY-SA 4.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'The Peninsula Paris, a restored 1908 Belle Époque building, at dusk.',
+      zh: '黄昏时分的巴黎半岛酒店——一座修复后的1908年美好年代建筑。',
+      fr: 'Le Peninsula Paris, immeuble Belle Époque de 1908 restauré, au crépuscule.',
+      ru: 'Отель The Peninsula Paris, отреставрированное здание 1908 года в стиле Belle Époque, в сумерках.',
+    },
+    notes:
+      'A genuine, identifiable exterior photo of this specific property — not a generic stand-in.',
+  },
+  {
+    id: 'accommodation-la-reserve',
+    src: '/images/accommodation-la-reserve.jpg',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:La_R%C3%A9serve_Paris.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Bach Nguyen',
+    license: 'CC0 1.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: "La Réserve Paris's townhouse facade with its signature red door.",
+      zh: '拉雷瑟夫巴黎酒店的官邸式立面与标志性红色大门。',
+      fr: 'La façade de style hôtel particulier de La Réserve Paris et sa porte rouge emblématique.',
+      ru: 'Фасад отеля-особняка La Réserve Paris с фирменной красной дверью.',
+    },
+    notes:
+      'A genuine, identifiable exterior photo of this specific property — not a generic stand-in.',
+  },
+  {
+    id: 'accommodation-cheval-blanc',
+    src: '/images/accommodation-cheval-blanc.jpg',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Grand_Magasin_Samaritaine_-_Paris_I_(FR75)_-_2021-06-05_-_1.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Chabe01',
+    license: 'CC BY-SA 4.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'The restored Art Deco Samaritaine building on the Seine, home to Cheval Blanc Paris.',
+      zh: '塞纳河畔修复后的装饰艺术风格拉萨玛丽丹百货大楼，白马酒店所在地。',
+      fr: "L'immeuble Art déco restauré de la Samaritaine sur la Seine, qui abrite le Cheval Blanc Paris.",
+      ru: 'Восстановленное здание универмага Самаритен в стиле ар-деко на Сене, где находится отель Cheval Blanc Paris.',
+    },
+    notes:
+      'A genuine, identifiable exterior photo of this specific property — not a generic stand-in.',
+  },
 ];
 
 export function getImage(id: string): ImageAttribution {
