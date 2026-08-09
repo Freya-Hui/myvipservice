@@ -5,6 +5,7 @@ order: 4
 group: 'Private Chauffeur'
 investmentTier: 'light'
 image: service-private-transportation
+gallery: ['service-private-jet-interior', 'service-car-interior']
 highlights:
   [
     'Аренда частного самолёта, подобранного под маршрут — от региональных перелётов до межконтинентальных',

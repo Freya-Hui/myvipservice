@@ -5,6 +5,7 @@ order: 10
 group: 'Groups & Corporate'
 investmentTier: 'standard'
 image: service-business
+gallery: ['service-la-defense', 'service-meeting-room']
 highlights:
   [
     'Mises en relation au sein des cercles du commerce de luxe français, y compris avec des contacts de haut niveau chez des groupes comme Printemps et Galeries Lafayette, organisées au cas par cas',

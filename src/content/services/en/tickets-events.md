@@ -5,6 +5,7 @@ order: 6
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-tickets-events
+gallery: ['service-opera-house', 'service-roland-garros']
 highlights:
   [
     'Seats and hospitality enquiries for Roland-Garros, Wimbledon, Formula 1 (including the Monaco and British Grand Prix), Six Nations Rugby, the Tour de France, the London Marathon, The Open Championship and the 24 Hours of Le Mans, subject to availability',

@@ -5,6 +5,7 @@ order: 3
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-fashion-shopping
+gallery: ['service-atelier-fitting']
 highlights:
   [
     'High jewellery access across a network including Van Cleef & Arpels, Cartier, De Beers, Graff, Harry Winston, Cindy Chao, Boucheron, Piaget, Buccellati and Damiani',

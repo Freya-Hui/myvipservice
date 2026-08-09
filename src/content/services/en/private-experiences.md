@@ -5,6 +5,7 @@ order: 7
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-private-experiences
+gallery: ['service-floral-event', 'service-grand-ballroom']
 highlights:
   [
     'Landmark weddings staged at Paris opera venues or private châteaux, with venue sourcing, creative direction and a dedicated production team',

@@ -5,6 +5,7 @@ order: 4
 group: 'Private Chauffeur'
 investmentTier: 'light'
 image: service-private-transportation
+gallery: ['service-private-jet-interior', 'service-car-interior']
 highlights:
   [
     '私人飞机包机服务，按行程灵活匹配——从区域短途到跨洲飞行',

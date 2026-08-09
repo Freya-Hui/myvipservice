@@ -5,6 +5,7 @@ order: 6
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-tickets-events
+gallery: ['service-opera-house', 'service-roland-garros']
 highlights:
   [
     '法网、温网、F1（含摩纳哥大奖赛与英国大奖赛）、六国橄榄球赛、环法自行车赛、伦敦马拉松、英国高尔夫公开赛与勒芒 24 小时耐力赛的席位与礼遇咨询，视供应情况而定',

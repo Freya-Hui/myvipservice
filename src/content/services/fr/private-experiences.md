@@ -5,6 +5,7 @@ order: 7
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-private-experiences
+gallery: ['service-floral-event', 'service-grand-ballroom']
 highlights:
   [
     'Mariages d’exception organisés dans des lieux d’opéra parisiens ou des châteaux privés, avec recherche de lieu, direction créative et équipe de production dédiée',

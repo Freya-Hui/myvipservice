@@ -5,6 +5,7 @@ order: 5
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-dining
+gallery: ['service-wine-cellar', 'service-chef-plating']
 highlights:
   [
     'Michelin-starred chefs available to cook privately at your residence, villa or château, on request',

@@ -5,6 +5,7 @@ order: 2
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-travel-planning
+gallery: ['destination-provence-vineyard', 'destination-french-alps-chalet']
 highlights:
   [
     '波尔多、勃艮第等顶级产区的美酒与人文行程，含庄主亲自接待的酒庄参访与多年份垂直品鉴',

@@ -5,6 +5,7 @@ order: 11
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-romantic-travel
+gallery: ['service-pont-alexandre']
 highlights:
   [
     'Pre-wedding and honeymoon photography, with photographers and stylists whose portfolios include major fashion campaigns and shoots for well-known public figures',

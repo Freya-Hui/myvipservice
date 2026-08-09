@@ -5,6 +5,7 @@ order: 11
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-romantic-travel
+gallery: ['service-pont-alexandre']
 highlights:
   [
     'Séances photo pré-mariage et de lune de miel, avec des photographes et stylistes dont le portfolio inclut de grandes campagnes de mode et des séances avec des personnalités publiques',

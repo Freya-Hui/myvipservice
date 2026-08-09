@@ -5,6 +5,7 @@ order: 6
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-tickets-events
+gallery: ['service-opera-house', 'service-roland-garros']
 highlights:
   [
     'Запросы на места и приём на Ролан Гаррос, Уимблдоне, Формуле 1 (включая Гран-при Монако и Великобритании), Кубке шести наций по регби, Тур де Франс, Лондонском марафоне, The Open Championship и «24 часах Ле-Мана» — при наличии возможности',

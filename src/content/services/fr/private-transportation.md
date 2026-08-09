@@ -5,6 +5,7 @@ order: 4
 group: 'Private Chauffeur'
 investmentTier: 'light'
 image: service-private-transportation
+gallery: ['service-private-jet-interior', 'service-car-interior']
 highlights:
   [
     'Location de jet privé, adaptée au trajet — des liaisons régionales aux vols intercontinentaux',

@@ -5,6 +5,7 @@ order: 9
 group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-concierge
+gallery: ['service-lobby-detail']
 highlights:
   [
     '从历史场地甄选到完整空间布置的全程场地统筹管理',

@@ -5,6 +5,7 @@ order: 6
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-tickets-events
+gallery: ['service-opera-house', 'service-roland-garros']
 highlights:
   [
     'Demandes de places et d’hospitalité pour Roland-Garros, Wimbledon, la Formule 1 (dont les Grand Prix de Monaco et de Grande-Bretagne), le Tournoi des Six Nations, le Tour de France, le Marathon de Londres, The Open Championship et les 24 Heures du Mans, sous réserve de disponibilité',

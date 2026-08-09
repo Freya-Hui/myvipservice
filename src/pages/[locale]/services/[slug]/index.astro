@@ -4,6 +4,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PageHero from '../../../../components/PageHero.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import SectionHeading from '../../../../components/SectionHeading.astro';
+import Gallery from '../../../../components/Gallery.astro';
 import RelatedContent from '../../../../components/RelatedContent.astro';
 import TravelTypes from '../../../../components/home/TravelTypes.astro';
 import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
@@ -66,7 +67,13 @@ const structuredData = {
     />
   </div>
 
-  <PageHero eyebrow={t('nav.services')} title={data.title} subtitle={data.summary} />
+  <PageHero
+    eyebrow={t('nav.services')}
+    title={data.title}
+    subtitle={data.summary}
+    imageId={data.image}
+    locale={locale}
+  />
 
   {
     data.investmentTier && (
@@ -101,6 +108,14 @@ const structuredData = {
           </ul>
         </div>
       </section>
+    )
+  }
+
+  {
+    data.gallery.length > 0 && (
+      <div class="container">
+        <Gallery images={data.gallery} locale={locale} />
+      </div>
     )
   }
 

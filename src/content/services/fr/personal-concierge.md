@@ -5,6 +5,7 @@ order: 9
 group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-concierge
+gallery: ['service-lobby-detail']
 highlights:
   [
     'Recherche et gestion de lieux de bout en bout, du site historique à l’installation spatiale complète',
