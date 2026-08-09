@@ -66,10 +66,11 @@
   --radius: 6px;
   --radius-sm: 3px;
 
-  /* Neutral (black-based) elevation — not a palette colour, so it stays
-     within the "no new colours" rule while giving cards and hovers real
-     depth against the flat dark ground. */
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 20%);
+  /* Neutral (black-based) elevation for genuine floating overlays
+     (dropdowns, the mobile nav panel) — not a palette colour, so it stays
+     within the "no new colours" rule. Inline cards/images stay flat with
+     hairline borders instead; a shadow there reads as generic-app rather
+     than editorial (see design-pass notes). */
   --shadow-elevated: 0 12px 32px -8px rgb(0 0 0 / 45%);
 
   /* ---- Components --------------------------------------------------------- */
