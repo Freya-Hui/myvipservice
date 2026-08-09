@@ -2,7 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/home/Hero.astro';
-import IntroSection from '../../components/home/IntroSection.astro';
+import StoryFeature from '../../components/about/StoryFeature.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
 import AccommodationFeature from '../../components/home/AccommodationFeature.astro';
 import TravelTypes from '../../components/home/TravelTypes.astro';
@@ -65,10 +65,12 @@ const conciergeService = bySlug(services, 'personal-concierge');
     locale={locale}
   />
 
-  <IntroSection
+  <StoryFeature
     eyebrow={t('home.intro.eyebrow')}
     title={t('home.intro.title')}
     body={t('home.intro.body')}
+    imageId="service-concierge"
+    locale={locale}
   />
 
   <ProcessSteps

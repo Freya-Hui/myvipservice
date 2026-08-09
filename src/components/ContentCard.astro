@@ -61,14 +61,16 @@ const image = getImageSafe(imageId);
 
   .content-card .figure {
     position: relative;
-    transition:
-      box-shadow var(--transition-base),
-      transform var(--transition-base);
   }
 
-  .content-card a:hover .figure {
-    box-shadow: var(--shadow-elevated);
-    transform: translateY(-4px);
+  /* Editorial image-zoom on hover, not a card lift/shadow — the figure's
+     own overflow:hidden clips it, so only the photo moves. */
+  .content-card .figure img {
+    transition: transform var(--transition-base);
+  }
+
+  .content-card a:hover .figure img {
+    transform: scale(1.04);
   }
 
   .content-card__logo {
