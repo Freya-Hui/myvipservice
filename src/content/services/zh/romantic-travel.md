@@ -5,6 +5,7 @@ order: 11
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-romantic-travel
+gallery: ['service-pont-alexandre']
 highlights:
   [
     '婚纱照与蜜月跟拍，合作的摄影师与造型师曾参与知名时尚大片及公众人物拍摄',

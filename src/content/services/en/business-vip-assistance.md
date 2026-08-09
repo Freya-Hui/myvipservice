@@ -5,6 +5,7 @@ order: 10
 group: 'Groups & Corporate'
 investmentTier: 'standard'
 image: service-business
+gallery: ['service-la-defense', 'service-meeting-room']
 highlights:
   [
     'Introductions within French luxury-retail circles, including senior contacts at groups such as Printemps and Galeries Lafayette, arranged on a case-by-case basis',

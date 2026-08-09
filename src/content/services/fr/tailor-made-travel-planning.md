@@ -5,6 +5,7 @@ order: 2
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-travel-planning
+gallery: ['destination-provence-vineyard', 'destination-french-alps-chalet']
 highlights:
   [
     'Itinéraires œnologiques et patrimoniaux à travers Bordeaux, la Bourgogne et d’autres grandes régions, avec visites de domaines par leurs propriétaires et dégustations verticales',

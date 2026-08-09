@@ -5,6 +5,7 @@ order: 2
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-travel-planning
+gallery: ['destination-provence-vineyard', 'destination-french-alps-chalet']
 highlights:
   [
     'Wine and heritage itineraries across Bordeaux, Burgundy and other leading regions, with owner-level estate visits and vertical tastings',

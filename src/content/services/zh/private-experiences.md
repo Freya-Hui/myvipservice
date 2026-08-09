@@ -5,6 +5,7 @@ order: 7
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-private-experiences
+gallery: ['service-floral-event', 'service-grand-ballroom']
 highlights:
   [
     '在巴黎歌剧院场地或私人城堡举办地标级婚礼，涵盖场地对接、创意统筹与专属制作团队',

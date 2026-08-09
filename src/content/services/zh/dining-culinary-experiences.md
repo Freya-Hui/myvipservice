@@ -5,6 +5,7 @@ order: 5
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-dining
+gallery: ['service-wine-cellar', 'service-chef-plating']
 highlights:
   [
     '米其林星级主厨可应邀在您的住所、别墅或城堡内亲自掌厨',

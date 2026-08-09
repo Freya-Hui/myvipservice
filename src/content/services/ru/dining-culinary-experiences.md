@@ -5,6 +5,7 @@ order: 5
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-dining
+gallery: ['service-wine-cellar', 'service-chef-plating']
 highlights:
   [
     'Шеф-повара со звёздами Мишлен готовы готовить лично в вашей резиденции, вилле или замке, по запросу',

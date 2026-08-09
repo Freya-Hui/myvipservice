@@ -5,6 +5,7 @@ order: 9
 group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-concierge
+gallery: ['service-lobby-detail']
 highlights:
   [
     'Полное сопровождение в подборе и организации площадок — от исторических зданий до полного оформления пространства',

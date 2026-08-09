@@ -5,6 +5,7 @@ order: 10
 group: 'Groups & Corporate'
 investmentTier: 'standard'
 image: service-business
+gallery: ['service-la-defense', 'service-meeting-room']
 highlights:
   [
     'Знакомства в люксовых розничных кругах Франции, включая контакты высокого уровня в таких группах, как Printemps и Galeries Lafayette, организуемые в каждом случае индивидуально',

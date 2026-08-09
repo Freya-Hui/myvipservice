@@ -5,6 +5,7 @@ order: 9
 group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-concierge
+gallery: ['service-lobby-detail']
 highlights:
   [
     'End-to-end venue sourcing and management, from historic properties to full spatial installation',

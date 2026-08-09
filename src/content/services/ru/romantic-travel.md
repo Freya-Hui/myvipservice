@@ -5,6 +5,7 @@ order: 11
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-romantic-travel
+gallery: ['service-pont-alexandre']
 highlights:
   [
     'Предсвадебная и медовая фотосъёмка с фотографами и стилистами, в портфолио которых — крупные модные кампании и съёмки известных публичных персон',

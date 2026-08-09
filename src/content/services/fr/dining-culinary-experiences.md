@@ -5,6 +5,7 @@ order: 5
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-dining
+gallery: ['service-wine-cellar', 'service-chef-plating']
 highlights:
   [
     'Chefs étoilés disponibles pour cuisiner en privé à votre résidence, villa ou château, sur demande',

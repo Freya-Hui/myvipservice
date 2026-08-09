@@ -5,6 +5,7 @@ order: 3
 group: 'Concierge & Lifestyle'
 investmentTier: 'light'
 image: service-fashion-shopping
+gallery: ['service-atelier-fitting']
 highlights:
   [
     '高级珠宝合作网络，覆盖梵克雅宝、卡地亚、戴比尔斯、格拉夫、海瑞温斯顿、Cindy Chao、宝诗龙、伯爵、布契拉提与Damiani',

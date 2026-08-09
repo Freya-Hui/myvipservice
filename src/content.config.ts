@@ -23,6 +23,9 @@ const services = defineCollection({
     order: z.number().default(0),
     /** Matches an id in src/data/image-attributions.ts */
     image: z.string().optional(),
+    /** Additional images shown in a gallery on the detail page — each id
+     *  must match an entry in src/data/image-attributions.ts. */
+    gallery: z.array(z.string()).default([]),
     /**
      * Phase 2D: user-task grouping for the Services overview page, per
      * AGENTS.md principle 5 ("产品架构从用户任务出发") — was defined but

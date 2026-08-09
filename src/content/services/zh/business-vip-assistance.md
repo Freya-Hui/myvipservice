@@ -5,6 +5,7 @@ order: 10
 group: 'Groups & Corporate'
 investmentTier: 'standard'
 image: service-business
+gallery: ['service-la-defense', 'service-meeting-room']
 highlights:
   [
     '对接法国奢侈品零售圈层引荐，包括春天百货、老佛爷百货等集团的高层联系人，视具体情况安排',

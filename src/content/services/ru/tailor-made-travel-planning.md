@@ -5,6 +5,7 @@ order: 2
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-travel-planning
+gallery: ['destination-provence-vineyard', 'destination-french-alps-chalet']
 highlights:
   [
     'Винные и культурные маршруты по Бордо, Бургундии и другим ведущим регионам — с визитами в хозяйства, где принимают сами владельцы, и вертикальными дегустациями',

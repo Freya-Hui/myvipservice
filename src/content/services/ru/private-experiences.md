@@ -5,6 +5,7 @@ order: 7
 group: 'Private Travel'
 investmentTier: 'bespoke'
 image: service-private-experiences
+gallery: ['service-floral-event', 'service-grand-ballroom']
 highlights:
   [
     'Знаковые свадьбы на площадках парижской оперы или в частных замках — с подбором площадки, творческим руководством и выделенной продюсерской командой',
