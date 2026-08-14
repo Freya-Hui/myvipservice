@@ -423,6 +423,11 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       description:
         'Support doesn’t stop at booking — we stay reachable through the trip and after you’re home.',
     },
+    {
+      title: 'English & Chinese, Fluently',
+      description:
+        'Advisors work comfortably in both languages, so nothing gets lost whether a request comes in Mandarin or English.',
+    },
   ],
   zh: [
     {
@@ -440,6 +445,10 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
     {
       title: '行前、行中、行后',
       description: '支持不止于预订本身——行程期间乃至归国后，我们始终保持联系。',
+    },
+    {
+      title: '英语与中文双语沟通',
+      description: '顾问团队可自如切换中英双语，无论用中文还是英文提出需求，沟通都不会有遗漏。',
     },
   ],
   fr: [
@@ -462,6 +471,11 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       description:
         "Notre accompagnement ne s'arrête pas à la réservation — nous restons joignables pendant le séjour et après votre retour.",
     },
+    {
+      title: 'Anglais et chinois, couramment',
+      description:
+        "Nos conseillers travaillent aisément dans les deux langues, pour qu'aucune demande ne se perde, qu'elle soit formulée en mandarin ou en anglais.",
+    },
   ],
   ru: [
     {
@@ -482,6 +496,11 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       title: 'До, во время и после поездки',
       description:
         'Поддержка не заканчивается на бронировании — мы на связи в течение поездки и после возвращения домой.',
+    },
+    {
+      title: 'Английский и китайский свободно',
+      description:
+        'Консультанты одинаково свободно работают на обоих языках — ни один запрос не теряется, будь он на китайском или английском.',
     },
   ],
 };
