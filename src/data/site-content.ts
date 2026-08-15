@@ -410,8 +410,9 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       description: 'A team on the ground in Paris, not a call centre reading from a script.',
     },
     {
-      title: 'Chinese-Speaking',
-      description: 'Direct communication in Mandarin, with no translation lag on urgent requests.',
+      title: 'English, Chinese & French, Fluently',
+      description:
+        'Advisors work comfortably across all three languages, so urgent requests never wait on translation.',
     },
     {
       title: 'One Dedicated Contact',
@@ -423,11 +424,6 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       description:
         'Support doesn’t stop at booking — we stay reachable through the trip and after you’re home.',
     },
-    {
-      title: 'English, Chinese & French, Fluently',
-      description:
-        'Advisors work comfortably across all three languages, so nothing gets lost whether a request comes in Mandarin, English or French.',
-    },
   ],
   zh: [
     {
@@ -435,8 +431,8 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       description: '巴黎本地团队，而非照本宣科的呼叫中心。',
     },
     {
-      title: '中文直接沟通',
-      description: '普通话直接对接，紧急需求不会因翻译产生延误。',
+      title: '中英法三语沟通',
+      description: '顾问团队可自如切换中、英、法三语，紧急需求不会因翻译产生延误。',
     },
     {
       title: '一位专属顾问',
@@ -446,10 +442,6 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       title: '行前、行中、行后',
       description: '支持不止于预订本身——行程期间乃至归国后，我们始终保持联系。',
     },
-    {
-      title: '中英法三语沟通',
-      description: '顾问团队可自如切换中、英、法三语，无论用哪种语言提出需求，沟通都不会有遗漏。',
-    },
   ],
   fr: [
     {
@@ -457,9 +449,9 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       description: "Une équipe sur le terrain à Paris, pas un centre d'appels qui lit un script.",
     },
     {
-      title: 'Interlocuteurs sinophones',
+      title: 'Anglais, chinois et français, couramment',
       description:
-        'Communication directe en mandarin, sans délai de traduction sur les demandes urgentes.',
+        "Nos conseillers travaillent aisément dans ces trois langues, pour qu'aucune demande urgente n'attende une traduction.",
     },
     {
       title: 'Un conseiller dédié',
@@ -471,11 +463,6 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       description:
         "Notre accompagnement ne s'arrête pas à la réservation — nous restons joignables pendant le séjour et après votre retour.",
     },
-    {
-      title: 'Anglais, chinois et français, couramment',
-      description:
-        "Nos conseillers travaillent aisément dans ces trois langues, pour qu'aucune demande ne se perde, qu'elle soit formulée en mandarin, en anglais ou en français.",
-    },
   ],
   ru: [
     {
@@ -483,9 +470,9 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       description: 'Команда на месте в Париже, а не колл-центр, читающий по сценарию.',
     },
     {
-      title: 'Общение на китайском',
+      title: 'Английский, китайский и французский свободно',
       description:
-        'Прямое общение на китайском языке — срочные запросы не задерживаются на переводе.',
+        'Консультанты одинаково свободно работают на всех трёх языках — срочные запросы не задерживаются на переводе.',
     },
     {
       title: 'Один персональный консультант',
@@ -496,11 +483,6 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       title: 'До, во время и после поездки',
       description:
         'Поддержка не заканчивается на бронировании — мы на связи в течение поездки и после возвращения домой.',
-    },
-    {
-      title: 'Английский, китайский и французский свободно',
-      description:
-        'Консультанты одинаково свободно работают на всех трёх языках — ни один запрос не теряется, будь он на китайском, английском или французском.',
     },
   ],
 };
