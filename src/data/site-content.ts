@@ -424,9 +424,9 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
         'Support doesn’t stop at booking — we stay reachable through the trip and after you’re home.',
     },
     {
-      title: 'English & Chinese, Fluently',
+      title: 'English, Chinese & French, Fluently',
       description:
-        'Advisors work comfortably in both languages, so nothing gets lost whether a request comes in Mandarin or English.',
+        'Advisors work comfortably across all three languages, so nothing gets lost whether a request comes in Mandarin, English or French.',
     },
   ],
   zh: [
@@ -447,8 +447,8 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
       description: '支持不止于预订本身——行程期间乃至归国后，我们始终保持联系。',
     },
     {
-      title: '英语与中文双语沟通',
-      description: '顾问团队可自如切换中英双语，无论用中文还是英文提出需求，沟通都不会有遗漏。',
+      title: '中英法三语沟通',
+      description: '顾问团队可自如切换中、英、法三语，无论用哪种语言提出需求，沟通都不会有遗漏。',
     },
   ],
   fr: [
@@ -472,9 +472,9 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
         "Notre accompagnement ne s'arrête pas à la réservation — nous restons joignables pendant le séjour et après votre retour.",
     },
     {
-      title: 'Anglais et chinois, couramment',
+      title: 'Anglais, chinois et français, couramment',
       description:
-        "Nos conseillers travaillent aisément dans les deux langues, pour qu'aucune demande ne se perde, qu'elle soit formulée en mandarin ou en anglais.",
+        "Nos conseillers travaillent aisément dans ces trois langues, pour qu'aucune demande ne se perde, qu'elle soit formulée en mandarin, en anglais ou en français.",
     },
   ],
   ru: [
@@ -498,9 +498,9 @@ export const whyUsPoints: Record<Locale, SiteDataItem[]> = {
         'Поддержка не заканчивается на бронировании — мы на связи в течение поездки и после возвращения домой.',
     },
     {
-      title: 'Английский и китайский свободно',
+      title: 'Английский, китайский и французский свободно',
       description:
-        'Консультанты одинаково свободно работают на обоих языках — ни один запрос не теряется, будь он на китайском или английском.',
+        'Консультанты одинаково свободно работают на всех трёх языках — ни один запрос не теряется, будь он на китайском, английском или французском.',
     },
   ],
 };
