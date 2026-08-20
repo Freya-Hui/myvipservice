@@ -43,6 +43,7 @@ export const ui = {
     'home.hero.eyebrow': 'Paris · Est. 2015',
     'home.hero.tagline':
       'Based in France, welcoming the world. Private concierge and bespoke travel across Europe, built on genuine access and strict discretion.',
+    'home.hero.secondaryCta': 'Book Airport Pickup',
     'home.intro.eyebrow': 'About MYVIPSERVICE',
     'home.intro.title': 'Based in France, welcoming the world.',
     'home.intro.body':
@@ -313,6 +314,7 @@ export const ui = {
     'home.hero.eyebrow': '巴黎 · 创立于 2015 年',
     'home.hero.tagline':
       '扎根法国，服务世界。私人礼宾与遍及欧洲的定制旅行，建立在真实资源与严格保密之上。',
+    'home.hero.secondaryCta': '预订接机服务',
     'home.intro.eyebrow': '关于 MYVIPSERVICE',
     'home.intro.title': '扎根法国，服务世界。',
     'home.intro.body':
@@ -580,6 +582,7 @@ export const ui = {
     'home.hero.eyebrow': 'Paris · Depuis 2015',
     'home.hero.tagline':
       "Basés en France, ouverts sur le monde. Conciergerie privée et voyages sur mesure à travers l'Europe, fondés sur un accès réel et une discrétion absolue.",
+    'home.hero.secondaryCta': 'Réserver un transfert aéroport',
     'home.intro.eyebrow': 'À propos de MYVIPSERVICE',
     'home.intro.title': 'Basés en France, ouverts sur le monde.',
     'home.intro.body':
@@ -854,6 +857,7 @@ export const ui = {
     'home.hero.eyebrow': 'Париж · С 2015 года',
     'home.hero.tagline':
       'Базируемся во Франции, открыты миру. Частный консьерж-сервис и индивидуальные путешествия по Европе на основе реального доступа и строгой конфиденциальности.',
+    'home.hero.secondaryCta': 'Заказать трансфер из аэропорта',
     'home.intro.eyebrow': 'О MYVIPSERVICE',
     'home.intro.title': 'Базируемся во Франции, открыты миру.',
     'home.intro.body':

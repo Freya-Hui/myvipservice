@@ -7,10 +7,13 @@ interface Props {
   tagline: string;
   ctaLabel: string;
   ctaHref: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
   locale: Locale;
 }
 
-const { eyebrow, tagline, ctaLabel, ctaHref, locale } = Astro.props;
+const { eyebrow, tagline, ctaLabel, ctaHref, secondaryCtaLabel, secondaryCtaHref, locale } =
+  Astro.props;
 const heroImage = getImage('hero-home');
 ---
 
@@ -29,7 +32,16 @@ const heroImage = getImage('hero-home');
     <p class="eyebrow">{eyebrow}</p>
     <h1>MYVIPSERVICE</h1>
     <p class="hero__tagline">{tagline}</p>
-    <a class="button button--primary" href={ctaHref}>{ctaLabel}</a>
+    <div class="hero__actions">
+      <a class="button button--primary" href={ctaHref}>{ctaLabel}</a>
+      {
+        secondaryCtaLabel && secondaryCtaHref && (
+          <a class="button button--quiet" href={secondaryCtaHref}>
+            {secondaryCtaLabel}
+          </a>
+        )
+      }
+    </div>
   </div>
 </section>
 
@@ -66,5 +78,12 @@ const heroImage = getImage('hero-home');
     color: var(--color-text-muted);
     font-size: var(--text-body-lg);
     max-width: 34rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
   }
 </style>
