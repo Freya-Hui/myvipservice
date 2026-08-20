@@ -2,9 +2,10 @@
 import '../styles/global.css';
 import { languages } from '../i18n/ui';
 
-// No server available at request time (static build), so language detection
-// happens client-side: check the saved preference first, then navigator.language,
-// falling back to English. The links below are the no-JS / crawler fallback.
+// No server available at request time (static build), so this happens
+// client-side: use the saved preference from a manual language switch if
+// there is one, otherwise default to English. The links below are the
+// no-JS / crawler fallback.
 ---
 
 <!doctype html>
@@ -79,22 +80,7 @@ import { languages } from '../i18n/ui';
   }
 
   const saved = localStorage.getItem(KEY);
-  let target: Supported;
-
-  if (isSupported(saved)) {
-    target = saved;
-  } else {
-    const browserLangs = navigator.languages?.length ? navigator.languages : [navigator.language];
-    target = 'en';
-    for (const lang of browserLangs) {
-      const primary = lang.toLowerCase().split('-')[0];
-      if (isSupported(primary)) {
-        target = primary;
-        break;
-      }
-    }
-    localStorage.setItem(KEY, target);
-  }
+  const target: Supported = isSupported(saved) ? saved : 'en';
 
   location.replace(`/${target}/`);
 </script>
