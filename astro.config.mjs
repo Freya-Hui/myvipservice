@@ -1,10 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Netlify custom domain not bound yet (Phase 0) — placeholder, update when domain is confirmed.
-  site: 'https://myvipservice.netlify.app',
+  site: 'https://myvipservice.com',
   i18n: {
     locales: ['en', 'zh', 'fr', 'ru'],
     defaultLocale: 'en',
@@ -13,4 +13,12 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
+  integrations: [
+    sitemap({
+      i18n: {
+        locales: { en: 'en', zh: 'zh', fr: 'fr', ru: 'ru' },
+        defaultLocale: 'en',
+      },
+    }),
+  ],
 });
