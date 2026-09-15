@@ -1,0 +1,158 @@
+---
+import '../../styles/global.css';
+// Internal tool, not part of the public site — stands alone rather than
+// going through BaseLayout (no locale, no nav, no footer).
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>登录 · MYVIPSERVICE 后台</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <main class="login-page">
+      <p class="wordmark">MYVIPSERVICE</p>
+      <h1>后台登录</h1>
+
+      <div class="field">
+        <label for="name">姓名</label>
+        <input type="text" id="name" autocomplete="name" placeholder="登录记录里会显示这个名字" />
+      </div>
+      <div class="field">
+        <label for="password">后台密码</label>
+        <div class="login-page__row">
+          <input type="password" id="password" autocomplete="current-password" />
+          <button type="button" id="toggle-password" aria-label="显示密码">👁</button>
+        </div>
+      </div>
+      <button type="button" id="login-button" class="login-page__submit">登录</button>
+      <p id="login-status" role="status"></p>
+    </main>
+
+    <script is:inline>
+      (function () {
+        const loginButton = document.getElementById('login-button');
+        const togglePasswordButton = document.getElementById('toggle-password');
+        const nameInput = document.getElementById('name');
+        const passwordInput = document.getElementById('password');
+        const loginStatus = document.getElementById('login-status');
+
+        togglePasswordButton.addEventListener('click', () => {
+          const showing = passwordInput.type === 'text';
+          passwordInput.type = showing ? 'password' : 'text';
+          togglePasswordButton.setAttribute('aria-label', showing ? '显示密码' : '隐藏密码');
+        });
+
+        function nextPath() {
+          const next = new URLSearchParams(window.location.search).get('next');
+          return next && next.startsWith('/admin/') ? next : '/admin/';
+        }
+
+        async function submit() {
+          if (!nameInput.value.trim()) {
+            loginStatus.textContent = '请填写姓名。';
+            nameInput.focus();
+            return;
+          }
+          loginStatus.textContent = '验证中…';
+          const res = await fetch('/.netlify/functions/admin-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ name: nameInput.value.trim(), password: passwordInput.value }),
+          });
+          if (res.status === 429) {
+            loginStatus.textContent = '失败次数过多，请 15 分钟后再试。';
+            return;
+          }
+          if (!res.ok) {
+            loginStatus.textContent = '密码错误。';
+            return;
+          }
+          window.location.href = nextPath();
+        }
+
+        loginButton.addEventListener('click', submit);
+        [nameInput, passwordInput].forEach((el) => {
+          el.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') submit();
+          });
+        });
+
+        // Already logged in (valid session cookie) and landed here anyway —
+        // skip straight through instead of asking again.
+        fetch('/.netlify/functions/admin-check-auth', { credentials: 'include' }).then((res) => {
+          if (res.ok) window.location.href = nextPath();
+        });
+      })();
+    </script>
+
+    <style>
+      .login-page {
+        max-width: 24rem;
+        margin: 15vh auto 0;
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .wordmark {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        letter-spacing: var(--tracking-wordmark);
+        margin-bottom: var(--space-4);
+      }
+
+      h1 {
+        margin-bottom: var(--space-5);
+      }
+
+      .field {
+        margin-bottom: var(--space-4);
+      }
+
+      .field label {
+        display: block;
+        margin-bottom: var(--space-1);
+      }
+
+      .login-page__row {
+        display: flex;
+        gap: var(--space-2);
+      }
+
+      input {
+        font: inherit;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+        flex: 1;
+        min-width: 0;
+      }
+
+      button {
+        font: inherit;
+        padding: 0.5rem 1.25rem;
+        border: none;
+        border-radius: var(--radius);
+        background: var(--color-accent);
+        color: var(--color-bg-elevated);
+        cursor: pointer;
+      }
+
+      .login-page__submit {
+        width: 100%;
+      }
+
+      #login-status {
+        margin-top: var(--space-2);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+    </style>
+  </body>
+</html>
