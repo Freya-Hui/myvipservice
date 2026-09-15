@@ -1,0 +1,125 @@
+---
+import { getImageSafe } from '../data/image-attributions';
+import type { Locale } from '../i18n/ui';
+
+interface Item {
+  text: string;
+  image?: string;
+  /** Optional link to the real page this highlight is describing (e.g. a
+   *  service highlight pointing at the journey it's summarising). When set,
+   *  the whole item — image and text together — becomes one link. */
+  href?: string;
+}
+
+interface Props {
+  items: Item[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props;
+---
+
+<ul class="highlight-list">
+  {
+    items.map((item) => {
+      const image = item.image ? getImageSafe(item.image) : null;
+      const needsCredit = image && image.license !== 'Unsplash License';
+      // The photo-credit link must stay outside the item's own `href` link —
+      // nesting an <a> inside another <a> is invalid HTML and breaks click
+      // handling in browsers, so the credit renders as a sibling, not a
+      // child, of the highlight-list__link below.
+      const figure = image && (
+        <figure class="figure figure--standard">
+          <img
+            src={image.src}
+            alt={image.altByLocale[locale]}
+            loading="lazy"
+            width="1600"
+            height="1200"
+          />
+        </figure>
+      );
+      const credit = needsCredit && (
+        <p class="gallery__credit text-small">
+          Photo:{' '}
+          <a href={image.sourceUrl} target="_blank" rel="noopener noreferrer">
+            {image.author} / {image.sourceName}
+          </a>
+          , {image.license}
+        </p>
+      );
+      if (!image && !item.href) {
+        return <li>{item.text}</li>;
+      }
+      return (
+        <li class="highlight-list__item--media">
+          {item.href ? (
+            <a class="highlight-list__link" href={item.href}>
+              {figure}
+              <p>{item.text}</p>
+            </a>
+          ) : (
+            <>
+              {figure}
+              <p>{item.text}</p>
+            </>
+          )}
+          {credit}
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  .highlight-list {
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* Highlights paired with an image get the same image-then-text rhythm as
+     the Courchevel journal article, instead of a flat gallery disconnected
+     from the text describing it. */
+  .highlight-list__item--media {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .highlight-list__item--media .figure {
+    margin: 0;
+  }
+
+  .highlight-list__item--media p {
+    margin: 0;
+  }
+
+  .highlight-list__item--media .gallery__credit {
+    color: var(--color-text-faint);
+    margin: 0;
+  }
+
+  .highlight-list__item--media .gallery__credit a {
+    color: inherit;
+  }
+
+  .highlight-list__link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .highlight-list__link p {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .highlight-list__link:hover p {
+    color: var(--color-accent-strong);
+  }
+</style>

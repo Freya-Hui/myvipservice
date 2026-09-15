@@ -1,0 +1,66 @@
+---
+interface Props {
+  label: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+const { label, ctaLabel, ctaHref } = Astro.props;
+---
+
+<div class="mid-cta">
+  <a class="mid-cta__inner" href={ctaHref}>
+    <span class="mid-cta__label">{label}</span>
+    <span class="mid-cta__link">{ctaLabel} →</span>
+  </a>
+</div>
+
+<style>
+  /* A thin, full-bleed dark strip breaking up the page rhythm — the
+     reference site's recurring black "CONTACT" bars between sections,
+     lighter-weight than the bottom InquiryCTA (which stays the main
+     closing moment). */
+  .mid-cta {
+    background: var(--color-text);
+  }
+
+  .mid-cta__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    /* Wider than the standard .container reading column and with more
+       vertical room — this bar is meant to be a bold, eye-catching break
+       in the page rhythm, not a quiet footnote. Matches the header's own
+       widened row (see Header.astro) for a consistent "full" width. */
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-block: var(--space-6);
+    padding-inline: var(--space-5);
+    color: var(--color-bg);
+    text-decoration: none;
+  }
+
+  .mid-cta__label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: var(--text-h3);
+  }
+
+  .mid-cta__link {
+    color: var(--color-accent-strong);
+    font-size: var(--text-body-lg);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    transition: color var(--transition-fast);
+  }
+
+  .mid-cta__inner:hover .mid-cta__link {
+    color: var(--color-bg);
+  }
+</style>

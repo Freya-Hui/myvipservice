@@ -31,11 +31,11 @@ From Paris, the two most common routes are flying or taking the high-speed train
 
 **Days 1–2: base yourself in the Luberon and don't over-schedule.** Gordes, Roussillon and Ménerbes are all within 20–30 minutes of each other, which makes them a good radius for the first two days without needing to change hotels each night. We usually suggest one or two anchor points per day, leaving plenty of room to stop wherever the view is worth it and climb to the top of a village for the panorama.
 
-**Day 3: build in a genuine "vineyard afternoon."** Not a rushed tasting stop, but an afternoon where the owner walks you through the vines and you sit down afterward to a lunch built around local ingredients. That's the whole idea behind our private vineyard lunch experience — the point isn't how many wines you tasted, it's the feeling of actually being hosted.
+**Day 3: build in a genuine "vineyard afternoon."** Not a rushed tasting stop, but an afternoon where the owner walks you through the vines and you sit down afterward to a lunch built around local ingredients. That's the whole idea behind the private vineyard lunch experience — the point isn't how many wines you tasted, it's the feeling of actually being hosted.
 
 **Day 4: if the dates line up with a Sunday, don't miss the market at L'Isle-sur-la-Sorgue.** It's one of Provence's best-known markets — antiques, spices, local produce — and it's manageable if you arrive by 9–10am; by midday it gets genuinely crowded. If Sunday doesn't fit the schedule, the lavender fields around the Sénanque Abbey (in season) make a good half-day alternative.
 
-**Day 5: leave a day for the surroundings, and don't overload it either.** The French Riviera isn't far from Provence, so it's worth folding the coast or Monaco into the same trip rather than treating them as separate visits — our themed journey covering the Riviera, Monaco and Provence is built around exactly that logic. If the last day is also your departure day, we'd suggest keeping it light: a packed final day of a long trip is usually where the fatigue shows up most.
+**Day 5: leave a day for the surroundings, and don't overload it either.** The French Riviera isn't far from Provence, so it's worth folding the coast or Monaco into the same trip rather than treating them as separate visits — the themed journey covering the Riviera, Monaco and Provence is built around exactly that logic. If the last day is also your departure day, we'd suggest keeping it light: a packed final day of a long trip is usually where the fatigue shows up most.
 
 ## Practical tips
 

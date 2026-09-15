@@ -125,6 +125,95 @@
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
+/* Cormorant Garamond, self-hosted (same rationale as Playfair Display
+   above). It ships as a variable font, so one file per subset covers the
+   whole 400–600 weight range — no need for a separate file per weight. */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-400-600-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-400-600-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-400-600-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* Oswald, self-hosted (same rationale as the fonts above — never load from
+   fonts.googleapis.com, per CLAUDE.md's China-accessibility rule; these are
+   the actual font files, fetched once and served from our own domain).
+   Bold condensed grotesk for the new headline direction — Latin script
+   only, no CJK glyphs, so Chinese headings fall through to the system CJK
+   fallback in --font-display same as Cormorant Garamond always did. */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/oswald-600-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/oswald-700-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-400italic-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-400italic-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-400italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
 *,
 *::before,
 *::after {
@@ -132,7 +221,7 @@
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -150,8 +239,10 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: var(--leading-heading);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
   margin: 0 0 var(--space-3);
   /* Safety net for unbroken strings (the MYVIPSERVICE wordmark) on very
      narrow viewports — the fluid --text-h1 scale should stay ahead of this. */
@@ -160,8 +251,8 @@ h4 {
 
 h1 {
   font-size: var(--text-h1);
-  font-weight: 600;
-  line-height: var(--leading-tight);
+  font-weight: 700;
+  line-height: 0.98;
 }
 h2 {
   font-size: var(--text-h2);
@@ -208,6 +299,49 @@ ol {
 
 .prose {
   max-width: var(--prose-max-width);
+}
+
+/* Article-with-sidebar-TOC layout — shared by the journal detail template
+   and the accommodation detail template (see ArticleTOC.astro). */
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.article-layout__body {
+  min-width: 0;
+  /* Without a TOC, this column is the grid's full 1fr track (the whole
+     .container width) — .prose's own max-width then needs its own
+     centering, same as it had when .container and .prose were classes
+     on a single element together. With a TOC, the track is already
+     sized to match .prose's max-width exactly, so this is a no-op. */
+  margin-inline: auto;
+}
+
+/* Only reserves the sidebar column when ArticleTOC will actually render
+   one — a short page with too few sections for a table of contents just
+   keeps its single centered prose column instead of leaving an empty
+   16rem gap where the sidebar would sit. */
+@media (min-width: 1000px) {
+  .article-layout.has-toc {
+    grid-template-columns: minmax(0, var(--prose-max-width)) 16rem;
+    gap: var(--space-6);
+    justify-content: center;
+    /* Without this, the sidebar (a grid item) stretches to match the
+       prose column's full height by default — harmless for its own
+       position: sticky behavior, but an oversized box for no reason. */
+    align-items: start;
+  }
+}
+
+.prose img {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--ratio-standard);
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--color-bg-inset);
+  margin-block: var(--space-5) var(--space-3);
 }
 
 .section {
@@ -273,12 +407,17 @@ ol {
   min-height: var(--button-min-height);
   padding: var(--button-padding-block) var(--button-padding-inline);
   border: var(--button-border-width) solid var(--color-accent);
-  border-radius: var(--radius);
+  /* Sharper, more rectangular than the old --radius (6px) — part of the
+     bolder/graphic direction; reuses the existing --radius-sm token rather
+     than inventing a new one. */
+  border-radius: var(--radius-sm);
   background: transparent;
   color: var(--color-accent);
   font-family: var(--font-body);
   font-size: var(--text-small);
-  letter-spacing: var(--tracking-button);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   text-decoration: none;
   cursor: pointer;
   transition:
@@ -401,6 +540,58 @@ legend {
 :focus-visible {
   outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
+}
+
+/* Entrance-animation utilities — shared by Header's nav (fade-down) and any
+   hero-style section with staggered content (fade-up). Kept here rather
+   than duplicated per-component since both need the same keyframes. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-down {
+  animation: fade-down 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.stagger-1 {
+  animation-delay: 0ms;
+}
+.stagger-2 {
+  animation-delay: 120ms;
+}
+.stagger-3 {
+  animation-delay: 240ms;
+}
+.stagger-4 {
+  animation-delay: 360ms;
+}
+.stagger-5 {
+  animation-delay: 480ms;
+}
+.stagger-6 {
+  animation-delay: 600ms;
 }
 
 /* Respect reduced-motion preference site-wide */

@@ -8,8 +8,8 @@ category: 'Sports'
 destinationKey: 'french-alps'
 featured: false
 status: 'published'
-coverImage: 'destination-french-alps-chalet'
-gallery: ['destination-french-alps-chalet', 'destination-french-alps']
+coverImage: 'journey-alps-geneva-offpiste-ski'
+gallery: ['journey-alps-geneva-offpiste-ski', 'destination-french-alps-chalet']
 duration: 'Journée complète'
 suitableFor: ['Individuels', 'Couples', 'Petits groupes', 'Skieurs expérimentés']
 familySuitable: false
@@ -21,8 +21,8 @@ highlights:
     'Équipement de sécurité avalanche fourni',
   ]
 customisationNotes: "Indiquez-nous votre niveau et la taille du groupe — le guide confirme l'itinéraire exact le matin même selon les conditions, et la journée peut être organisée en demi-journée ou journée complète."
-relatedAccommodationKeys: []
-relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedAccommodationKeys: ['hotel-barriere-les-neiges-courchevel']
+relatedExperienceKeys: ['clinique-la-prairie-montreux']
 relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-07
 draft: false

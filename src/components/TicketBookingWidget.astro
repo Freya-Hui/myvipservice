@@ -1,0 +1,578 @@
+---
+import { useTranslations, type Locale } from '../i18n/ui';
+import { getImage } from '../data/image-attributions';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const standardVehicleImage = getImage('service-car-interior');
+const aviationVehicleImage = getImage('service-car-aviation-seats');
+---
+
+<div class="ticket-booking" id="ticket-booking-root">
+  <form id="ticket-booking-form">
+    <input type="hidden" name="locale" value={locale} />
+
+    <div class="field">
+      <span class="ticket-booking__label">{t('ticketBooking.typeLabel')}</span>
+      <div class="ticket-booking__pills" role="radiogroup">
+        <button type="button" class="pill is-active" data-type="tickets"
+          >{t('ticketBooking.type.tickets')}</button
+        >
+        <button type="button" class="pill" data-type="museumTour"
+          >{t('ticketBooking.type.museumTour')}</button
+        >
+      </div>
+      <input type="hidden" name="requestType" id="tk-type-field" value="tickets" />
+    </div>
+
+    <div class="field" data-field="eventName">
+      <label for="tk-event-name">{t('ticketBooking.eventNameLabel')}</label>
+      <input
+        type="text"
+        id="tk-event-name"
+        name="eventName"
+        placeholder={t('ticketBooking.eventNamePlaceholder')}
+      />
+    </div>
+
+    <div class="field" data-field="museum" hidden>
+      <span class="ticket-booking__label">{t('ticketBooking.museumLabel')}</span>
+      <div class="ticket-booking__pills" role="radiogroup">
+        <button type="button" class="pill is-active" data-museum="louvre"
+          >{t('ticketBooking.museum.louvre')}</button
+        >
+        <button type="button" class="pill" data-museum="orsay"
+          >{t('ticketBooking.museum.orsay')}</button
+        >
+        <button type="button" class="pill" data-museum="versailles"
+          >{t('ticketBooking.museum.versailles')}</button
+        >
+        <button type="button" class="pill" data-museum="other"
+          >{t('ticketBooking.museum.other')}</button
+        >
+      </div>
+      <input type="hidden" name="museum" id="tk-museum-field" value="louvre" />
+    </div>
+
+    <div class="field" data-field="language" hidden>
+      <span class="ticket-booking__label">{t('ticketBooking.languageLabel')}</span>
+      <div class="ticket-booking__pills" role="radiogroup">
+        <button type="button" class="pill is-active" data-language="mandarin"
+          >{t('ticketBooking.language.mandarin')}</button
+        >
+        <button type="button" class="pill" data-language="english"
+          >{t('ticketBooking.language.english')}</button
+        >
+      </div>
+      <input type="hidden" name="language" id="tk-language-field" value="mandarin" />
+    </div>
+
+    <div class="field-group__row">
+      <div class="field">
+        <label for="tk-party-size">{t('ticketBooking.partySizeLabel')}</label>
+        <input type="number" id="tk-party-size" name="partySize" min="1" value="2" required />
+      </div>
+      <div class="field">
+        <label for="tk-date">{t('carBooking.dateLabel')}</label>
+        <input type="date" id="tk-date" name="date" required />
+      </div>
+    </div>
+
+    <p class="ticket-booking__note" data-field="museumPartySizeNote" hidden>
+      {t('ticketBooking.museumPartySizeNote')}
+    </p>
+    <p class="ticket-booking__note" id="tk-party-size-too-large" hidden>
+      {t('ticketBooking.museumPartySizeTooLargeNote')}
+    </p>
+    <p class="ticket-booking__note" data-field="leadTimeNote" hidden>
+      {t('ticketBooking.leadTimeNote')}
+    </p>
+
+    <label class="ticket-booking__checkbox" data-field="chauffeur" hidden>
+      <input type="checkbox" id="tk-chauffeur" name="wantsChauffeur" value="yes" />
+      {t('ticketBooking.chauffeurLabel')}
+    </label>
+
+    <div class="field ticket-booking__vehicles" id="tk-vehicles" hidden>
+      <span class="ticket-booking__label">{t('carBooking.carTypeLabel')}</span>
+      <div class="ticket-booking__vehicleCards">
+        <button type="button" class="vehicle-card is-active" data-vehicle="standard">
+          <img
+            src={standardVehicleImage.src}
+            alt={standardVehicleImage.altByLocale[locale]}
+            loading="lazy"
+          />
+          <span class="vehicle-card__name">{t('carBooking.carType.standard')}</span>
+        </button>
+        <button type="button" class="vehicle-card" data-vehicle="aviation">
+          <img
+            src={aviationVehicleImage.src}
+            alt={aviationVehicleImage.altByLocale[locale]}
+            loading="lazy"
+          />
+          <span class="vehicle-card__name">{t('carBooking.carType.aviation')}</span>
+        </button>
+      </div>
+      <input type="hidden" name="vehicle" id="tk-vehicle-field" value="standard" />
+    </div>
+
+    <div class="field">
+      <label for="tk-notes">{t('carBooking.notesLabel')}</label>
+      <textarea id="tk-notes" name="notes" rows="3" placeholder={t('carBooking.notesPlaceholder')}
+      ></textarea>
+    </div>
+
+    <fieldset class="field-group">
+      <legend class="visually-hidden">{t('carBooking.section.contact')}</legend>
+      <div class="field-group__row">
+        <div class="field">
+          <label for="tk-name">{t('carBooking.nameLabel')}</label>
+          <input type="text" id="tk-name" name="name" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="tk-email">{t('carBooking.emailLabel')}</label>
+          <input type="email" id="tk-email" name="email" autocomplete="email" required />
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="field">
+      <label for="tk-phone">{t('carBooking.phoneLabel')}</label>
+      <div class="ticket-booking__phoneRow">
+        <select
+          id="tk-phone-code"
+          name="phoneCountryCode"
+          aria-label={t('carBooking.phoneCodeLabel')}
+        >
+          <option value="+86">China +86</option>
+          <option value="+33">France +33</option>
+          <option value="+44">UK +44</option>
+          <option value="+49">Germany +49</option>
+          <option value="+39">Italy +39</option>
+          <option value="+34">Spain +34</option>
+          <option value="+41">Switzerland +41</option>
+          <option value="+7">Russia +7</option>
+          <option value="+1">US/Canada +1</option>
+          <option value="+852">Hong Kong +852</option>
+          <option value="+65">Singapore +65</option>
+          <option value="+81">Japan +81</option>
+        </select>
+        <input type="tel" id="tk-phone" name="phoneWechat" autocomplete="tel" required />
+      </div>
+      <p class="ticket-booking__note">{t('carBooking.whatsappNote')}</p>
+    </div>
+
+    <div class="field">
+      <span class="ticket-booking__label">{t('carBooking.contactMethodLabel')}</span>
+      <div class="ticket-booking__pills" role="radiogroup">
+        <button type="button" class="pill is-active" data-contact-method="whatsapp"
+          >{t('carBooking.contactMethod.whatsapp')}</button
+        >
+        <button type="button" class="pill" data-contact-method="email"
+          >{t('carBooking.contactMethod.email')}</button
+        >
+        <button type="button" class="pill" data-contact-method="imessage"
+          >{t('carBooking.contactMethod.imessage')}</button
+        >
+      </div>
+      <input
+        type="hidden"
+        name="preferredContactMethod"
+        id="tk-contact-method-field"
+        value="whatsapp"
+      />
+    </div>
+
+    <div class="ticket-booking__summary">
+      <p class="ticket-booking__price" id="tk-price">
+        <span class="ticket-booking__priceLabel">{t('ticketBooking.priceLabel')}</span>
+        <span class="ticket-booking__priceValue" id="tk-price-value">€300</span>
+      </p>
+      <p class="ticket-booking__note" id="tk-price-note">{t('ticketBooking.museumPriceNote')}</p>
+    </div>
+
+    <button type="submit" class="button button--primary" id="tk-submit"
+      >{t('ticketBooking.submit')}</button
+    >
+    <p class="ticket-booking__status" id="tk-status" role="status"></p>
+  </form>
+</div>
+
+<script
+  define:vars={{
+    requestReceivedNote: t('carBooking.requestReceivedNote'),
+    genericErrorNote: t('carBooking.genericErrorNote'),
+    ticketsPriceNote: t('ticketBooking.ticketsPriceNote'),
+    museumPriceNote: t('ticketBooking.museumPriceNote'),
+    museumOtherPriceNote: t('ticketBooking.museumOtherPriceNote'),
+  }}
+>
+  (function () {
+    const MUSEUM_TOUR_PRICE = 300;
+    const MUSEUM_TOUR_MAX_PARTY = 6;
+
+    const root = document.getElementById('ticket-booking-root');
+    const form = document.getElementById('ticket-booking-form');
+    const typePills = root.querySelectorAll('[data-type]');
+    const typeField = document.getElementById('tk-type-field');
+    const eventNameField = root.querySelector('[data-field="eventName"]');
+    const museumField = root.querySelector('[data-field="museum"]');
+    const museumPills = root.querySelectorAll('[data-museum]');
+    const museumFieldInput = document.getElementById('tk-museum-field');
+    const languageField = root.querySelector('[data-field="language"]');
+    const languagePills = root.querySelectorAll('[data-language]');
+    const languageFieldInput = document.getElementById('tk-language-field');
+    const museumPartySizeNote = root.querySelector('[data-field="museumPartySizeNote"]');
+    const partySizeTooLarge = document.getElementById('tk-party-size-too-large');
+    const leadTimeNote = root.querySelector('[data-field="leadTimeNote"]');
+    const chauffeurField = root.querySelector('[data-field="chauffeur"]');
+    const chauffeurCheckbox = document.getElementById('tk-chauffeur');
+    const vehiclesField = document.getElementById('tk-vehicles');
+    const vehicleCards = root.querySelectorAll('[data-vehicle]');
+    const vehicleField = document.getElementById('tk-vehicle-field');
+    const partySizeInput = document.getElementById('tk-party-size');
+    const dateInput = document.getElementById('tk-date');
+    const contactMethodPills = root.querySelectorAll('[data-contact-method]');
+    const contactMethodField = document.getElementById('tk-contact-method-field');
+    const priceEl = document.getElementById('tk-price');
+    const priceValueEl = document.getElementById('tk-price-value');
+    const priceNoteEl = document.getElementById('tk-price-note');
+    const submitButton = document.getElementById('tk-submit');
+    const statusEl = document.getElementById('tk-status');
+
+    let requestType = 'tickets';
+
+    function isMuseumTour() {
+      return requestType === 'museumTour';
+    }
+
+    function setMinDate() {
+      if (isMuseumTour()) {
+        const min = new Date(Date.now() + 48 * 60 * 60 * 1000);
+        dateInput.min = min.toISOString().slice(0, 10);
+      } else {
+        dateInput.removeAttribute('min');
+      }
+    }
+
+    function update() {
+      eventNameField.hidden = isMuseumTour();
+      museumField.hidden = !isMuseumTour();
+      languageField.hidden = !isMuseumTour();
+      museumPartySizeNote.hidden = !isMuseumTour();
+      leadTimeNote.hidden = !isMuseumTour();
+      chauffeurField.hidden = !isMuseumTour();
+      if (!isMuseumTour() && chauffeurCheckbox.checked) {
+        chauffeurCheckbox.checked = false;
+        vehiclesField.hidden = true;
+      }
+
+      const size = Number(partySizeInput.value);
+      const tooLarge = isMuseumTour() && size > MUSEUM_TOUR_MAX_PARTY;
+      partySizeTooLarge.hidden = !tooLarge;
+
+      // The flat €300 rate only applies to the three named museums we
+      // actually quoted it for — "Other" still goes through this same
+      // enquiry form, but needs a real quote like a ticket request does.
+      const isOtherMuseum = isMuseumTour() && museumFieldInput.value === 'other';
+
+      if (isMuseumTour() && tooLarge) {
+        priceEl.hidden = true;
+      } else if (isMuseumTour() && isOtherMuseum) {
+        priceEl.hidden = false;
+        priceValueEl.textContent = '—';
+        priceNoteEl.textContent = museumOtherPriceNote;
+      } else if (isMuseumTour()) {
+        priceEl.hidden = false;
+        priceValueEl.textContent = `€${MUSEUM_TOUR_PRICE}`;
+        priceNoteEl.textContent = museumPriceNote;
+      } else {
+        priceEl.hidden = false;
+        priceValueEl.textContent = '—';
+        priceNoteEl.textContent = ticketsPriceNote;
+      }
+
+      submitButton.disabled = tooLarge || !size || size < 1;
+      setMinDate();
+    }
+
+    typePills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        typePills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        requestType = btn.getAttribute('data-type');
+        typeField.value = requestType;
+        update();
+      });
+    });
+
+    museumPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        museumPills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        museumFieldInput.value = btn.getAttribute('data-museum');
+        update();
+      });
+    });
+
+    languagePills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        languagePills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        languageFieldInput.value = btn.getAttribute('data-language');
+      });
+    });
+
+    contactMethodPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        contactMethodPills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        contactMethodField.value = btn.getAttribute('data-contact-method');
+      });
+    });
+
+    chauffeurCheckbox.addEventListener('change', () => {
+      vehiclesField.hidden = !chauffeurCheckbox.checked;
+    });
+
+    vehicleCards.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        vehicleCards.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        vehicleField.value = btn.getAttribute('data-vehicle');
+      });
+    });
+
+    partySizeInput.addEventListener('input', update);
+    update();
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      submitButton.disabled = true;
+      statusEl.textContent = '…';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      if (!isMuseumTour()) {
+        delete data.museum;
+        delete data.language;
+        delete data.wantsChauffeur;
+        delete data.vehicle;
+      } else {
+        delete data.eventName;
+        if (!chauffeurCheckbox.checked) delete data.vehicle;
+      }
+
+      try {
+        const res = await fetch('/.netlify/functions/notify-ticket-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error('failed');
+        statusEl.textContent = requestReceivedNote;
+        form.reset();
+        requestType = 'tickets';
+        typeField.value = 'tickets';
+        typePills.forEach((b) => b.classList.toggle('is-active', b.dataset.type === 'tickets'));
+        museumPills.forEach((b) => b.classList.toggle('is-active', b.dataset.museum === 'louvre'));
+        languagePills.forEach((b) =>
+          b.classList.toggle('is-active', b.dataset.language === 'mandarin'),
+        );
+        contactMethodPills.forEach((b) =>
+          b.classList.toggle('is-active', b.dataset.contactMethod === 'whatsapp'),
+        );
+        vehicleCards.forEach((b) =>
+          b.classList.toggle('is-active', b.dataset.vehicle === 'standard'),
+        );
+        vehicleField.value = 'standard';
+        vehiclesField.hidden = true;
+        update();
+      } catch {
+        statusEl.textContent = genericErrorNote;
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  })();
+</script>
+
+<style>
+  .ticket-booking {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: var(--space-5);
+    background: var(--color-bg-inset);
+    border-radius: var(--radius);
+  }
+
+  .field {
+    margin-bottom: var(--space-4);
+  }
+
+  .field label,
+  .ticket-booking__label {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+  }
+
+  .field-group {
+    border: none;
+    padding: 0;
+    margin: 0 0 var(--space-4);
+  }
+
+  .field-group__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .ticket-booking__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .pill {
+    font: inherit;
+    font-size: var(--text-small);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    background: var(--color-bg-elevated);
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .pill.is-active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg-elevated);
+  }
+
+  .ticket-booking__note {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+    margin-bottom: var(--space-3);
+  }
+
+  .ticket-booking__checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-small);
+    margin-bottom: var(--space-4);
+  }
+
+  /* The site-wide `input { width: 100% }` reset also catches checkboxes
+     unless overridden — without this, the checkbox stretches to fill the
+     flex row and shoves its own label text out to the far right. */
+  .ticket-booking__checkbox input {
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  .ticket-booking__vehicleCards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .vehicle-card {
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    background: var(--color-bg-elevated);
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .vehicle-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .vehicle-card__name {
+    display: block;
+    padding: var(--space-2);
+    font-size: var(--text-small);
+  }
+
+  .vehicle-card.is-active {
+    border-color: var(--color-accent);
+  }
+
+  .ticket-booking__phoneRow {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .ticket-booking__phoneRow select {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .ticket-booking__phoneRow input {
+    flex: 1;
+  }
+
+  .ticket-booking__summary {
+    padding: var(--space-4) 0;
+    border-top: 1px solid var(--color-border);
+    margin-bottom: var(--space-4);
+  }
+
+  .ticket-booking__price {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0 0 var(--space-2);
+  }
+
+  .ticket-booking__priceLabel {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  .ticket-booking__priceValue {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    color: var(--color-accent);
+  }
+
+  #ticket-booking-form button[type='submit'] {
+    width: 100%;
+  }
+
+  .ticket-booking__status {
+    margin-top: var(--space-3);
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+</style>

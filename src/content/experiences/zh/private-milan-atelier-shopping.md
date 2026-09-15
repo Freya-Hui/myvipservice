@@ -9,7 +9,7 @@ destinationKey: 'milan'
 featured: true
 status: 'published'
 coverImage: 'destination-milan'
-gallery: ['destination-milan', 'service-fashion-shopping']
+gallery: ['destination-milan', 'service-boutique-appointment']
 duration: '半天'
 suitableFor: ['个人', '情侣', '小型团体']
 familySuitable: false

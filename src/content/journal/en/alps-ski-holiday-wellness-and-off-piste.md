@@ -8,13 +8,15 @@ excerpt: "A ski holiday doesn't have to be all skiing — here's why we suggest 
 coverImage: 'destination-french-alps-chalet'
 gallery: ['destination-french-alps-chalet', 'destination-french-alps']
 relatedDestinationKeys: ['french-alps']
-relatedExperienceKeys: ['demo-alpine-wellness-retreat', 'private-alps-off-piste-ski-day']
+relatedAccommodationKeys: ['hotel-barriere-les-neiges-courchevel']
+relatedExperienceKeys: ['clinique-la-prairie-montreux', 'private-alps-off-piste-ski-day']
 relatedJourneyKeys: ['alps-geneva-journey']
 seoTitle: 'French Alps Ski Holiday Guide: Season Timing, Off-Piste Fitness Prep and Pairing With Wellness'
 seoDescription: 'How do you plan a French Alps ski holiday? This guide covers the best window in the ski season, fitness and gear preparation for off-piste skiing, avalanche safety basics, and how to combine wellness time with ski days in a single trip.'
 status: 'published'
 publishedAt: 2026-08-07
 draft: false
+featured: true
 ---
 
 Not everyone in a travelling group wants to ski all day — some want to chase off-piste terrain, others would rather sleep in and spend a morning on wellness. Rather than compromising to accommodate one side, it's often better to build both into the same trip.
@@ -35,6 +37,14 @@ After several consecutive days of skiing, muscles and the body need to recover. 
 
 The two can alternate within the same trip rather than being an either/or choice — ski the first two days, build in a recovery wellness day, then decide based on energy whether to add another off-piste day. Lake Geneva isn't far from the Alps, and for a trip outside ski season, we also have a themed journey combining the Alps and Lake Geneva, which makes the shift in pace between mountain and lake more distinct.
 
+## Which resort to choose
+
+The French Alps' ski areas differ enough in character that picking the right one matters more than picking a specific run. Courchevel and Méribel both sit within the Three Valleys — the largest linked ski area in the world — and lean luxury, with the highest density of five-star chalets and Michelin-level mountain dining in the Alps: a good fit if you want a polished experience without giving up terrain size. Chamonix, at the foot of Mont Blanc, is a different animal entirely — a genuine mountaineering town built around hardcore off-piste and terrain rather than polish. Val d'Isère and Tignes sit somewhere between the two — high-level skiing with a younger, livelier atmosphere than Courchevel. Tell us the group's skiing level and the kind of atmosphere you're after, and we'll suggest the resort that fits.
+
+## Where to stay
+
+Our long-standing partner, Fouquet's Courchevel (Courchevel 1850, formerly Hôtel Barrière Les Neiges), sits right at the foot of the Bellecôte piste — genuine ski-in/ski-out, a short walk from the Three Valleys lift — with a 1,000m² spa and three restaurants on-site (including a Fouquet's), so skiing and wellness can both happen without changing hotels. A number of mountain hotels have already opened early-bird booking for this ski season, and the pricing and room selection are usually noticeably better than booking closer to the season — if you already have a rough travel window in mind, it's worth reaching out early to lock in rooms, and we'll keep an eye on the latest early-bird offers for you.
+
 ## Packing and travel tips
 
 - **Layering works better than a single heavy down jacket** — a moisture-wicking base layer, an insulating mid-layer, and a windproof, waterproof shell handle the temperature swings of active skiing better than one thick coat.
@@ -50,4 +60,4 @@ The two can alternate within the same trip rather than being an either/or choice
 
 **Which month has the best snow?** January and February typically have the most reliable, consolidated snow; if daylight and comfort matter more, March is a good middle ground, though it comes with softer spring-condition routes.
 
-If you're planning a ski holiday in the Alps, tell us how many are travelling, everyone's skiing level, and roughly which dates, and we'll help balance mountain time against rest along these lines — and let you know how far ahead to start any fitness preparation.
+If you'd rather not coordinate hotels, guides and transport yourself, hand the whole thing to us — tell us how many are travelling, roughly which dates, and your hotel budget, and we'll put together a trip along these lines and send you a full quote to confirm, along with how far ahead to start any fitness preparation.

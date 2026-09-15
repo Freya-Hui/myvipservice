@@ -56,7 +56,7 @@ export interface ImageAttribution {
 
 ## 不重复下载/不放多个目录
 
-现状已经符合这条要求——同一张图被多处引用时，`image-attributions.ts` 里会新建一条**共享同一 `src` 路径**的记录（如 `destination-paris` 复用 `hero-paris.jpg`），而不是把同一个文件复制到不同目录。本阶段延续。
+现状已经符合这条要求——同一张图被多处引用时，`image-attributions.ts` 里会新建一条**共享同一 `src` 路径**的记录，而不是把同一个文件复制到不同目录。本阶段延续。
 
 ## Astro 当前阶段的轻量实现 vs 未来 CMS 接管
 

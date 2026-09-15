@@ -12,16 +12,12 @@ const t = useTranslations(locale);
 
 // Aligned to the real service lines (same taxonomy as the Services page
 // grouping) instead of a generic general/travel split, so an enquiry tells
-// the team what kind of request it actually is. Partnership/Media stay at
-// the end — real channels, but not trip-planning categories.
+// the team what kind of request it actually is.
 const enquiryTypes = [
   { value: 'private-travel', label: t('servicesGroup.Private Travel') },
   { value: 'hotels-villas', label: t('servicesGroup.Hotels & Villas') },
-  { value: 'private-chauffeur', label: t('servicesGroup.Private Chauffeur') },
-  { value: 'concierge-lifestyle', label: t('servicesGroup.Concierge & Lifestyle') },
+  { value: 'private-transportation', label: t('servicesGroup.Private Transportation') },
   { value: 'groups-corporate', label: t('servicesGroup.Groups & Corporate') },
-  { value: 'partnership', label: t('contact.section.partnership') },
-  { value: 'media', label: t('contact.section.media') },
 ];
 
 // Ranges rather than free text — the client wants budget to qualify
@@ -81,91 +77,112 @@ const contactEmail = 'contact@myvipservice.com';
 
         <h2>{t('contact.form.heading')}</h2>
 
-        <fieldset>
-          <legend>{t('contact.form.enquiryType')}</legend>
-          {
-            enquiryTypes.map((type, index) => (
-              <label class="radio-label" for={`enquiry-${type.value}`}>
-                <input
-                  type="radio"
-                  id={`enquiry-${type.value}`}
-                  name="enquiryType"
-                  value={type.value}
-                  checked={index === 0}
-                />
-                {type.label}
-              </label>
-            ))
-          }
-        </fieldset>
+        <div class="form-section">
+          <p class="form-section__heading">
+            <span class="form-section__index" aria-hidden="true">01</span>
+            {t('contact.form.section1')}
+          </p>
 
-        <div class="field">
-          <label for="name">{t('contact.form.name')}</label>
-          <input type="text" id="name" name="name" autocomplete="name" required />
-        </div>
+          <fieldset>
+            <legend>{t('contact.form.enquiryType')}</legend>
+            {
+              enquiryTypes.map((type, index) => (
+                <label class="radio-label" for={`enquiry-${type.value}`}>
+                  <input
+                    type="radio"
+                    id={`enquiry-${type.value}`}
+                    name="enquiryType"
+                    value={type.value}
+                    checked={index === 0}
+                  />
+                  {type.label}
+                </label>
+              ))
+            }
+          </fieldset>
 
-        <div class="field">
-          <label for="email">{t('contact.form.email')}</label>
-          <input type="email" id="email" name="email" autocomplete="email" required />
-        </div>
-
-        <div class="field">
-          <label for="phoneWechat">
-            {t('contact.form.phoneWechat')}
-            <span class="text-small">({t('common.optional')})</span>
-          </label>
-          <input type="text" id="phoneWechat" name="phoneWechat" autocomplete="tel" />
-        </div>
-
-        <div class="field">
-          <label for="destination">{t('contact.form.destination')}</label>
-          <input type="text" id="destination" name="destination" required />
-        </div>
-
-        <fieldset class="field-group">
-          <legend>{t('contact.form.dates')}</legend>
-          <div class="field-group__row">
-            <div class="field">
-              <label for="dateStart">{t('contact.form.dateStart')}</label>
-              <input type="date" id="dateStart" name="dateStart" required />
-            </div>
-            <div class="field">
-              <label for="dateEnd">{t('contact.form.dateEnd')}</label>
-              <input type="date" id="dateEnd" name="dateEnd" required />
-            </div>
+          <div class="field">
+            <label for="name">{t('contact.form.name')}</label>
+            <input type="text" id="name" name="name" autocomplete="name" required />
           </div>
-        </fieldset>
 
-        <div class="field">
-          <label for="travellers">
-            {t('contact.form.travellers')}
-            <span class="text-small">({t('common.optional')})</span>
-          </label>
-          <input type="number" id="travellers" name="travellers" min="1" step="1" />
+          <div class="field">
+            <label for="email">{t('contact.form.email')}</label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+          </div>
+
+          <div class="field">
+            <label for="phoneWechat">
+              {t('contact.form.phoneWechat')}
+              <span class="text-small">({t('common.optional')})</span>
+            </label>
+            <input type="text" id="phoneWechat" name="phoneWechat" autocomplete="tel" />
+          </div>
         </div>
 
-        <div class="field">
-          <label for="budget">{t('contact.form.budget')}</label>
-          <select id="budget" name="budget" required>
-            <option value="">{t('contact.form.budgetPlaceholder')}</option>
-            {budgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
-          </select>
+        <div class="form-section">
+          <p class="form-section__heading">
+            <span class="form-section__index" aria-hidden="true">02</span>
+            {t('contact.form.section2')}
+          </p>
+
+          <div class="field">
+            <label for="destination">{t('contact.form.destination')}</label>
+            <input type="text" id="destination" name="destination" required />
+          </div>
+
+          <fieldset class="field-group">
+            <legend>{t('contact.form.dates')}</legend>
+            <div class="field-group__row">
+              <div class="field">
+                <label for="dateStart">{t('contact.form.dateStart')}</label>
+                <input type="date" id="dateStart" name="dateStart" required />
+              </div>
+              <div class="field">
+                <label for="dateEnd">{t('contact.form.dateEnd')}</label>
+                <input type="date" id="dateEnd" name="dateEnd" required />
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="travellers">
+              {t('contact.form.travellers')}
+              <span class="text-small">({t('common.optional')})</span>
+            </label>
+            <input type="number" id="travellers" name="travellers" min="1" step="1" />
+          </div>
+
+          <div class="field">
+            <label for="budget">{t('contact.form.budget')}</label>
+            <select id="budget" name="budget" required>
+              <option value="">{t('contact.form.budgetPlaceholder')}</option>
+              {budgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
+            </select>
+          </div>
         </div>
 
-        <div class="field">
-          <label for="hotelBudget">
-            {t('contact.form.hotelBudget')}
-            <span class="text-small">({t('common.optional')})</span>
-          </label>
-          <select id="hotelBudget" name="hotelBudget">
-            <option value="">{t('contact.form.hotelBudgetPlaceholder')}</option>
-            {hotelBudgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
-          </select>
-        </div>
+        <div class="form-section">
+          <p class="form-section__heading">
+            <span class="form-section__index" aria-hidden="true">03</span>
+            {t('contact.form.section3')}
+          </p>
 
-        <div class="field">
-          <label for="details">{t('contact.form.details')}</label>
-          <textarea id="details" name="details" rows="5" required></textarea>
+          <div class="field">
+            <label for="hotelBudget">
+              {t('contact.form.hotelBudget')}
+              <span class="text-small">({t('common.optional')})</span>
+            </label>
+            <select id="hotelBudget" name="hotelBudget">
+              <option value="">{t('contact.form.hotelBudgetPlaceholder')}</option>
+              {hotelBudgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="details">{t('contact.form.details')}</label>
+            <textarea id="details" name="details" rows="5" required></textarea>
+          </div>
         </div>
 
         <button class="button button--primary" type="submit">{t('contact.form.submit')}</button>
@@ -177,10 +194,22 @@ const contactEmail = 'contact@myvipservice.com';
 
 <script
   is:inline
-  define:vars={{ successMessage: t('contact.form.success'), errorMessage: t('contact.form.error') }}
+  define:vars={{
+    successMessage: t('contact.form.success'),
+    errorMessage: t('contact.form.error'),
+    aboutPrefix: t('contact.form.aboutPrefix'),
+  }}
 >
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
+
+  // Detail pages link here with ?about=<page title> so a visitor asking
+  // about a specific hotel/destination/service doesn't have to retype it.
+  const about = new URLSearchParams(location.search).get('about');
+  const detailsField = document.getElementById('details');
+  if (about && detailsField && !detailsField.value) {
+    detailsField.value = `${aboutPrefix}${about}\n\n`;
+  }
 
   function encodeFormData(data) {
     return Object.keys(data)
@@ -218,6 +247,40 @@ const contactEmail = 'contact@myvipservice.com';
 
   .contact__email a {
     color: var(--color-text);
+  }
+
+  .form-section {
+    padding-top: var(--space-5);
+    margin-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .form-section:first-of-type {
+    padding-top: 0;
+    margin-top: var(--space-5);
+    border-top: none;
+  }
+
+  .form-section__heading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-h4);
+    margin-bottom: var(--space-4);
+  }
+
+  .form-section__index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    border: 1px solid var(--color-accent);
+    border-radius: 50%;
+    color: var(--color-accent);
+    font-size: var(--text-small);
   }
 
   .field {

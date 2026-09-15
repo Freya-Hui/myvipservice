@@ -7,35 +7,65 @@ import Gallery from '../../../../components/Gallery.astro';
 import KeyFacts from '../../../../components/KeyFacts.astro';
 import RelatedContent from '../../../../components/RelatedContent.astro';
 import ContentStatusBadge from '../../../../components/ContentStatusBadge.astro';
+import ArticleTOC from '../../../../components/ArticleTOC.astro';
 import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
-import { getDetailStaticPaths, resolveRelated } from '../../../../lib/content';
+import { getDetailStaticPaths, resolveRelated, excludeShownImages } from '../../../../lib/content';
 import { useTranslations, type Locale } from '../../../../i18n/ui';
 
 export const getStaticPaths = () => getDetailStaticPaths('journal');
 
 const { locale } = Astro.params as { locale: Locale };
 const { entry } = Astro.props as Awaited<ReturnType<typeof getDetailStaticPaths>>[number]['props'];
-const { data } = entry;
+const { data, body } = entry;
 const t = useTranslations(locale);
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
 
-const relatedDestinations = await resolveRelated(
-  'destinations',
-  locale,
-  data.relatedDestinationKeys,
+// Rough estimate, not a precise word-count tool: strip markdown syntax
+// (headings/emphasis/links/images) and count. Chinese reads by character,
+// not whitespace-separated words, so the two locale families need
+// different units and speeds — figures are the commonly-cited averages
+// for unhurried reading, not a formal readability study.
+const plainText = (body ?? '')
+  .replace(/!\[[^\]]*]\([^)]*\)/g, '')
+  .replace(/\[([^\]]*)]\([^)]*\)/g, '$1')
+  .replace(/[#*_`>-]/g, '')
+  .trim();
+const readingMinutes =
+  locale === 'zh'
+    ? Math.max(1, Math.round(plainText.replace(/\s/g, '').length / 400))
+    : Math.max(1, Math.round(plainText.split(/\s+/).filter(Boolean).length / 200));
+
+// Matches ArticleTOC.astro's own filter — needed here too so the layout
+// only reserves a sidebar column when one will actually render, instead of
+// leaving dead grid space on short articles with too few h2s to list.
+const hasToc = headings.filter((heading) => heading.depth === 2).length > 1;
+
+const shownImageIds = [data.coverImage, ...data.gallery];
+const relatedDestinations = excludeShownImages(
+  await resolveRelated('destinations', locale, data.relatedDestinationKeys),
+  shownImageIds,
 );
-const relatedAccommodations = await resolveRelated(
-  'accommodations',
-  locale,
-  data.relatedAccommodationKeys,
+const relatedAccommodations = excludeShownImages(
+  await resolveRelated('accommodations', locale, data.relatedAccommodationKeys),
+  shownImageIds,
 );
-const relatedExperiences = await resolveRelated('experiences', locale, data.relatedExperienceKeys);
-const relatedJourneys = await resolveRelated('journeys', locale, data.relatedJourneyKeys);
+const relatedExperiences = excludeShownImages(
+  await resolveRelated('experiences', locale, data.relatedExperienceKeys),
+  shownImageIds,
+);
+const relatedJourneys = excludeShownImages(
+  await resolveRelated('journeys', locale, data.relatedJourneyKeys),
+  shownImageIds,
+);
 
 const keyFacts = [
   {
     label: t('journal.detail.categoryLabel'),
     value: t(`journalCategory.${data.category}` as never),
+  },
+  {
+    label: t('journal.detail.readingTimeLabel'),
+    value: t('journal.detail.readingTimeValue').replace('{minutes}', String(readingMinutes)),
   },
   ...(data.publishedAt
     ? [
@@ -97,8 +127,11 @@ const structuredData = [
   </section>
 
   <section class="section">
-    <div class="container prose">
-      <Content />
+    <div class="container article-layout" class:list={{ 'has-toc': hasToc }}>
+      <div class="prose article-layout__body">
+        <Content />
+      </div>
+      {hasToc && <ArticleTOC headings={headings} label={t('journal.detail.tocHeading')} />}
     </div>
   </section>
 
@@ -173,4 +206,8 @@ const structuredData = [
     gap: var(--space-2);
     margin-top: var(--space-3);
   }
+
+  /* .article-layout / .article-layout__body / .has-toc now live in
+     global.css — shared with the accommodation detail page's own sidebar
+     TOC, see src/styles/global.css. */
 </style>

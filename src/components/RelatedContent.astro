@@ -7,7 +7,7 @@ import type { Locale } from '../i18n/ui';
 interface Item {
   href: string;
   imageId: string;
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   summary: string;
   meta?: string;
@@ -19,9 +19,12 @@ interface Props {
   title: string;
   items: Item[];
   locale: Locale;
+  /** Optional link to a full listing page — omitted on detail-page "related X" uses, which show a curated set rather than a browsable list. */
+  viewAllLabel?: string;
+  viewAllHref?: string;
 }
 
-const { eyebrow, title, items, locale } = Astro.props;
+const { eyebrow, title, items, locale, viewAllLabel, viewAllHref } = Astro.props;
 ---
 
 {
@@ -34,6 +37,11 @@ const { eyebrow, title, items, locale } = Astro.props;
             <ContentCard {...item} locale={locale} />
           ))}
         </ContentGrid>
+        {viewAllLabel && viewAllHref && (
+          <a class="text-small related-content__view-all" href={viewAllHref}>
+            {viewAllLabel}
+          </a>
+        )}
       </div>
     </section>
   )
@@ -42,5 +50,11 @@ const { eyebrow, title, items, locale } = Astro.props;
 <style>
   .related-content .content-grid {
     margin-top: var(--space-5);
+  }
+
+  .related-content__view-all {
+    display: inline-block;
+    margin-top: var(--space-5);
+    color: var(--color-accent);
   }
 </style>

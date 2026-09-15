@@ -8,13 +8,15 @@ excerpt: '滑雪假期不必只有滑雪——为什么我们建议在行程里�
 coverImage: 'destination-french-alps-chalet'
 gallery: ['destination-french-alps-chalet', 'destination-french-alps']
 relatedDestinationKeys: ['french-alps']
-relatedExperienceKeys: ['demo-alpine-wellness-retreat', 'private-alps-off-piste-ski-day']
+relatedAccommodationKeys: ['hotel-barriere-les-neiges-courchevel']
+relatedExperienceKeys: ['clinique-la-prairie-montreux', 'private-alps-off-piste-ski-day']
 relatedJourneyKeys: ['alps-geneva-journey']
 seoTitle: '法国阿尔卑斯滑雪假期指南：雪季时间、野雪体能准备与疗养搭配'
 seoDescription: '法国阿尔卑斯滑雪假期怎么安排？这篇指南涵盖雪季最佳时间、野雪滑雪的体能与装备准备、雪崩安全知识，以及如何把疗养时光和滑雪日搭配进同一趟行程。'
 status: 'published'
 publishedAt: 2026-08-07
 draft: false
+featured: false
 ---
 
 同行的人里，往往不是所有人都想整天滑雪——有人想冲野雪，有人更想睡到自然醒、去做个疗养。与其为了迁就某一方而各自妥协，不如把两者都安排进同一趟行程。
@@ -35,6 +37,14 @@ draft: false
 
 两者可以在同一趟行程里交替安排，不必二选一：比如前两天滑雪，中间安排一天疗养恢复，再看体力决定要不要加一天野雪。日内瓦湖离阿尔卑斯不算远，如果想在雪季之外的时间去，我们也有一条把阿尔卑斯和日内瓦湖结合起来的主题游路线，山与湖的节奏切换会更明显。
 
+## 推荐雪场
+
+法国阿尔卑斯几个滑雪区风格差异很大，选对区域比选具体路线更重要。库雪维尔（Courchevel）和梅里贝尔（Méribel）同属三峡谷（Three Valleys）——世界上最大的连片滑雪区，走的是奢华路线，木屋密度和米其林水准餐饮都是阿尔卑斯之最，适合想要精致体验又不想牺牲雪道规模的行程。位于勃朗峰脚下的霞慕尼（Chamonix）是真正的登山重镇，硬核野雪和地形是它的强项，比起精致感更看重实打实的滑雪水准。瓦勒迪泽尔（Val d'Isère）和蒂涅（Tignes）介于两者之间，滑雪水准很高，氛围也比库雪维尔更年轻热闹。告诉我们同行人的滑雪水平和想要的氛围，我们会建议最合适的雪场。
+
+## 推荐酒店
+
+我们长期合作的 Fouquet's Courchevel（库尔雪维尔 1850，原名芭莉葳雪山酒店 Hôtel Barrière Les Neiges）就在 Bellecôte 雪道脚下，可以直接滑雪进出，走几步就是三山谷缆车站，酒店内有 1000 平方米水疗中心和三家餐厅（含 Fouquet's 品牌餐厅），滑雪和疗养两件事在同一家酒店就能安排妥当。目前不少雪场酒店已经开放雪季早鸟预订，价格和房型选择通常比临近雪季再订划算不少——如果您已经定下大概的出行时间，建议尽早联系我们锁定房型，我们也会同步跟进最新的早鸟优惠。
+
 ## 打包与出行贴士
 
 - **分层穿衣比一件厚羽绒服更实用**：贴身速干层 + 保暖中间层 + 防风防水外层，滑雪时活动量大，容易忽热忽冷。
@@ -50,4 +60,4 @@ draft: false
 
 **几月去雪况最好？** 1-2 月雪况通常最稳定扎实，但如果更看重日照和体感温度，3 月是不错的折中选择，只是需要接受春雪偏软的路线状况。
 
-如果您在规划阿尔卑斯的滑雪假期，告诉我们同行人数、滑雪水平和大概的日期，我们会按这个思路帮您把山地时光和休息时间配平，也会提前提醒需要多久开始做体能准备。
+如果不想自己一项项对接酒店、向导和用车，可以直接交给我们全程安排——告诉我们同行人数、大概的出行日期和酒店预算，我们会按这篇文章的思路帮您把滑雪、疗养和住宿配平，把详细报价发给您确认，也会提前提醒需要多久开始做体能准备。

@@ -1,32 +1,52 @@
 :root {
   /* ---- Colour ---------------------------------------------------------
-     Deep, understated luxury palette: dark navy ground, warm gold accent.
-     Kept deliberately narrow — no secondary hue family — so nothing reads
-     as decorative. Status colours are desaturated to match the register. */
-  --color-bg: #0b0f19;
-  --color-bg-elevated: #121829;
-  --color-bg-inset: #171f33;
-  --color-text: #f2efe8;
-  --color-text-muted: #a8a79e;
-  /* #82817a against --color-bg clears 4.5:1 (WCAG AA for small text); the
-     previous #6f6e68 only cleared ~3.6:1 — keep this at or lighter. */
-  --color-text-faint: #82817a;
-  --color-accent: #b9975a;
-  --color-accent-strong: #d3b378;
-  --color-on-accent: #0b0f19;
-  --color-border: rgb(242 239 232 / 14%);
-  --color-border-strong: rgb(242 239 232 / 28%);
-  --color-focus-ring: #d3b378;
+     Warm, understated luxury palette: ivory ground, deep bronze-gold
+     accent. Kept deliberately narrow — no secondary hue family — so
+     nothing reads as decorative. Status colours are desaturated to match
+     the register. All text/border pairs below are checked against
+     --color-bg for WCAG AA (4.5:1 for normal text). */
+  --color-bg: #f7f3ec;
+  --color-bg-elevated: #ffffff;
+  --color-bg-inset: #efe7d8;
+  --color-text: #2a2621;
+  --color-text-muted: #55493d;
+  /* #6d6153 against --color-bg clears 4.5:1 (WCAG AA for small text) —
+     keep this at or darker if the background ever lightens further. */
+  --color-text-faint: #6d6153;
+  --color-accent: #7a5f2f;
+  --color-accent-strong: #b9975a;
+  --color-on-accent: #f7f3ec;
+  --color-border: rgb(42 38 33 / 12%);
+  --color-border-strong: rgb(42 38 33 / 26%);
+  --color-focus-ring: #7a5f2f;
 
-  --color-success: #8fae8b;
-  --color-error: #c98b7a;
+  /* Text sitting directly on a photo behind a dark scrim (Hero, PageHero,
+     the transparent header, the founder-video panel) — always light,
+     independent of --color-text. The scrim darkens the photo regardless
+     of the site's own light/dark theme, so this must never flip with it. */
+  --color-on-photo: #f7f3ec;
+  --color-on-photo-muted: #e6ddc9;
+  --color-border-on-photo: rgb(247 243 236 / 22%);
+  /* --color-accent is tuned for AA-contrast text on --color-bg; on a dark
+     photo scrim it reads muddy, so on-photo accents use the brighter
+     --color-accent-strong instead. */
+
+  --color-success: #3f6b3c;
+  --color-error: #a34a35;
 
   /* ---- Type -------------------------------------------------------------
-     Playfair Display (self-hosted, see global.css @font-face) for headings
-     and the wordmark; system serif as fallback while it loads and for CJK
-     text, which the font doesn't cover. Body copy stays on the system
-     stack — no webfont weight for reading-length text. */
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+     Site-wide visual-direction change (bold/condensed, in the spirit of
+     the Mouratoglou reference the client asked to move toward): Oswald
+     (self-hosted, see global.css @font-face) is now the display face for
+     headings and the wordmark, in place of the old Cormorant Garamond
+     serif. System sans as fallback while it loads and for CJK text, which
+     Oswald doesn't cover (Chinese headings render in the system fallback,
+     same as before). --font-serif keeps Cormorant Garamond available for
+     anywhere an elegant-serif accent is still wanted later — not removed,
+     just no longer the default. Body copy stays on the system stack — no
+     webfont weight for reading-length text. */
+  --font-display: 'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --text-eyebrow: 0.75rem;
@@ -58,13 +78,15 @@
   --space-7: clamp(3rem, 1.8rem + 5vw, 6rem);
 
   /* Section vertical rhythm — one token, used by every homepage section */
-  --section-padding-block: clamp(3rem, 2.2rem + 3.2vw, 5.5rem);
+  --section-padding-block: clamp(2.5rem, 1.8rem + 2.4vw, 4rem);
 
   /* ---- Layout ------------------------------------------------------------ */
   --content-max-width: 72rem;
-  --prose-max-width: 42rem;
-  --radius: 6px;
-  --radius-sm: 3px;
+  --prose-max-width: 52rem;
+  /* Sharper than the old 6px — part of the bolder/graphic direction (cards,
+     image corners, inputs all read squarer now, closer to the reference). */
+  --radius: 3px;
+  --radius-sm: 2px;
 
   /* Neutral (black-based) elevation for genuine floating overlays
      (dropdowns, the mobile nav panel) — not a palette colour, so it stays

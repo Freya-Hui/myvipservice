@@ -5,17 +5,25 @@ order: 9
 group: 'Concierge & Lifestyle'
 investmentTier: 'standard'
 image: service-concierge
-gallery: ['service-lobby-detail']
+storyFeatures:
+  [
+    {
+      title: 'Built Around the Occasion, Not a Package',
+      body: 'For an event or private occasion, it starts with the venue itself — sourcing a historic property or distinctive address and managing the full spatial installation, then shaping the atmosphere through floral design, lighting and visual styling chosen for the occasion rather than pulled from a standard package.',
+      imageId: 'service-floral-event',
+    },
+    {
+      title: 'Documented, Without Anyone Managing It',
+      body: 'A photographer or videographer can accompany part or all of an itinerary, from a single event to a full trip, so the moments that matter are documented without anyone having to manage it themselves.',
+      imageId: 'service-camera-lens',
+    },
+  ]
 highlights:
   [
     'End-to-end venue sourcing and management, from historic properties to full spatial installation',
-    'Aesthetic direction — floral design, lighting and visual styling — for private occasions',
     'Strict discretion, with identity protection and on-site security arranged where needed',
+    'Trip photography and videography, with a photographer available to accompany part or all of the itinerary',
   ]
 ---
 
-Whatever the request, our concierge team is reachable around the clock and handles every detail with the same discretion, whether it is a landmark occasion or a simple everyday need.
-
-For an event or private occasion, that starts with the venue itself — sourcing a historic property or distinctive address and managing the full spatial installation, then shaping the atmosphere through floral design, lighting and visual styling chosen for the occasion rather than pulled from a standard package.
-
-Throughout, identity protection and, where needed, professional on-site security are arranged as a matter of course rather than an add-on — the same standard of discretion whether the request is a single evening or a longer stay.
+Whatever the request, the concierge team is reachable around the clock and handles every detail with the same discretion, whether it is a landmark occasion or a simple everyday need.

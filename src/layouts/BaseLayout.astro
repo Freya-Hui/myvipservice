@@ -16,9 +16,22 @@ interface Props {
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
   /** Set on detail pages so the language switcher can find the matching translation. */
   translationContext?: { collection: LinkableCollection; translationKey: string };
+  /** Homepage only: floats the header over the full-bleed hero image instead of a solid bar above it. */
+  transparentHeader?: boolean;
+  /** See Seo.astro — pages reachable only via a private link. */
+  noindex?: boolean;
 }
 
-const { title, description, path, imageId, structuredData, translationContext } = Astro.props;
+const {
+  title,
+  description,
+  path,
+  imageId,
+  structuredData,
+  translationContext,
+  transparentHeader,
+  noindex,
+} = Astro.props;
 const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 const t = useTranslations(currentLocale);
 ---
@@ -35,11 +48,12 @@ const t = useTranslations(currentLocale);
       path={path}
       imageId={imageId}
       structuredData={structuredData}
+      noindex={noindex}
     />
   </head>
   <body>
     <a class="skip-link" href="#main-content">{t('a11y.skipToContent')}</a>
-    <Header translationContext={translationContext} />
+    <Header translationContext={translationContext} transparent={transparentHeader} />
     <main id="main-content">
       <slot />
     </main>

@@ -18,10 +18,12 @@ const { eyebrow, title, steps } = Astro.props;
       {
         steps.map((step, index) => (
           <li>
-            <span class="process__index" aria-hidden="true">
-              {index + 1}
-            </span>
-            <h3>{step.title}</h3>
+            <div class="process__head">
+              <span class="process__index" aria-hidden="true">
+                {index + 1}
+              </span>
+              <h3>{step.title}</h3>
+            </div>
             <p class="text-small">{step.description}</p>
           </li>
         ))
@@ -36,29 +38,60 @@ const { eyebrow, title, steps } = Astro.props;
     grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     gap: var(--card-gap);
     list-style: none;
-    margin: var(--space-5) 0 0;
+    margin: var(--space-4) 0 0;
     padding: 0;
     counter-reset: none;
+  }
+
+  /* Mobile: badge and title share a row (see .process__head below) so a
+     step reads as one compact line instead of the badge, then a gap, then
+     the title stacked underneath — desktop keeps the original stacked
+     look untouched. */
+  .process__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+
+  .process__head h3 {
+    margin-bottom: 0;
   }
 
   .process__index {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    border: 1px solid var(--color-accent);
-    border-radius: 50%;
-    color: var(--color-accent);
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--color-accent);
+    border-radius: var(--radius-sm);
+    color: var(--color-on-accent);
     font-family: var(--font-display);
-    margin-bottom: var(--space-3);
-  }
-
-  .process__list h3 {
-    margin-bottom: var(--space-2);
+    font-weight: 700;
   }
 
   .process__list p {
     color: var(--color-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .process {
+      padding-block: calc(var(--section-padding-block) * 0.65);
+    }
+
+    .process__head {
+      display: block;
+      margin-bottom: 0;
+    }
+
+    .process__index {
+      margin-bottom: var(--space-3);
+    }
+
+    .process__head h3 {
+      margin-bottom: var(--space-2);
+    }
   }
 </style>

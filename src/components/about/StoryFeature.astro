@@ -10,13 +10,25 @@ interface Props {
   imageId: string;
   locale: Locale;
   reverse?: boolean;
+  /** Shorter image + tighter section padding — for a spot like the
+   *  homepage where this section needs to sit within one screen alongside
+   *  whatever follows it, rather than the full-height version used
+   *  elsewhere (About page, service detail pages). */
+  compact?: boolean;
 }
 
-const { id, eyebrow, title, body, imageId, locale, reverse = false } = Astro.props;
+const { id, eyebrow, title, body, imageId, locale, reverse = false, compact = false } = Astro.props;
 const image = getImage(imageId);
+// Unsplash License needs no credit; other licenses (e.g. Pixabay, Wikimedia
+// Commons CC BY-SA) are conditioned on attribution, so surface it.
+const needsCredit = image.license !== 'Unsplash License';
 ---
 
-<section class="section story-feature" id={id} class:list={{ 'story-feature--reverse': reverse }}>
+<section
+  class="section story-feature"
+  id={id}
+  class:list={{ 'story-feature--reverse': reverse, 'story-feature--compact': compact }}
+>
   <div class="container story-feature__grid">
     <div class="figure figure--standard">
       <img
@@ -26,6 +38,17 @@ const image = getImage(imageId);
         height="1200"
         loading="lazy"
       />
+      {
+        needsCredit && (
+          <p class="story-feature__credit text-small">
+            Photo:{' '}
+            <a href={image.sourceUrl} target="_blank" rel="noopener noreferrer">
+              {image.author} / {image.sourceName}
+            </a>
+            , {image.license}
+          </p>
+        )
+      }
     </div>
     <div class="story-feature__content prose">
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
@@ -48,6 +71,15 @@ const image = getImage(imageId);
     font-size: var(--text-body-lg);
   }
 
+  .story-feature__credit {
+    color: var(--color-text-faint);
+    margin-top: var(--space-1);
+  }
+
+  .story-feature__credit a {
+    color: inherit;
+  }
+
   @media (min-width: 768px) {
     .story-feature__grid {
       grid-template-columns: 1fr 1.1fr;
@@ -59,6 +91,14 @@ const image = getImage(imageId);
 
     .story-feature--reverse .figure {
       order: 2;
+    }
+
+    .story-feature--compact {
+      padding-block: calc(var(--section-padding-block) * 0.6);
+    }
+
+    .story-feature--compact .figure--standard {
+      aspect-ratio: 3 / 2;
     }
   }
 </style>

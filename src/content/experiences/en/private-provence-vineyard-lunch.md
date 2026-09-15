@@ -9,7 +9,7 @@ destinationKey: 'provence'
 featured: true
 status: 'published'
 coverImage: 'destination-provence-vineyard'
-gallery: ['destination-provence-vineyard', 'destination-provence']
+gallery: ['destination-provence-vineyard', 'service-chef-plating']
 duration: 'Half day'
 suitableFor: ['Couples', 'Small groups', 'Wine lovers']
 familySuitable: false

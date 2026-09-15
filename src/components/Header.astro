@@ -5,13 +5,18 @@ import type { LinkableCollection } from '../lib/content';
 
 interface Props {
   translationContext?: { collection: LinkableCollection; translationKey: string };
+  /** Floats over a full-bleed hero image instead of sitting in a solid bar above it. */
+  transparent?: boolean;
 }
 
-const { translationContext } = Astro.props;
+const { translationContext, transparent = false } = Astro.props;
 const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 const t = useTranslations(currentLocale);
 
 const currentPath = Astro.url.pathname;
+// Contact isn't in this list — the always-visible "Plan Your Journey"
+// button already covers that intent, so a separate nav entry for it was
+// redundant (and every item here costs width at the wide/inline breakpoint).
 const navItems: Array<{ href: string; label: string }> = [
   { href: `/${currentLocale}/`, label: t('nav.home') },
   { href: `/${currentLocale}/about/`, label: t('nav.about') },
@@ -20,13 +25,22 @@ const navItems: Array<{ href: string; label: string }> = [
   { href: `/${currentLocale}/destinations/`, label: t('nav.destinations') },
   { href: `/${currentLocale}/journeys/`, label: t('journeys.hero.title') },
   { href: `/${currentLocale}/journal/`, label: t('journal.hero.title') },
-  { href: `/${currentLocale}/contact/`, label: t('nav.contact') },
 ];
 ---
 
-<header class="site-header">
+<header
+  class="site-header"
+  id="site-header"
+  class:list={{ 'site-header--transparent': transparent }}
+>
   <div class="container site-header__bar">
-    <a class="wordmark" href={`/${currentLocale}/`}>MYVIPSERVICE</a>
+    <a
+      class="wordmark"
+      href={`/${currentLocale}/`}
+      class:list={{ 'animate-fade-down stagger-2': transparent }}
+    >
+      MYVIPSERVICE
+    </a>
 
     <button
       class="menu-toggle"
@@ -34,6 +48,7 @@ const navItems: Array<{ href: string; label: string }> = [
       type="button"
       aria-expanded="false"
       aria-controls="nav-panel"
+      class:list={{ 'animate-fade-down stagger-3': transparent }}
     >
       <span class="visually-hidden">{t('nav.menuToggle')}</span>
       <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
@@ -41,7 +56,11 @@ const navItems: Array<{ href: string; label: string }> = [
       </svg>
     </button>
 
-    <div class="nav-panel" id="nav-panel">
+    <div
+      class="nav-panel"
+      id="nav-panel"
+      class:list={{ 'animate-fade-down stagger-1': transparent }}
+    >
       <nav aria-label="Primary">
         <ul class="nav-list">
           {
@@ -55,7 +74,7 @@ const navItems: Array<{ href: string; label: string }> = [
           }
         </ul>
       </nav>
-      <LanguageSwitcher translationContext={translationContext} />
+      <LanguageSwitcher translationContext={translationContext} transparent={transparent} />
       <a class="button button--primary plan-journey" href={`/${currentLocale}/contact/`}>
         {t('header.planJourney')}
       </a>
@@ -96,12 +115,98 @@ const navItems: Array<{ href: string; label: string }> = [
   panel?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);
   });
+
+  // Only the homepage's transparent-over-video header needs this — every
+  // other page already has a solid header from the start. Toggling a class
+  // (rather than reading scroll position in CSS, which can't) lets the
+  // solid background/text-colour swap happen the moment the photo/video
+  // behind the bar stops being able to guarantee contrast.
+  const header = document.getElementById('site-header');
+  if (header?.classList.contains('site-header--transparent')) {
+    const updateScrolled = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 20);
+    };
+    updateScrolled();
+    window.addEventListener('scroll', updateScrolled, { passive: true });
+  }
 </script>
 
 <style>
   .site-header {
     border-bottom: 1px solid var(--color-border);
     position: relative;
+  }
+
+  /* The standard .container caps at --content-max-width (72rem/1152px) for
+     reading-width body copy — too narrow for this bar. Measured: wordmark
+     + all 7 nav links + language switcher + CTA need ~1128px on their own
+     in Russian (the longest locale) before any container padding, so the
+     inline row could never fit inside the standard container at any
+     viewport width. Widened just for the header. */
+  .site-header .container {
+    max-width: 90rem;
+  }
+
+  .site-header--transparent {
+    position: fixed;
+    inset-inline: 0;
+    top: 0;
+    z-index: 10;
+    border-bottom: none;
+    background: transparent;
+    transition:
+      background-color 300ms ease,
+      box-shadow 300ms ease,
+      backdrop-filter 300ms ease;
+  }
+
+  /* Past the hero, the video/photo behind the bar is gone — swap to the
+     same solid bar every other page already uses, so the nav stays
+     readable (and present) instead of scrolling out of view. */
+  .site-header--transparent.is-scrolled {
+    background: var(--color-bg-elevated);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-elevated);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Floating over a photo instead of a solid bar — every piece of text and
+     the menu icon need their own contrast guarantee, not just the hero
+     copy's gradient (which is weakest right at the very top, where the
+     header sits). Fixed light colours here (--color-on-photo, not
+     --color-text) since the scrim behind is dark regardless of the site's
+     own light/dark theme. Once scrolled, the bar is solid like every other
+     page's header, so these revert to the normal theme colours too. */
+  .site-header--transparent .wordmark {
+    color: var(--color-on-photo);
+    font-weight: 700;
+    text-shadow:
+      0 1px 3px rgb(11 15 25 / 65%),
+      0 1px 12px rgb(11 15 25 / 45%);
+    transition:
+      color 300ms ease,
+      text-shadow 300ms ease;
+  }
+
+  .site-header--transparent.is-scrolled .wordmark {
+    color: var(--color-text);
+    text-shadow: none;
+  }
+
+  .site-header--transparent .menu-toggle {
+    background: rgb(11 15 25 / 35%);
+    border-color: var(--color-border-on-photo);
+    color: var(--color-on-photo);
+    transition:
+      background-color 300ms ease,
+      color 300ms ease,
+      border-color 300ms ease;
+  }
+
+  .site-header--transparent.is-scrolled .menu-toggle {
+    background: transparent;
+    border-color: var(--color-border-strong);
+    color: var(--color-text);
   }
 
   .site-header__bar {
@@ -169,13 +274,43 @@ const navItems: Array<{ href: string; label: string }> = [
     white-space: nowrap;
   }
 
-  /* Eight nav items (grew from five as Hotels/Destinations/Journeys/Journal
-     were added) + language switcher + CTA no longer fits in one row at the
-     old 1099px threshold — the Russian locale (longest labels) needs
-     ~1240-1260px of content width alone at this font size, which was
-     wrapping onto two lines well into normal desktop widths. Raised with
-     real margin, not just enough to barely fit. */
-  @media (max-width: 1400px) {
+  /* Above the panel breakpoint, the nav list sits inline in the header bar
+     — on the photo when the header is transparent, so it needs the same
+     fixed light treatment as the wordmark. Below it, the nav list only
+     ever appears inside .nav-panel's solid card and must keep the normal
+     theme colour, so this stays scoped to the wide viewport only. */
+  @media (min-width: 1261px) {
+    .site-header--transparent .nav-list a {
+      color: var(--color-on-photo);
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgb(11 15 25 / 55%);
+      transition:
+        color 300ms ease,
+        text-shadow 300ms ease;
+    }
+
+    .site-header--transparent .nav-list a:hover,
+    .site-header--transparent .nav-list a[aria-current='page'] {
+      color: var(--color-accent-strong);
+    }
+
+    .site-header--transparent.is-scrolled .nav-list a {
+      color: var(--color-text-muted);
+      font-weight: 400;
+      text-shadow: none;
+    }
+
+    .site-header--transparent.is-scrolled .nav-list a:hover,
+    .site-header--transparent.is-scrolled .nav-list a[aria-current='page'] {
+      color: var(--color-accent);
+    }
+  }
+
+  /* Seven nav items (Contact dropped — the persistent "Plan Your Journey"
+     button already covers that intent) fit inline down to about 1150px
+     for the longest locale (Russian); collapsing a little earlier than
+     that leaves real margin instead of chasing the exact fit. */
+  @media (max-width: 1260px) {
     .menu-toggle {
       display: inline-flex;
     }

@@ -1,0 +1,76 @@
+---
+interface Props {
+  title?: string;
+  items: Array<{ question: string; answer: string }>;
+  /** Groups these <details> so opening one closes the others — needs to be
+   * unique if more than one Faq renders on the same page. Native browser
+   * behavior (Chrome 120+, Firefox 130+, Safari 17.4+), no JS. */
+  name?: string;
+}
+
+const { title, items, name = 'faq' } = Astro.props;
+---
+
+<section class="faq">
+  {title && <h2>{title}</h2>}
+  <div class="faq__list">
+    {
+      items.map((item) => (
+        <details class="faq__item" name={name}>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .faq {
+    max-width: var(--prose-max-width);
+  }
+
+  .faq h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq__item {
+    padding-block: var(--space-3);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq__item:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq__item summary {
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: var(--text-h4);
+    list-style: none;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item summary::after {
+    content: '+';
+    float: right;
+    color: var(--color-accent);
+  }
+
+  .faq__item[open] summary::after {
+    content: '−';
+  }
+
+  .faq__item p {
+    margin-top: var(--space-3);
+    color: var(--color-text-muted);
+  }
+</style>

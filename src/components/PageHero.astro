@@ -13,13 +13,27 @@ interface Props {
 
 const { eyebrow, title, subtitle, imageId, locale } = Astro.props;
 const image = imageId ? getImage(imageId) : null;
+// A page can pass a `cta` slot to put a call-to-action on the same row as
+// the title — that row then spans the full content width (matching the
+// image below) instead of the narrower prose column, so the button has
+// somewhere to sit and the title lines up with the image's left edge.
+const hasCta = Astro.slots.has('cta');
 ---
 
 <section class="page-hero section">
-  <div class="container prose">
-    <p class="eyebrow">{eyebrow}</p>
-    <h1>{title}</h1>
-    {subtitle && <p class="page-hero__subtitle">{subtitle}</p>}
+  <div class:list={['container', hasCta ? 'page-hero__row' : 'prose']}>
+    <div class="page-hero__heading">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      {subtitle && <p class="page-hero__subtitle">{subtitle}</p>}
+    </div>
+    {
+      hasCta && (
+        <div class="page-hero__cta">
+          <slot name="cta" />
+        </div>
+      )
+    }
   </div>
   {
     image && locale && (
@@ -51,5 +65,43 @@ const image = imageId ? getImage(imageId) : null;
 
   .page-hero__image {
     margin-top: var(--space-5);
+  }
+
+  .page-hero__row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .page-hero__heading {
+    max-width: var(--prose-max-width);
+    min-width: 0;
+  }
+
+  .page-hero__cta {
+    flex-shrink: 0;
+  }
+
+  /* Below this width there isn't room for the title and CTA side by side
+     without either cramping the heading or truncating the button — they
+     stack instead, full width, same as any other narrow layout. */
+  @media (min-width: 640px) {
+    .page-hero__row {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .page-hero__heading {
+      /* Flex-wrap decides whether the CTA fits on this line using each
+         item's hypothetical (unshrunk) size — a heading claiming the full
+         prose measure leaves less than the CTA's width free even when
+         there looks like room, forcing an unwanted wrap. Capping it to
+         leave space for the CTA (plus the row's gap) keeps them on one
+         line down to this breakpoint, only reaching the full measure once
+         the row is wide enough to spare it. */
+      max-width: min(var(--prose-max-width), calc(100% - 20rem));
+    }
   }
 </style>

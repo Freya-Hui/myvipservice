@@ -20,7 +20,9 @@ gallery:
     'service-car-interior',
   ]
 relatedDestinationKeys: ['bordeaux', 'burgundy']
+relatedAccommodationKeys: ['maison-kairui-quincey']
 relatedExperienceKeys: []
+relatedJournalKeys: ['maison-kairui-burgundy-wine-retreat']
 seoTitle: '波尔多 & 勃艮第私人葡萄酒之旅｜MYVIPSERVICE 定制服务指南'
 seoDescription: '波尔多与勃艮第的私人葡萄酒旅程该怎么设计？这篇文章讲的不是"有哪些著名酒庄"，而是 MYVIPSERVICE 如何根据您的葡萄酒偏好、收藏方向与同行成员，反向定制一整段从酒窖到餐桌的私人旅程。'
 status: 'published'

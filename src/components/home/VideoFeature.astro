@@ -1,0 +1,91 @@
+---
+import { getImage } from '../../data/image-attributions';
+import type { Locale } from '../../i18n/ui';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  body: string;
+  /** Self-hosted video path under /public — never a YouTube embed (blocked/unreliable in mainland China). */
+  videoSrc?: string;
+  posterImageId: string;
+  comingSoonLabel: string;
+  locale: Locale;
+}
+
+const { eyebrow, title, body, videoSrc, posterImageId, comingSoonLabel, locale } = Astro.props;
+const poster = getImage(posterImageId);
+---
+
+<section class="section video-feature">
+  <div class="container video-feature__grid">
+    <div class="video-feature__media">
+      {
+        videoSrc ? (
+          <video controls preload="metadata" poster={poster.src}>
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        ) : (
+          <div class="figure figure--standard video-feature__pending">
+            <img
+              src={poster.src}
+              alt={poster.altByLocale[locale]}
+              width="1600"
+              height="1200"
+              loading="lazy"
+            />
+            <span class="video-feature__badge">{comingSoonLabel}</span>
+          </div>
+        )
+      }
+    </div>
+    <div class="video-feature__content prose">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      <p class="video-feature__body">{body}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .video-feature__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    align-items: center;
+  }
+
+  .video-feature__body {
+    color: var(--color-text-muted);
+    font-size: var(--text-body-lg);
+  }
+
+  .video-feature__media video {
+    width: 100%;
+    display: block;
+    background: var(--color-bg-inset);
+  }
+
+  .video-feature__pending {
+    position: relative;
+  }
+
+  .video-feature__badge {
+    position: absolute;
+    left: var(--space-3);
+    bottom: var(--space-3);
+    background: rgb(11 15 25 / 72%);
+    color: var(--color-on-photo);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius);
+    font-size: var(--text-small);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .video-feature__grid {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+</style>
