@@ -1,0 +1,513 @@
+---
+import '../../styles/global.css';
+// Internal tool, not part of the public site — stands alone rather than
+// going through BaseLayout (no locale, no nav, no footer).
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>合作伙伴联系方式 · MYVIPSERVICE 后台</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <main class="admin" id="admin-main" hidden>
+      <p class="wordmark">MYVIPSERVICE</p>
+      <a href="/admin/" class="admin__back">← 后台首页</a>
+      <div class="admin__headerRow">
+        <h1>合作伙伴联系方式</h1>
+        <button type="button" id="lock-button">退出登录</button>
+      </div>
+      <p id="login-status" role="status"></p>
+
+      <form id="partner-form" class="partner-form">
+        <input type="hidden" name="id" id="pf-id" />
+        <div class="partner-form__grid">
+          <label>
+            名称 *
+            <input
+              type="text"
+              name="name"
+              id="pf-name"
+              required
+              placeholder="例如：Hôtel Barrière Les Neiges"
+            />
+          </label>
+          <label>
+            类别
+            <input
+              type="text"
+              name="category"
+              id="pf-category"
+              placeholder="例如：酒店 / 别墅代理 / 游艇租赁"
+            />
+          </label>
+          <label>
+            网站
+            <input type="text" name="website" id="pf-website" placeholder="https://..." />
+          </label>
+          <label>
+            邮箱
+            <input type="email" name="email" id="pf-email" placeholder="contact@..." />
+          </label>
+          <label>
+            电话（没有可留空）
+            <input type="text" name="phone" id="pf-phone" placeholder="+33 ..." />
+          </label>
+        </div>
+        <div class="partner-form__actions">
+          <button type="submit" id="pf-submit">添加</button>
+          <button type="button" id="pf-cancel" hidden>取消编辑</button>
+        </div>
+        <p id="pf-status" role="status"></p>
+      </form>
+
+      <div class="partners-search" id="partners-search-wrap" hidden>
+        <input
+          type="search"
+          id="partners-search"
+          placeholder="搜索名称 / 类别 / 网站 / 邮箱 / 电话…"
+        />
+        <p class="partners-search__count" id="partners-search-count" role="status"></p>
+      </div>
+
+      <p id="empty-note" hidden>暂无合作伙伴记录。</p>
+      <p id="no-match-note" hidden>没有匹配的结果。</p>
+      <div class="partners-table-wrap" id="partners-table-wrap" hidden>
+        <table class="partners-table">
+          <colgroup>
+            <col class="col-name" />
+            <col class="col-category" />
+            <col class="col-website" />
+            <col class="col-email" />
+            <col class="col-phone" />
+            <col class="col-actions" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>名称</th>
+              <th>类别</th>
+              <th>网站</th>
+              <th>邮箱</th>
+              <th>电话</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="partners-body"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <script is:inline>
+      (function () {
+        const main = document.getElementById('admin-main');
+        const lockButton = document.getElementById('lock-button');
+        const loginStatus = document.getElementById('login-status');
+        const tableWrap = document.getElementById('partners-table-wrap');
+        const partnersBody = document.getElementById('partners-body');
+        const emptyNote = document.getElementById('empty-note');
+        const noMatchNote = document.getElementById('no-match-note');
+        const searchWrap = document.getElementById('partners-search-wrap');
+        const searchInput = document.getElementById('partners-search');
+        const searchCount = document.getElementById('partners-search-count');
+        const form = document.getElementById('partner-form');
+        const formStatus = document.getElementById('pf-status');
+        const submitButton = document.getElementById('pf-submit');
+        const cancelButton = document.getElementById('pf-cancel');
+
+        // The full list from the server — search filters this in memory
+        // rather than re-fetching, since the whole point is instant results
+        // as you type.
+        let allPartners = [];
+
+        async function authedFetch(url, options = {}) {
+          return fetch(url, { ...options, credentials: 'include' });
+        }
+
+        function escapeHtml(value) {
+          return String(value ?? '').replace(
+            /[&<>"']/g,
+            (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch],
+          );
+        }
+
+        function linkOrDash(value, hrefPrefix) {
+          if (!value) return '—';
+          const safe = escapeHtml(value);
+          return `<a href="${hrefPrefix}${safe}" target="_blank" rel="noopener">${safe}</a>`;
+        }
+
+        function renderRow(partner) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><span class="cell-truncate" title="${escapeHtml(partner.name)}">${escapeHtml(partner.name)}</span></td>
+            <td><span class="cell-truncate" title="${escapeHtml(partner.category)}">${escapeHtml(partner.category) || '—'}</span></td>
+            <td><span class="cell-truncate" title="${escapeHtml(partner.website)}">${linkOrDash(partner.website, '')}</span></td>
+            <td><span class="cell-truncate" title="${escapeHtml(partner.email)}">${partner.email ? `<a href="mailto:${escapeHtml(partner.email)}">${escapeHtml(partner.email)}</a>` : '—'}</span></td>
+            <td><span class="cell-truncate" title="${escapeHtml(partner.phone)}">${escapeHtml(partner.phone) || '—'}</span></td>
+            <td class="partners-table__actions">
+              <button type="button" class="partner-edit">编辑</button>
+              <button type="button" class="partner-delete">删除</button>
+            </td>
+          `;
+          tr.dataset.partner = JSON.stringify(partner);
+          return tr;
+        }
+
+        function renderList(partners) {
+          partnersBody.innerHTML = '';
+
+          if (allPartners.length === 0) {
+            emptyNote.hidden = false;
+            noMatchNote.hidden = true;
+            searchWrap.hidden = true;
+            tableWrap.hidden = true;
+            return;
+          }
+
+          emptyNote.hidden = true;
+          searchWrap.hidden = false;
+          searchCount.textContent = `共 ${allPartners.length} 条${searchInput.value ? `，匹配 ${partners.length} 条` : ''}`;
+
+          if (partners.length === 0) {
+            noMatchNote.hidden = false;
+            tableWrap.hidden = true;
+            return;
+          }
+          noMatchNote.hidden = true;
+          tableWrap.hidden = false;
+          partners.forEach((partner) => partnersBody.appendChild(renderRow(partner)));
+        }
+
+        function applySearch() {
+          const query = searchInput.value.trim().toLowerCase();
+          if (!query) {
+            renderList(allPartners);
+            return;
+          }
+          const filtered = allPartners.filter((p) =>
+            [p.name, p.category, p.website, p.email, p.phone].some((field) =>
+              String(field ?? '')
+                .toLowerCase()
+                .includes(query),
+            ),
+          );
+          renderList(filtered);
+        }
+
+        searchInput.addEventListener('input', applySearch);
+
+        async function loadPartners() {
+          const res = await authedFetch('/.netlify/functions/admin-partners');
+          if (res.status === 401) {
+            window.location.href = '/admin/login/?next=/admin/partners/';
+            return;
+          }
+          main.hidden = false;
+          if (!res.ok) {
+            loginStatus.textContent = '加载失败，请刷新重试。';
+            return;
+          }
+          const { partners } = await res.json();
+          allPartners = partners;
+          applySearch();
+        }
+
+        function resetForm() {
+          form.reset();
+          document.getElementById('pf-id').value = '';
+          submitButton.textContent = '添加';
+          cancelButton.hidden = true;
+        }
+
+        cancelButton.addEventListener('click', resetForm);
+
+        partnersBody.addEventListener('click', async (event) => {
+          const row = event.target.closest('tr');
+          if (!row) return;
+          const partner = JSON.parse(row.dataset.partner);
+
+          if (event.target.classList.contains('partner-edit')) {
+            document.getElementById('pf-id').value = partner.id;
+            document.getElementById('pf-name').value = partner.name;
+            document.getElementById('pf-category').value = partner.category;
+            document.getElementById('pf-website').value = partner.website;
+            document.getElementById('pf-email').value = partner.email;
+            document.getElementById('pf-phone').value = partner.phone;
+            submitButton.textContent = '保存修改';
+            cancelButton.hidden = false;
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+          }
+
+          if (event.target.classList.contains('partner-delete')) {
+            if (!window.confirm(`确定删除「${partner.name}」吗？`)) return;
+            await authedFetch('/.netlify/functions/admin-delete-partner', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: partner.id }),
+            });
+            loadPartners();
+          }
+        });
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          formStatus.textContent = '保存中…';
+          const data = Object.fromEntries(new FormData(form).entries());
+          const res = await authedFetch('/.netlify/functions/admin-save-partner', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          formStatus.textContent = res.ok ? '已保存。' : '保存失败，请重试。';
+          if (res.ok) {
+            resetForm();
+            loadPartners();
+          }
+        });
+
+        lockButton.addEventListener('click', async () => {
+          await authedFetch('/.netlify/functions/admin-logout', { method: 'POST' });
+          window.location.href = '/admin/login/';
+        });
+
+        loadPartners();
+      })();
+    </script>
+
+    <style is:global>
+      .admin {
+        max-width: 56rem;
+        margin-inline: auto;
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .wordmark {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        letter-spacing: var(--tracking-wordmark);
+        margin-bottom: var(--space-4);
+      }
+
+      .admin__back {
+        display: inline-block;
+        margin-bottom: var(--space-3);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        text-decoration: none;
+      }
+
+      .admin__back:hover {
+        color: var(--color-accent);
+      }
+
+      .admin__headerRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-2);
+      }
+
+      .admin__headerRow h1 {
+        margin: 0;
+      }
+
+      .admin__headerRow button {
+        font: inherit;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-size: var(--text-small);
+      }
+
+      #login-status,
+      #pf-status {
+        margin-top: var(--space-2);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .partner-form {
+        margin: var(--space-5) 0;
+        padding: var(--space-4);
+        background: var(--color-bg-inset);
+        border-radius: var(--radius);
+      }
+
+      .partner-form__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        gap: var(--space-3);
+      }
+
+      .partner-form__grid label {
+        display: block;
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .partner-form__grid input {
+        width: 100%;
+        margin-top: var(--space-1);
+        font: inherit;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .partner-form__actions {
+        display: flex;
+        gap: var(--space-3);
+        margin-top: var(--space-3);
+      }
+
+      .partner-form__actions button {
+        font: inherit;
+        padding: 0.5rem 1.25rem;
+        border: none;
+        border-radius: var(--radius);
+        background: var(--color-accent);
+        color: var(--color-bg-elevated);
+        cursor: pointer;
+      }
+
+      #pf-cancel {
+        background: transparent;
+        border: 1px solid var(--color-border-strong);
+        color: inherit;
+      }
+
+      .partners-search {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-3);
+      }
+
+      /* Same [hidden]-vs-author-display cascade issue as elsewhere in the
+         admin tools — an unconditional `display: flex` here beats the UA
+         stylesheet's [hidden]{display:none} unless restated. */
+      .partners-search[hidden] {
+        display: none;
+      }
+
+      .partners-search input {
+        flex: 1;
+        min-width: 12rem;
+        font: inherit;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .partners-search__count {
+        margin: 0;
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        white-space: nowrap;
+      }
+
+      #no-match-note {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .partners-table-wrap {
+        overflow-x: auto;
+      }
+
+      .partners-table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        font-size: var(--text-small);
+      }
+
+      /* Fixed proportions instead of letting each column size itself off
+         whatever happens to be in that row — otherwise a table this wide
+         (name/category/website/email/phone) reflows unevenly as rows are
+         filtered or edited. Actions gets a fixed width sized to its two
+         buttons; the rest share the remainder. */
+      .col-name {
+        width: 20%;
+      }
+      .col-category {
+        width: 14%;
+      }
+      .col-website {
+        width: 20%;
+      }
+      .col-email {
+        width: 20%;
+      }
+      .col-phone {
+        width: 13%;
+      }
+      .col-actions {
+        width: 9rem;
+      }
+
+      .partners-table thead th {
+        text-align: left;
+        padding: var(--space-2);
+        color: var(--color-text-muted);
+        font-weight: 400;
+        border-bottom: 1px solid var(--color-border-strong);
+        white-space: nowrap;
+      }
+
+      .partners-table td {
+        padding: var(--space-3) var(--space-2);
+        border-bottom: 1px solid var(--color-border);
+        vertical-align: middle;
+      }
+
+      .partners-table tbody tr:hover {
+        background: var(--color-bg-inset);
+      }
+
+      /* Long URLs/emails/names clip with an ellipsis instead of wrapping
+         (which would blow out the fixed column widths above) or forcing
+         the whole row taller — the title attribute on the same element
+         gives the full value on hover. */
+      .cell-truncate {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .partners-table__actions {
+        display: flex;
+        gap: var(--space-2);
+        white-space: nowrap;
+      }
+
+      .partners-table__actions button {
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.3rem 0.7rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .partner-delete {
+        color: var(--color-accent);
+      }
+    </style>
+  </body>
+</html>

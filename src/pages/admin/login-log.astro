@@ -1,0 +1,283 @@
+---
+import '../../styles/global.css';
+// Internal tool, not part of the public site — stands alone rather than
+// going through BaseLayout (no locale, no nav, no footer).
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>登录记录 · MYVIPSERVICE 后台</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <main class="admin" id="admin-main" hidden>
+      <p class="wordmark">MYVIPSERVICE</p>
+      <a href="/admin/" class="admin__back">← 后台首页</a>
+      <div class="admin__headerRow">
+        <h1>登录记录</h1>
+        <button type="button" id="lock-button">退出登录</button>
+      </div>
+      <p class="admin__intro">
+        只有一个共用密码，没有账号系统，"姓名"是登录时自己填的，不是验证过的身份，仅供参考——密码错误的尝试也会记录下来，方便发现异常。记录按月保存，每月自动从空白开始，不会无限累积。
+      </p>
+
+      <p id="login-status" role="status"></p>
+
+      <div class="log-search" id="log-search-wrap" hidden>
+        <input type="search" id="log-search" placeholder="搜索姓名 / IP / 设备…" />
+        <p class="log-search__count" id="log-search-count" role="status"></p>
+      </div>
+
+      <p id="empty-note" hidden>暂无记录。</p>
+      <p id="no-match-note" hidden>没有匹配的结果。</p>
+      <table id="log-table" hidden>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>姓名</th>
+            <th>结果</th>
+            <th>IP 地址</th>
+            <th>设备/浏览器</th>
+          </tr>
+        </thead>
+        <tbody id="log-body"></tbody>
+      </table>
+    </main>
+
+    <script is:inline>
+      (function () {
+        const main = document.getElementById('admin-main');
+        const lockButton = document.getElementById('lock-button');
+        const loginStatus = document.getElementById('login-status');
+        const emptyNote = document.getElementById('empty-note');
+        const noMatchNote = document.getElementById('no-match-note');
+        const table = document.getElementById('log-table');
+        const tbody = document.getElementById('log-body');
+        const searchWrap = document.getElementById('log-search-wrap');
+        const searchInput = document.getElementById('log-search');
+        const searchCount = document.getElementById('log-search-count');
+
+        // The full list from the server — search filters this in memory
+        // rather than re-fetching, since the whole point is instant results
+        // as you type.
+        let allAttempts = [];
+
+        async function authedFetch(url, options = {}) {
+          return fetch(url, { ...options, credentials: 'include' });
+        }
+
+        // `name` is free text typed into the login form (not a verified
+        // identity) and `userAgent` comes straight from the request header —
+        // both have to be escaped before landing in innerHTML, same reason
+        // orders.astro escapes booking fields.
+        function escapeHtml(value) {
+          return String(value ?? '').replace(
+            /[&<>"']/g,
+            (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch],
+          );
+        }
+
+        function renderList(attempts) {
+          tbody.innerHTML = '';
+
+          if (allAttempts.length === 0) {
+            emptyNote.hidden = false;
+            noMatchNote.hidden = true;
+            searchWrap.hidden = true;
+            table.hidden = true;
+            return;
+          }
+
+          emptyNote.hidden = true;
+          searchWrap.hidden = false;
+          searchCount.textContent = `共 ${allAttempts.length} 条${searchInput.value ? `，匹配 ${attempts.length} 条` : ''}`;
+
+          if (attempts.length === 0) {
+            noMatchNote.hidden = false;
+            table.hidden = true;
+            return;
+          }
+          noMatchNote.hidden = true;
+          table.hidden = false;
+          attempts.forEach((a) => {
+            const tr = document.createElement('tr');
+            if (!a.success) tr.classList.add('log-row--failed');
+            tr.innerHTML = `<td>${escapeHtml(a.at)}</td><td>${escapeHtml(a.name) || '(未填写)'}</td><td>${a.success ? '成功' : '密码错误'}</td><td>${escapeHtml(a.ip)}</td><td>${escapeHtml(a.userAgent)}</td>`;
+            tbody.appendChild(tr);
+          });
+        }
+
+        function applySearch() {
+          const query = searchInput.value.trim().toLowerCase();
+          if (!query) {
+            renderList(allAttempts);
+            return;
+          }
+          const filtered = allAttempts.filter((a) =>
+            [a.name, a.ip, a.userAgent].some((field) =>
+              String(field ?? '')
+                .toLowerCase()
+                .includes(query),
+            ),
+          );
+          renderList(filtered);
+        }
+
+        searchInput.addEventListener('input', applySearch);
+
+        async function loadLog() {
+          const res = await authedFetch('/.netlify/functions/admin-login-log');
+          if (res.status === 401) {
+            window.location.href = '/admin/login/?next=/admin/login-log/';
+            return;
+          }
+          main.hidden = false;
+          if (!res.ok) {
+            loginStatus.textContent = '加载失败，请刷新重试。';
+            return;
+          }
+          const { attempts } = await res.json();
+          allAttempts = attempts;
+          applySearch();
+        }
+
+        lockButton.addEventListener('click', async () => {
+          await authedFetch('/.netlify/functions/admin-logout', { method: 'POST' });
+          window.location.href = '/admin/login/';
+        });
+
+        loadLog();
+      })();
+    </script>
+
+    <style is:global>
+      .admin {
+        max-width: 56rem;
+        margin-inline: auto;
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .wordmark {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        letter-spacing: var(--tracking-wordmark);
+        margin-bottom: var(--space-4);
+      }
+
+      .admin__back {
+        display: inline-block;
+        margin-bottom: var(--space-3);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        text-decoration: none;
+      }
+
+      .admin__back:hover {
+        color: var(--color-accent);
+      }
+
+      .admin__headerRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-2);
+      }
+
+      .admin__headerRow h1 {
+        margin: 0;
+      }
+
+      .admin__headerRow button {
+        font: inherit;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-size: var(--text-small);
+      }
+
+      .admin__intro {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        margin-bottom: var(--space-5);
+      }
+
+      #login-status {
+        margin-bottom: var(--space-3);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .log-search {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-3);
+      }
+
+      /* Same [hidden]-vs-author-display cascade issue as elsewhere in the
+         admin tools — an unconditional `display: flex` here beats the UA
+         stylesheet's [hidden]{display:none} unless restated. */
+      .log-search[hidden] {
+        display: none;
+      }
+
+      .log-search input {
+        flex: 1;
+        min-width: 12rem;
+        font: inherit;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .log-search__count {
+        margin: 0;
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        white-space: nowrap;
+      }
+
+      #no-match-note {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--text-small);
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: var(--space-2) var(--space-3);
+        border-bottom: 1px solid var(--color-border);
+        white-space: nowrap;
+      }
+
+      td:last-child {
+        white-space: normal;
+        color: var(--color-text-muted);
+      }
+
+      th {
+        color: var(--color-text-muted);
+        font-weight: normal;
+      }
+
+      .log-row--failed td:nth-child(2) {
+        color: var(--color-error);
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,1180 @@
+---
+import '../../styles/global.css';
+// Internal tool, not part of the public site — stands alone rather than
+// going through BaseLayout (no locale, no nav, no footer).
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>行程记录 · MYVIPSERVICE 后台</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <main class="admin" id="admin-main" hidden>
+      <p class="wordmark">MYVIPSERVICE</p>
+      <a href="/admin/" class="admin__back">← 后台首页</a>
+      <div class="admin__headerRow">
+        <h1>行程记录</h1>
+        <button type="button" id="lock-button">退出登录</button>
+      </div>
+      <p id="login-status" role="status"></p>
+
+      <!-- Mode B: no clientId in the URL yet — pick a client first. -->
+      <section id="picker-section" hidden>
+        <p class="itin-picker__hint">先选择一位客户，再查看或编辑他们的行程记录。</p>
+        <div class="clients-search">
+          <input type="search" id="picker-search" placeholder="搜索姓名 / 微信 / 电话…" />
+        </div>
+        <p id="picker-empty" hidden>
+          还没有任何客户名片，请先去<a href="/admin/clients/">客户名片</a>里添加。
+        </p>
+        <ul class="itin-picker__list" id="picker-list"></ul>
+      </section>
+
+      <!-- Mode A: a client is resolved — show their itinerary records. -->
+      <section id="client-section" hidden>
+        <p class="itin-client__banner">
+          客户：<strong id="client-name"></strong>
+          <a href="/admin/clients/">← 换一位客户</a>
+        </p>
+
+        <form id="itinerary-form" class="itinerary-form">
+          <input type="hidden" name="id" id="if-id" />
+          <input type="hidden" name="clientId" id="if-clientId" />
+          <div class="itinerary-form__grid">
+            <label>
+              行程标题 *
+              <input
+                type="text"
+                name="title"
+                id="if-title"
+                required
+                placeholder="例如：2026 年 11 月 法国 + 瑞士定制行程"
+              />
+            </label>
+            <label>
+              状态
+              <select name="status" id="if-status">
+                <option value="draft">草稿</option>
+                <option value="confirmed">已确认</option>
+                <option value="completed">已完成</option>
+                <option value="cancelled">已取消</option>
+              </select>
+            </label>
+            <label>
+              开始日期
+              <input type="date" name="startDate" id="if-startDate" />
+            </label>
+            <label>
+              结束日期
+              <input type="date" name="endDate" id="if-endDate" />
+            </label>
+          </div>
+
+          <div class="days-editor">
+            <div class="days-editor__header">
+              <p class="days-editor__label">按天安排</p>
+              <button type="button" id="add-day">+ 添加一天</button>
+            </div>
+            <div id="days-editor-body"></div>
+          </div>
+
+          <div class="simple-section">
+            <div class="simple-section__header">
+              <p class="simple-section__label">航班信息</p>
+              <button type="button" id="add-flight">+ 添加航班</button>
+            </div>
+            <div id="flights-body"></div>
+          </div>
+
+          <div class="simple-section">
+            <div class="simple-section__header">
+              <p class="simple-section__label">包车信息</p>
+              <button type="button" id="add-charter">+ 添加包车</button>
+            </div>
+            <div id="charters-body"></div>
+          </div>
+
+          <div class="simple-section">
+            <div class="simple-section__header">
+              <p class="simple-section__label">待办事项</p>
+              <button type="button" id="add-todo">+ 添加待办</button>
+            </div>
+            <div id="todos-body"></div>
+          </div>
+
+          <div class="simple-section">
+            <div class="simple-section__header">
+              <p class="simple-section__label">门票 / 凭证 PDF</p>
+            </div>
+            <p id="tickets-hint" class="tickets-hint">先保存行程后，才能在这里上传门票。</p>
+            <div id="tickets-upload" class="tickets-upload" hidden>
+              <input type="text" id="ticket-name" placeholder="名称，如：卢浮宫门票" />
+              <input type="file" id="ticket-file" accept="application/pdf" />
+              <button type="button" id="ticket-upload-button">上传</button>
+            </div>
+            <p id="tickets-status" role="status" class="tickets-status"></p>
+            <ul class="tickets-list" id="tickets-list"></ul>
+          </div>
+
+          <div class="itinerary-form__actions">
+            <button type="submit" id="if-submit">添加行程</button>
+            <button type="button" id="if-cancel" hidden>取消编辑</button>
+          </div>
+          <p id="if-status-msg" role="status"></p>
+        </form>
+
+        <p id="itin-empty-note" hidden>该客户暂无行程记录，用上面的表单添加第一条吧。</p>
+        <ul class="itin-list" id="itin-list"></ul>
+      </section>
+    </main>
+
+    <script is:inline>
+      (function () {
+        const main = document.getElementById('admin-main');
+        const lockButton = document.getElementById('lock-button');
+        const loginStatus = document.getElementById('login-status');
+
+        const pickerSection = document.getElementById('picker-section');
+        const pickerSearch = document.getElementById('picker-search');
+        const pickerEmpty = document.getElementById('picker-empty');
+        const pickerList = document.getElementById('picker-list');
+
+        const clientSection = document.getElementById('client-section');
+        const clientNameEl = document.getElementById('client-name');
+
+        const form = document.getElementById('itinerary-form');
+        const formStatus = document.getElementById('if-status-msg');
+        const submitButton = document.getElementById('if-submit');
+        const cancelButton = document.getElementById('if-cancel');
+        const addDayButton = document.getElementById('add-day');
+        const daysEditorBody = document.getElementById('days-editor-body');
+        const itinEmptyNote = document.getElementById('itin-empty-note');
+        const itinList = document.getElementById('itin-list');
+
+        const ticketsHint = document.getElementById('tickets-hint');
+        const ticketsUpload = document.getElementById('tickets-upload');
+        const ticketsStatus = document.getElementById('tickets-status');
+        const ticketsList = document.getElementById('tickets-list');
+        const ticketNameInput = document.getElementById('ticket-name');
+        const ticketFileInput = document.getElementById('ticket-file');
+        const ticketUploadButton = document.getElementById('ticket-upload-button');
+
+        const clientId = new URLSearchParams(location.search).get('clientId');
+
+        // In-memory state for the day-by-day editor — mutated directly by
+        // input listeners (no re-render per keystroke, only on add/remove
+        // so typing never loses focus).
+        let formDays = [];
+        // Tickets aren't part of this local-state-then-submit flow — each
+        // upload/delete hits the network immediately (it involves file
+        // bytes) and this array just mirrors the itinerary's current
+        // `tickets` field so the main form submit doesn't clobber it.
+        let formTickets = [];
+        let allClients = [];
+
+        async function authedFetch(url, options = {}) {
+          return fetch(url, { ...options, credentials: 'include' });
+        }
+
+        function escapeHtml(value) {
+          return String(value ?? '').replace(
+            /[&<>"']/g,
+            (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch],
+          );
+        }
+
+        const STATUS_LABELS = {
+          draft: '草稿',
+          confirmed: '已确认',
+          completed: '已完成',
+          cancelled: '已取消',
+        };
+
+        // ---- Days editor -----------------------------------------------
+
+        function renderItems(itemsWrap, day) {
+          itemsWrap.innerHTML = '';
+          day.items.forEach((item) => {
+            const row = document.createElement('div');
+            row.className = 'item-row';
+            row.dataset.itemId = item.id;
+            row.innerHTML = `
+              <input type="text" class="item-time" placeholder="时间" value="${escapeHtml(item.time)}" />
+              <input type="text" class="item-type" placeholder="类型，如交通/用餐/参观" value="${escapeHtml(item.type)}" />
+              <input type="text" class="item-title" placeholder="行程标题" value="${escapeHtml(item.title)}" />
+              <input type="text" class="item-note" placeholder="备注" value="${escapeHtml(item.note)}" />
+              <button type="button" class="item-remove">删除</button>
+            `;
+            itemsWrap.appendChild(row);
+          });
+        }
+
+        function renderDaysEditor() {
+          daysEditorBody.innerHTML = '';
+          formDays.forEach((day, index) => {
+            const details = document.createElement('details');
+            details.className = 'day-block';
+            details.open = true;
+            details.dataset.dayId = day.id;
+            details.innerHTML = `
+              <summary>第 ${index + 1} 天${day.date ? ` · ${escapeHtml(day.date)}` : ''}${day.title ? ` · ${escapeHtml(day.title)}` : ''}</summary>
+              <div class="day-block__fields">
+                <label>日期 <input type="date" class="day-date" value="${escapeHtml(day.date)}" /></label>
+                <label>当天标题 <input type="text" class="day-title" placeholder="例如：抵达巴黎" value="${escapeHtml(day.title)}" /></label>
+                <button type="button" class="day-remove">删除这一天</button>
+              </div>
+              <div class="day-items"></div>
+              <button type="button" class="item-add">+ 添加行程项</button>
+            `;
+            renderItems(details.querySelector('.day-items'), day);
+            daysEditorBody.appendChild(details);
+          });
+        }
+
+        addDayButton.addEventListener('click', () => {
+          formDays.push({ id: crypto.randomUUID(), date: '', title: '', items: [] });
+          renderDaysEditor();
+        });
+
+        daysEditorBody.addEventListener('click', (event) => {
+          const dayBlock = event.target.closest('.day-block');
+          if (!dayBlock) return;
+          const day = formDays.find((d) => d.id === dayBlock.dataset.dayId);
+          if (!day) return;
+
+          if (event.target.classList.contains('day-remove')) {
+            formDays = formDays.filter((d) => d.id !== day.id);
+            renderDaysEditor();
+            return;
+          }
+          if (event.target.classList.contains('item-add')) {
+            day.items.push({ id: crypto.randomUUID(), time: '', type: '', title: '', note: '' });
+            renderItems(dayBlock.querySelector('.day-items'), day);
+            return;
+          }
+          if (event.target.classList.contains('item-remove')) {
+            const itemRow = event.target.closest('.item-row');
+            day.items = day.items.filter((item) => item.id !== itemRow.dataset.itemId);
+            renderItems(dayBlock.querySelector('.day-items'), day);
+          }
+        });
+
+        daysEditorBody.addEventListener('input', (event) => {
+          const dayBlock = event.target.closest('.day-block');
+          if (!dayBlock) return;
+          const day = formDays.find((d) => d.id === dayBlock.dataset.dayId);
+          if (!day) return;
+
+          if (event.target.classList.contains('day-date')) {
+            day.date = event.target.value;
+            return;
+          }
+          if (event.target.classList.contains('day-title')) {
+            day.title = event.target.value;
+            return;
+          }
+
+          const itemRow = event.target.closest('.item-row');
+          if (!itemRow) return;
+          const item = day.items.find((i) => i.id === itemRow.dataset.itemId);
+          if (!item) return;
+          if (event.target.classList.contains('item-time')) item.time = event.target.value;
+          else if (event.target.classList.contains('item-type')) item.type = event.target.value;
+          else if (event.target.classList.contains('item-title')) item.title = event.target.value;
+          else if (event.target.classList.contains('item-note')) item.note = event.target.value;
+        });
+
+        // ---- Flights / charters / todos: a generic flat-row editor ---
+        // These three are structurally the same shape (an array of flat
+        // objects, add/remove a row, re-render on structural change) as
+        // each other and as the day-items editor above, just with
+        // different field sets — one shared factory instead of three
+        // near-identical render/event-delegation blocks.
+
+        function createRowEditor(container, fields) {
+          let items = [];
+
+          function render() {
+            container.innerHTML = '';
+            items.forEach((item) => {
+              const row = document.createElement('div');
+              row.className = 'simple-row';
+              row.dataset.rowId = item.id;
+              const fieldsHtml = fields
+                .map((f) =>
+                  f.type === 'checkbox'
+                    ? `<label class="simple-row__check"><input type="checkbox" class="row-field" data-field="${f.key}" ${item[f.key] ? 'checked' : ''} /> ${f.label}</label>`
+                    : `<input type="${f.type || 'text'}" class="row-field" data-field="${f.key}" placeholder="${f.label}" value="${escapeHtml(item[f.key] ?? '')}" />`,
+                )
+                .join('');
+              row.innerHTML = `${fieldsHtml}<button type="button" class="row-remove">删除</button>`;
+              container.appendChild(row);
+            });
+          }
+
+          container.addEventListener('input', (event) => {
+            const field = event.target.dataset.field;
+            if (!field) return;
+            const row = event.target.closest('.simple-row');
+            const item = items.find((i) => i.id === row.dataset.rowId);
+            if (!item) return;
+            item[field] =
+              event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+          });
+
+          container.addEventListener('click', (event) => {
+            if (!event.target.classList.contains('row-remove')) return;
+            const row = event.target.closest('.simple-row');
+            items = items.filter((i) => i.id !== row.dataset.rowId);
+            render();
+          });
+
+          return {
+            add() {
+              const blank = { id: crypto.randomUUID() };
+              fields.forEach((f) => (blank[f.key] = f.type === 'checkbox' ? false : ''));
+              items.push(blank);
+              render();
+            },
+            set(newItems) {
+              items = newItems || [];
+              render();
+            },
+            get() {
+              return items;
+            },
+          };
+        }
+
+        const flightsEditor = createRowEditor(document.getElementById('flights-body'), [
+          { key: 'journeyLabel', label: '标签，如去程/返程' },
+          { key: 'airline', label: '航空公司' },
+          { key: 'flightNumber', label: '航班号' },
+          { key: 'departureAirport', label: '出发机场' },
+          { key: 'departureCity', label: '出发城市' },
+          { key: 'departureDate', label: '出发日期', type: 'date' },
+          { key: 'departureTime', label: '出发时间', type: 'time' },
+          { key: 'arrivalAirport', label: '到达机场' },
+          { key: 'arrivalCity', label: '到达城市' },
+          { key: 'arrivalDate', label: '到达日期', type: 'date' },
+          { key: 'arrivalTime', label: '到达时间', type: 'time' },
+          { key: 'note', label: '备注' },
+        ]);
+
+        const chartersEditor = createRowEditor(document.getElementById('charters-body'), [
+          { key: 'company', label: '车队/供应商' },
+          { key: 'vehicle', label: '车型' },
+          { key: 'pickupLocation', label: '接送地点' },
+          { key: 'pickupDate', label: '用车日期', type: 'date' },
+          { key: 'pickupTime', label: '接送时间', type: 'time' },
+          { key: 'dropoffLocation', label: '目的地' },
+          { key: 'dropoffDate', label: '结束日期', type: 'date' },
+          { key: 'dropoffTime', label: '结束时间', type: 'time' },
+          { key: 'note', label: '备注' },
+        ]);
+
+        const todosEditor = createRowEditor(document.getElementById('todos-body'), [
+          { key: 'completed', label: '已完成', type: 'checkbox' },
+          { key: 'text', label: '待办事项' },
+          { key: 'dueDate', label: '截止日期', type: 'date' },
+        ]);
+
+        document.getElementById('add-flight').addEventListener('click', () => flightsEditor.add());
+        document
+          .getElementById('add-charter')
+          .addEventListener('click', () => chartersEditor.add());
+        document.getElementById('add-todo').addEventListener('click', () => todosEditor.add());
+
+        // ---- Tickets: uploads/deletes hit the network immediately (they
+        // involve file bytes), unlike the local-state-then-submit fields
+        // above — so this section only works once the itinerary has an id.
+
+        function syncTicketsAvailability() {
+          const hasId = !!document.getElementById('if-id').value;
+          ticketsUpload.hidden = !hasId;
+          ticketsHint.hidden = hasId;
+        }
+
+        function renderTickets() {
+          ticketsList.innerHTML = '';
+          formTickets.forEach((ticket) => {
+            const li = document.createElement('li');
+            li.className = 'ticket-row';
+            li.dataset.ticketId = ticket.id;
+            li.innerHTML = `
+              <span class="ticket-row__name">${escapeHtml(ticket.fileName)}</span>
+              <a href="/.netlify/functions/admin-ticket-file?id=${encodeURIComponent(ticket.id)}" target="_blank" rel="noopener">查看</a>
+              <button type="button" class="ticket-delete">删除</button>
+            `;
+            ticketsList.appendChild(li);
+          });
+        }
+
+        ticketUploadButton.addEventListener('click', async () => {
+          const itineraryId = document.getElementById('if-id').value;
+          const file = ticketFileInput.files[0];
+          if (!file) {
+            ticketsStatus.textContent = '请先选择一个 PDF 文件。';
+            return;
+          }
+          if (!ticketNameInput.value.trim()) {
+            ticketsStatus.textContent = '请填写门票名称。';
+            return;
+          }
+          ticketsStatus.textContent = '上传中…';
+          const base64Content = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(String(reader.result).split(',')[1]);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+          });
+          const res = await authedFetch('/.netlify/functions/admin-upload-ticket', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              itineraryId,
+              fileName: ticketNameInput.value.trim(),
+              contentType: file.type || 'application/pdf',
+              base64Content,
+            }),
+          });
+          if (!res.ok) {
+            const errBody = await res.json().catch(() => ({}));
+            ticketsStatus.textContent =
+              errBody.error === 'file_too_large'
+                ? '文件太大（上限约 4MB）。'
+                : '上传失败，请重试。';
+            return;
+          }
+          const { itinerary } = await res.json();
+          formTickets = itinerary.tickets || [];
+          renderTickets();
+          ticketNameInput.value = '';
+          ticketFileInput.value = '';
+          ticketsStatus.textContent = '已上传。';
+        });
+
+        ticketsList.addEventListener('click', async (event) => {
+          if (!event.target.classList.contains('ticket-delete')) return;
+          const row = event.target.closest('.ticket-row');
+          if (!window.confirm('确定删除这张门票吗？')) return;
+          const res = await authedFetch('/.netlify/functions/admin-delete-ticket', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              itineraryId: document.getElementById('if-id').value,
+              ticketId: row.dataset.ticketId,
+            }),
+          });
+          if (res.ok) {
+            const { itinerary } = await res.json();
+            formTickets = itinerary.tickets || [];
+            renderTickets();
+          }
+        });
+
+        // ---- Itinerary form (title/status/dates) + list -----------------
+
+        function resetForm() {
+          form.reset();
+          document.getElementById('if-id').value = '';
+          document.getElementById('if-clientId').value = clientId || '';
+          formDays = [];
+          renderDaysEditor();
+          flightsEditor.set([]);
+          chartersEditor.set([]);
+          todosEditor.set([]);
+          formTickets = [];
+          renderTickets();
+          ticketsStatus.textContent = '';
+          syncTicketsAvailability();
+          submitButton.textContent = '添加行程';
+          cancelButton.hidden = true;
+        }
+
+        cancelButton.addEventListener('click', resetForm);
+
+        function renderItinRow(itinerary) {
+          const li = document.createElement('li');
+          li.className = 'itin-card';
+          const dateRange = [itinerary.startDate, itinerary.endDate].filter(Boolean).join(' – ');
+          li.innerHTML = `
+            <div class="itin-card__main">
+              <p class="itin-card__title">${escapeHtml(itinerary.title)}</p>
+              <p class="itin-card__meta">${STATUS_LABELS[itinerary.status] || itinerary.status}${dateRange ? ` · ${escapeHtml(dateRange)}` : ''} · ${itinerary.days.length} 天</p>
+            </div>
+            <div class="itin-card__actions">
+              <button type="button" class="itin-edit">编辑</button>
+              <button type="button" class="itin-delete">删除</button>
+            </div>
+          `;
+          li.dataset.itinerary = JSON.stringify(itinerary);
+          return li;
+        }
+
+        async function loadItineraries() {
+          const res = await authedFetch(
+            `/.netlify/functions/admin-itineraries?clientId=${encodeURIComponent(clientId)}`,
+          );
+          if (res.status === 401) {
+            window.location.href = '/admin/login/?next=/admin/itineraries/';
+            return;
+          }
+          if (!res.ok) {
+            loginStatus.textContent = '加载失败，请刷新重试。';
+            return;
+          }
+          const { itineraries } = await res.json();
+          itinList.innerHTML = '';
+          if (itineraries.length === 0) {
+            itinEmptyNote.hidden = false;
+            return;
+          }
+          itinEmptyNote.hidden = true;
+          itineraries.forEach((itinerary) => itinList.appendChild(renderItinRow(itinerary)));
+        }
+
+        itinList.addEventListener('click', async (event) => {
+          const card = event.target.closest('.itin-card');
+          if (!card) return;
+          const itinerary = JSON.parse(card.dataset.itinerary);
+
+          if (event.target.classList.contains('itin-edit')) {
+            document.getElementById('if-id').value = itinerary.id;
+            document.getElementById('if-clientId').value = itinerary.clientId;
+            document.getElementById('if-title').value = itinerary.title;
+            document.getElementById('if-status').value = itinerary.status;
+            document.getElementById('if-startDate').value = itinerary.startDate;
+            document.getElementById('if-endDate').value = itinerary.endDate;
+            formDays = JSON.parse(JSON.stringify(itinerary.days));
+            renderDaysEditor();
+            flightsEditor.set(JSON.parse(JSON.stringify(itinerary.flights || [])));
+            chartersEditor.set(JSON.parse(JSON.stringify(itinerary.charters || [])));
+            todosEditor.set(JSON.parse(JSON.stringify(itinerary.todos || [])));
+            formTickets = itinerary.tickets || [];
+            renderTickets();
+            ticketsStatus.textContent = '';
+            syncTicketsAvailability();
+            submitButton.textContent = '保存修改';
+            cancelButton.hidden = false;
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+          }
+
+          if (event.target.classList.contains('itin-delete')) {
+            if (!window.confirm(`确定删除「${itinerary.title}」这条行程记录吗？`)) return;
+            await authedFetch('/.netlify/functions/admin-delete-itinerary', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: itinerary.id }),
+            });
+            loadItineraries();
+          }
+        });
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          formStatus.textContent = '保存中…';
+          const data = Object.fromEntries(new FormData(form).entries());
+          data.days = formDays;
+          data.flights = flightsEditor.get();
+          data.charters = chartersEditor.get();
+          data.todos = todosEditor.get();
+          // Tickets are managed by their own upload/delete calls (each one
+          // already saves the itinerary server-side) — mirror the current
+          // value back here so this submit doesn't overwrite it with `[]`.
+          data.tickets = formTickets;
+          const res = await authedFetch('/.netlify/functions/admin-save-itinerary', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          formStatus.textContent = res.ok ? '已保存。' : '保存失败，请重试。';
+          if (res.ok) {
+            resetForm();
+            loadItineraries();
+          }
+        });
+
+        // ---- Client picker (Mode B) --------------------------------------
+
+        function renderPicker(clients) {
+          pickerList.innerHTML = '';
+          if (clients.length === 0) {
+            pickerEmpty.hidden = allClients.length > 0;
+            return;
+          }
+          pickerEmpty.hidden = true;
+          clients.forEach((client) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+              <button type="button" class="itin-picker__pick">
+                <span class="itin-picker__pickName">${escapeHtml(client.name)}</span>
+                <span class="itin-picker__pickWechat">${escapeHtml(client.wechatId)}</span>
+              </button>
+            `;
+            li.querySelector('button').addEventListener('click', () => {
+              window.location.href = `/admin/itineraries/?clientId=${encodeURIComponent(client.id)}`;
+            });
+            pickerList.appendChild(li);
+          });
+        }
+
+        pickerSearch.addEventListener('input', () => {
+          const query = pickerSearch.value.trim().toLowerCase();
+          const filtered = query
+            ? allClients.filter((c) =>
+                [c.name, c.wechatId].some((field) =>
+                  String(field ?? '')
+                    .toLowerCase()
+                    .includes(query),
+                ),
+              )
+            : allClients;
+          renderPicker(filtered);
+        });
+
+        // ---- Load: resolve clientId or show the picker -------------------
+
+        async function init() {
+          const res = await authedFetch('/.netlify/functions/admin-clients');
+          if (res.status === 401) {
+            window.location.href = '/admin/login/?next=/admin/itineraries/';
+            return;
+          }
+          main.hidden = false;
+          if (!res.ok) {
+            loginStatus.textContent = '加载失败，请刷新重试。';
+            return;
+          }
+          const { clients } = await res.json();
+          allClients = clients;
+
+          if (!clientId) {
+            pickerSection.hidden = false;
+            pickerEmpty.hidden = clients.length > 0;
+            renderPicker(clients);
+            return;
+          }
+
+          const client = clients.find((c) => c.id === clientId);
+          clientSection.hidden = false;
+          clientNameEl.textContent = client ? client.name : '（找不到该客户，名片可能已被删除）';
+          document.getElementById('if-clientId').value = clientId;
+          renderDaysEditor();
+          syncTicketsAvailability();
+          await loadItineraries();
+        }
+
+        lockButton.addEventListener('click', async () => {
+          await authedFetch('/.netlify/functions/admin-logout', { method: 'POST' });
+          window.location.href = '/admin/login/';
+        });
+
+        init();
+      })();
+    </script>
+
+    <style is:global>
+      .admin {
+        max-width: 56rem;
+        margin-inline: auto;
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .wordmark {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        letter-spacing: var(--tracking-wordmark);
+        margin-bottom: var(--space-4);
+      }
+
+      .admin__back {
+        display: inline-block;
+        margin-bottom: var(--space-3);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        text-decoration: none;
+      }
+
+      .admin__back:hover {
+        color: var(--color-accent);
+      }
+
+      .admin__headerRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-2);
+      }
+
+      .admin__headerRow h1 {
+        margin: 0;
+      }
+
+      .admin__headerRow button {
+        font: inherit;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-size: var(--text-small);
+      }
+
+      #login-status,
+      #if-status-msg {
+        margin-top: var(--space-2);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .itin-picker__hint {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .clients-search {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin: var(--space-3) 0;
+      }
+
+      .clients-search input {
+        flex: 1;
+        min-width: 12rem;
+        font: inherit;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .itin-picker__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+
+      .itin-picker__pick {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: var(--space-3);
+        font: inherit;
+        padding: 0.65rem 0.9rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .itin-picker__pick:hover {
+        background: var(--color-bg-inset);
+      }
+
+      .itin-picker__pickWechat {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .itin-client__banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: var(--space-4) 0;
+        padding: var(--space-3);
+        background: var(--color-bg-inset);
+        border-radius: var(--radius);
+        font-size: var(--text-small);
+      }
+
+      .itin-client__banner a {
+        color: var(--color-accent);
+      }
+
+      .itinerary-form {
+        margin: var(--space-5) 0;
+        padding: var(--space-4);
+        background: var(--color-bg-inset);
+        border-radius: var(--radius);
+      }
+
+      .itinerary-form__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        gap: var(--space-3);
+      }
+
+      .itinerary-form__grid label {
+        display: block;
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .itinerary-form__grid input,
+      .itinerary-form__grid select {
+        width: 100%;
+        margin-top: var(--space-1);
+        font: inherit;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .days-editor {
+        margin-top: var(--space-4);
+      }
+
+      .days-editor__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-2);
+      }
+
+      .days-editor__label {
+        margin: 0;
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      #add-day {
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.35rem 0.8rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .day-block {
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        padding: var(--space-2) var(--space-3);
+        margin-bottom: var(--space-2);
+      }
+
+      .day-block summary {
+        cursor: pointer;
+        font-size: var(--text-small);
+        font-weight: 600;
+        padding: var(--space-1) 0;
+      }
+
+      .day-block__fields {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        gap: var(--space-2);
+        align-items: end;
+        margin: var(--space-2) 0;
+      }
+
+      .day-block__fields label {
+        display: block;
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .day-block__fields input {
+        width: 100%;
+        margin-top: var(--space-1);
+        font: inherit;
+        padding: 0.4rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .day-remove,
+      .item-add,
+      .item-remove {
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.3rem 0.7rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        color: var(--color-accent);
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .day-items {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        margin: var(--space-2) 0;
+      }
+
+      .item-row {
+        display: grid;
+        grid-template-columns: 6rem 8rem 1fr 1fr auto;
+        gap: var(--space-2);
+      }
+
+      .item-row input {
+        width: 100%;
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.35rem 0.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .simple-section {
+        margin-top: var(--space-4);
+      }
+
+      .simple-section__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-2);
+      }
+
+      .simple-section__label {
+        margin: 0;
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .simple-section__header button {
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.35rem 0.8rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .simple-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2);
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        margin-bottom: var(--space-2);
+      }
+
+      .simple-row input[type='text'],
+      .simple-row input[type='date'],
+      .simple-row input[type='time'] {
+        flex: 1 1 8rem;
+        min-width: 6rem;
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.35rem 0.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .simple-row__check {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: var(--text-small);
+        white-space: nowrap;
+      }
+
+      .row-remove {
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.3rem 0.7rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        color: var(--color-accent);
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .tickets-hint {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .tickets-upload {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        align-items: center;
+      }
+
+      .tickets-upload input[type='text'] {
+        flex: 1 1 12rem;
+        font: inherit;
+        padding: 0.4rem 0.6rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .tickets-upload input[type='file'] {
+        flex: 1 1 12rem;
+        font-size: var(--text-small);
+      }
+
+      #ticket-upload-button {
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.4rem 0.9rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .tickets-status {
+        margin: var(--space-2) 0 0;
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .tickets-list {
+        list-style: none;
+        margin: var(--space-2) 0 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+
+      .ticket-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-2) var(--space-3);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        font-size: var(--text-small);
+      }
+
+      .ticket-row__name {
+        flex: 1;
+      }
+
+      .ticket-row a {
+        color: var(--color-accent);
+      }
+
+      .ticket-delete {
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.25rem 0.6rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        color: var(--color-accent);
+        cursor: pointer;
+      }
+
+      .itinerary-form__actions {
+        display: flex;
+        gap: var(--space-3);
+        margin-top: var(--space-3);
+      }
+
+      .itinerary-form__actions button {
+        font: inherit;
+        padding: 0.5rem 1.25rem;
+        border: none;
+        border-radius: var(--radius);
+        background: var(--color-accent);
+        color: var(--color-bg-elevated);
+        cursor: pointer;
+      }
+
+      #if-cancel {
+        background: transparent;
+        border: 1px solid var(--color-border-strong);
+        color: inherit;
+      }
+
+      #itin-empty-note {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .itin-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+
+      .itin-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3);
+        padding: var(--space-3);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+      }
+
+      .itin-card__title {
+        margin: 0;
+      }
+
+      .itin-card__meta {
+        margin: var(--space-1) 0 0;
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .itin-card__actions {
+        display: flex;
+        gap: var(--space-2);
+        white-space: nowrap;
+      }
+
+      .itin-card__actions button {
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.3rem 0.7rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .itin-delete {
+        color: var(--color-accent);
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,426 @@
+---
+import '../../styles/global.css';
+// Internal tool, not part of the public site — stands alone rather than
+// going through BaseLayout (no locale, no nav, no footer).
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>包车价格 · MYVIPSERVICE 后台</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <main class="admin" id="admin-main" hidden>
+      <p class="wordmark">MYVIPSERVICE</p>
+      <a href="/admin/" class="admin__back">← 后台首页</a>
+      <div class="admin__headerRow">
+        <h1>包车预订 — 价格设置</h1>
+        <button type="button" id="lock-button">退出登录</button>
+      </div>
+      <p class="admin__intro">
+        改下面的数字，点保存——预订页面和收款会立即用新价格，不用重新发布网站。
+      </p>
+
+      <input
+        type="search"
+        id="pricing-search"
+        class="pricing-search"
+        placeholder="搜索价格分区，例如：英国 / 时装周 / 翻译…"
+      />
+      <p id="pricing-no-match-note" hidden>没有匹配的分区。</p>
+
+      <form id="pricing-form">
+        <fieldset>
+          <legend>巴黎 — 各服务类型 &amp; 车型（€）</legend>
+          <div class="grid grid--3">
+            <div></div>
+            <p class="col-label">普通车型</p>
+            <p class="col-label">航空座椅</p>
+
+            <label for="pr-airport-standard">机场接送</label>
+            <input type="number" id="pr-airport-standard" min="0" step="1" />
+            <input type="number" id="pr-airport-aviation" min="0" step="1" />
+
+            <label for="pr-hourly-standard">按小时</label>
+            <input type="number" id="pr-hourly-standard" min="0" step="1" />
+            <input type="number" id="pr-hourly-aviation" min="0" step="1" />
+
+            <label for="pr-charter-standard">全天包车</label>
+            <input type="number" id="pr-charter-standard" min="0" step="1" />
+            <input type="number" id="pr-charter-aviation" min="0" step="1" />
+
+            <label for="pr-fw-standard">时装周期间按小时价</label>
+            <input type="number" id="pr-fw-standard" min="0" step="1" />
+            <input type="number" id="pr-fw-aviation" min="0" step="1" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>其他城市（仅普通车型，€）</legend>
+          <div class="field">
+            <label for="city-hourly">按小时价（所有城市统一）</label>
+            <input type="number" id="city-hourly" min="0" step="1" />
+          </div>
+          <div class="field">
+            <label for="city-charter">全天包车价（默认）</label>
+            <input type="number" id="city-charter" min="0" step="1" />
+          </div>
+          <div class="field">
+            <label for="city-charter-london">伦敦包车特殊价</label>
+            <input type="number" id="city-charter-london" min="0" step="1" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>按国家的机场接送价（非巴黎，€）</legend>
+          <div class="grid grid--2">
+            <label for="airport-france">法国</label>
+            <input type="number" id="airport-france" min="0" step="1" />
+            <label for="airport-uk">英国</label>
+            <input type="number" id="airport-uk" min="0" step="1" />
+            <label for="airport-germany">德国</label>
+            <input type="number" id="airport-germany" min="0" step="1" />
+            <label for="airport-italy">意大利</label>
+            <input type="number" id="airport-italy" min="0" step="1" />
+            <label for="airport-spain">西班牙</label>
+            <input type="number" id="airport-spain" min="0" step="1" />
+            <label for="airport-switzerland">瑞士</label>
+            <input type="number" id="airport-switzerland" min="0" step="1" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>翻译/助理加购（€/天，8小时）</legend>
+          <div class="field">
+            <label for="interpreter-rate">加购价格</label>
+            <input type="number" id="interpreter-rate" min="0" step="1" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>其他设置</legend>
+          <div class="field">
+            <label for="fw-surcharge">时装周包车附加费（€/天）</label>
+            <input type="number" id="fw-surcharge" min="0" step="1" />
+          </div>
+          <div class="field">
+            <label for="min-lead-days">最少提前预订天数</label>
+            <input type="number" id="min-lead-days" min="0" step="1" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>时装周日期区间</legend>
+          <p class="admin__hint">每行一个区间，格式 <code>YYYY-MM-DD,YYYY-MM-DD</code>。</p>
+          <textarea id="fw-ranges" rows="6"></textarea>
+        </fieldset>
+
+        <button type="submit" id="save-button">保存</button>
+        <p id="status" role="status"></p>
+      </form>
+    </main>
+
+    <script is:inline>
+      (function () {
+        const main = document.getElementById('admin-main');
+        const lockButton = document.getElementById('lock-button');
+        const form = document.getElementById('pricing-form');
+        const status = document.getElementById('status');
+        const saveButton = document.getElementById('save-button');
+        const pricingSearch = document.getElementById('pricing-search');
+        const pricingNoMatchNote = document.getElementById('pricing-no-match-note');
+        // One row per fieldset here — the form is a single settings object,
+        // not a list of records, so "search" filters whole price sections
+        // (by their legend + field labels) rather than individual rows.
+        const fieldsets = Array.from(form.querySelectorAll('fieldset'));
+
+        function applyPricingSearch() {
+          const query = pricingSearch.value.trim().toLowerCase();
+          let visibleCount = 0;
+          fieldsets.forEach((fieldset) => {
+            const text = fieldset.textContent.toLowerCase();
+            const matches = !query || text.includes(query);
+            fieldset.hidden = !matches;
+            if (matches) visibleCount += 1;
+          });
+          pricingNoMatchNote.hidden = visibleCount > 0;
+        }
+
+        pricingSearch.addEventListener('input', applyPricingSearch);
+
+        fetch('/.netlify/functions/admin-check-auth', { credentials: 'include' }).then((res) => {
+          if (!res.ok) {
+            window.location.href = '/admin/login/?next=/admin/pricing/';
+            return;
+          }
+          main.hidden = false;
+        });
+
+        lockButton.addEventListener('click', async () => {
+          await fetch('/.netlify/functions/admin-logout', {
+            method: 'POST',
+            credentials: 'include',
+          });
+          window.location.href = '/admin/login/';
+        });
+
+        const ids = {
+          'pr-airport-standard': ['parisRates', 'airport', 'standard'],
+          'pr-airport-aviation': ['parisRates', 'airport', 'aviation'],
+          'pr-hourly-standard': ['parisRates', 'hourly', 'standard'],
+          'pr-hourly-aviation': ['parisRates', 'hourly', 'aviation'],
+          'pr-charter-standard': ['parisRates', 'charter', 'standard'],
+          'pr-charter-aviation': ['parisRates', 'charter', 'aviation'],
+          'pr-fw-standard': ['parisFashionWeekHourly', 'standard'],
+          'pr-fw-aviation': ['parisFashionWeekHourly', 'aviation'],
+          'city-hourly': ['standardCityRates', 'hourly'],
+          'city-charter': ['standardCityRates', 'charter'],
+          'airport-france': ['countryAirportRates', 'france'],
+          'airport-uk': ['countryAirportRates', 'uk'],
+          'airport-germany': ['countryAirportRates', 'germany'],
+          'airport-italy': ['countryAirportRates', 'italy'],
+          'airport-spain': ['countryAirportRates', 'spain'],
+          'airport-switzerland': ['countryAirportRates', 'switzerland'],
+          'interpreter-rate': ['interpreter', 'rate'],
+          'fw-surcharge': ['fashionWeekSurcharge'],
+          'min-lead-days': ['minLeadDays'],
+        };
+
+        function getPath(obj, path) {
+          return path.reduce((o, key) => (o == null ? o : o[key]), obj);
+        }
+
+        function fillForm(rates) {
+          Object.entries(ids).forEach(([elId, path]) => {
+            const value = getPath(rates, path);
+            if (value !== undefined) document.getElementById(elId).value = value;
+          });
+          document.getElementById('city-charter-london').value =
+            rates.cityCharterOverrides?.london ?? '';
+          document.getElementById('fw-ranges').value = (rates.fashionWeekRanges || [])
+            .map((pair) => pair.join(','))
+            .join('\n');
+        }
+
+        function readForm() {
+          const rates = {
+            parisRates: { airport: {}, hourly: {}, charter: {} },
+            parisFashionWeekHourly: {},
+            standardCityRates: {},
+            cityCharterOverrides: {},
+            countryAirportRates: {},
+            interpreter: {},
+          };
+          Object.entries(ids).forEach(([elId, path]) => {
+            const value = Number(document.getElementById(elId).value);
+            let target = rates;
+            for (let i = 0; i < path.length - 1; i++) target = target[path[i]];
+            target[path[path.length - 1]] = value;
+          });
+          const londonValue = document.getElementById('city-charter-london').value;
+          if (londonValue !== '') rates.cityCharterOverrides.london = Number(londonValue);
+          rates.fashionWeekRanges = document
+            .getElementById('fw-ranges')
+            .value.split('\n')
+            .map((line) => line.trim())
+            .filter(Boolean)
+            .map((line) => line.split(',').map((d) => d.trim()));
+          return rates;
+        }
+
+        fetch('/.netlify/functions/get-pricing')
+          .then((res) => res.json())
+          .then(({ rates }) => fillForm(rates))
+          .catch(() => {
+            status.textContent = '价格加载失败。';
+          });
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          saveButton.disabled = true;
+          status.textContent = '保存中…';
+
+          try {
+            const saveRes = await fetch('/.netlify/functions/admin-set-pricing', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include',
+              body: JSON.stringify(readForm()),
+            });
+
+            if (saveRes.status === 401) {
+              window.location.href = '/admin/login/?next=/admin/pricing/';
+            } else if (!saveRes.ok) {
+              status.textContent = '保存失败，请检查数字后重试。';
+            } else {
+              status.textContent = '已保存。';
+            }
+          } catch {
+            status.textContent = '网络错误，请重试。';
+          } finally {
+            saveButton.disabled = false;
+          }
+        });
+      })();
+    </script>
+
+    <style>
+      .admin {
+        max-width: 40rem;
+        margin-inline: auto;
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .wordmark {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        letter-spacing: var(--tracking-wordmark);
+        margin-bottom: var(--space-4);
+      }
+
+      .admin__back {
+        display: inline-block;
+        margin-bottom: var(--space-3);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        text-decoration: none;
+      }
+
+      .admin__back:hover {
+        color: var(--color-accent);
+      }
+
+      .admin__headerRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-2);
+      }
+
+      .admin__headerRow h1 {
+        margin: 0;
+      }
+
+      .admin__headerRow button {
+        font: inherit;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-size: var(--text-small);
+      }
+
+      .admin__intro {
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-5);
+      }
+
+      .pricing-search {
+        width: 100%;
+        font: inherit;
+        padding: 0.5rem 0.75rem;
+        margin-bottom: var(--space-4);
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      #pricing-no-match-note {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        margin-bottom: var(--space-4);
+      }
+
+      .admin__hint {
+        color: var(--color-text-faint);
+        font-size: var(--text-small);
+        margin-bottom: var(--space-2);
+      }
+
+      fieldset {
+        border: none;
+        padding: 0;
+        margin: 0 0 var(--space-5);
+        padding-top: var(--space-4);
+        border-top: 1px solid var(--color-border);
+      }
+
+      legend {
+        font-family: var(--font-display);
+        font-size: var(--text-h4);
+        margin-bottom: var(--space-3);
+        padding: 0;
+      }
+
+      .field {
+        margin-bottom: var(--space-3);
+      }
+
+      .field label {
+        display: block;
+        margin-bottom: var(--space-1);
+      }
+
+      .grid {
+        display: grid;
+        gap: var(--space-2) var(--space-3);
+        align-items: center;
+      }
+
+      .grid--3 {
+        grid-template-columns: 1fr 6rem 6rem;
+      }
+
+      .grid--2 {
+        grid-template-columns: 1fr 6rem;
+      }
+
+      .col-label {
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        font: inherit;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      textarea {
+        font-family: monospace;
+      }
+
+      button {
+        font: inherit;
+        padding: 0.6rem 1.5rem;
+        border: none;
+        border-radius: var(--radius);
+        background: var(--color-accent);
+        color: var(--color-bg-elevated);
+        cursor: pointer;
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+
+      #status {
+        margin-top: var(--space-3);
+        color: var(--color-text-muted);
+      }
+    </style>
+  </body>
+</html>

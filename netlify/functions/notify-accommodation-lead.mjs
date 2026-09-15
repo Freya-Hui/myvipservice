@@ -1,0 +1,62 @@
+import { randomUUID } from 'node:crypto';
+import { sendAccommodationBookingNotification } from './lib/email.mjs';
+import { createOrder } from './lib/orders.mjs';
+
+// Fired client-side (AccommodationBookingWidget.astro) — a hotel stay is
+// always bespoke and quoted, never an instant price, so this always starts
+// as an enquiry (same admin-confirms-then-sends-link flow as tickets, see
+// admin-reprice-order.mjs) rather than a checkout path of its own.
+export const handler = async (event) => {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
+
+  let raw;
+  try {
+    raw = JSON.parse(event.body || '{}');
+  } catch {
+    return { statusCode: 400, body: JSON.stringify({ error: 'invalid_body' }) };
+  }
+
+  const booking = {
+    locale: ['en', 'zh', 'fr'].includes(raw.locale) ? raw.locale : 'en',
+    propertyName: raw.propertyName || '',
+    propertySlug: raw.propertySlug || '',
+    partySize: Number(raw.partySize) || null,
+    checkIn: raw.checkIn || '',
+    checkOut: raw.checkOut || '',
+    name: raw.name || '',
+    email: raw.email || '',
+    phone: `${raw.phoneCountryCode || ''}${raw.phoneWechat || ''}`,
+    preferredContactMethod: raw.preferredContactMethod || '',
+    wantsFullSeasonPlanning:
+      raw.wantsFullSeasonPlanning === true || raw.wantsFullSeasonPlanning === 'true',
+    wantsAlternativeHotels:
+      raw.wantsAlternativeHotels === true || raw.wantsAlternativeHotels === 'true',
+    notes: raw.notes || '',
+  };
+
+  try {
+    await sendAccommodationBookingNotification(booking);
+  } catch (err) {
+    console.error('Failed to send internal accommodation booking notification', err);
+  }
+
+  try {
+    await createOrder({
+      id: `hotel_${randomUUID()}`,
+      status: 'quote_requested',
+      productType: 'accommodation-inquiry',
+      createdAt: new Date().toISOString(),
+      paidAt: null,
+      amountTotal: null,
+      vehicleInfo: null,
+      driverInfoSentAt: null,
+      booking,
+    });
+  } catch (err) {
+    console.error('Failed to create order record for accommodation lead', err);
+  }
+
+  return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+};

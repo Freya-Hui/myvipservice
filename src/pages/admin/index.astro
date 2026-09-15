@@ -1,0 +1,165 @@
+---
+import '../../styles/global.css';
+// Internal tool, not part of the public site — stands alone rather than
+// going through BaseLayout (no locale, no nav, no footer).
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>后台 · MYVIPSERVICE</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <main class="admin" id="admin-main" hidden>
+      <p class="wordmark">MYVIPSERVICE</p>
+      <div class="admin__headerRow">
+        <h1>后台</h1>
+        <button type="button" id="lock-button">退出登录</button>
+      </div>
+
+      <ul class="admin__cards">
+        <li>
+          <a href="/admin/orders/" class="admin__card">
+            <span class="admin__cardTitle">订单</span>
+            <span class="admin__cardDesc"
+              >查看包车与机场礼遇每笔订单的支付状态、确认车辆和司机信息、改价重发支付链接</span
+            >
+          </a>
+        </li>
+        <li>
+          <a href="/admin/pricing/" class="admin__card">
+            <span class="admin__cardTitle">价格设置</span>
+            <span class="admin__cardDesc">修改各服务类型 / 车型 / 城市的价格，保存后立即生效</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/login-log/" class="admin__card">
+            <span class="admin__cardTitle">登录记录</span>
+            <span class="admin__cardDesc"
+              >查看后台每次登录尝试的时间、IP 和设备，包括密码错误的尝试</span
+            >
+          </a>
+        </li>
+        <li>
+          <a href="/admin/partners/" class="admin__card">
+            <span class="admin__cardTitle">合作伙伴联系方式</span>
+            <span class="admin__cardDesc"
+              >记录酒店、别墅代理、游艇公司等合作方的网站、邮箱和电话</span
+            >
+          </a>
+        </li>
+        <li>
+          <a href="/admin/clients/" class="admin__card">
+            <span class="admin__cardTitle">客户名片</span>
+            <span class="admin__cardDesc">记录客户的微信、联系方式与备注偏好</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/itineraries/" class="admin__card">
+            <span class="admin__cardTitle">行程记录</span>
+            <span class="admin__cardDesc">按客户查看与编辑多日行程安排</span>
+          </a>
+        </li>
+      </ul>
+    </main>
+
+    <script is:inline>
+      (function () {
+        const main = document.getElementById('admin-main');
+        const lockButton = document.getElementById('lock-button');
+
+        fetch('/.netlify/functions/admin-check-auth', { credentials: 'include' }).then((res) => {
+          if (!res.ok) {
+            window.location.href = '/admin/login/?next=/admin/';
+            return;
+          }
+          main.hidden = false;
+        });
+
+        lockButton.addEventListener('click', async () => {
+          await fetch('/.netlify/functions/admin-logout', {
+            method: 'POST',
+            credentials: 'include',
+          });
+          window.location.href = '/admin/login/';
+        });
+      })();
+    </script>
+
+    <style>
+      .admin {
+        max-width: 40rem;
+        margin-inline: auto;
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .wordmark {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        letter-spacing: var(--tracking-wordmark);
+        margin-bottom: var(--space-4);
+      }
+
+      .admin__headerRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-5);
+      }
+
+      .admin__headerRow h1 {
+        margin: 0;
+      }
+
+      .admin__headerRow button {
+        font: inherit;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-size: var(--text-small);
+      }
+
+      .admin__cards {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+      }
+
+      .admin__card {
+        display: block;
+        padding: var(--space-4);
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius);
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .admin__card:hover {
+        border-color: var(--color-accent);
+      }
+
+      .admin__cardTitle {
+        display: block;
+        font-family: var(--font-display);
+        font-size: var(--text-h4);
+        margin-bottom: var(--space-2);
+      }
+
+      .admin__cardDesc {
+        display: block;
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,1450 @@
+---
+import '../../styles/global.css';
+// Internal tool, not part of the public site — stands alone rather than
+// going through BaseLayout (no locale, no nav, no footer).
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>订单 · MYVIPSERVICE 后台</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <main class="admin" id="admin-main" hidden>
+      <p class="wordmark">MYVIPSERVICE</p>
+      <a href="/admin/" class="admin__back">← 后台首页</a>
+      <div class="admin__headerRow">
+        <h1>订单</h1>
+        <button type="button" id="lock-button">退出登录</button>
+      </div>
+      <p id="login-status" role="status"></p>
+
+      <p id="empty-note" hidden>暂无订单。</p>
+
+      <div class="orders-toolbar" id="orders-toolbar" hidden>
+        <div class="orders-tabs" id="orders-tabs" role="tablist">
+          <button type="button" class="orders-tab is-active" data-tab="all">全部</button>
+          <button type="button" class="orders-tab" data-tab="chauffeur">包车</button>
+          <button type="button" class="orders-tab" data-tab="terminal">机场礼遇</button>
+          <button type="button" class="orders-tab" data-tab="tickets">票务 / 讲解</button>
+          <button type="button" class="orders-tab" data-tab="hotel">酒店咨询</button>
+          <button type="button" class="orders-tab" data-tab="vipReception">VIP接待</button>
+        </div>
+        <input
+          type="search"
+          id="orders-search"
+          placeholder="搜索客户姓名 / 邮箱 / 电话 / 订单号…"
+        />
+      </div>
+      <p id="orders-no-match-note" hidden>没有匹配的结果。</p>
+
+      <section id="orders-section-chauffeur" hidden>
+        <h2 class="admin__sectionHeading">包车订单</h2>
+        <p class="admin__sectionEmpty" id="empty-note-chauffeur" hidden>暂无包车订单。</p>
+        <div class="orders-table-wrap" id="orders-table-wrap-chauffeur" hidden>
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>状态</th>
+                <th>客户 / 行程</th>
+                <th>金额</th>
+                <th>创建时间</th>
+              </tr>
+            </thead>
+            <tbody id="orders-body-chauffeur"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="orders-section-terminal" hidden>
+        <h2 class="admin__sectionHeading">机场礼遇订单</h2>
+        <p class="admin__sectionEmpty" id="empty-note-terminal" hidden>暂无机场礼遇订单。</p>
+        <div class="orders-table-wrap" id="orders-table-wrap-terminal" hidden>
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>状态</th>
+                <th>客户 / 行程</th>
+                <th>金额</th>
+                <th>创建时间</th>
+              </tr>
+            </thead>
+            <tbody id="orders-body-terminal"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="orders-section-tickets" hidden>
+        <h2 class="admin__sectionHeading">票务 / 博物馆讲解订单</h2>
+        <p class="admin__sectionEmpty" id="empty-note-tickets" hidden>暂无票务订单。</p>
+        <div class="orders-table-wrap" id="orders-table-wrap-tickets" hidden>
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>状态</th>
+                <th>客户 / 行程</th>
+                <th>金额</th>
+                <th>创建时间</th>
+              </tr>
+            </thead>
+            <tbody id="orders-body-tickets"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="orders-section-hotel" hidden>
+        <h2 class="admin__sectionHeading">酒店预订咨询</h2>
+        <p class="admin__sectionEmpty" id="empty-note-hotel" hidden>暂无酒店预订咨询。</p>
+        <div class="orders-table-wrap" id="orders-table-wrap-hotel" hidden>
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>状态</th>
+                <th>客户 / 行程</th>
+                <th>金额</th>
+                <th>创建时间</th>
+              </tr>
+            </thead>
+            <tbody id="orders-body-hotel"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="orders-section-vipReception" hidden>
+        <h2 class="admin__sectionHeading">VIP礼遇接待订单</h2>
+        <p class="admin__sectionEmpty" id="empty-note-vipReception" hidden>暂无VIP礼遇接待订单。</p>
+        <div class="orders-table-wrap" id="orders-table-wrap-vipReception" hidden>
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>状态</th>
+                <th>客户 / 行程</th>
+                <th>金额</th>
+                <th>创建时间</th>
+              </tr>
+            </thead>
+            <tbody id="orders-body-vipReception"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script is:inline>
+      (function () {
+        const STATUS_LABELS = {
+          quote_requested: '客户询价 · 待报价',
+          pending_payment: '待支付',
+          paid: '已付款 · 待确认车辆（24 小时内）',
+          order_confirmed: '已确认订单 · 待分配司机',
+          vehicle_confirmed: '已确认车辆 · 待发送司机信息',
+          driver_info_sent: '已完成（已发送司机信息）',
+          refunded: '已退款（无法安排车辆）',
+          expired: '已过期（未支付）',
+          superseded: '已作废（改价后已重新发送）',
+        };
+        const REPRICEABLE_STATUSES = ['pending_payment', 'expired', 'quote_requested'];
+        // Driver/vehicle assignment only makes sense once the lightweight
+        // "we've got you a vehicle" confirmation has gone out — before that,
+        // the paid order shows the confirm/refund decision instead.
+        const VEHICLE_FORM_STATUSES = ['order_confirmed', 'vehicle_confirmed', 'driver_info_sent'];
+        const CONFIRM_DEADLINE_HOURS = 24;
+
+        function confirmDeadlineText(order) {
+          if (order.status !== 'paid' || !order.paidAt) return '';
+          const deadline =
+            new Date(order.paidAt).getTime() + CONFIRM_DEADLINE_HOURS * 60 * 60 * 1000;
+          const remainingMs = deadline - Date.now();
+          if (remainingMs <= 0) {
+            const overdueHours = Math.round(-remainingMs / (60 * 60 * 1000));
+            return `已超时 ${overdueHours} 小时`;
+          }
+          const remainingHours = Math.round(remainingMs / (60 * 60 * 1000));
+          return `剩余 ${remainingHours} 小时`;
+        }
+
+        const main = document.getElementById('admin-main');
+        const lockButton = document.getElementById('lock-button');
+        const loginStatus = document.getElementById('login-status');
+        const emptyNote = document.getElementById('empty-note');
+        const sections = {
+          chauffeur: {
+            section: document.getElementById('orders-section-chauffeur'),
+            tableWrap: document.getElementById('orders-table-wrap-chauffeur'),
+            body: document.getElementById('orders-body-chauffeur'),
+            empty: document.getElementById('empty-note-chauffeur'),
+          },
+          terminal: {
+            section: document.getElementById('orders-section-terminal'),
+            tableWrap: document.getElementById('orders-table-wrap-terminal'),
+            body: document.getElementById('orders-body-terminal'),
+            empty: document.getElementById('empty-note-terminal'),
+          },
+          tickets: {
+            section: document.getElementById('orders-section-tickets'),
+            tableWrap: document.getElementById('orders-table-wrap-tickets'),
+            body: document.getElementById('orders-body-tickets'),
+            empty: document.getElementById('empty-note-tickets'),
+          },
+          hotel: {
+            section: document.getElementById('orders-section-hotel'),
+            tableWrap: document.getElementById('orders-table-wrap-hotel'),
+            body: document.getElementById('orders-body-hotel'),
+            empty: document.getElementById('empty-note-hotel'),
+          },
+          vipReception: {
+            section: document.getElementById('orders-section-vipReception'),
+            tableWrap: document.getElementById('orders-table-wrap-vipReception'),
+            body: document.getElementById('orders-body-vipReception'),
+            empty: document.getElementById('empty-note-vipReception'),
+          },
+        };
+        // All tbodies share the same row markup and class names, so the
+        // click/submit handlers further down are attached to each of them
+        // once via this list rather than duplicating every handler.
+        const orderBodies = [
+          sections.chauffeur.body,
+          sections.terminal.body,
+          sections.tickets.body,
+          sections.hotel.body,
+          sections.vipReception.body,
+        ];
+
+        const ordersToolbar = document.getElementById('orders-toolbar');
+        const ordersTabs = document.getElementById('orders-tabs');
+        const ordersSearch = document.getElementById('orders-search');
+        const ordersNoMatchNote = document.getElementById('orders-no-match-note');
+
+        // The full list from the server — the tab filter and search box
+        // both re-render from this in memory rather than re-fetching.
+        let allOrders = [];
+        let currentTab = 'all';
+
+        function orderTypeKey(order) {
+          return order.productType === 'private-terminal'
+            ? 'terminal'
+            : order.productType === 'tickets-museum'
+              ? 'tickets'
+              : order.productType === 'accommodation-inquiry'
+                ? 'hotel'
+                : order.productType === 'vip-reception'
+                  ? 'vipReception'
+                  : 'chauffeur';
+        }
+
+        function matchesSearch(order, query) {
+          if (!query) return true;
+          const haystack = [
+            order.id,
+            order.booking?.name,
+            order.booking?.email,
+            order.booking?.phone,
+            STATUS_LABELS[order.status],
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .toLowerCase();
+          return haystack.includes(query);
+        }
+
+        // Every value here (name, notes, address, ...) is free text a
+        // customer typed into the public booking form — it has to be
+        // escaped before landing in innerHTML, or a booking note like
+        // "<img src=x onerror=...>" would execute in whoever's logged into
+        // this admin page.
+        function escapeHtml(value) {
+          return String(value ?? '').replace(
+            /[&<>"']/g,
+            (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch],
+          );
+        }
+
+        // Partner hotels' own direct lines — so staff confirming availability
+        // don't have to go dig them up separately when an enquiry comes in.
+        // Populated for every hotel page as it's (re)written, not just ones
+        // with their own booking widget — reservations and info are kept
+        // separate since they're usually different inboxes.
+        const PROPERTY_CONTACTS = {
+          'aman-le-melezin-courchevel': {
+            reservations: { phone: '+33 4 7908 0133', email: 'lemelezin@aman.com' },
+          },
+          'le-k2-palace-courchevel': {
+            reservations: { phone: '+33 4 79 40 08 80', email: 'welcome@lek2palace.com' },
+          },
+          'plaza-athenee': {
+            reservations: {
+              phone: '+33 1 87 16 44 60',
+              email: 'reservations.hpa@dorchestercollection.com',
+            },
+          },
+          'four-seasons-george-v': {
+            reservations: {
+              phone: '+33 1 49 52 71 00',
+              email: 'reservation.paris@fourseasons.com',
+            },
+            info: { phone: '+33 1 49 52 70 00' },
+          },
+          'ritz-paris': {
+            reservations: { phone: '+33 1 43 16 30 30' },
+          },
+          'hotel-de-crillon': {
+            reservations: {
+              phone: '+33 1 44 71 15 00',
+              email: 'crillon.reservations@rosewoodhotels.com',
+            },
+          },
+          'le-meurice': {
+            reservations: {
+              phone: '+33 1 87 16 44 50',
+              email: 'reservations.lmp@dorchestercollection.com',
+            },
+          },
+          'cheval-blanc': {
+            reservations: { phone: '+33 1 40 28 00 00', email: 'res.paris@chevalblanc.com' },
+            info: { email: 'info.paris@chevalblanc.com' },
+          },
+          bulgari: {
+            reservations: { phone: '+33 1 81 72 10 00' },
+          },
+          'shangri-la': {
+            reservations: { phone: '0800 90 9196', email: 'paris@shangri-la.com' },
+            info: { phone: '+33 1 53 67 19 66', email: 'concierge.slpr@shangri-la.com' },
+          },
+          'mandarin-oriental': {
+            reservations: { phone: '+33 1 70 98 78 88', email: 'mopar-reservations@mohg.com' },
+          },
+          'the-peninsula': {
+            reservations: { phone: '+33 1 58 12 28 88', email: 'ppr@peninsula.com' },
+          },
+          'hotel-negresco-nice': {
+            reservations: { phone: '+33 4 93 16 64 50' },
+            info: { phone: '+33 4 93 16 64 00', email: 'concierge@lenegresco.com' },
+          },
+          'intercontinental-marseille-hotel-dieu': {
+            reservations: { phone: '0805 542 357', email: 'marseille@ihg.com' },
+            info: { phone: '+33 4 13 42 42 42' },
+          },
+          'le-majestic-cannes': {
+            reservations: { phone: '+33 9 70 82 09 00' },
+          },
+          'anantara-plaza-nice': {
+            reservations: { phone: '+33 4 93 16 75 75', email: 'plazanice@anantara-hotels.com' },
+          },
+          'la-reserve-ramatuelle': {
+            reservations: {
+              phone: '+33 4 94 44 94 44',
+              email: 'reservations@lareserve-ramatuelle.com',
+            },
+          },
+          'hotel-barriere-les-neiges-courchevel': {
+            reservations: {
+              phone: '+33 9 70 81 85 01',
+              email: 'reservations-courchevel@fouquets.com',
+            },
+          },
+          'como-le-montrachet': {
+            reservations: { phone: '+33 3 80 21 30 06', email: 'lemontrachet@comohotels.com' },
+          },
+          'le-richebourg-vosne-romanee': {
+            reservations: { phone: '+33 3 80 61 59 59', email: 'hotel@lerichebourg.com' },
+          },
+        };
+
+        function propertyContactRows(slug) {
+          const contact = PROPERTY_CONTACTS[slug];
+          if (!contact) return [];
+          const rows = [];
+          if (contact.reservations) {
+            rows.push([
+              '酒店预订部门',
+              [contact.reservations.phone, contact.reservations.email].filter(Boolean).join(' / '),
+            ]);
+          }
+          if (contact.info) {
+            rows.push([
+              '酒店咨询部门（info）',
+              [contact.info.phone, contact.info.email].filter(Boolean).join(' / '),
+            ]);
+          }
+          return rows;
+        }
+
+        const SCENARIO_LABELS = { arrival: '抵达', departure: '出发', connection: '转机' };
+        const TICKET_MUSEUM_LABELS = {
+          louvre: '卢浮宫',
+          orsay: '奥赛博物馆',
+          versailles: '凡尔赛宫',
+          other: '其他',
+        };
+        const TICKET_LANGUAGE_LABELS = { mandarin: '中文', english: '英文' };
+
+        function summaryLine(order) {
+          const b = order.booking;
+          if (order.productType === 'private-terminal') {
+            return escapeHtml(
+              `${b.name || '—'} · 私人航站楼 · ${SCENARIO_LABELS[b.scenario] || b.scenario} · ${b.partySize || '—'}人 · ${b.date || '—'}`,
+            );
+          }
+          if (order.productType === 'surcharge') {
+            return escapeHtml(
+              `${b.name || '—'} · 超时补款 · 原订单 ${b.originalDate || '—'}${b.note ? ' · ' + b.note : ''}`,
+            );
+          }
+          if (order.productType === 'tickets-museum') {
+            const isMuseumTour = b.requestType === 'museumTour';
+            const otherMuseumFlag = isMuseumTour && b.museum === 'other' ? ' ⚠️非固定价' : '';
+            return escapeHtml(
+              `${b.name || '—'} · ${isMuseumTour ? `博物馆讲解 · ${TICKET_MUSEUM_LABELS[b.museum] || b.museum}` : `票务 · ${b.eventName || '—'}`} · ${b.partySize || '—'}人 · ${b.date || '—'}${otherMuseumFlag}`,
+            );
+          }
+          if (order.productType === 'accommodation-inquiry') {
+            const planningFlags = [
+              b.wantsFullSeasonPlanning && '📋雪季规划',
+              b.wantsAlternativeHotels && '🔄备选酒店',
+            ]
+              .filter(Boolean)
+              .join(' ');
+            return escapeHtml(
+              `${b.name || '—'} · ${b.propertyName || '—'} · ${b.partySize || '—'}人 · ${b.checkIn || '—'} → ${b.checkOut || '—'}${planningFlags ? ' · ' + planningFlags : ''}`,
+            );
+          }
+          if (order.productType === 'vip-reception') {
+            const chauffeurFlag = b.wantsChauffeur ? ' · 🚗加购座驾' : '';
+            return escapeHtml(
+              `${b.name || '—'} · ${SCENARIO_LABELS[b.scenario] || b.scenario || '—'} · ${b.country || '—'} · ${b.partySize || '—'}人 · ${b.date || '—'}${chauffeurFlag}`,
+            );
+          }
+          return escapeHtml(
+            `${b.name || '—'} · ${b.serviceType} · ${b.city} · ${b.date}${b.startTime ? ' ' + b.startTime : ''}`,
+          );
+        }
+
+        function detailRows(order) {
+          const b = order.booking;
+          const isTerminal = order.productType === 'private-terminal';
+          const isSurcharge = order.productType === 'surcharge';
+          const isTicket = order.productType === 'tickets-museum';
+          const isHotel = order.productType === 'accommodation-inquiry';
+          const isVipReception = order.productType === 'vip-reception';
+          const isMuseumTour = isTicket && b.requestType === 'museumTour';
+          const rows = isTicket
+            ? [
+                ['邮箱', b.email],
+                ['电话', b.phone],
+                ['偏好联系方式', b.preferredContactMethod],
+                ['类型', isMuseumTour ? '私人博物馆讲解' : '票务代购'],
+                ['活动/演出名称', isMuseumTour ? '' : b.eventName],
+                ['博物馆', isMuseumTour ? TICKET_MUSEUM_LABELS[b.museum] || b.museum : ''],
+                [
+                  '⚠️ 报价提示',
+                  isMuseumTour && b.museum === 'other'
+                    ? '非固定价博物馆——先确认可行性和报价，不要直接按 €300 报价'
+                    : '',
+                ],
+                ['讲解语言', isMuseumTour ? TICKET_LANGUAGE_LABELS[b.language] || b.language : ''],
+                [
+                  '同时需要专属司机',
+                  isMuseumTour ? (b.wantsChauffeur ? `是（${b.vehicle}）` : '否') : '',
+                ],
+                ['人数', b.partySize],
+                ['日期', b.date],
+                ['备注', b.notes],
+                ['创建时间', order.createdAt],
+                ['付款时间', order.paidAt || '—'],
+              ]
+            : isSurcharge
+              ? [
+                  ['邮箱', b.email],
+                  ['电话', b.phone],
+                  ['偏好联系方式', b.preferredContactMethod],
+                  ['关联订单', b.relatedOrderId],
+                  ['原订单日期', b.originalDate],
+                  ['说明', b.note],
+                  ['创建时间', order.createdAt],
+                  ['付款时间', order.paidAt || '—'],
+                ]
+              : isTerminal
+                ? [
+                    ['邮箱', b.email],
+                    ['电话', b.phone],
+                    ['偏好联系方式', b.preferredContactMethod],
+                    ['场景', SCENARIO_LABELS[b.scenario] || b.scenario],
+                    ['出行人数', b.partySize],
+                    ['日期', b.date],
+                    ['航班号', b.flightNumber],
+                    ['同时需要专属司机', b.wantsChauffeur ? `是（${b.vehicle}）` : '否'],
+                    ['备注', b.notes],
+                    ['创建时间', order.createdAt],
+                    ['付款时间', order.paidAt || '—'],
+                  ]
+                : isHotel
+                  ? [
+                      ['邮箱', b.email],
+                      ['电话', b.phone],
+                      ['偏好联系方式', b.preferredContactMethod],
+                      ['酒店', b.propertyName],
+                      ...propertyContactRows(b.propertySlug),
+                      ['入住人数', b.partySize],
+                      ['入住日期', b.checkIn],
+                      ['离店日期', b.checkOut],
+                      ['需要完整雪季行程规划', b.wantsFullSeasonPlanning ? '是' : '否'],
+                      ['需要备选酒店方案', b.wantsAlternativeHotels ? '是' : '否'],
+                      ['备注', b.notes],
+                      ['创建时间', order.createdAt],
+                      ['付款时间', order.paidAt || '—'],
+                    ]
+                  : isVipReception
+                    ? [
+                        ['邮箱', b.email],
+                        ['电话', b.phone],
+                        ['偏好联系方式', b.preferredContactMethod],
+                        ['场景', SCENARIO_LABELS[b.scenario] || b.scenario],
+                        ['国家', b.country],
+                        ['人数', b.partySize],
+                        ['日期', b.date],
+                        ['航班号', b.flightNumber],
+                        ['同时加购专属座驾', b.wantsChauffeur ? `是（${b.vehicle}）` : '否'],
+                        ['备注', b.notes],
+                        ['创建时间', order.createdAt],
+                        ['付款时间', order.paidAt || '—'],
+                      ]
+                    : [
+                        ['邮箱', b.email],
+                        ['电话', b.phone],
+                        ['偏好联系方式', b.preferredContactMethod],
+                        ['服务类型', b.serviceType],
+                        ['城市', b.city],
+                        ['国家', b.country],
+                        ['日期', b.date],
+                        ['用车时间', b.startTime],
+                        ['乘车人数', b.partySize],
+                        ['行李件数', b.luggage],
+                        ['地址', b.address],
+                        ['航班号', b.flightNumber],
+                        ['用车小时数', b.hours],
+                        ['用车天数', b.days],
+                        ['车型', b.vehicle],
+                        ['需要翻译/助理', b.interpreter ? '是' : '否'],
+                        ['时装周价格', b.fashionWeek ? '是' : '否'],
+                        ['已加购VIP礼遇接待', b.wantsVipReception ? '是' : '否'],
+                        ['备注', b.notes],
+                        ['创建时间', order.createdAt],
+                        ['付款时间', order.paidAt || '—'],
+                      ];
+          return rows
+            .filter(([, v]) => v !== undefined && v !== '')
+            .map(([k, v]) => `<div><dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd></div>`)
+            .join('');
+        }
+
+        // Two rows per order: a compact summary row you click/tap to open,
+        // and a detail row (holding the same forms as before) that stays
+        // hidden until then — instead of every order's full details, and
+        // both action forms, sitting on screen open at once.
+        function renderSummaryRow(order, detailRow) {
+          const tr = document.createElement('tr');
+          tr.className = 'order-row';
+          tr.tabIndex = 0;
+          tr.setAttribute('role', 'button');
+          tr.setAttribute('aria-expanded', 'false');
+          const deadline = confirmDeadlineText(order);
+          tr.innerHTML = `
+            <td class="order-row__toggle" aria-hidden="true">›</td>
+            <td class="order-row__status">
+              ${escapeHtml(STATUS_LABELS[order.status] || order.status)}
+              ${deadline ? `<span class="order-row__deadline">${escapeHtml(deadline)}</span>` : ''}
+            </td>
+            <td class="order-row__summary">${summaryLine(order)}</td>
+            <td class="order-row__amount">${order.amountTotal ? `€${order.amountTotal}` : '—'}</td>
+            <td class="order-row__date">${escapeHtml((order.createdAt || '').slice(0, 10))}</td>
+          `;
+          tr.addEventListener('click', () => toggleRow(tr, detailRow));
+          tr.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            toggleRow(tr, detailRow);
+          });
+          return tr;
+        }
+
+        function toggleRow(summaryRow, detailRow) {
+          const opening = detailRow.hidden;
+          detailRow.hidden = !opening;
+          summaryRow.classList.toggle('is-open', opening);
+          summaryRow.setAttribute('aria-expanded', String(opening));
+        }
+
+        function renderDetailRow(order) {
+          const tr = document.createElement('tr');
+          tr.className = 'order-detail-row';
+          tr.hidden = true;
+          const td = document.createElement('td');
+          td.colSpan = 5;
+          td.innerHTML = `
+            <div class="order" data-order-id="${escapeHtml(order.id)}" data-contact-method="${escapeHtml(order.booking.preferredContactMethod || '')}">
+              <dl class="order__details">${detailRows(order)}</dl>
+              <form class="order__repriceForm">
+                <label class="order__repriceLabel">
+                  <span class="order__repriceLabelText">改价（€）</span>
+                  <input type="number" name="newAmount" min="1" step="1" />
+                </label>
+                <button type="submit" class="order__repriceButton">更新价格并重新发送支付链接</button>
+                <p class="order__repriceStatus" role="status"></p>
+              </form>
+              <div class="order__decision">
+                <p class="order__decisionHint">24 小时内确认能否安排车辆：</p>
+                <div class="order__decisionActions">
+                  <button type="button" class="order__confirmOrderButton">确认订单（车辆已安排）</button>
+                  <button type="button" class="order__refundToggle">无法安排 · 退款</button>
+                </div>
+                <form class="order__refundForm" hidden>
+                  <label class="order__refundNoteLabel">
+                    备注（可选，例如替代方案，会附在退款邮件里发给客户）
+                    <textarea name="refundNote" rows="3"></textarea>
+                  </label>
+                  <button type="submit" class="order__refundButton">确认退款并发送邮件</button>
+                </form>
+                <p class="order__decisionStatus" role="status"></p>
+              </div>
+              <form class="order__vehicleForm">
+                <div class="grid grid--vehicle">
+                  <label>司机姓名<input type="text" name="driverName" /></label>
+                  <label>司机电话<input type="text" name="driverPhone" /></label>
+                  <label
+                    >车辆信息<input
+                      type="text"
+                      name="vehicleDescription"
+                      placeholder="例如：奔驰 V 级，黑色，车牌 AB-123-CD"
+                    /></label
+                  >
+                </div>
+                <div class="order__actions">
+                  <button type="submit" class="order__confirmButton">确认车辆</button>
+                  <button type="button" class="order__sendButton">立即发送司机信息</button>
+                </div>
+                <p class="order__actionStatus" role="status"></p>
+              </form>
+              <form class="order__surchargeForm">
+                <p class="order__surchargeHint">
+                  用车超时/超出预订天数的费用——需在本次行程结束前结清：
+                </p>
+                <div class="grid grid--surcharge">
+                  <label
+                    >金额（€）<input type="number" name="surchargeAmount" min="1" step="1" required
+                  /></label>
+                  <label
+                    >说明（会附在发给客户的邮件里，例如"超时2小时"）<input
+                      type="text"
+                      name="surchargeNote"
+                    /></label
+                  >
+                </div>
+                <button type="submit" class="order__surchargeButton">生成补款链接并发送</button>
+                <p class="order__surchargeStatus" role="status"></p>
+              </form>
+              <div class="order__danger">
+                <button type="button" class="order__deleteButton">删除这条订单记录</button>
+              </div>
+            </div>
+          `;
+          tr.appendChild(td);
+
+          const surchargeForm = tr.querySelector('.order__surchargeForm');
+          // Only a real, already-confirmed chauffeur trip can run over — not
+          // a private-terminal booking, and not a surcharge order itself
+          // (no surcharging a surcharge).
+          if (
+            order.productType === 'private-terminal' ||
+            order.productType === 'surcharge' ||
+            order.productType === 'tickets-museum' ||
+            order.productType === 'accommodation-inquiry' ||
+            order.productType === 'vip-reception' ||
+            !VEHICLE_FORM_STATUSES.includes(order.status)
+          ) {
+            surchargeForm.hidden = true;
+          }
+
+          const form = tr.querySelector('.order__vehicleForm');
+          if (order.vehicleInfo) {
+            form.driverName.value = order.vehicleInfo.driverName;
+            form.driverPhone.value = order.vehicleInfo.driverPhone;
+            form.vehicleDescription.value = order.vehicleInfo.vehicleDescription;
+          }
+          // Ticket / museum-tour, hotel-inquiry and VIP-reception orders
+          // never involve a driver/vehicle of their own — a bundled
+          // chauffeur car is arranged manually, not through this form.
+          if (
+            !VEHICLE_FORM_STATUSES.includes(order.status) ||
+            order.productType === 'tickets-museum' ||
+            order.productType === 'accommodation-inquiry' ||
+            order.productType === 'vip-reception'
+          ) {
+            form.hidden = true;
+          }
+          const sendButton = tr.querySelector('.order__sendButton');
+          if (!order.vehicleInfo) sendButton.hidden = true;
+
+          const decisionEl = tr.querySelector('.order__decision');
+          // The "did we arrange a vehicle" decision belongs to the original
+          // booking — a surcharge order paying that trip's overage doesn't
+          // need its own vehicle/refund decision.
+          decisionEl.hidden = order.status !== 'paid' || order.productType === 'surcharge';
+          if (order.productType === 'tickets-museum' && !decisionEl.hidden) {
+            decisionEl.querySelector('.order__decisionHint').textContent =
+              '24 小时内确认能否办妥（购票 / 安排讲解）：';
+            decisionEl.querySelector('.order__confirmOrderButton').textContent =
+              '确认订单（已办妥）';
+          }
+          if (order.productType === 'accommodation-inquiry' && !decisionEl.hidden) {
+            decisionEl.querySelector('.order__decisionHint').textContent =
+              '24 小时内确认酒店房间是否可订：';
+            decisionEl.querySelector('.order__confirmOrderButton').textContent =
+              '确认订单（房间已确认）';
+          }
+          if (order.productType === 'vip-reception' && !decisionEl.hidden) {
+            decisionEl.querySelector('.order__decisionHint').textContent =
+              '24 小时内确认能否办妥（含是否需要加购座驾）：';
+            decisionEl.querySelector('.order__confirmOrderButton').textContent =
+              '确认订单（已办妥）';
+          }
+
+          const repriceForm = tr.querySelector('.order__repriceForm');
+          if (REPRICEABLE_STATUSES.includes(order.status)) {
+            if (order.amountTotal) repriceForm.newAmount.value = order.amountTotal;
+            if (order.status === 'quote_requested') {
+              repriceForm.querySelector('.order__repriceLabelText').textContent = '设置报价（€）';
+              repriceForm.querySelector('.order__repriceButton').textContent =
+                '设置报价并发送支付链接';
+            }
+          } else {
+            repriceForm.hidden = true;
+          }
+
+          return tr;
+        }
+
+        function renderOrder(order) {
+          const detailRow = renderDetailRow(order);
+          const summaryRow = renderSummaryRow(order, detailRow);
+          return [summaryRow, detailRow];
+        }
+
+        async function authedFetch(url, options = {}) {
+          return fetch(url, { ...options, credentials: 'include' });
+        }
+
+        // Renders from `allOrders` filtered by the current tab + search
+        // query — called on load and again whenever either changes, no
+        // re-fetch needed for either.
+        function applyFilters() {
+          sections.chauffeur.body.innerHTML = '';
+          sections.terminal.body.innerHTML = '';
+          sections.tickets.body.innerHTML = '';
+          sections.hotel.body.innerHTML = '';
+          sections.vipReception.body.innerHTML = '';
+
+          const query = ordersSearch.value.trim().toLowerCase();
+          const filtered = allOrders.filter(
+            (order) =>
+              matchesSearch(order, query) &&
+              (currentTab === 'all' || orderTypeKey(order) === currentTab),
+          );
+
+          if (allOrders.length === 0) {
+            sections.chauffeur.section.hidden = true;
+            sections.terminal.section.hidden = true;
+            sections.tickets.section.hidden = true;
+            sections.hotel.section.hidden = true;
+            sections.vipReception.section.hidden = true;
+            ordersNoMatchNote.hidden = true;
+            return;
+          }
+
+          ordersNoMatchNote.hidden = filtered.length > 0;
+
+          const grouped = { chauffeur: [], terminal: [], tickets: [], hotel: [], vipReception: [] };
+          filtered.forEach((order) => grouped[orderTypeKey(order)].push(order));
+
+          Object.entries(grouped).forEach(([key, groupOrders]) => {
+            const { section, tableWrap, body, empty } = sections[key];
+            // A tab hides every section but its own outright, regardless of
+            // whether that section has matching orders — "包车" tab with no
+            // results should show "暂无包车订单", not the terminal section.
+            const tabAllows = currentTab === 'all' || currentTab === key;
+            section.hidden = !tabAllows;
+            if (!tabAllows) return;
+            empty.hidden = groupOrders.length > 0;
+            tableWrap.hidden = groupOrders.length === 0;
+            groupOrders.forEach((order) => {
+              const [summaryRow, detailRow] = renderOrder(order);
+              body.appendChild(summaryRow);
+              body.appendChild(detailRow);
+            });
+          });
+        }
+
+        ordersTabs.addEventListener('click', (event) => {
+          const button = event.target.closest('.orders-tab');
+          if (!button) return;
+          currentTab = button.dataset.tab;
+          ordersTabs
+            .querySelectorAll('.orders-tab')
+            .forEach((tab) => tab.classList.toggle('is-active', tab === button));
+          applyFilters();
+        });
+
+        ordersSearch.addEventListener('input', applyFilters);
+
+        async function loadOrders() {
+          const res = await authedFetch('/.netlify/functions/admin-orders');
+          if (res.status === 401) {
+            window.location.href = '/admin/login/?next=/admin/orders/';
+            return;
+          }
+          main.hidden = false;
+          if (!res.ok) {
+            loginStatus.textContent = '订单加载失败，请刷新重试。';
+            return;
+          }
+          const { orders } = await res.json();
+          allOrders = orders;
+          emptyNote.hidden = orders.length > 0;
+          ordersToolbar.hidden = orders.length === 0;
+          applyFilters();
+        }
+
+        // Opens WhatsApp (app or web) in a new tab with the message already
+        // typed in — she still has to hit send herself there. This is a
+        // stopgap for automated WhatsApp sending, which needs the full
+        // WhatsApp Business API (Meta verification + template approval).
+        // The actual notification (quote-ready, driver info, etc.) is
+        // always emailed server-side regardless — this only pops WhatsApp
+        // as well when that's the customer's own stated preference, so
+        // reprice/confirm actions don't force a WhatsApp tab on every
+        // order regardless of how the customer asked to be reached.
+        function openWhatsApp(phone, message, preferredMethod) {
+          if (preferredMethod !== 'whatsapp') return;
+          if (!phone || !message) return;
+          const digits = phone.replace(/[^0-9]/g, '');
+          if (!digits) return;
+          window.open(
+            `https://wa.me/${digits}?text=${encodeURIComponent(message)}`,
+            '_blank',
+            'noopener',
+          );
+        }
+
+        async function handleOrdersSubmit(event) {
+          const vehicleForm = event.target.closest('.order__vehicleForm');
+          const repriceForm = event.target.closest('.order__repriceForm');
+          const refundForm = event.target.closest('.order__refundForm');
+          const surchargeForm = event.target.closest('.order__surchargeForm');
+          if (!vehicleForm && !repriceForm && !refundForm && !surchargeForm) return;
+          event.preventDefault();
+
+          if (surchargeForm) {
+            const orderDiv = surchargeForm.closest('.order');
+            const orderId = orderDiv.dataset.orderId;
+            const statusEl = surchargeForm.querySelector('.order__surchargeStatus');
+            statusEl.textContent = '生成中…';
+            const res = await authedFetch('/.netlify/functions/admin-create-surcharge', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderId,
+                amount: surchargeForm.surchargeAmount.value,
+                note: surchargeForm.surchargeNote.value,
+              }),
+            });
+            statusEl.textContent = res.ok ? '已生成，支付链接已发送给客人。' : '失败，请重试。';
+            if (res.ok) {
+              const { whatsappPhone, whatsappMessage } = await res.json();
+              openWhatsApp(whatsappPhone, whatsappMessage, orderDiv.dataset.contactMethod);
+              surchargeForm.reset();
+              loadOrders();
+            }
+            return;
+          }
+
+          if (refundForm) {
+            const orderId = refundForm.closest('.order').dataset.orderId;
+            const statusEl = refundForm
+              .closest('.order__decision')
+              .querySelector('.order__decisionStatus');
+            if (!window.confirm('确认要全额退款并发送抱歉邮件给客户吗？此操作不可撤销。')) return;
+            statusEl.textContent = '处理中…';
+            const res = await authedFetch('/.netlify/functions/admin-refund-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ orderId, note: refundForm.refundNote.value }),
+            });
+            statusEl.textContent = res.ok
+              ? '已退款，邮件已发送。'
+              : '失败，请重试或去 Stripe 后台确认。';
+            if (res.ok) loadOrders();
+            return;
+          }
+
+          if (vehicleForm) {
+            const orderDiv = vehicleForm.closest('.order');
+            const orderId = orderDiv.dataset.orderId;
+            const statusEl = vehicleForm.querySelector('.order__actionStatus');
+            statusEl.textContent = '保存中…';
+            const res = await authedFetch('/.netlify/functions/admin-confirm-vehicle', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderId,
+                driverName: vehicleForm.driverName.value,
+                driverPhone: vehicleForm.driverPhone.value,
+                vehicleDescription: vehicleForm.vehicleDescription.value,
+              }),
+            });
+            statusEl.textContent = res.ok ? '已保存。' : '失败，请重试。';
+            if (res.ok) {
+              const { whatsappPhone, whatsappMessage } = await res.json();
+              openWhatsApp(whatsappPhone, whatsappMessage, orderDiv.dataset.contactMethod);
+              loadOrders();
+            }
+            return;
+          }
+
+          const orderDiv = repriceForm.closest('.order');
+          const orderId = orderDiv.dataset.orderId;
+          const statusEl = repriceForm.querySelector('.order__repriceStatus');
+          statusEl.textContent = '更新中…';
+          const res = await authedFetch('/.netlify/functions/admin-reprice-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ orderId, newAmount: repriceForm.newAmount.value }),
+          });
+          statusEl.textContent = res.ok ? '已更新，新支付链接已发送给客人。' : '失败，请重试。';
+          if (res.ok) {
+            const { whatsappPhone, whatsappMessage } = await res.json();
+            openWhatsApp(whatsappPhone, whatsappMessage, orderDiv.dataset.contactMethod);
+            loadOrders();
+          }
+        }
+
+        async function handleOrdersClick(event) {
+          if (event.target.classList.contains('order__deleteButton')) {
+            const orderDiv = event.target.closest('.order');
+            const orderId = orderDiv.dataset.orderId;
+            const summary = orderDiv
+              .closest('.order-detail-row')
+              .previousElementSibling.querySelector('.order-row__summary').textContent;
+            if (!window.confirm(`确定要永久删除这条订单记录吗？\n\n${summary}\n\n此操作不可撤销。`))
+              return;
+            event.target.disabled = true;
+            const res = await authedFetch('/.netlify/functions/admin-delete-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ orderId }),
+            });
+            if (res.ok) {
+              loadOrders();
+            } else {
+              event.target.disabled = false;
+              window.alert('删除失败，请重试。');
+            }
+            return;
+          }
+
+          if (event.target.classList.contains('order__refundToggle')) {
+            const decision = event.target.closest('.order__decision');
+            const refundForm = decision.querySelector('.order__refundForm');
+            refundForm.hidden = !refundForm.hidden;
+            return;
+          }
+
+          if (event.target.classList.contains('order__confirmOrderButton')) {
+            const orderId = event.target.closest('.order').dataset.orderId;
+            const statusEl = event.target
+              .closest('.order__decision')
+              .querySelector('.order__decisionStatus');
+            statusEl.textContent = '发送中…';
+            const res = await authedFetch('/.netlify/functions/admin-confirm-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ orderId }),
+            });
+            statusEl.textContent = res.ok ? '已确认，邮件已发送。' : '失败，请重试。';
+            if (res.ok) loadOrders();
+            return;
+          }
+
+          if (!event.target.classList.contains('order__sendButton')) return;
+          const form = event.target.closest('.order__vehicleForm');
+          const orderDiv = form.closest('.order');
+          const orderId = orderDiv.dataset.orderId;
+          const statusEl = form.querySelector('.order__actionStatus');
+          statusEl.textContent = '发送中…';
+          const res = await authedFetch('/.netlify/functions/admin-send-driver-info', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ orderId }),
+          });
+          statusEl.textContent = res.ok ? '已发送。' : '失败，请重试。';
+          if (res.ok) {
+            const { whatsappPhone, whatsappMessage } = await res.json();
+            openWhatsApp(whatsappPhone, whatsappMessage, orderDiv.dataset.contactMethod);
+            loadOrders();
+          }
+        }
+
+        orderBodies.forEach((body) => {
+          body.addEventListener('submit', handleOrdersSubmit);
+          body.addEventListener('click', handleOrdersClick);
+        });
+
+        lockButton.addEventListener('click', async () => {
+          await authedFetch('/.netlify/functions/admin-logout', { method: 'POST' });
+          window.location.href = '/admin/login/';
+        });
+
+        loadOrders();
+      })();
+    </script>
+
+    <style is:global>
+      .admin {
+        max-width: 64rem;
+        margin-inline: auto;
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .wordmark {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        letter-spacing: var(--tracking-wordmark);
+        margin-bottom: var(--space-4);
+      }
+
+      .admin__back {
+        display: inline-block;
+        margin-bottom: var(--space-3);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        text-decoration: none;
+      }
+
+      .admin__back:hover {
+        color: var(--color-accent);
+      }
+
+      .admin__headerRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-2);
+      }
+
+      .admin__headerRow h1 {
+        margin: 0;
+      }
+
+      .admin__headerRow button {
+        font: inherit;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-size: var(--text-small);
+      }
+
+      .field label {
+        display: block;
+        margin-bottom: var(--space-1);
+      }
+
+      input {
+        font: inherit;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      button {
+        font: inherit;
+        padding: 0.5rem 1.25rem;
+        border: none;
+        border-radius: var(--radius);
+        background: var(--color-accent);
+        color: var(--color-bg-elevated);
+        cursor: pointer;
+      }
+
+      #status,
+      #login-status,
+      .order__actionStatus {
+        margin-top: var(--space-2);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .orders-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3);
+        margin: var(--space-4) 0;
+      }
+
+      /* Same [hidden]-vs-author-display cascade issue as elsewhere in the
+         admin tools — an unconditional `display: flex` here beats the UA
+         stylesheet's [hidden]{display:none} unless restated. */
+      .orders-toolbar[hidden] {
+        display: none;
+      }
+
+      .orders-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+
+      .orders-tab {
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.4rem 0.9rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--color-text-muted);
+        cursor: pointer;
+      }
+
+      .orders-tab.is-active {
+        background: var(--color-accent);
+        border-color: var(--color-accent);
+        color: var(--color-bg-elevated);
+      }
+
+      #orders-search {
+        flex: 1;
+        min-width: 12rem;
+        max-width: 24rem;
+        font: inherit;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      #orders-no-match-note {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .admin__sectionHeading {
+        margin: var(--space-6) 0 var(--space-3);
+        font-size: var(--text-h4);
+      }
+
+      .admin__sectionEmpty {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .orders-table-wrap {
+        overflow-x: auto;
+      }
+
+      .orders-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--text-small);
+      }
+
+      .orders-table thead th {
+        text-align: left;
+        padding: var(--space-2) var(--space-2);
+        color: var(--color-text-muted);
+        font-weight: 400;
+        border-bottom: 1px solid var(--color-border-strong);
+        white-space: nowrap;
+      }
+
+      /* Click/tap a summary row to open the detail row directly beneath
+         it — a swipe gesture would do the same job with more code, so this
+         covers touch too instead of building a separate interaction. */
+      .order-row {
+        cursor: pointer;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .order-row:hover,
+      .order-row:focus-visible {
+        background: var(--color-bg-inset);
+      }
+
+      .order-row td {
+        padding: var(--space-3) var(--space-2);
+        vertical-align: baseline;
+      }
+
+      .order-row__toggle {
+        color: var(--color-text-muted);
+        transition: transform 0.2s ease;
+        width: 1em;
+      }
+
+      .order-row.is-open .order-row__toggle {
+        transform: rotate(90deg);
+      }
+
+      .order-row__status {
+        color: var(--color-accent);
+        white-space: nowrap;
+      }
+
+      .order-row__deadline {
+        display: block;
+        color: var(--color-text-muted);
+        font-size: 0.8em;
+      }
+
+      .order__decision {
+        margin-bottom: var(--space-3);
+        padding: var(--space-3);
+        background: var(--color-bg-inset);
+        border-radius: var(--radius);
+      }
+
+      .order__decisionHint {
+        margin: 0 0 var(--space-2);
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .order__decisionActions {
+        display: flex;
+        gap: var(--space-3);
+      }
+
+      .order__refundToggle {
+        background: transparent;
+        border: 1px solid var(--color-border-strong);
+        color: inherit;
+      }
+
+      .order__refundForm {
+        margin-top: var(--space-3);
+      }
+
+      .order__refundNoteLabel {
+        display: block;
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-2);
+      }
+
+      .order__refundNoteLabel textarea {
+        display: block;
+        width: 100%;
+        margin-top: var(--space-1);
+        font: inherit;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+        resize: vertical;
+      }
+
+      .order__refundButton {
+        background: var(--color-accent);
+      }
+
+      .order__decisionStatus {
+        margin: var(--space-2) 0 0;
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .order-row__summary {
+        font-family: var(--font-display);
+      }
+
+      .order-row__amount {
+        font-family: var(--font-display);
+        color: var(--color-accent);
+        white-space: nowrap;
+      }
+
+      .order-row__date {
+        color: var(--color-text-muted);
+        white-space: nowrap;
+      }
+
+      .order-detail-row td {
+        padding: 0 var(--space-2) var(--space-4);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .order {
+        padding-top: var(--space-3);
+      }
+
+      .order__details {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+        gap: var(--space-2) var(--space-4);
+        font-size: var(--text-small);
+        margin: 0 0 var(--space-3);
+      }
+
+      .order__details dt {
+        color: var(--color-text-muted);
+      }
+
+      .order__details dd {
+        margin: 0;
+      }
+
+      .grid--vehicle {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        gap: var(--space-3);
+        margin-bottom: var(--space-3);
+      }
+
+      .grid--vehicle label {
+        display: block;
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .grid--vehicle input {
+        width: 100%;
+        margin-top: var(--space-1);
+      }
+
+      .order__actions {
+        display: flex;
+        gap: var(--space-3);
+      }
+
+      .order__sendButton {
+        background: transparent;
+        border: 1px solid var(--color-border-strong);
+        color: inherit;
+      }
+
+      .order__repriceForm {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-3);
+      }
+
+      /* Same [hidden]-vs-author-display cascade issue as the booking
+         widget's Next button — an unconditional `display` rule here beats
+         the UA stylesheet's [hidden]{display:none} unless restated. */
+      .order__repriceForm[hidden] {
+        display: none;
+      }
+
+      .order__repriceLabel {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .order__repriceLabel input {
+        width: 7rem;
+      }
+
+      .order__repriceButton {
+        background: transparent;
+        border: 1px solid var(--color-border-strong);
+        color: inherit;
+      }
+
+      .order__repriceStatus {
+        flex-basis: 100%;
+        margin: 0;
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .order__surchargeForm {
+        margin-top: var(--space-4);
+        padding-top: var(--space-3);
+        border-top: 1px solid var(--color-border);
+      }
+
+      .order__surchargeHint {
+        margin: 0 0 var(--space-2);
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .grid--surcharge {
+        display: grid;
+        grid-template-columns: 8rem 1fr;
+        gap: var(--space-3);
+        margin-bottom: var(--space-3);
+      }
+
+      .grid--surcharge label {
+        display: block;
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .grid--surcharge input {
+        width: 100%;
+        margin-top: var(--space-1);
+      }
+
+      .order__surchargeButton {
+        background: transparent;
+        border: 1px solid var(--color-border-strong);
+        color: inherit;
+      }
+
+      .order__surchargeStatus {
+        margin: var(--space-2) 0 0;
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .order__danger {
+        margin-top: var(--space-4);
+        padding-top: var(--space-3);
+        border-top: 1px solid var(--color-border);
+      }
+
+      .order__deleteButton {
+        background: transparent;
+        border: 1px solid var(--color-border-strong);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        padding: 0.4rem 1rem;
+      }
+
+      .order__deleteButton:hover {
+        color: var(--color-accent);
+        border-color: var(--color-accent);
+      }
+    </style>
+  </body>
+</html>

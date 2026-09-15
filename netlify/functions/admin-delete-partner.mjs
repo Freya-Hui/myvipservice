@@ -1,0 +1,27 @@
+import { isAuthorized } from './lib/admin-auth.mjs';
+import { deletePartner } from './lib/partners.mjs';
+
+export const handler = async (event) => {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
+
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (!adminPassword || !isAuthorized(event, adminPassword)) {
+    return { statusCode: 401, body: JSON.stringify({ error: 'unauthorized' }) };
+  }
+
+  let body;
+  try {
+    body = JSON.parse(event.body || '{}');
+  } catch {
+    return { statusCode: 400, body: JSON.stringify({ error: 'invalid_body' }) };
+  }
+
+  if (!body.id) {
+    return { statusCode: 400, body: JSON.stringify({ error: 'id_required' }) };
+  }
+
+  await deletePartner(body.id);
+  return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+};

@@ -1,0 +1,541 @@
+---
+import '../../styles/global.css';
+// Internal tool, not part of the public site — stands alone rather than
+// going through BaseLayout (no locale, no nav, no footer).
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>客户名片 · MYVIPSERVICE 后台</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <main class="admin" id="admin-main" hidden>
+      <p class="wordmark">MYVIPSERVICE</p>
+      <a href="/admin/" class="admin__back">← 后台首页</a>
+      <div class="admin__headerRow">
+        <h1>客户名片</h1>
+        <button type="button" id="lock-button">退出登录</button>
+      </div>
+      <p id="login-status" role="status"></p>
+
+      <form id="client-form" class="client-form">
+        <input type="hidden" name="id" id="cf-id" />
+        <div class="client-form__grid">
+          <label>
+            微信号 *
+            <input
+              type="text"
+              name="wechatId"
+              id="cf-wechatId"
+              required
+              placeholder="例如：eva_myvip"
+            />
+          </label>
+          <label>
+            姓名 *
+            <input type="text" name="name" id="cf-name" required placeholder="客户姓名" />
+          </label>
+          <label>
+            电话
+            <input type="text" name="phone" id="cf-phone" placeholder="+86 ..." />
+          </label>
+          <label>
+            邮箱
+            <input type="email" name="email" id="cf-email" placeholder="client@..." />
+          </label>
+          <label>
+            WhatsApp
+            <input type="text" name="whatsapp" id="cf-whatsapp" placeholder="+33 ..." />
+          </label>
+          <label>
+            标签
+            <input
+              type="text"
+              name="tags"
+              id="cf-tags"
+              placeholder="逗号分隔，例如：VIP, 亲子, 法语"
+            />
+          </label>
+        </div>
+        <label class="client-form__notes">
+          备注 / 偏好
+          <textarea
+            name="notes"
+            id="cf-notes"
+            rows="3"
+            placeholder="例如：偏好安静酒店、对海鲜过敏、常带两个孩子出行"></textarea>
+        </label>
+        <div class="client-form__actions">
+          <button type="submit" id="cf-submit">添加</button>
+          <button type="button" id="cf-cancel" hidden>取消编辑</button>
+        </div>
+        <p id="cf-status" role="status"></p>
+      </form>
+
+      <div class="clients-search" id="clients-search-wrap" hidden>
+        <input
+          type="search"
+          id="clients-search"
+          placeholder="搜索姓名 / 微信 / 电话 / 邮箱 / 标签…"
+        />
+        <p class="clients-search__count" id="clients-search-count" role="status"></p>
+      </div>
+
+      <p id="empty-note" hidden>暂无客户记录。</p>
+      <p id="no-match-note" hidden>没有匹配的结果。</p>
+      <div class="clients-table-wrap" id="clients-table-wrap" hidden>
+        <table class="clients-table">
+          <colgroup>
+            <col class="col-name" />
+            <col class="col-wechat" />
+            <col class="col-phone" />
+            <col class="col-email" />
+            <col class="col-tags" />
+            <col class="col-actions" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>姓名</th>
+              <th>微信</th>
+              <th>电话</th>
+              <th>邮箱</th>
+              <th>标签</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="clients-body"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <script is:inline>
+      (function () {
+        const main = document.getElementById('admin-main');
+        const lockButton = document.getElementById('lock-button');
+        const loginStatus = document.getElementById('login-status');
+        const tableWrap = document.getElementById('clients-table-wrap');
+        const clientsBody = document.getElementById('clients-body');
+        const emptyNote = document.getElementById('empty-note');
+        const noMatchNote = document.getElementById('no-match-note');
+        const searchWrap = document.getElementById('clients-search-wrap');
+        const searchInput = document.getElementById('clients-search');
+        const searchCount = document.getElementById('clients-search-count');
+        const form = document.getElementById('client-form');
+        const formStatus = document.getElementById('cf-status');
+        const submitButton = document.getElementById('cf-submit');
+        const cancelButton = document.getElementById('cf-cancel');
+
+        // The full list from the server — search filters this in memory
+        // rather than re-fetching, since the whole point is instant results
+        // as you type.
+        let allClients = [];
+
+        async function authedFetch(url, options = {}) {
+          return fetch(url, { ...options, credentials: 'include' });
+        }
+
+        function escapeHtml(value) {
+          return String(value ?? '').replace(
+            /[&<>"']/g,
+            (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch],
+          );
+        }
+
+        function renderRow(client) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><span class="cell-truncate" title="${escapeHtml(client.name)}">${escapeHtml(client.name)}</span></td>
+            <td><span class="cell-truncate" title="${escapeHtml(client.wechatId)}">${escapeHtml(client.wechatId)}</span></td>
+            <td><span class="cell-truncate" title="${escapeHtml(client.phone)}">${escapeHtml(client.phone) || '—'}</span></td>
+            <td><span class="cell-truncate" title="${escapeHtml(client.email)}">${client.email ? `<a href="mailto:${escapeHtml(client.email)}">${escapeHtml(client.email)}</a>` : '—'}</span></td>
+            <td><span class="cell-truncate" title="${escapeHtml(client.tags)}">${escapeHtml(client.tags) || '—'}</span></td>
+            <td class="clients-table__actions">
+              <a class="client-itinerary-link" href="/admin/itineraries/?clientId=${encodeURIComponent(client.id)}">查看行程</a>
+              <button type="button" class="client-edit">编辑</button>
+              <button type="button" class="client-delete">删除</button>
+            </td>
+          `;
+          tr.dataset.client = JSON.stringify(client);
+          return tr;
+        }
+
+        function renderList(clients) {
+          clientsBody.innerHTML = '';
+
+          if (allClients.length === 0) {
+            emptyNote.hidden = false;
+            noMatchNote.hidden = true;
+            searchWrap.hidden = true;
+            tableWrap.hidden = true;
+            return;
+          }
+
+          emptyNote.hidden = true;
+          searchWrap.hidden = false;
+          searchCount.textContent = `共 ${allClients.length} 条${searchInput.value ? `，匹配 ${clients.length} 条` : ''}`;
+
+          if (clients.length === 0) {
+            noMatchNote.hidden = false;
+            tableWrap.hidden = true;
+            return;
+          }
+          noMatchNote.hidden = true;
+          tableWrap.hidden = false;
+          clients.forEach((client) => clientsBody.appendChild(renderRow(client)));
+        }
+
+        function applySearch() {
+          const query = searchInput.value.trim().toLowerCase();
+          if (!query) {
+            renderList(allClients);
+            return;
+          }
+          const filtered = allClients.filter((c) =>
+            [c.name, c.wechatId, c.phone, c.email, c.whatsapp, c.tags].some((field) =>
+              String(field ?? '')
+                .toLowerCase()
+                .includes(query),
+            ),
+          );
+          renderList(filtered);
+        }
+
+        searchInput.addEventListener('input', applySearch);
+
+        async function loadClients() {
+          const res = await authedFetch('/.netlify/functions/admin-clients');
+          if (res.status === 401) {
+            window.location.href = '/admin/login/?next=/admin/clients/';
+            return;
+          }
+          main.hidden = false;
+          if (!res.ok) {
+            loginStatus.textContent = '加载失败，请刷新重试。';
+            return;
+          }
+          const { clients } = await res.json();
+          allClients = clients;
+          applySearch();
+        }
+
+        function resetForm() {
+          form.reset();
+          document.getElementById('cf-id').value = '';
+          submitButton.textContent = '添加';
+          cancelButton.hidden = true;
+        }
+
+        cancelButton.addEventListener('click', resetForm);
+
+        clientsBody.addEventListener('click', async (event) => {
+          const row = event.target.closest('tr');
+          if (!row) return;
+          const client = JSON.parse(row.dataset.client);
+
+          if (event.target.classList.contains('client-edit')) {
+            document.getElementById('cf-id').value = client.id;
+            document.getElementById('cf-wechatId').value = client.wechatId;
+            document.getElementById('cf-name').value = client.name;
+            document.getElementById('cf-phone').value = client.phone;
+            document.getElementById('cf-email').value = client.email;
+            document.getElementById('cf-whatsapp').value = client.whatsapp;
+            document.getElementById('cf-tags').value = client.tags;
+            document.getElementById('cf-notes').value = client.notes;
+            submitButton.textContent = '保存修改';
+            cancelButton.hidden = false;
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+          }
+
+          if (event.target.classList.contains('client-delete')) {
+            if (
+              !window.confirm(
+                `确定删除「${client.name}」的名片吗？该客户名下的行程记录不会被自动删除。`,
+              )
+            )
+              return;
+            await authedFetch('/.netlify/functions/admin-delete-client', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: client.id }),
+            });
+            loadClients();
+          }
+        });
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          formStatus.textContent = '保存中…';
+          const data = Object.fromEntries(new FormData(form).entries());
+          const res = await authedFetch('/.netlify/functions/admin-save-client', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          if (res.ok) {
+            formStatus.textContent = '已保存。';
+            resetForm();
+            loadClients();
+            return;
+          }
+          if (res.status === 409) {
+            const { existing } = await res.json();
+            formStatus.textContent = `微信号已存在于「${existing?.name ?? '另一张名片'}」的名片中。`;
+            return;
+          }
+          formStatus.textContent = '保存失败，请重试。';
+        });
+
+        lockButton.addEventListener('click', async () => {
+          await authedFetch('/.netlify/functions/admin-logout', { method: 'POST' });
+          window.location.href = '/admin/login/';
+        });
+
+        loadClients();
+      })();
+    </script>
+
+    <style is:global>
+      .admin {
+        max-width: 56rem;
+        margin-inline: auto;
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .wordmark {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        letter-spacing: var(--tracking-wordmark);
+        margin-bottom: var(--space-4);
+      }
+
+      .admin__back {
+        display: inline-block;
+        margin-bottom: var(--space-3);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        text-decoration: none;
+      }
+
+      .admin__back:hover {
+        color: var(--color-accent);
+      }
+
+      .admin__headerRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-2);
+      }
+
+      .admin__headerRow h1 {
+        margin: 0;
+      }
+
+      .admin__headerRow button {
+        font: inherit;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-size: var(--text-small);
+      }
+
+      #login-status,
+      #cf-status {
+        margin-top: var(--space-2);
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .client-form {
+        margin: var(--space-5) 0;
+        padding: var(--space-4);
+        background: var(--color-bg-inset);
+        border-radius: var(--radius);
+      }
+
+      .client-form__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        gap: var(--space-3);
+      }
+
+      .client-form__grid label,
+      .client-form__notes {
+        display: block;
+        font-size: var(--text-small);
+        color: var(--color-text-muted);
+      }
+
+      .client-form__notes {
+        margin-top: var(--space-3);
+      }
+
+      .client-form__grid input,
+      .client-form__notes textarea {
+        width: 100%;
+        margin-top: var(--space-1);
+        font: inherit;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .client-form__notes textarea {
+        resize: vertical;
+      }
+
+      .client-form__actions {
+        display: flex;
+        gap: var(--space-3);
+        margin-top: var(--space-3);
+      }
+
+      .client-form__actions button {
+        font: inherit;
+        padding: 0.5rem 1.25rem;
+        border: none;
+        border-radius: var(--radius);
+        background: var(--color-accent);
+        color: var(--color-bg-elevated);
+        cursor: pointer;
+      }
+
+      #cf-cancel {
+        background: transparent;
+        border: 1px solid var(--color-border-strong);
+        color: inherit;
+      }
+
+      .clients-search {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-3);
+      }
+
+      /* Same [hidden]-vs-author-display cascade issue as elsewhere in the
+         admin tools — an unconditional `display: flex` here beats the UA
+         stylesheet's [hidden]{display:none} unless restated. */
+      .clients-search[hidden] {
+        display: none;
+      }
+
+      .clients-search input {
+        flex: 1;
+        min-width: 12rem;
+        font: inherit;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .clients-search__count {
+        margin: 0;
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+        white-space: nowrap;
+      }
+
+      #no-match-note {
+        color: var(--color-text-muted);
+        font-size: var(--text-small);
+      }
+
+      .clients-table-wrap {
+        overflow-x: auto;
+      }
+
+      .clients-table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        font-size: var(--text-small);
+      }
+
+      .col-name {
+        width: 16%;
+      }
+      .col-wechat {
+        width: 16%;
+      }
+      .col-phone {
+        width: 13%;
+      }
+      .col-email {
+        width: 19%;
+      }
+      .col-tags {
+        width: 16%;
+      }
+      .col-actions {
+        width: 12rem;
+      }
+
+      .clients-table thead th {
+        text-align: left;
+        padding: var(--space-2);
+        color: var(--color-text-muted);
+        font-weight: 400;
+        border-bottom: 1px solid var(--color-border-strong);
+        white-space: nowrap;
+      }
+
+      .clients-table td {
+        padding: var(--space-3) var(--space-2);
+        border-bottom: 1px solid var(--color-border);
+        vertical-align: middle;
+      }
+
+      .clients-table tbody tr:hover {
+        background: var(--color-bg-inset);
+      }
+
+      /* Long values clip with an ellipsis instead of wrapping (which would
+         blow out the fixed column widths above) — the title attribute on
+         the same element gives the full value on hover. */
+      .cell-truncate {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .clients-table__actions {
+        display: flex;
+        gap: var(--space-2);
+        white-space: nowrap;
+      }
+
+      .clients-table__actions button,
+      .client-itinerary-link {
+        font: inherit;
+        font-size: var(--text-small);
+        padding: 0.3rem 0.7rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .client-delete {
+        color: var(--color-accent);
+      }
+    </style>
+  </body>
+</html>
