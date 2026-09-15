@@ -16,8 +16,14 @@ relatedJournalKeys:
   ['provence-five-day-itinerary-guide', 'monaco-private-yacht-evening-celebration-guide']
 featured: true
 status: 'published'
-coverImage: 'destination-french-riviera-yacht'
-gallery: ['destination-french-riviera-yacht', 'destination-monaco', 'destination-provence-vineyard']
+coverImage: 'destination-provence-gordes'
+gallery:
+  [
+    'destination-provence-gordes',
+    'destination-french-riviera-yacht',
+    'destination-monaco',
+    'destination-provence-vineyard',
+  ]
 duration: '5-7 天'
 highlights: ['里维埃拉私人游艇下午时光', '摩纳哥港湾夜游', '普罗旺斯酒庄午宴']
 itinerary:

@@ -10,8 +10,8 @@ city: 'Saint-Tropez'
 country: 'France'
 featured: false
 status: 'published'
-coverImage: 'service-floral-event'
-gallery: ['service-floral-event']
+coverImage: 'accommodation-villa-riviera-pool-view'
+gallery: ['accommodation-villa-riviera-pool-view']
 highlights:
   [
     "Gated grounds and pool near the water, on one of the Riviera's most requested stretches of coast",

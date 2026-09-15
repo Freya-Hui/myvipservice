@@ -8,8 +8,8 @@ category: 'Fashion'
 destinationKey: 'milan'
 featured: true
 status: 'published'
-coverImage: 'destination-milan'
-gallery: ['destination-milan', 'service-boutique-appointment']
+coverImage: 'service-boutique-appointment'
+gallery: ['service-boutique-appointment', 'destination-milan']
 duration: 'Half day'
 suitableFor: ['Individuals', 'Couples', 'Small groups']
 familySuitable: false
@@ -19,6 +19,7 @@ highlights:
     'Private appointments, not walk-in slots',
     'Personal stylist on request',
     'Driver waiting between houses',
+    'From €500 for a half-day, driver included',
   ]
 customisationNotes: 'Tell us which houses matter to you and what you are shopping for — we confirm appointment times directly with each atelier and build the route around them.'
 relatedAccommodationKeys: []

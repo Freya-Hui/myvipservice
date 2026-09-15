@@ -8,13 +8,19 @@ category: 'Food & Wine'
 destinationKey: 'provence'
 featured: true
 status: 'published'
-coverImage: 'destination-provence-vineyard'
-gallery: ['destination-provence-vineyard', 'service-chef-plating']
+coverImage: 'service-chef-plating'
+gallery: ['service-chef-plating', 'destination-provence-vineyard']
 duration: '半天'
 suitableFor: ['情侣', '小型团体', '葡萄酒爱好者']
 familySuitable: false
 languages: ['英语', '法语']
-highlights: ['庄主亲自带领的葡萄园漫步', '当季主厨菜单', '酒庄自产美酒搭配']
+highlights:
+  [
+    '庄主亲自带领的葡萄园漫步',
+    '当季主厨菜单',
+    '酒庄自产美酒搭配',
+    '每人价格从 €450 起，含酒庄漫步与午宴',
+  ]
 customisationNotes: '菜单、酒款与用餐时长都会按团体情况调整——请告知同行人数，以及是否希望庄主全程陪同用餐。司机会在庄园入口等候，用餐结束后随时可以出发前往下一站。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

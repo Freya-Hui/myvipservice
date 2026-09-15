@@ -12,8 +12,8 @@ positioning: ['Luxury', 'Private Residence']
 travelFit: ['Family', 'Wellness']
 featured: false
 status: 'published'
-coverImage: 'service-hotel-exterior'
-gallery: ['service-hotel-exterior']
+coverImage: 'accommodation-villa-lac-leman-vineyard'
+gallery: ['accommodation-villa-lac-leman-vineyard']
 highlights:
   [
     "7 chambres et 7 salles de bains, jusqu'à 9 personnes, à Dully côté vaudois du lac, à environ 25 minutes du centre de Genève",

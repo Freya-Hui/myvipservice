@@ -42,7 +42,7 @@ highlights:
   ]
 roomTypes:
   [
-    '142 间客房与套房里，71 间为标准客房与套房：Superior Room（35㎡）、Executive Room（40㎡）、Deluxe Room（45㎡）、Grand Deluxe Room（55㎡），以及多档 Junior Suite 与 Suite（60-90㎡，部分可看 Grand Jardin 花园景观），大多配大理石浴室。',
+    '142 间客房与套房里，71 间是标准客房，分四档：Superior Room（35㎡）、Executive Room（40㎡）、Deluxe Room（45㎡）、Grand Deluxe Room（55㎡）；另外 71 间是套房，从 Junior Suite 与 Suite 档位（60-90㎡，部分可看 Grand Jardin 花园景观）一路到下文的几间招牌套房，大多配大理石浴室。',
     {
       image: 'accommodation-ritz-paris-chanel-suite',
       text: '可可·香奈儿套房（Suite Coco Chanel）188 平方米，是酒店最具故事性的房型——香奈儿在丽兹住了超过二十年，称这里是"我的家"。套房正对旺多姆广场，2 间卧室、2 间浴室，还有一间私人蒸汽浴室。',

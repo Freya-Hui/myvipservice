@@ -14,7 +14,13 @@ duration: '全天'
 suitableFor: ['个人', '情侣', '小型团体', '有经验的滑雪者']
 familySuitable: false
 languages: ['英语', '法语']
-highlights: ['持证私人高山向导', '路线按个人水平定制', '提供雪崩安全装备']
+highlights:
+  [
+    '持证私人高山向导',
+    '路线按个人水平定制',
+    '提供雪崩安全装备',
+    '全天价格从 €650 起，含向导与安全装备',
+  ]
 customisationNotes: '请告知您的滑雪水平与同行人数——向导会在当天早上根据雪况确认具体路线，行程可安排半天或全天。此项目对滑雪能力有一定要求，建议提前沟通实际水平以确保安全与体验匹配。'
 relatedAccommodationKeys: ['hotel-barriere-les-neiges-courchevel']
 relatedExperienceKeys: ['clinique-la-prairie-montreux']

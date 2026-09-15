@@ -19,6 +19,7 @@ highlights:
     'Guide de haute montagne certifié et privé',
     'Itinéraire adapté à votre niveau',
     'Équipement de sécurité avalanche fourni',
+    'À partir de 650 € pour une journée complète, guide et équipement de sécurité inclus',
   ]
 customisationNotes: "Indiquez-nous votre niveau et la taille du groupe — le guide confirme l'itinéraire exact le matin même selon les conditions, et la journée peut être organisée en demi-journée ou journée complète."
 relatedAccommodationKeys: ['hotel-barriere-les-neiges-courchevel']

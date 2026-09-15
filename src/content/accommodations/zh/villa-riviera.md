@@ -10,8 +10,8 @@ city: '圣特罗佩'
 country: '法国'
 featured: false
 status: 'published'
-coverImage: 'service-floral-event'
-gallery: ['service-floral-event']
+coverImage: 'accommodation-villa-riviera-pool-view'
+gallery: ['accommodation-villa-riviera-pool-view']
 highlights:
   [
     '封闭式私家庭院与泳池，临近海边，位于里维埃拉最受欢迎的一段海岸线上',

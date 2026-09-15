@@ -8,13 +8,19 @@ category: 'Art & Culture'
 destinationKey: 'loire-valley'
 featured: true
 status: 'published'
-coverImage: 'destination-loire-valley'
-gallery: ['destination-loire-valley', 'journey-loire-valley-chambord']
+coverImage: 'journey-loire-valley-chambord'
+gallery: ['journey-loire-valley-chambord', 'destination-loire-valley']
 duration: '2–3 hours, morning'
 suitableFor: ['Couples', 'Families', 'Small groups']
 familySuitable: true
 languages: ['English', 'French']
-highlights: ['Access before public opening hours', 'Private guide', 'Garden walk included']
+highlights:
+  [
+    'Access before public opening hours',
+    'Private guide',
+    'Garden walk included',
+    'From €600 for a 2–3 hour private morning visit',
+  ]
 customisationNotes: 'Which château, group size and how much history versus garden time you want are all adjusted in advance — access is confirmed directly with the estate for each request.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

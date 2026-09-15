@@ -8,13 +8,19 @@ category: 'Private Access'
 destinationKey: 'french-riviera'
 featured: false
 status: 'published'
-coverImage: 'destination-monaco'
-gallery: ['destination-monaco', 'destination-french-riviera-yacht']
+coverImage: 'destination-french-riviera-yacht'
+gallery: ['destination-french-riviera-yacht', 'destination-monaco']
 duration: 'Half day'
 suitableFor: ['Couples', 'Small groups']
 familySuitable: true
 languages: ['English', 'French']
-highlights: ['Private charter', 'Coastal views', 'Onboard refreshments']
+highlights:
+  [
+    'Private charter',
+    'Coastal views',
+    'Onboard refreshments',
+    'From €2,500 for a half-day private charter',
+  ]
 customisationNotes: 'Route, duration and refreshments on board are all adjusted to the group — tell us who is joining and what kind of afternoon you have in mind.'
 relatedAccommodationKeys: ['hotel-negresco-nice']
 relatedExperienceKeys: []

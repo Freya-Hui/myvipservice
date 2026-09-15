@@ -12,8 +12,8 @@ positioning: ['Luxury', 'Private Residence']
 travelFit: ['Family', 'Wellness']
 featured: false
 status: 'published'
-coverImage: 'service-hotel-exterior'
-gallery: ['service-hotel-exterior']
+coverImage: 'accommodation-villa-lac-leman-vineyard'
+gallery: ['accommodation-villa-lac-leman-vineyard']
 highlights:
   [
     '7 bedrooms and 7 bathrooms, sleeping up to 9, in Dully on the Vaud side of the lake, around 25 minutes from central Geneva',

@@ -10,8 +10,8 @@ city: 'Aix-en-Provence'
 country: 'France'
 featured: false
 status: 'published'
-coverImage: 'service-wine-cellar'
-gallery: ['service-wine-cellar']
+coverImage: 'accommodation-villa-provence-facade'
+gallery: ['accommodation-villa-provence-facade']
 highlights:
   [
     'Private walled garden and stone farmhouse architecture, a short drive from Aix-en-Provence',

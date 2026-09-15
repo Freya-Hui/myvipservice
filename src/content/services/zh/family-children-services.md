@@ -31,6 +31,7 @@ highlights:
       text: '日内瓦附近另一处适合多代同游的湖畔别墅——Grand Villa Mies',
       href: '/zh/accommodations/grand-villa-geneva-mies/',
     },
+    '可信赖的儿童看护与家庭节奏行程规划价格从每天 €250 起，工作坊、体育指导与夏校名额按需求单独报价',
   ]
 ---
 

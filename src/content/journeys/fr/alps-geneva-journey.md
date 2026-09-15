@@ -11,8 +11,14 @@ includedExperienceKeys:
 relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 featured: true
 status: 'published'
-coverImage: 'destination-french-alps-chalet'
-gallery: ['destination-french-alps-chalet', 'destination-french-alps', 'destination-geneva-lake']
+coverImage: 'journey-alps-mont-blanc'
+gallery:
+  [
+    'journey-alps-mont-blanc',
+    'destination-french-alps-chalet',
+    'destination-french-alps',
+    'destination-geneva-lake',
+  ]
 duration: '4 à 6 jours'
 highlights:
   [

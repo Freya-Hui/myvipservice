@@ -8,8 +8,8 @@ category: 'Celebration'
 destinationKey: 'monaco'
 featured: true
 status: 'published'
-coverImage: 'destination-monaco'
-gallery: ['destination-monaco', 'destination-french-riviera-yacht']
+coverImage: 'experience-monaco-harbour-night'
+gallery: ['experience-monaco-harbour-night', 'destination-monaco']
 duration: 'Evening'
 suitableFor: ['Couples', 'Small groups', 'Celebrations']
 familySuitable: false
@@ -19,6 +19,7 @@ highlights:
     'Private boat time in the harbour',
     'Reserved table to close the evening',
     'Timing built around your occasion',
+    'From €1,200 for the evening, boat time and dinner reservation included',
   ]
 customisationNotes: 'Tell us what you are celebrating and how many are joining — the boat time, restaurant and pace of the evening are all set around that.'
 relatedAccommodationKeys: []

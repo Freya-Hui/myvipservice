@@ -42,7 +42,7 @@ highlights:
   ]
 roomTypes:
   [
-    'Of the 142 rooms and suites, 71 are standard rooms and suites: Superior Room (35㎡), Executive Room (40㎡), Deluxe Room (45㎡), Grand Deluxe Room (55㎡), and several tiers of Junior Suite and Suite (60-90㎡, some overlooking the Grand Jardin), most with marble bathrooms.',
+    'Of the 142 rooms and suites, 71 are standard rooms across four tiers — Superior Room (35㎡), Executive Room (40㎡), Deluxe Room (45㎡) and Grand Deluxe Room (55㎡) — and the other 71 are suites, starting with the Junior Suite and Suite tiers (60-90㎡, some overlooking the Grand Jardin) and running up to the named signature suites below, most with marble bathrooms.',
     {
       image: 'accommodation-ritz-paris-chanel-suite',
       text: 'The Suite Coco Chanel, at 188 square metres, is the hotel’s most storied address — Chanel lived at the Ritz for over two decades, calling it "ma maison." It overlooks Place Vendôme, with two bedrooms, two bathrooms and its own hammam.',

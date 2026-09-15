@@ -19,6 +19,7 @@ highlights:
     'Certified private mountain guide',
     'Route matched to your ability',
     'Avalanche safety equipment provided',
+    'From €650 for a full day, guide and safety equipment included',
   ]
 customisationNotes: 'Tell us your ability level and group size — the guide confirms the exact route the morning of, based on conditions, and the day can run half or full length.'
 relatedAccommodationKeys: ['hotel-barriere-les-neiges-courchevel']

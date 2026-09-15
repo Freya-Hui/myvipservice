@@ -8,13 +8,13 @@ category: 'Private Access'
 destinationKey: 'french-riviera'
 featured: false
 status: 'published'
-coverImage: 'destination-monaco'
-gallery: ['destination-monaco', 'destination-french-riviera-yacht']
+coverImage: 'destination-french-riviera-yacht'
+gallery: ['destination-french-riviera-yacht', 'destination-monaco']
 duration: '半天'
 suitableFor: ['情侣', '小型团体']
 familySuitable: true
 languages: ['英语', '法语']
-highlights: ['私人包船', '海岸景观', '船上餐饮']
+highlights: ['私人包船', '海岸景观', '船上餐饮', '半天包船价格从 €2,500 起']
 customisationNotes: '航线、时长与船上餐饮都会根据团体情况调整——请告诉我们同行人数，以及您理想中的下午时光。'
 relatedAccommodationKeys: ['hotel-negresco-nice']
 relatedExperienceKeys: []

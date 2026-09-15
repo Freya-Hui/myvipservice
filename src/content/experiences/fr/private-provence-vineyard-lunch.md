@@ -8,13 +8,19 @@ category: 'Food & Wine'
 destinationKey: 'provence'
 featured: true
 status: 'published'
-coverImage: 'destination-provence-vineyard'
-gallery: ['destination-provence-vineyard', 'service-chef-plating']
+coverImage: 'service-chef-plating'
+gallery: ['service-chef-plating', 'destination-provence-vineyard']
 duration: 'Demi-journée'
 suitableFor: ['Couples', 'Petits groupes', 'Amateurs de vin']
 familySuitable: false
 languages: ['Anglais', 'Français']
-highlights: ['Visite du vignoble avec le vigneron', 'Menu de saison', 'Accord mets-vins du domaine']
+highlights:
+  [
+    'Visite du vignoble avec le vigneron',
+    'Menu de saison',
+    'Accord mets-vins du domaine',
+    'À partir de 450 € par personne pour la visite du vignoble et le déjeuner',
+  ]
 customisationNotes: "Le menu, la sélection des vins et la durée du déjeuner s'adaptent à votre groupe — indiquez-nous le nombre de convives et si vous souhaitez que le vigneron reste pour tout le repas."
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

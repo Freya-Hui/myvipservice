@@ -8,13 +8,19 @@ category: 'Fashion'
 destinationKey: 'milan'
 featured: true
 status: 'published'
-coverImage: 'destination-milan'
-gallery: ['destination-milan', 'service-boutique-appointment']
+coverImage: 'service-boutique-appointment'
+gallery: ['service-boutique-appointment', 'destination-milan']
 duration: '半天'
 suitableFor: ['个人', '情侣', '小型团体']
 familySuitable: false
 languages: ['英语', '法语', '意大利语']
-highlights: ['专柜私人预约，无需排队等候', '可配私人造型顾问', '司机在各品牌门店间等候接送']
+highlights:
+  [
+    '专柜私人预约，无需排队等候',
+    '可配私人造型顾问',
+    '司机在各品牌门店间等候接送',
+    '半天行程价格从 €500 起，含司机接送',
+  ]
 customisationNotes: '告诉我们您在意哪些品牌、想找什么类型的单品——我们会直接与各专柜确认预约时段，并据此规划当天路线，全程可用中文沟通确认行程细节。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

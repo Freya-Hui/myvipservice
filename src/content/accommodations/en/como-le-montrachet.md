@@ -24,7 +24,7 @@ gallery:
   ]
 highlights:
   [
-    "COMO Le Montrachet occupies a 19th-century 'place du village' inn at the heart of Puligny-Montrachet, awarded a MICHELIN Key in 2025 and named among Tatler's 101 Best Hotels in the World, Travel + Leisure's 100 Best New Hotels and U.S. News & World Report's Best Hotels, all in 2024. Its 28 rooms and suites are spread across three 19th-century village buildings — the Main Building, La Résidence and Villa Christine.",
+    "COMO Le Montrachet occupies a 19th-century 'place du village' inn at the heart of Puligny-Montrachet, awarded a MICHELIN Key in 2025. Its 28 rooms and suites are spread across three 19th-century village buildings — the Main Building, La Résidence and Villa Christine.",
     {
       image: 'accommodation-como-le-montrachet-vineyard',
       text: "Puligny-Montrachet sits in the Côte-d'Or, within driving distance of Beaune, Dijon, Mâcon, Lyon and Paris. COMO arranges half and full-day wine tours to the Côte de Beaune on-site and the Côte de Nuits around 40 minutes north, alongside e-bike vineyard cycling with a private guide.",

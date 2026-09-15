@@ -15,7 +15,12 @@ suitableFor: ['Couples', 'Familles', 'Petits groupes']
 familySuitable: true
 languages: ['Anglais', 'Français']
 highlights:
-  ['Bateau et skipper privés', 'Vue sur les Alpes depuis le lac', 'Itinéraire et horaire flexibles']
+  [
+    'Bateau et skipper privés',
+    'Vue sur les Alpes depuis le lac',
+    'Itinéraire et horaire flexibles',
+    'À partir de 450 € pour une demi-journée le matin',
+  ]
 customisationNotes: "L'itinéraire, la durée et la possibilité de prendre le petit-déjeuner à bord s'adaptent à votre groupe — indiquez-nous le nombre de participants et l'heure de départ souhaitée."
 relatedAccommodationKeys: ['grand-villa-geneva-mies']
 relatedExperienceKeys: []

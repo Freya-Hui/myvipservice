@@ -4002,6 +4002,125 @@ export const imageAttributions: ImageAttribution[] = [
     },
     notes: 'Genuine lavender field in a named Provence location, seasonal (roughly June–August).',
   },
+  {
+    id: 'journey-alps-mont-blanc',
+    src: '/images/journey-alps-mont-blanc.jpg',
+    sourceUrl:
+      'https://unsplash.com/photos/snow-covered-mountain-under-blue-sky-during-daytime-xgFE3m3kayg',
+    sourceName: 'Unsplash',
+    author: 'Randy Yip',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'Jagged, snow-covered granite spires of the Mont Blanc massif above Chamonix.',
+      zh: '霞慕尼上方勃朗峰山群嶙峋的积雪花岗岩尖峰。',
+      fr: 'Les aiguilles de granit enneigées du massif du Mont-Blanc au-dessus de Chamonix.',
+    },
+  },
+  {
+    id: 'journey-loire-valley-villandry',
+    src: '/images/journey-loire-valley-villandry.jpg',
+    sourceUrl:
+      'https://unsplash.com/photos/a-large-green-landscape-with-a-path-and-buildings-in-the-background-HXhX25_vwMA',
+    sourceName: 'Unsplash',
+    author: 'snap wander',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'The formal Renaissance gardens of Château de Villandry, seen from above.',
+      zh: '从高处俯瞰维朗德里堡（Château de Villandry）文艺复兴风格的规整花园。',
+      fr: 'Les jardins Renaissance du château de Villandry, vus depuis les hauteurs.',
+    },
+  },
+  {
+    id: 'experience-monaco-harbour-night',
+    src: '/images/experience-monaco-harbour-night.jpg',
+    sourceUrl:
+      'https://unsplash.com/photos/a-harbor-filled-with-lots-of-boats-at-night-RpAU8kvUX7g',
+    sourceName: 'Unsplash',
+    author: 'Florian K.',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: "Monaco's harbour and hillside skyline lit up at night, yachts moored along the quay.",
+      zh: '夜色中的摩纳哥港湾与山坡天际线灯火通明，游艇沿码头停泊。',
+      fr: 'Le port de Monaco et les collines illuminés la nuit, yachts amarrés le long du quai.',
+    },
+  },
+  {
+    id: 'accommodation-villa-riviera-pool-view',
+    src: '/images/accommodation-villa-riviera-pool-view.jpg',
+    sourceUrl:
+      'https://unsplash.com/photos/an-open-door-leading-to-a-pool-with-a-view-of-the-ocean-czm7vvObNJs',
+    sourceName: 'Unsplash',
+    author: 'Arno Senoner',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'An open shuttered door framing a pool and sea view on the French Riviera coast.',
+      zh: '透过敞开的百叶门望向泳池与海景，法国里维埃拉海岸。',
+      fr: "Une porte à volets ouverte encadrant une piscine et une vue sur la mer, sur la Côte d'Azur.",
+    },
+  },
+  {
+    id: 'accommodation-villa-provence-facade',
+    src: '/images/accommodation-villa-provence-facade.jpg',
+    sourceUrl:
+      'https://unsplash.com/photos/a-charming-old-building-with-a-tree-and-blue-shutters-QAFgjcZz-fI',
+    sourceName: 'Unsplash',
+    author: 'Camille La Brequa',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'A stone Provençal house facade with pale blue shutters and a climbing rose.',
+      zh: '普罗旺斯石屋立面，浅蓝色百叶窗，攀爬的蔷薇花。',
+      fr: 'Une façade de maison provençale en pierre, volets bleu pâle et rosier grimpant.',
+    },
+  },
+  {
+    id: 'accommodation-villa-lac-leman-vineyard',
+    src: '/images/accommodation-villa-lac-leman-vineyard.jpg',
+    sourceUrl:
+      'https://unsplash.com/photos/red-and-white-wooden-house-near-body-of-water-WNDFHt6Nr54',
+    sourceName: 'Unsplash',
+    author: 'Gabriel Garcia Marengo',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'Vineyard-covered hillside houses above Lake Geneva, canton of Vaud, Switzerland.',
+      zh: '瑞士沃州（Vaud）日内瓦湖畔葡萄园山坡上的民居。',
+      fr: 'Maisons sur un coteau viticole surplombant le lac Léman, canton de Vaud, Suisse.',
+    },
+  },
+  {
+    id: 'destination-provence-gordes',
+    src: '/images/destination-provence-gordes.jpg',
+    sourceUrl:
+      'https://unsplash.com/photos/white-and-brown-concrete-building-under-blue-sky-during-daytime-Oo3jbnStg6g',
+    sourceName: 'Unsplash',
+    author: 'Sébastien Jermer',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'The hilltop village of Gordes in the Luberon, seen from the valley below.',
+      zh: '从山谷望向吕贝隆地区戈尔德（Gordes）山顶村庄。',
+      fr: 'Le village perché de Gordes, dans le Luberon, vu depuis la vallée.',
+    },
+  },
+  {
+    id: 'accommodation-la-reserve-bar',
+    src: '/images/accommodation-la-reserve-bar.jpg',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:La_R%C3%A9serve_bar_Paris.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'CVB',
+    license: 'CC BY 4.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: "La Réserve Paris's bar, with black lacquer panelling, gilt trim and deep red upholstery.",
+      zh: '拉雷瑟夫巴黎酒店酒吧，黑漆护墙板、金色装饰线条与深红色软装。',
+      fr: 'Le bar de La Réserve Paris, boiseries laquées noires, filets dorés et velours rouge profond.',
+    },
+  },
 ];
 
 export function getImage(id: string): ImageAttribution {

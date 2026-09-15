@@ -35,7 +35,7 @@ highlights:
     },
     {
       image: 'accommodation-chateau-de-neydens-cinema',
-      text: "Le home cinéma du château a été élu meilleur home cinéma de la région EMEA en 2022, et voisine avec une salle de jeux dotée d'un billard, d'un baby-foot, de bornes d'arcade et de deux simulateurs de course, ainsi qu'un studio d'enregistrement musical entièrement équipé.",
+      text: "La salle de cinéma privée du château voisine avec une salle de jeux dotée d'un billard, d'un baby-foot, de bornes d'arcade et de deux simulateurs de course, ainsi qu'un studio d'enregistrement musical entièrement équipé.",
     },
     {
       image: 'accommodation-chateau-de-neydens-cars',
@@ -49,7 +49,7 @@ highlights:
   ]
 roomTypes:
   [
-    "Le château accueille jusqu'à 15 personnes réparties sur trois niveaux. La chambre du rez-de-chaussée est la plus généreuse, avec un lit 180x200, à la fois baignoire et douche italienne, double vasque, dressing, toilettes indépendantes et sa propre terrasse privative ; deux des quatre chambres Queen Size du deuxième niveau (160x200, douche italienne) ouvrent également sur une terrasse privative, tandis que les chambres du dernier étage partagent la même configuration Queen Size sans terrasse. Huit salles de bains au total limitent fortement le partage, même à pleine capacité.",
+    "Le château accueille jusqu'à 19 personnes réparties sur trois niveaux : une chambre au rez-de-chaussée, quatre au deuxième niveau et deux au dernier étage — plus le dortoir en contrebas. La chambre du rez-de-chaussée est la plus généreuse, avec un lit 180x200, à la fois baignoire et douche italienne, double vasque, dressing, toilettes indépendantes et sa propre terrasse privative ; deux des quatre chambres Queen Size du deuxième niveau (160x200, douche italienne) ouvrent également sur une terrasse privative, tandis que les deux chambres Queen Size du dernier étage partagent la même configuration sans terrasse. Huit salles de bains au total limitent fortement le partage, même à pleine capacité.",
     "Pour les groupes multigénérationnels plus nombreux, un dortoir au dernier étage accueille cinq personnes en lits simples, avec ses deux propres salles de bains — bien adapté aux enfants ou à un groupe d'amis voyageant ensemble, sans avoir à démembrer le reste de la maison en petites suites familiales.",
   ]
 suitableFor:
