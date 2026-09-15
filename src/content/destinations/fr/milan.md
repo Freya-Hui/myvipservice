@@ -15,7 +15,10 @@ suggestedStay: '2 à 4 nuits, souvent associées à la Côte d’Azur ou à Rome
 highlights:
   [
     'Accès à la Fashion Week et à la Milan Design Week, selon les disponibilités',
-    'Shopping personnalisé dans le Quadrilatero della Moda',
+    {
+      text: 'Shopping personnalisé dans le Quadrilatero della Moda',
+      image: 'service-boutique-appointment',
+    },
     'Visites privées de La Scala et des ateliers de design de la ville',
     'Liaison ferroviaire directe vers les lacs italiens pour une excursion à la journée',
   ]
@@ -43,3 +46,7 @@ Le Quadrilatero della Moda — centré sur la Via Montenapoleone — est le quar
 ## Bon à savoir
 
 La Fashion Week (fin février et fin septembre) et le Salone del Mobile, la semaine du design qui a lieu chaque avril, attirent toutes deux une forte affluence internationale et saturent les hôtels des mois à l'avance — mieux vaut anticiper si votre séjour coïncide avec l'un ou l'autre. En dehors de ces périodes, Milan est nettement plus calme que les villes italiennes les plus touristiques, ce qui fait de mai-juin et septembre de bonnes fenêtres pour visiter sans la foule du calendrier de la mode.
+
+## Formalités d'entrée et argent au quotidien
+
+La plupart des passeports — américains, britanniques, canadiens, australiens ou japonais notamment — permettent d'entrer en Italie et dans l'espace Schengen pour un séjour de 90 jours maximum sur toute période glissante de 180 jours, un calcul qui remonte en arrière depuis chaque jour du séjour plutôt que depuis une date fixe ; mieux vaut vérifier que le passeport reste valide au moins trois mois après la date de départ. La carte bancaire est acceptée presque partout. De nombreuses additions incluent un petit _coperto_ (couvert), distinct du service — c'est un usage courant en Italie, pas une erreur sur la note, et un pourboire supplémentaire reste un geste libre plutôt qu'une obligation.

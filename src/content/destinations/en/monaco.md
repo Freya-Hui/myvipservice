@@ -15,7 +15,7 @@ suggestedStay: '2–3 nights, often paired with the French Riviera.'
 highlights:
   [
     'Monaco Grand Prix access, subject to availability',
-    'Private yacht charters from the harbour',
+    { text: 'Private yacht charters from the harbour', image: 'destination-french-riviera-yacht' },
     'Casino de Monte-Carlo evenings',
     'Short transfers to Èze, Saint-Paul-de-Vence and the wider Riviera',
   ]
@@ -48,3 +48,7 @@ The Casino de Monte-Carlo, designed by Charles Garnier — the same architect be
 ## Practical Notes
 
 Grand Prix week sells out hotels and pushes rates up across the entire Riviera, not just Monaco — book well ahead if that's the goal, or plan for the weeks just before or after if you'd rather see Monaco without the crowds and premium pricing. Monaco makes an easy day trip or short stay paired with Nice or the wider Riviera, given how short the transfers are in every direction.
+
+## Entry Requirements and Everyday Money
+
+Monaco isn't an EU member, but it has no border control with France — visitors clear passport and Schengen checks on arrival in France (typically at Nice airport), and the same 90-day within any rolling 180-day allowance for visa-exempt passports (including the US, UK, Canada, Australia and Japan) applies from that point. Monaco uses the euro under a monetary agreement with the EU, despite sitting outside it. Cards are accepted everywhere, including the casino and marina berths, and service is generally included on restaurant bills, so a tip beyond that is a rounding-up gesture rather than an expectation.

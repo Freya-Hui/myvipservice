@@ -42,4 +42,8 @@ Tokyo is scale and speed — a city of distinct, self-contained neighborhoods (G
 
 Cherry blossom (late March into early April, Tokyo generally a few days ahead of Kyoto) and autumn foliage (November) dates shift year to year and are hard to predict more than a few weeks out — keeping flexibility either side of planned travel dates makes it easier to align with the actual bloom. Japan remains more cash-reliant than many visitors expect, particularly outside major cities, and a traditional ryokan stay is worth booking well ahead, since the best-known properties have genuinely limited room counts.
 
+## Entry Requirements and Everyday Money
+
+Most passports — including the US, UK, Canada, Australia and much of the EU — allow entry to Japan visa-free for tourism, typically for stays of up to 90 days, under Japan's own visa waiver arrangements rather than anything resembling the EU's Schengen system. Japan remains a more cash-based society than many visitors expect outside major hotels and department stores, so it's worth keeping yen on hand; a prepaid IC card (Suica or Pasmo) covers trains, buses and convenience stores smoothly. Tipping isn't customary anywhere in Japan, including restaurants and taxis — good service is simply the standard, and offering a tip can occasionally cause more confusion than goodwill.
+
 If you're planning a Japan trip, tell us how you'd like to split time between Tokyo and Kyoto and we'll build the pace and access around it.

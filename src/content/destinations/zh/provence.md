@@ -21,7 +21,7 @@ highlights:
 seoTitle: '普罗旺斯旅行指南：村镇、酒乡与交通攻略'
 seoDescription: '一份实用的普罗旺斯攻略——从马赛还是阿维尼翁进入更方便、吕贝隆有哪些村镇值得落脚、当地葡萄酒产区怎么选，以及最佳出行时间。'
 travelNotes: '村庄之间车程不长，但山路多弯——尤其是品尝过当地美酒的午后，配备私人司机能省去自驾的顾虑。'
-relatedAccommodationKeys: []
+relatedAccommodationKeys: ['intercontinental-marseille-hotel-dieu']
 relatedExperienceKeys: []
 relatedJourneyKeys: ['cote-dazur-provence-journey']
 relatedJournalKeys: ['provence-five-day-itinerary-guide']
@@ -46,3 +46,7 @@ updatedAt: 2026-08-08
 ## 实用贴士
 
 7-8 月是瓦朗索勒（Valensole）一带薰衣草田的花期，也是全年最热、人最多的两个月；5 月底到 6 月，以及 9 月，能看到类似的风景，人流明显更少。即使刷卡越来越普及，村镇市集里现金仍然很实用；不少餐厅每周会固定休息一到两天，最好提前确认再规划某一顿饭。
+
+## 入境与日常用钱
+
+大多数护照持有人——包括美国、英国、加拿大、澳大利亚、日本等——凭免签待遇即可进入法国及申根区，在任意连续 180 天内累计停留不超过 90 天，这个天数是按每一天向前滚动计算的；建议出发前确认护照有效期在离境日之后还剩至少 3 个月。法国法律规定餐厅账单已含服务费（service compris），小费是锦上添花的心意，不是硬性要求。

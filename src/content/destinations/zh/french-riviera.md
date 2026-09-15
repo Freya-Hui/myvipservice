@@ -21,8 +21,9 @@ highlights:
 seoTitle: '法国里维埃拉旅行指南：城镇、村庄与交通攻略'
 seoDescription: '一份实用的法国里维埃拉攻略——从尼斯机场进入、沿海连接尼斯到芒通的火车线路、哪些山顶村庄值得安排半日游，以及最佳出行时间。'
 travelNotes: '7、8 月是海岸最拥挤、价格最高的时段；5、6 月与 9 月气候依旧温暖宜人，且更容易订到心仪的餐厅，是更从容的选择。'
-relatedAccommodationKeys: ['demo-hotel-french-riviera']
-relatedExperienceKeys: ['demo-private-riviera-yacht-afternoon']
+relatedAccommodationKeys:
+  ['hotel-negresco-nice', 'le-majestic-cannes', 'la-reserve-ramatuelle', 'anantara-plaza-nice']
+relatedExperienceKeys: ['private-riviera-yacht-afternoon']
 relatedJourneyKeys: ['cote-dazur-provence-journey']
 publishedAt: 2026-08-06
 updatedAt: 2026-08-08
@@ -41,3 +42,7 @@ updatedAt: 2026-08-08
 ## 实用贴士
 
 7、8 月是全年最拥挤、价格最高的月份，餐厅预订会明显更紧张；5 月底、6 月和 9 月气候依旧温暖，可选余地却大得多。老城区停车位有限，往往不太值得费这个功夫——这是一个请司机的花费完全能靠省下的麻烦赚回来的目的地。
+
+## 入境与日常用钱
+
+大多数护照持有人——包括美国、英国、加拿大、澳大利亚、日本等——凭免签待遇即可进入法国及申根区，在任意连续 180 天内累计停留不超过 90 天，这个天数是按每一天向前滚动计算的；建议出发前确认护照有效期在离境日之后还剩至少 3 个月。沿海地区刷卡几乎处处通用，游艇码头和俱乐部也不例外，法国法律规定餐厅账单已含服务费（service compris），小费是锦上添花的心意，不是硬性要求。

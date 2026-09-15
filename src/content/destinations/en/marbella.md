@@ -43,4 +43,8 @@ The Golden Mile, the stretch of coastline between central Marbella and Puerto Ba
 
 The coast runs warm from May through October, well beyond the July–August social peak — late spring and early autumn keep the same weather with noticeably lighter crowds and easier restaurant bookings. Ronda, roughly an hour's drive inland, makes an easy day trip and is worth it for El Tajo gorge alone, spanned by the 18th-century Puente Nuevo bridge. July and August are also when Puerto Banús is busiest and hardest to book into on short notice — worth flagging if that scene is part of the appeal.
 
+## Entry Requirements and Everyday Money
+
+Most passports — including the US, UK, Canada, Australia and Japan — allow entry to Spain and the wider Schengen area for up to 90 days within any rolling 180-day period, calculated backward from each day of your stay rather than from a fixed date; it's worth checking your passport has at least three months' validity left beyond your departure date. Cards are accepted almost everywhere, including beach clubs and marinas. Service is usually included on the bill, so a tip beyond that is a rounding-up gesture rather than an expectation.
+
 If you're planning a Marbella trip, tell us whether the beach clubs, golf or day trips inland matter most and we'll build the stay around it.

@@ -42,4 +42,8 @@ Tokyo, c'est l'échelle et la vitesse — une ville faite de quartiers distincts
 
 Les dates de floraison des cerisiers (fin mars, début avril, Tokyo précédant généralement Kyoto de quelques jours) et des feuillages d'automne (novembre) varient chaque année et sont difficiles à prévoir plusieurs semaines à l'avance — garder de la flexibilité autour des dates prévues facilite la coïncidence avec la floraison réelle. Le Japon reste plus dépendant du liquide que ne l'imaginent de nombreux visiteurs, en particulier hors des grandes villes, et un séjour en ryokan traditionnel mérite d'être réservé bien à l'avance, les établissements les plus réputés disposant d'un nombre de chambres réellement limité.
 
+## Formalités d'entrée et argent au quotidien
+
+La plupart des passeports — américains, britanniques, canadiens, australiens et ceux de la majorité des pays de l'UE — permettent d'entrer au Japon sans visa à des fins touristiques, généralement pour des séjours allant jusqu'à 90 jours, selon le régime d'exemption de visa propre au Japon, sans rapport avec le système Schengen européen. Le Japon reste une société plus attachée aux espèces que ne l'imaginent beaucoup de visiteurs, en dehors des grands hôtels et grands magasins — mieux vaut garder des yens sur soi ; une carte IC prépayée (Suica ou Pasmo) couvre sans difficulté les trains, les bus et les supérettes. Le pourboire ne se pratique nulle part au Japon, restaurants et taxis compris — un bon service est simplement la norme, et en proposer un peut parfois créer plus de confusion que de reconnaissance.
+
 Si vous préparez un séjour au Japon, indiquez-nous comment vous souhaitez répartir votre temps entre Tokyo et Kyoto et nous organiserons le rythme et les accès en conséquence.

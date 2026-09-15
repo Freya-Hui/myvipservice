@@ -21,8 +21,9 @@ highlights:
 seoTitle: 'French Riviera Travel Guide: Towns, Villages and Getting Around'
 seoDescription: 'A practical French Riviera guide — flying into Nice, the coastal train linking Nice to Menton, which hilltop villages are worth a half-day, and when to go.'
 travelNotes: 'July and August bring the coast’s busiest crowds and highest rates; May, June and September offer a quieter pace with reliably warm weather and easier restaurant bookings.'
-relatedAccommodationKeys: ['demo-hotel-french-riviera']
-relatedExperienceKeys: ['demo-private-riviera-yacht-afternoon']
+relatedAccommodationKeys:
+  ['hotel-negresco-nice', 'le-majestic-cannes', 'la-reserve-ramatuelle', 'anantara-plaza-nice']
+relatedExperienceKeys: ['private-riviera-yacht-afternoon']
 relatedJourneyKeys: ['cote-dazur-provence-journey']
 publishedAt: 2026-08-06
 updatedAt: 2026-08-08
@@ -42,3 +43,7 @@ Nice has the widest range of hotels and restaurants and the most walkable old to
 ## Practical Notes
 
 July and August are the busiest and most expensive months, with restaurant bookings tightening noticeably; late May, June and September keep the same warm weather with far more availability. Parking in the old towns is limited and often not worth the effort — this is one destination where hiring a driver pays for itself in avoided frustration alone.
+
+## Entry Requirements and Everyday Money
+
+Most passports — including the US, UK, Canada, Australia and Japan — allow entry to France and the wider Schengen area for up to 90 days within any rolling 180-day period, calculated backward from each day of your stay rather than from a fixed date; it's worth checking your passport has at least three months' validity left beyond your departure date. Cards are accepted everywhere along the coast, including marinas and yacht clubs, and service is included in restaurant bills by law (_service compris_), so tipping beyond that is a rounding-up gesture rather than an expectation.

@@ -7,7 +7,7 @@ description: '特级葡萄园、历史悠久的酒庄，以及法国东部宁静
 region: 'Europe'
 destinationType: 'region'
 countryCode: 'FR'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-burgundy'
 gallery: ['destination-burgundy']
@@ -15,7 +15,10 @@ bestTime: '4 月至 6 月、9 月至 10 月气候温和；9 月至 10 月适逢�
 suggestedStay: '2–3 晚，常与巴黎或罗讷河谷行程搭配。'
 highlights:
   [
-    '直接预约勃艮第顶级酒庄，包括鲜少对外开放的品鉴机会',
+    {
+      text: '直接预约勃艮第顶级酒庄，包括鲜少对外开放的品鉴机会',
+      image: 'destination-burgundy-vineyard',
+    },
     '庄主亲自接待，多年份垂直品鉴',
     '为认真的收藏者提供藏酒与投资建议',
     '大区首府第戎——历史建筑与紧凑老城',
@@ -23,7 +26,8 @@ highlights:
 seoTitle: '勃艮第旅行指南：怎么到达、特级葡萄园之路与最佳出行时间'
 seoDescription: '一份实用的勃艮第攻略——从巴黎直达的高铁、夜丘与伯恩丘的区别、作为酒都的伯恩，以及为什么这里的酒庄比波尔多更需要提前预约。'
 travelNotes: '相比波尔多，勃艮第的酒庄规模更小、分布更分散，许多是家族经营、接待名额有限——建议尽早预约，尤其是采收季前后。'
-relatedAccommodationKeys: []
+relatedAccommodationKeys:
+  ['maison-kairui-quincey', 'como-le-montrachet', 'le-richebourg-vosne-romanee']
 relatedExperienceKeys: []
 publishedAt: 2026-08-07
 updatedAt: 2026-08-08
@@ -43,5 +47,9 @@ draft: false
 ## 实用贴士
 
 相比波尔多的宏伟酒庄，勃艮第的酒庄规模更小、分布也更分散，许多是家族经营、接待名额确实有限——预约在这里比在波尔多更重要，建议尽早安排，尤其是在 9 月至 10 月采收季前后。第戎自己的老城区围绕勃艮第公爵宫而建，紧凑宜步行，即便行程重点放在葡萄园，也值得留出半天时间游览。
+
+## 入境与日常用钱
+
+大多数护照持有人——包括美国、英国、加拿大、澳大利亚、日本等——凭免签待遇即可进入法国及申根区，在任意连续 180 天内累计停留不超过 90 天，这个天数是按每一天向前滚动计算的；建议出发前确认护照有效期在离境日之后还剩至少 3 个月。大多数酒庄都可以刷卡，但金丘产区一些规模较小、家族经营的酒庄在直接购酒时更倾向收现金——随身备一点现金比较稳妥。法国法律规定餐厅账单已含服务费（service compris），小费是锦上添花的心意，不是硬性要求。
 
 如果您正在规划勃艮第之行，告诉我们您更偏爱夜丘的红葡萄酒还是伯恩丘的白葡萄酒，我们会据此安排酒庄探访行程。

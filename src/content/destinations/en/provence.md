@@ -21,7 +21,7 @@ highlights:
 seoTitle: 'Provence Travel Guide: Villages, Wine Country and Getting There'
 seoDescription: 'A practical Provence guide — how to get in via Marseille or Avignon, which Luberon villages to base yourself around, the wine appellations worth knowing, and when to go.'
 travelNotes: 'Distances between villages are short but the roads wind through hills; a private driver removes the need to navigate, especially after a long lunch with local wine.'
-relatedAccommodationKeys: []
+relatedAccommodationKeys: ['intercontinental-marseille-hotel-dieu']
 relatedExperienceKeys: []
 relatedJourneyKeys: ['cote-dazur-provence-journey']
 relatedJournalKeys: ['provence-five-day-itinerary-guide']
@@ -47,3 +47,7 @@ Provence is best known internationally for rosé, produced across appellations i
 ## Practical Notes
 
 July and August are lavender season in the fields around Valensole and bring the heaviest heat and crowds of the year; late May through June and September offer similar scenery with noticeably more breathing room. Cash is still useful at village markets even where cards are increasingly accepted, and many restaurants close one or two days a week — worth checking before planning a meal around a specific address.
+
+## Entry Requirements and Everyday Money
+
+Most passports — including the US, UK, Canada, Australia and Japan — allow entry to France and the wider Schengen area for up to 90 days within any rolling 180-day period, calculated backward from each day of your stay rather than from a fixed date; it's worth checking your passport has at least three months' validity left beyond your departure date. Service is included in restaurant bills by law (_service compris_), so tipping beyond that is a rounding-up gesture rather than an expectation.

@@ -43,4 +43,8 @@ Plaka, la vieille ville au pied de l'Acropole, conserve les rues les plus ancien
 
 Juillet et août apportent une chaleur réellement intense, souvent au-delà de 35°C, ainsi que la plus forte affluence de l'année sur les principaux sites — un départ tôt le matin, idéalement à l'ouverture, permet d'éviter à la fois le soleil et les files d'attente. De nombreux sites archéologiques et musées ferment ou réduisent leurs horaires les jours fériés ; mieux vaut confirmer les horaires précis avant de construire une journée autour d'eux. Pour la plupart des visiteurs, Athènes est aussi la première étape avant de rejoindre les îles — y passer deux ou trois nuits avant de poursuivre fonctionne généralement mieux qu'une simple escale d'une nuit.
 
+## Formalités d'entrée et argent au quotidien
+
+La plupart des passeports — américains, britanniques, canadiens, australiens ou japonais notamment — permettent d'entrer en Grèce et dans l'espace Schengen pour un séjour de 90 jours maximum sur toute période glissante de 180 jours, un calcul qui remonte en arrière depuis chaque jour du séjour plutôt que depuis une date fixe ; mieux vaut vérifier que le passeport reste valide au moins trois mois après la date de départ. La carte bancaire est acceptée presque partout dans le centre d'Athènes, mais les petites tavernes et les ferries vers les îles préfèrent parfois les espèces. Le service est généralement inclus dans l'addition, le pourboire reste donc un geste libre plutôt qu'une obligation.
+
 Si vous préparez un séjour à Athènes, indiquez-nous le temps dont vous disposez avant de rejoindre les îles et nous organiserons les visites et les transferts en conséquence.

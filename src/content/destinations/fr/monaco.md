@@ -15,7 +15,7 @@ suggestedStay: '2 à 3 nuits, souvent associées à la Côte d’Azur.'
 highlights:
   [
     'Accès au Grand Prix de Monaco, selon les disponibilités',
-    'Location privée de yachts depuis le port',
+    { text: 'Location privée de yachts depuis le port', image: 'destination-french-riviera-yacht' },
     'Soirées au Casino de Monte-Carlo',
     'Transferts rapides vers Èze, Saint-Paul-de-Vence et le reste de la Côte d’Azur',
   ]
@@ -48,3 +48,7 @@ Le Casino de Monte-Carlo, conçu par Charles Garnier — le même architecte que
 ## Bon à savoir
 
 La semaine du Grand Prix sature les hôtels et fait grimper les tarifs sur toute la Côte d'Azur, pas seulement à Monaco — mieux vaut réserver bien à l'avance si c'est l'objectif, ou viser les semaines juste avant ou après pour découvrir Monaco sans la foule ni les tarifs majorés. Monaco se combine facilement, en excursion ou en court séjour, avec Nice ou le reste de la Côte d'Azur, tant les trajets sont courts dans toutes les directions.
+
+## Formalités d'entrée et argent au quotidien
+
+Monaco n'est pas membre de l'UE, mais n'a aucun contrôle frontalier avec la France — les vérifications de passeport et Schengen se font à l'arrivée en France (généralement à l'aéroport de Nice), et le même délai de 90 jours sur toute période glissante de 180 jours pour les passeports dispensés de visa (américain, britannique, canadien, australien, japonais, entre autres) s'applique à partir de ce moment-là. Monaco utilise l'euro en vertu d'un accord monétaire avec l'UE, bien qu'elle n'en fasse pas partie. La carte bancaire est acceptée partout, y compris au casino et sur les pontons de la marina, et le service est généralement inclus dans l'addition, un pourboire supplémentaire reste donc un geste libre plutôt qu'une obligation.
