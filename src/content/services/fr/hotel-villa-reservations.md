@@ -4,26 +4,27 @@ summary: "Accès à des hôtels emblématiques et des villas privées à travers
 order: 1
 group: 'Hotels & Villas'
 investmentTier: 'standard'
-image: service-hotels-villas
-gallery:
+image: service-hotel-exterior
+storyFeatures:
   [
-    'accommodation-ritz-paris',
-    'accommodation-four-seasons-george-v',
-    'accommodation-plaza-athenee',
-    'accommodation-le-meurice',
+    {
+      title: 'Bien plus qu’une chambre',
+      body: "Inutile de comparer les prix vous-même sur des dizaines de sites de réservation — dites-nous votre budget, le nombre de voyageurs, et si l'emplacement compte plus que le calme, et nous revenons avec deux ou trois options qui correspondent vraiment, pas une longue liste. Parce que nous travaillons directement et durablement avec les hôtels plutôt que de réserver à froid, ce que nous obtenons dépasse souvent la simple chambre : un surclassement, une arrivée anticipée, un départ tardif, une attention de bienvenue — selon disponibilité réelle, mais demandé par principe et suivi de notre côté.",
+      imageId: 'accommodation-ritz-paris',
+    },
+    {
+      title: 'Une villa, pas des chambres séparées',
+      body: "En famille, nous cherchons d'abord des chambres communicantes ou une suite familiale, plutôt que de simplement réserver deux chambres côte à côte. Pour un groupe plus large ou plus d'intimité, une villa avec piscine et cuisine convient souvent mieux que de fractionner la réservation entre plusieurs chambres d'hôtel — chaque propriété que nous recommandons a été visitée ou vérifiée directement, jamais tirée d'une base de données d'annonces.",
+      imageId: 'accommodation-grand-villa-geneva-mies-exterior',
+    },
   ]
 highlights:
   [
     'Hôtels partenaires de longue date à Paris : Four Seasons George V, Plaza Athénée, Ritz Paris, Le Meurice, Hôtel de Crillon, Mandarin Oriental, Shangri-La, Cheval Blanc, La Réserve, The Peninsula et Bulgari Hotel Paris',
     'Réseau étendu à Londres, Milan, Rome et d’autres grandes villes européennes',
     'Selon disponibilité : surclassements offerts, arrivée anticipée, départ tardif et réservations prioritaires en restaurant',
+    'Certains hôtels réservés via nous peuvent organiser un accueil dès la porte d’embarquement — demandez les détails à votre conseiller',
   ]
 ---
 
-Notre réseau donne accès à certaines des adresses les plus recherchées d'Europe, débloquant des privilèges qu'une simple réservation en ligne ne permettra jamais.
-
-À Paris, cela signifie des relations de longue date avec les Palaces et adresses design de la ville — Four Seasons George V, Plaza Athénée, Ritz Paris, Le Meurice, Hôtel de Crillon, Mandarin Oriental, Shangri-La, Cheval Blanc, La Réserve, The Peninsula et Bulgari Hotel Paris entre autres — ainsi que des villas privées avec leur propre jardin pour des séjours demandant plus d'espace et d'intimité. Ce même réseau s'étend à Londres, Milan, Rome et d'autres grandes villes européennes.
-
-Lorsque cela est réellement possible, une réservation peut inclure un surclassement offert, une arrivée anticipée, un départ tardif, des attentions de bienvenue ou une réservation prioritaire en restaurant — jamais garanti à l'avance, mais toujours demandé par principe. Qu'il s'agisse d'un hôtel emblématique au cœur d'une capitale ou d'une villa privée avec son propre jardin, chaque suggestion reflète ce que nous choisirions pour notre propre séjour — et chaque réservation s'accompagne du type d'introduction qui rend un retour plus personnel.
-
-Les villas sont sélectionnées selon la même logique — une propriété privée sur la Côte d'Azur, un domaine avec jardin clos aux abords d'Aix-en-Provence, un chalet dans les Alpes — chacune visitée ou vérifiée directement plutôt que choisie dans une base de données d'annonces. Pour une famille ou un groupe voyageant ensemble, une villa fonctionne souvent mieux que la réservation de plusieurs chambres d'hôtel : une seule cuisine, une seule piscine, une seule adresse, et un personnel qui répond à un interlocuteur unique plutôt qu'à plusieurs services d'hôtel. Chef privé, personnel de maison et transport peuvent tous être organisés autour de la propriété une fois les dates confirmées.
+Les palaces ne sont qu'un style parmi d'autres — pour plus de calme et de design, ou une villa entière plutôt qu'une chambre, le bon choix dépend de ce qui compte vraiment pour vous, pas du nom le plus connu.

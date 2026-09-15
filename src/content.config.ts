@@ -15,6 +15,17 @@ import { z } from 'astro/zod';
 //   placeholder pending real translation (Phase 3). Still built and shown,
 //   just with a visible "draft translation" badge.
 
+// Services' highlights are plain text, or {text, image?, href?} — same
+// image-pairing shape as accommodations/journeys highlightItem, plus an
+// optional link to the real journey/page that highlight is describing, so a
+// claim like "wine itineraries across Bordeaux and Burgundy" can carry a
+// photo and point straight at the real journey rather than sitting as an
+// unlinked, unillustrated bullet.
+const serviceHighlightItem = z.union([
+  z.string(),
+  z.object({ text: z.string(), image: z.string().optional(), href: z.string().optional() }),
+]);
+
 const services = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
   schema: z.object({
@@ -27,6 +38,22 @@ const services = defineCollection({
      *  must match an entry in src/data/image-attributions.ts. */
     gallery: z.array(z.string()).default([]),
     /**
+     * Optional image+text article sections, each paired with its own
+     * photo (alternating sides) instead of a flat image gallery followed
+     * by unillustrated prose. When present, the detail page renders these
+     * in place of the gallery grid + full markdown body.
+     */
+    storyFeatures: z
+      .array(
+        z.object({
+          title: z.string(),
+          body: z.string(),
+          /** Matches an id in src/data/image-attributions.ts */
+          imageId: z.string(),
+        }),
+      )
+      .default([]),
+    /**
      * Phase 2D: user-task grouping for the Services overview page, per
      * AGENTS.md principle 5 ("产品架构从用户任务出发") — was defined but
      * never actually assigned to any service or rendered anywhere; this is
@@ -36,13 +63,13 @@ const services = defineCollection({
       .enum([
         'Private Travel',
         'Hotels & Villas',
-        'Private Chauffeur',
+        'Private Transportation',
         'Concierge & Lifestyle',
         'Groups & Corporate',
       ])
       .optional(),
     /** Phase 2D: concrete inclusions shown as a bullet list on the detail page. */
-    highlights: z.array(z.string()).default([]),
+    highlights: z.array(serviceHighlightItem).default([]),
     /**
      * Site-logic-realignment Phase B: a coarse, non-numeric scale signal
      * (no confirmed pricing exists to publish real "from €X" figures) so a
@@ -59,7 +86,34 @@ const services = defineCollection({
   }),
 });
 
-const locale = z.enum(['en', 'zh', 'fr', 'ru']);
+// Site-logic-realignment: sub-topic detail pages nested one level under the
+// private-transportation service (chauffeur / private jet / airport arrival
+// / private terminal), each with room for more detail than fits as an H2 on
+// the parent page. Same flat-glob-by-folder id shape as `services` (no
+// slug/translationKey — nothing links to these cross-locale except the
+// parent hub page, which already knows the locale it's rendering).
+const transportationTopics = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/transportation-topics' }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    order: z.number().default(0),
+    /** Matches an id in src/data/image-attributions.ts */
+    image: z.string().optional(),
+    gallery: z.array(z.string()).default([]),
+    highlights: z.array(z.string()).default([]),
+    /** Indicative price, shown only where set — omitted for zh, same
+     *  editorial policy as quickServices in site-content.ts. */
+    price: z.string().optional(),
+    /** Small-print caveat shown next to the price, e.g. seasonal variation. */
+    priceNote: z.string().optional(),
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+const locale = z.enum(['en', 'zh', 'fr']);
 const contentStatus = z.enum(['published', 'draft']).default('published');
 
 // The glob loader's default id generation prefers `data.slug` when present,
@@ -71,6 +125,17 @@ function localeSlugId({ entry, data }: { entry: string; data: Record<string, unk
   const entryLocale = entry.split('/')[0];
   return `${entryLocale}/${data.slug}`;
 }
+
+// A highlight can be a plain string (all existing content) or paired with an
+// image id so the template can render image-then-text, matching the same
+// rhythm the Courchevel journal article uses for its hotel-by-hotel section.
+// Declared here (before `destinations`, its first consumer) rather than
+// where accommodations/journeys originally defined it — referencing a
+// `const` before its declaration is a TDZ error, not just a lint nit.
+const highlightItem = z.union([
+  z.string(),
+  z.object({ text: z.string(), image: z.string().optional() }),
+]);
 
 const destinations = defineCollection({
   loader: glob({
@@ -108,12 +173,28 @@ const destinations = defineCollection({
     gallery: z.array(z.string()).default([]),
     bestTime: z.string().optional(),
     suggestedStay: z.string().optional(),
-    highlights: z.array(z.string()).default([]),
+    /**
+     * Optional image+text article sections, each paired with its own
+     * photo (alternating sides) instead of a flat image gallery followed
+     * by unillustrated prose. Same shape as services' storyFeatures.
+     */
+    storyFeatures: z
+      .array(
+        z.object({
+          title: z.string(),
+          body: z.string(),
+          /** Matches an id in src/data/image-attributions.ts */
+          imageId: z.string(),
+        }),
+      )
+      .default([]),
+    highlights: z.array(highlightItem).default([]),
     travelNotes: z.string().optional(),
-    /** translationKey values of accommodations/experiences collections */
+    /** translationKey values of accommodations/experiences/journeys collections */
     relatedAccommodationKeys: z.array(z.string()).default([]),
     relatedExperienceKeys: z.array(z.string()).default([]),
     relatedJournalKeys: z.array(z.string()).default([]),
+    relatedJourneyKeys: z.array(z.string()).default([]),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     publishedAt: z.date().optional(),
@@ -179,7 +260,16 @@ const accommodations = defineCollection({
      * Unsplash-photography-only image-attributions.ts registry.
      */
     logo: z.string().optional(),
-    highlights: z.array(z.string()).default([]),
+    highlights: z.array(highlightItem).default([]),
+    /** Room/suite categories — same {text, image} shape as highlights, kept
+     *  as its own section so an article-style page reads intro → features →
+     *  room types → who it suits, instead of one undifferentiated list. */
+    roomTypes: z.array(highlightItem).default([]),
+    /** Locale-relative path (no leading locale segment) to a dedicated
+     *  booking page for this property, e.g. 'accommodations/foo/book/' —
+     *  when set, the detail page's quote CTA links here instead of the
+     *  generic contact form. Most properties don't have one yet. */
+    bookingHref: z.string().optional(),
     suitableFor: z.array(z.string()).default([]),
     familyNotes: z.string().optional(),
     diningWellness: z.string().optional(),
@@ -241,7 +331,9 @@ const experiences = defineCollection({
     familySuitable: z.boolean().optional(),
     ageNotes: z.string().optional(),
     languages: z.array(z.string()).default([]),
-    highlights: z.array(z.string()).default([]),
+    /** Plain string or {text, image} — same shape as accommodations'/journeys'
+     *  highlightItem, so a highlight can carry a photo via MediaHighlightList. */
+    highlights: z.array(highlightItem).default([]),
     customisationNotes: z.string().optional(),
     availabilityNotes: z.string().optional(),
     relatedAccommodationKeys: z.array(z.string()).default([]),
@@ -281,7 +373,27 @@ const journeys = defineCollection({
     coverImage: z.string(),
     gallery: z.array(z.string()).default([]),
     duration: z.string().optional(),
-    highlights: z.array(z.string()).default([]),
+    /** Plain string or {text, image} — same shape as accommodations'
+     *  highlightItem, so a highlight can carry a photo via MediaHighlightList. */
+    highlights: z.array(highlightItem).default([]),
+    /**
+     * Day-by-day shape of the route — no fixed hotel/meal plan, since a
+     * bespoke journey's accommodation and pacing flex per client (unlike a
+     * fixed-departure group tour). Just the route and what happens each day.
+     * `image` is optional per day — not every day needs one (a transfer day
+     * rarely has a distinctive photo), but text-image interleaving is the
+     * default expectation, not the exception.
+     */
+    itinerary: z
+      .array(
+        z.object({
+          day: z.number(),
+          title: z.string(),
+          body: z.string(),
+          image: z.string().optional(),
+        }),
+      )
+      .default([]),
     customisationNotes: z.string().optional(),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
@@ -345,6 +457,14 @@ const journal = defineCollection({
     relatedExperienceKeys: z.array(z.string()).default([]),
     /** Added post-spec: docs/content-architecture.md predates the `journeys` collection. */
     relatedJourneyKeys: z.array(z.string()).default([]),
+    /** Up to three entries across the whole collection should carry this at
+     *  any time — whichever articles are the current primary promotions
+     *  (e.g. "ski season booking is open") get surfaced as a short list in
+     *  the homepage Hero, in addition to their normal place in the Journal
+     *  listing. The homepage only ever renders the first three, so a
+     *  fourth would just be silently dropped there — not enforced by the
+     *  schema, a manual convention. */
+    featured: z.boolean().default(false),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     status: contentStatus,
@@ -364,6 +484,7 @@ const legal = defineCollection({
 
 export const collections = {
   services,
+  transportationTopics,
   destinations,
   accommodations,
   experiences,

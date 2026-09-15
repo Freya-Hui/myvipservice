@@ -18,8 +18,12 @@ const { title, body, ctaLabel, ctaHref } = Astro.props;
 </section>
 
 <style>
+  /* Recurring bold dark bar (the reference site's black "CONTACT" strips) —
+     inverted from the rest of the page rather than a new colour: reuses
+     --color-text as the background and --color-bg as the foreground. */
   .inquiry-cta {
-    background: var(--color-bg-elevated);
+    background: var(--color-text);
+    color: var(--color-bg);
   }
 
   .inquiry-cta__inner {
@@ -28,14 +32,26 @@ const { title, body, ctaLabel, ctaHref } = Astro.props;
     margin-inline: auto;
   }
 
+  .inquiry-cta h2 {
+    color: var(--color-bg);
+  }
+
   .inquiry-cta__body {
-    font-family: var(--font-display);
-    font-style: italic;
+    font-family: var(--font-body);
     font-size: var(--text-body-lg);
-    color: var(--color-text-muted);
+    color: var(--color-bg-inset);
   }
 
   .inquiry-cta .button {
     margin-inline: auto;
+    background: var(--color-accent-strong);
+    border-color: var(--color-accent-strong);
+    color: var(--color-text);
+  }
+
+  .inquiry-cta .button:hover {
+    background: transparent;
+    border-color: var(--color-bg);
+    color: var(--color-bg);
   }
 </style>

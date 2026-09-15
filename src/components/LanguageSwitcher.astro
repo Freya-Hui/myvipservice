@@ -6,9 +6,13 @@ import { getDetailSwitchUrl, type LinkableCollection } from '../lib/content';
 interface Props {
   /** Set on detail pages so each language link resolves to the matching translation, not a 404 or the wrong content. */
   translationContext?: { collection: LinkableCollection; translationKey: string };
+  /** Set when rendered inside a header floating over a photo — the closed
+   *  toggle needs fixed light colours; the open panel has its own solid
+   *  background either way, so it's untouched. */
+  transparent?: boolean;
 }
 
-const { translationContext } = Astro.props;
+const { translationContext, transparent = false } = Astro.props;
 const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 const t = useTranslations(currentLocale);
 
@@ -28,7 +32,7 @@ const targets = await Promise.all(
 const hrefByLocale = Object.fromEntries(targets);
 ---
 
-<div class="language-switcher">
+<div class="language-switcher" class:list={{ 'language-switcher--transparent': transparent }}>
   <button
     type="button"
     class="language-switcher__toggle"
@@ -152,6 +156,24 @@ const hrefByLocale = Object.fromEntries(targets);
 
   .language-switcher__toggle:hover {
     color: var(--color-accent);
+  }
+
+  /* Fixed light colours — this toggle sits on a dark photo scrim,
+     independent of the site's own light/dark theme. Matches Header's own
+     1261px breakpoint: below it, this toggle only ever renders inside the
+     header's solid-card mobile dropdown, not the photo, so it must keep
+     the normal theme colour there. */
+  @media (min-width: 1261px) {
+    .language-switcher--transparent .language-switcher__toggle {
+      border-color: var(--color-border-on-photo);
+      color: var(--color-on-photo);
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgb(11 15 25 / 55%);
+    }
+
+    .language-switcher--transparent .language-switcher__toggle:hover {
+      color: var(--color-accent-strong);
+    }
   }
 
   .language-switcher__chevron {

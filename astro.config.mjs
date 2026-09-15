@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://myvipservice.com',
   i18n: {
-    locales: ['en', 'zh', 'fr', 'ru'],
+    locales: ['en', 'zh', 'fr'],
     defaultLocale: 'en',
     routing: {
       // Keep /en/ visible like the other locales — no bare, prefix-less URLs.
@@ -16,7 +16,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: {
-        locales: { en: 'en', zh: 'zh', fr: 'fr', ru: 'ru' },
+        locales: { en: 'en', zh: 'zh', fr: 'fr' },
         defaultLocale: 'en',
       },
     }),

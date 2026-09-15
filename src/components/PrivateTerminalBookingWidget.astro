@@ -1,0 +1,443 @@
+---
+import { useTranslations, type Locale } from '../i18n/ui';
+import { getImage } from '../data/image-attributions';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const standardVehicleImage = getImage('service-car-interior');
+const aviationVehicleImage = getImage('service-car-aviation-seats');
+---
+
+<div class="terminal-booking" id="terminal-booking-root">
+  <form id="terminal-booking-form">
+    <input type="hidden" name="locale" value={locale} />
+
+    <div class="field">
+      <span class="terminal-booking__label">{t('terminalBooking.scenarioLabel')}</span>
+      <div class="terminal-booking__pills" role="radiogroup">
+        <button type="button" class="pill is-active" data-scenario="arrival"
+          >{t('terminalBooking.scenario.arrival')}</button
+        >
+        <button type="button" class="pill" data-scenario="departure"
+          >{t('terminalBooking.scenario.departure')}</button
+        >
+        <button type="button" class="pill" data-scenario="connection"
+          >{t('terminalBooking.scenario.connection')}</button
+        >
+      </div>
+      <input type="hidden" name="scenario" id="tb-scenario-field" value="arrival" />
+    </div>
+
+    <div class="field-group__row">
+      <div class="field">
+        <label for="tb-party-size">{t('terminalBooking.partySizeLabel')}</label>
+        <input
+          type="number"
+          id="tb-party-size"
+          name="partySize"
+          min="1"
+          max="4"
+          value="2"
+          required
+        />
+      </div>
+      <div class="field">
+        <label for="tb-date">{t('carBooking.dateLabel')}</label>
+        <input type="date" id="tb-date" name="date" required />
+      </div>
+    </div>
+
+    <p class="terminal-booking__note" id="tb-party-size-note" hidden>
+      {t('terminalBooking.partySizeTooLargeNote')}
+    </p>
+
+    <div class="field">
+      <label for="tb-flight-number">{t('carBooking.flightNumberLabel')}</label>
+      <input type="text" id="tb-flight-number" name="flightNumber" />
+    </div>
+
+    <label class="terminal-booking__checkbox">
+      <input type="checkbox" id="tb-chauffeur" name="wantsChauffeur" value="yes" />
+      {t('terminalBooking.chauffeurLabel')}
+    </label>
+
+    <div class="field terminal-booking__vehicles" id="tb-vehicles" hidden>
+      <span class="terminal-booking__label">{t('carBooking.carTypeLabel')}</span>
+      <div class="terminal-booking__vehicleCards">
+        <button type="button" class="vehicle-card is-active" data-vehicle="standard">
+          <img
+            src={standardVehicleImage.src}
+            alt={standardVehicleImage.altByLocale[locale]}
+            loading="lazy"
+          />
+          <span class="vehicle-card__name">{t('carBooking.carType.standard')}</span>
+        </button>
+        <button type="button" class="vehicle-card" data-vehicle="aviation">
+          <img
+            src={aviationVehicleImage.src}
+            alt={aviationVehicleImage.altByLocale[locale]}
+            loading="lazy"
+          />
+          <span class="vehicle-card__name">{t('carBooking.carType.aviation')}</span>
+        </button>
+      </div>
+      <input type="hidden" name="vehicle" id="tb-vehicle-field" value="standard" />
+    </div>
+
+    <div class="field">
+      <label for="tb-notes">{t('carBooking.notesLabel')}</label>
+      <textarea id="tb-notes" name="notes" rows="3" placeholder={t('carBooking.notesPlaceholder')}
+      ></textarea>
+    </div>
+
+    <fieldset class="field-group">
+      <legend class="visually-hidden">{t('carBooking.section.contact')}</legend>
+      <div class="field-group__row">
+        <div class="field">
+          <label for="tb-name">{t('carBooking.nameLabel')}</label>
+          <input type="text" id="tb-name" name="name" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="tb-email">{t('carBooking.emailLabel')}</label>
+          <input type="email" id="tb-email" name="email" autocomplete="email" required />
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="field">
+      <label for="tb-phone">{t('carBooking.phoneLabel')}</label>
+      <div class="terminal-booking__phoneRow">
+        <select
+          id="tb-phone-code"
+          name="phoneCountryCode"
+          aria-label={t('carBooking.phoneCodeLabel')}
+        >
+          <option value="+86">China +86</option>
+          <option value="+33">France +33</option>
+          <option value="+44">UK +44</option>
+          <option value="+49">Germany +49</option>
+          <option value="+39">Italy +39</option>
+          <option value="+34">Spain +34</option>
+          <option value="+41">Switzerland +41</option>
+          <option value="+7">Russia +7</option>
+          <option value="+1">US/Canada +1</option>
+          <option value="+852">Hong Kong +852</option>
+          <option value="+65">Singapore +65</option>
+          <option value="+81">Japan +81</option>
+        </select>
+        <input type="tel" id="tb-phone" name="phoneWechat" autocomplete="tel" required />
+      </div>
+      <p class="terminal-booking__note">{t('carBooking.whatsappNote')}</p>
+    </div>
+
+    <div class="field">
+      <span class="terminal-booking__label">{t('carBooking.contactMethodLabel')}</span>
+      <div class="terminal-booking__pills" role="radiogroup">
+        <button type="button" class="pill is-active" data-contact-method="whatsapp"
+          >{t('carBooking.contactMethod.whatsapp')}</button
+        >
+        <button type="button" class="pill" data-contact-method="email"
+          >{t('carBooking.contactMethod.email')}</button
+        >
+        <button type="button" class="pill" data-contact-method="imessage"
+          >{t('carBooking.contactMethod.imessage')}</button
+        >
+      </div>
+      <input
+        type="hidden"
+        name="preferredContactMethod"
+        id="tb-contact-method-field"
+        value="whatsapp"
+      />
+    </div>
+
+    <div class="terminal-booking__summary">
+      <p class="terminal-booking__price" id="tb-price">
+        <span class="terminal-booking__priceLabel">{t('terminalBooking.priceLabel')}</span>
+        <span class="terminal-booking__priceValue" id="tb-price-value">€5,000</span>
+      </p>
+      <p class="terminal-booking__note">{t('terminalBooking.leadTimeNote')}</p>
+    </div>
+
+    <button type="submit" class="button button--primary" id="tb-submit"
+      >{t('terminalBooking.submit')}</button
+    >
+    <p class="terminal-booking__status" id="tb-status" role="status"></p>
+  </form>
+</div>
+
+<script
+  define:vars={{
+    requestReceivedNote: t('carBooking.requestReceivedNote'),
+    genericErrorNote: t('carBooking.genericErrorNote'),
+    leadTimeError: t('carBooking.leadTimeError'),
+  }}
+>
+  (function () {
+    const root = document.getElementById('terminal-booking-root');
+    const form = document.getElementById('terminal-booking-form');
+    const scenarioPills = root.querySelectorAll('[data-scenario]');
+    const scenarioField = document.getElementById('tb-scenario-field');
+    const partySizeInput = document.getElementById('tb-party-size');
+    const partySizeNote = document.getElementById('tb-party-size-note');
+    const dateInput = document.getElementById('tb-date');
+    const chauffeurCheckbox = document.getElementById('tb-chauffeur');
+    const vehiclesField = document.getElementById('tb-vehicles');
+    const vehicleCards = root.querySelectorAll('[data-vehicle]');
+    const vehicleField = document.getElementById('tb-vehicle-field');
+    const contactMethodPills = root.querySelectorAll('[data-contact-method]');
+    const contactMethodField = document.getElementById('tb-contact-method-field');
+    const priceEl = document.getElementById('tb-price');
+    const submitButton = document.getElementById('tb-submit');
+    const statusEl = document.getElementById('tb-status');
+
+    scenarioPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        scenarioPills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        scenarioField.value = btn.getAttribute('data-scenario');
+      });
+    });
+
+    function updatePartySize() {
+      const size = Number(partySizeInput.value);
+      const tooLarge = size > 4;
+      partySizeNote.hidden = !tooLarge;
+      priceEl.hidden = tooLarge;
+      submitButton.disabled = tooLarge || !size || size < 1;
+    }
+    partySizeInput.addEventListener('input', updatePartySize);
+    updatePartySize();
+
+    function setMinDate() {
+      const min = new Date(Date.now() + 48 * 60 * 60 * 1000);
+      dateInput.min = min.toISOString().slice(0, 10);
+    }
+    setMinDate();
+
+    chauffeurCheckbox.addEventListener('change', () => {
+      vehiclesField.hidden = !chauffeurCheckbox.checked;
+    });
+
+    vehicleCards.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        vehicleCards.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        vehicleField.value = btn.getAttribute('data-vehicle');
+      });
+    });
+
+    contactMethodPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        contactMethodPills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        contactMethodField.value = btn.getAttribute('data-contact-method');
+      });
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const selectedDate = new Date(`${dateInput.value}T00:00:00`);
+      if (!dateInput.value || selectedDate.getTime() < Date.now() + 47 * 60 * 60 * 1000) {
+        statusEl.textContent = leadTimeError;
+        return;
+      }
+
+      submitButton.disabled = true;
+      statusEl.textContent = '…';
+      const data = Object.fromEntries(new FormData(form).entries());
+      if (!chauffeurCheckbox.checked) delete data.vehicle;
+
+      try {
+        const res = await fetch('/.netlify/functions/notify-terminal-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error('failed');
+        statusEl.textContent = requestReceivedNote;
+        form.reset();
+        vehiclesField.hidden = true;
+        updatePartySize();
+      } catch {
+        statusEl.textContent = genericErrorNote;
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  })();
+</script>
+
+<style>
+  .terminal-booking {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: var(--space-5);
+    background: var(--color-bg-inset);
+    border-radius: var(--radius);
+  }
+
+  .field {
+    margin-bottom: var(--space-4);
+  }
+
+  .field label,
+  .terminal-booking__label {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+  }
+
+  .field-group {
+    border: none;
+    padding: 0;
+    margin: 0 0 var(--space-4);
+  }
+
+  .field-group__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .terminal-booking__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .pill {
+    font: inherit;
+    font-size: var(--text-small);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    background: var(--color-bg-elevated);
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .pill.is-active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg-elevated);
+  }
+
+  .terminal-booking__note {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+  }
+
+  .terminal-booking__checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-small);
+    margin-bottom: var(--space-4);
+  }
+
+  .terminal-booking__vehicleCards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .vehicle-card {
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    background: var(--color-bg-elevated);
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .vehicle-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .vehicle-card__name {
+    display: block;
+    padding: var(--space-2);
+    font-size: var(--text-small);
+  }
+
+  .vehicle-card.is-active {
+    border-color: var(--color-accent);
+  }
+
+  .terminal-booking__phoneRow {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .terminal-booking__phoneRow select {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .terminal-booking__phoneRow input {
+    flex: 1;
+  }
+
+  .terminal-booking__summary {
+    padding: var(--space-4) 0;
+    border-top: 1px solid var(--color-border);
+    margin-bottom: var(--space-4);
+  }
+
+  .terminal-booking__price {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0 0 var(--space-2);
+  }
+
+  .terminal-booking__priceLabel {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  .terminal-booking__priceValue {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    color: var(--color-accent);
+  }
+
+  #terminal-booking-form button[type='submit'] {
+    width: 100%;
+  }
+
+  .terminal-booking__status {
+    margin-top: var(--space-3);
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+</style>

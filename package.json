@@ -17,7 +17,10 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "astro": "^7.1.6"
+    "@netlify/blobs": "^10.7.13",
+    "astro": "^7.1.6",
+    "resend": "^6.25.0",
+    "stripe": "^22.6.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",

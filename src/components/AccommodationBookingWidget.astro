@@ -1,0 +1,306 @@
+---
+import { useTranslations, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  /** Display name sent to the admin/quote emails, e.g. "Aman Le Mélézin". */
+  propertyName: string;
+  /** translationKey of the accommodations entry, so admin can link back to it. */
+  propertySlug: string;
+}
+
+const { locale, propertyName, propertySlug } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<div class="acc-booking" id="acc-booking-root">
+  <form id="acc-booking-form">
+    <input type="hidden" name="locale" value={locale} />
+    <input type="hidden" name="propertyName" value={propertyName} />
+    <input type="hidden" name="propertySlug" value={propertySlug} />
+
+    <div class="field-group__row">
+      <div class="field">
+        <label for="acc-party-size">{t('ticketBooking.partySizeLabel')}</label>
+        <input type="number" id="acc-party-size" name="partySize" min="1" value="2" required />
+      </div>
+      <div class="field">
+        <label for="acc-check-in">{t('accommodationBooking.checkInLabel')}</label>
+        <input type="date" id="acc-check-in" name="checkIn" required />
+      </div>
+      <div class="field">
+        <label for="acc-check-out">{t('accommodationBooking.checkOutLabel')}</label>
+        <input type="date" id="acc-check-out" name="checkOut" required />
+      </div>
+    </div>
+
+    <fieldset class="field-group">
+      <legend class="visually-hidden">{t('carBooking.section.contact')}</legend>
+      <div class="field-group__row">
+        <div class="field">
+          <label for="acc-name">{t('carBooking.nameLabel')}</label>
+          <input type="text" id="acc-name" name="name" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="acc-email">{t('carBooking.emailLabel')}</label>
+          <input type="email" id="acc-email" name="email" autocomplete="email" required />
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="field">
+      <label for="acc-phone">{t('carBooking.phoneLabel')}</label>
+      <div class="acc-booking__phoneRow">
+        <select
+          id="acc-phone-code"
+          name="phoneCountryCode"
+          aria-label={t('carBooking.phoneCodeLabel')}
+        >
+          <option value="+86">China +86</option>
+          <option value="+33">France +33</option>
+          <option value="+44">UK +44</option>
+          <option value="+49">Germany +49</option>
+          <option value="+39">Italy +39</option>
+          <option value="+34">Spain +34</option>
+          <option value="+41">Switzerland +41</option>
+          <option value="+7">Russia +7</option>
+          <option value="+1">US/Canada +1</option>
+          <option value="+852">Hong Kong +852</option>
+          <option value="+65">Singapore +65</option>
+          <option value="+81">Japan +81</option>
+        </select>
+        <input type="tel" id="acc-phone" name="phoneWechat" autocomplete="tel" required />
+      </div>
+      <p class="acc-booking__note">{t('carBooking.whatsappNote')}</p>
+    </div>
+
+    <div class="field">
+      <span class="acc-booking__label">{t('carBooking.contactMethodLabel')}</span>
+      <div class="acc-booking__pills" role="radiogroup">
+        <button type="button" class="pill is-active" data-contact-method="whatsapp"
+          >{t('carBooking.contactMethod.whatsapp')}</button
+        >
+        <button type="button" class="pill" data-contact-method="email"
+          >{t('carBooking.contactMethod.email')}</button
+        >
+        <button type="button" class="pill" data-contact-method="imessage"
+          >{t('carBooking.contactMethod.imessage')}</button
+        >
+      </div>
+      <input
+        type="hidden"
+        name="preferredContactMethod"
+        id="acc-contact-method-field"
+        value="whatsapp"
+      />
+    </div>
+
+    <label class="acc-booking__checkbox">
+      <input type="checkbox" name="wantsFullSeasonPlanning" value="yes" />
+      {t('accommodationBooking.fullSeasonPlanningLabel')}
+    </label>
+
+    <label class="acc-booking__checkbox">
+      <input type="checkbox" name="wantsAlternativeHotels" value="yes" />
+      {t('accommodationBooking.alternativeHotelsLabel')}
+    </label>
+
+    <div class="field">
+      <label for="acc-notes">{t('carBooking.notesLabel')}</label>
+      <textarea id="acc-notes" name="notes" rows="3" placeholder={t('carBooking.notesPlaceholder')}
+      ></textarea>
+    </div>
+
+    <button type="submit" class="button button--primary" id="acc-submit"
+      >{t('accommodationBooking.submit')}</button
+    >
+    <p class="acc-booking__status" id="acc-status" role="status"></p>
+  </form>
+</div>
+
+<script
+  define:vars={{
+    requestReceivedNote: t('carBooking.requestReceivedNote'),
+    genericErrorNote: t('carBooking.genericErrorNote'),
+  }}
+>
+  (function () {
+    const root = document.getElementById('acc-booking-root');
+    const form = document.getElementById('acc-booking-form');
+    const checkInInput = document.getElementById('acc-check-in');
+    const checkOutInput = document.getElementById('acc-check-out');
+    const contactMethodPills = root.querySelectorAll('[data-contact-method]');
+    const contactMethodField = document.getElementById('acc-contact-method-field');
+    const submitButton = document.getElementById('acc-submit');
+    const statusEl = document.getElementById('acc-status');
+
+    function today() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    checkInInput.min = today();
+    checkInInput.addEventListener('change', () => {
+      checkOutInput.min = checkInInput.value || today();
+      if (checkOutInput.value && checkOutInput.value <= checkInInput.value) {
+        checkOutInput.value = '';
+      }
+    });
+
+    contactMethodPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        contactMethodPills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        contactMethodField.value = btn.getAttribute('data-contact-method');
+      });
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      submitButton.disabled = true;
+      statusEl.textContent = '…';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      data.wantsFullSeasonPlanning = formData.has('wantsFullSeasonPlanning');
+      data.wantsAlternativeHotels = formData.has('wantsAlternativeHotels');
+
+      try {
+        const res = await fetch('/.netlify/functions/notify-accommodation-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error('failed');
+        statusEl.textContent = requestReceivedNote;
+        form.reset();
+        contactMethodPills.forEach((b) =>
+          b.classList.toggle('is-active', b.dataset.contactMethod === 'whatsapp'),
+        );
+        contactMethodField.value = 'whatsapp';
+      } catch {
+        statusEl.textContent = genericErrorNote;
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  })();
+</script>
+
+<style>
+  .acc-booking {
+    padding: var(--space-5);
+    background: var(--color-bg-inset);
+    border-radius: var(--radius);
+  }
+
+  .field {
+    margin-bottom: var(--space-4);
+  }
+
+  .field label,
+  .acc-booking__label {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+  }
+
+  .field-group {
+    border: none;
+    padding: 0;
+    margin: 0 0 var(--space-4);
+  }
+
+  .field-group__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .acc-booking__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .pill {
+    font: inherit;
+    font-size: var(--text-small);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    background: var(--color-bg-elevated);
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .pill.is-active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg-elevated);
+  }
+
+  .acc-booking__note {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+    margin-bottom: var(--space-3);
+  }
+
+  .acc-booking__phoneRow {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .acc-booking__phoneRow select {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .acc-booking__phoneRow input {
+    flex: 1;
+  }
+
+  .acc-booking__checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-small);
+    margin-bottom: var(--space-3);
+  }
+
+  /* The site-wide `input { width: 100% }` reset (meant for text/date
+     fields) also catches checkboxes unless overridden here — without this,
+     the checkbox stretches to fill the flex row and shoves its own label
+     text out to the far right. */
+  .acc-booking__checkbox input {
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  #acc-booking-form button[type='submit'] {
+    width: 100%;
+    margin-top: var(--space-2);
+  }
+
+  .acc-booking__status {
+    margin-top: var(--space-3);
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+</style>

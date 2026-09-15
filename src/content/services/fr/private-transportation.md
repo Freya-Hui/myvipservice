@@ -2,21 +2,31 @@
 title: 'Transport privé'
 summary: 'Accès en terminal privé, accueil dès la porte d’embarquement et flotte de véhicules haut de gamme à travers l’Europe.'
 order: 4
-group: 'Private Chauffeur'
+group: 'Private Transportation'
 investmentTier: 'light'
 image: service-private-transportation
-gallery: ['service-private-jet-interior', 'service-car-interior']
+storyFeatures:
+  [
+    {
+      title: 'Un chauffeur, une voiture, toute la journée',
+      body: "Dites-nous le programme de la journée, nous l'enchaînons avec la même voiture et le même chauffeur — l'aéroport, un dîner, un retour tardif — sans avoir à réserver chaque trajet séparément ni à tout réexpliquer. La Mercedes Classe S convient à deux personnes ; en famille ou avec plus de bagages, la Classe V accueille jusqu'à sept passagers, en configuration standard ou avec sièges inclinables façon aviation. Les chauffeurs sont à l'aise en chinois, anglais et français en standard.",
+      imageId: 'service-car-aviation-seats',
+    },
+    {
+      title: 'Un terminal, pas seulement la douane accélérée',
+      body: "La douane accélérée fait toujours passer par un terminal public, selon un rythme public. Extime Exclusive Paris supprime purement et simplement cette étape : votre arrivée ou votre départ se déroule intégralement dans un bâtiment privé en bordure du tarmac, dont l'intérieur a été conçu par Jacques Garcia, avec un concierge dédié qui prend en charge enregistrement, sûreté, douane et bagages comme un seul processus continu plutôt qu'une succession de files d'attente.",
+      imageId: 'experience-extime-lounge',
+    },
+  ]
 highlights:
   [
-    'Location de jet privé, adaptée au trajet — des liaisons régionales aux vols intercontinentaux',
-    'Accès à un terminal privé (FBO) à l’aéroport Paris Charles de Gaulle, à l’écart des zones publiques',
-    "Accueil dès la porte d'embarquement, avec assistance à la détaxe",
-    'Flotte Mercedes Classe S et Classe V disponible 24h/24, avec chauffeurs parlant anglais, français et chinois',
+    'Chaque chauffeur et véhicule est agréé, dans chaque pays desservi — jamais un arrangement informel',
+    'Un terminal entièrement privé disponible à Charles de Gaulle pour les arrivées, départs et correspondances les plus confidentiels — un terminal dédié en bordure de piste, votre propre concierge, aucun passage par un terminal public, à partir de 5 000 € pour 1 à 4 personnes',
+    {
+      text: "Un concierge dès la porte d'embarquement sans le terminal privé complet, associé à un chauffeur pour la douane accélérée",
+      href: '/fr/services/vip-airport-reception/',
+    },
   ]
 ---
 
-De l'accueil dès la porte d'embarquement à un terminal privé, chaque arrivée et chaque départ sont pris en charge par une équipe dédiée et une flotte de véhicules haut de gamme avec chauffeur.
-
-La location de jet privé s'adapte au trajet plutôt qu'à un type d'appareil fixe — Gulfstream, Bombardier et appareils similaires couvrent aussi bien une liaison régionale courte qu'un vol intercontinental. À l'aéroport Paris Charles de Gaulle, nos clients peuvent être accueillis au pied de l'avion et conduits via un terminal privé (FBO), à l'écart des zones publiques de l'aéroport, avec les formalités de détaxe prises en charge en chemin.
-
-Au sol, une flotte de véhicules Mercedes Classe S et Classe V est disponible 24h/24, avec le choix entre un chauffeur international expérimenté ou un chauffeur-concierge parlant chinois. Chaque transfert est planifié en tenant compte du reste du programme de la journée, plutôt que réservé isolément.
+Dès l'atterrissage, quelqu'un prend le relais — un chauffeur agréé, un jet affrété, ou, pour les arrivées les plus confidentielles, un terminal qui vous est entièrement dédié.

@@ -11,9 +11,11 @@ interface Props {
   imageId?: string;
   /** One JSON-LD object, or several (e.g. BreadcrumbList + TouristDestination). */
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  /** Pages reachable only via a private link (e.g. an order-status page keyed by a ref id) — no public content to rank, and nothing should link to it for crawlers to find anyway. */
+  noindex?: boolean;
 }
 
-const { title, description, path, imageId, structuredData } = Astro.props;
+const { title, description, path, imageId, structuredData, noindex } = Astro.props;
 const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 
 const suffix = path ? `/${path}/` : '/';
@@ -29,6 +31,7 @@ const structuredDataList = structuredData
 
 <title>{title} · MYVIPSERVICE</title>
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
 <link rel="canonical" href={canonicalUrl} />
 
 {

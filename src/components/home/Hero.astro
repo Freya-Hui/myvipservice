@@ -1,54 +1,292 @@
 ---
 import { getImage } from '../../data/image-attributions';
+import type { TravelType } from '../../data/site-content';
 import type { Locale } from '../../i18n/ui';
+
+interface FeaturedPost {
+  label: string;
+  title: string;
+  href: string;
+  imageId: string;
+}
 
 interface Props {
   eyebrow: string;
   tagline: string;
   ctaLabel: string;
   ctaHref: string;
-  secondaryCtaLabel?: string;
-  secondaryCtaHref?: string;
+  quickNavEyebrow: string;
+  quickNavItems: TravelType[];
+  quickNavCtaLabel: string;
+  quickNavCtaHref: string;
+  scrollCueLabel: string;
   locale: Locale;
+  /** Up to three Journal articles currently being actively promoted (see
+   *  the `featured` field on the journal collection) — surfaced here in
+   *  addition to their normal place in the Journal listing. Optional: the
+   *  hero works fine with nothing currently being promoted. */
+  featuredPosts?: FeaturedPost[];
+  /** aria-labels for the desktop card carousel's prev/next buttons — only
+   *  rendered (and only needed) when there's more than one featured post. */
+  featuredPrevLabel?: string;
+  featuredNextLabel?: string;
+  /** Short, real "why us" bullet points (see whyUsPoints in site-content.ts)
+   *  — revealed on hover/focus over the desktop featured card. Optional:
+   *  the card works fine with nothing to show there. */
+  highlightPoints?: string[];
 }
 
-const { eyebrow, tagline, ctaLabel, ctaHref, secondaryCtaLabel, secondaryCtaHref, locale } =
-  Astro.props;
+const {
+  eyebrow,
+  tagline,
+  ctaLabel,
+  ctaHref,
+  quickNavEyebrow,
+  quickNavItems,
+  quickNavCtaLabel,
+  quickNavCtaHref,
+  scrollCueLabel,
+  locale,
+  featuredPosts = [],
+  featuredPrevLabel,
+  featuredNextLabel,
+  highlightPoints = [],
+} = Astro.props;
 const heroImage = getImage('hero-home');
+const featuredItems = featuredPosts
+  .slice(0, 3)
+  .map((post) => ({ post, image: getImage(post.imageId) }));
+// Same data, flattened to plain strings for the desktop carousel's client
+// script (define:vars needs a JSON-serializable value, not the Image
+// objects/Astro props above).
+const featuredCardSlides = featuredItems.map(({ post, image }) => ({
+  href: post.href,
+  label: post.label,
+  title: post.title,
+  src: image.src,
+  alt: image.altByLocale[locale],
+}));
 ---
 
 <section class="hero">
   <div class="hero__media figure">
-    <img
-      src={heroImage.src}
-      alt={heroImage.altByLocale[locale]}
-      width="2400"
-      height="1350"
-      loading="eager"
-      fetchpriority="high"
-    />
+    <video
+      class="hero__video"
+      poster={heroImage.src}
+      aria-label={heroImage.altByLocale[locale]}
+      autoplay
+      muted
+      loop
+      playsinline
+      id="hero-video"
+    >
+      <source src="/videos/hero-paris-street.mp4" type="video/mp4" />
+    </video>
   </div>
-  <div class="container hero__content">
-    <p class="eyebrow">{eyebrow}</p>
-    <h1>MYVIPSERVICE</h1>
-    <p class="hero__tagline">{tagline}</p>
-    <div class="hero__actions">
-      <a class="button button--primary" href={ctaHref}>{ctaLabel}</a>
+  <div class="container hero__layout">
+    <div class="hero__content">
+      <p class="eyebrow animate-fade-up stagger-3">{eyebrow}</p>
+      <h1 class="animate-fade-up stagger-4">MYVIPSERVICE</h1>
+      <p class="hero__tagline animate-fade-up stagger-5">{tagline}</p>
+      <div class="hero__actions animate-fade-up stagger-5">
+        <a class="button button--primary" href={ctaHref}>{ctaLabel}</a>
+      </div>
       {
-        secondaryCtaLabel && secondaryCtaHref && (
-          <a class="button button--quiet" href={secondaryCtaHref}>
-            {secondaryCtaLabel}
+        featuredItems.length > 0 && (
+          <ul class="hero__featured animate-fade-up stagger-5">
+            {featuredItems.map(({ post, image }) => (
+              <li>
+                <a class="hero__featuredItem" href={post.href}>
+                  <span class="hero__featuredImage">
+                    <img src={image.src} alt="" width="200" height="200" loading="eager" />
+                  </span>
+                  <span class="hero__featuredBody">
+                    <span class="hero__featuredLabel">{post.label}</span>
+                    <span class="hero__featuredTitle">{post.title}</span>
+                  </span>
+                  <span class="hero__featuredArrow" aria-hidden="true">
+                    →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+    <div class="hero__sidePanel">
+      <nav class="hero__quickNav animate-fade-up stagger-6" aria-label={quickNavEyebrow}>
+        <p class="eyebrow">{quickNavEyebrow}</p>
+        <div class="hero__quickNavRow">
+          <ul>
+            {
+              quickNavItems.map((item) => (
+                <li>
+                  <a href={item.href}>
+                    <span class="hero__quickNavTitle">{item.title}</span>
+                    {item.price && <span class="hero__quickNavPrice">{item.price}</span>}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <a class="hero__quickNavCta" href={quickNavCtaHref}>
+            {quickNavCtaLabel} →
           </a>
+        </div>
+      </nav>
+      {
+        /* Desktop-only replacement for the mobile list above .hero__content
+           (hidden there via CSS, see .hero__featured / .hero__featuredCard
+           media queries) — one big Instagram-post-style card (cover photo +
+           caption overlaid at the bottom) instead of a compact row list,
+           since there's room here to make the currently-promoted story
+           actually stand out rather than just be listed. Left/right arrows
+           cycle through the same up-to-three posts client-side. Sits beside
+           the vertical quick-access column above — a shared flex row with
+           align-items: flex-end (see .hero__sidePanel) bottom-aligns the
+           two without either needing a hand-computed height. */
+        featuredCardSlides.length > 0 && (
+          <div
+            class="hero__featuredCard animate-fade-up stagger-5"
+            id="hero-featured-card"
+            data-index="0"
+          >
+            <a class="hero__featuredCardLink" href={featuredCardSlides[0].href} id="hf-card-link">
+              <img
+                class="hero__featuredCardImage"
+                src={featuredCardSlides[0].src}
+                alt={featuredCardSlides[0].alt}
+                id="hf-card-img"
+                loading="eager"
+              />
+              <span class="hero__featuredCardScrim" aria-hidden="true" />
+              <span class="hero__featuredCardCaption">
+                <span class="hero__featuredCardLabel" id="hf-card-label">
+                  {featuredCardSlides[0].label}
+                </span>
+                <span class="hero__featuredCardTitle" id="hf-card-title">
+                  {featuredCardSlides[0].title}
+                </span>
+                {highlightPoints.length > 0 && (
+                  <ul class="hero__featuredCardHighlights">
+                    {highlightPoints.map((point) => (
+                      <li>{point}</li>
+                    ))}
+                  </ul>
+                )}
+              </span>
+            </a>
+            {featuredCardSlides.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  class="hero__featuredCardNav hero__featuredCardNav--prev"
+                  id="hf-card-prev"
+                  aria-label={featuredPrevLabel}
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  class="hero__featuredCardNav hero__featuredCardNav--next"
+                  id="hf-card-next"
+                  aria-label={featuredNextLabel}
+                >
+                  ›
+                </button>
+                <div class="hero__featuredCardDots" id="hf-card-dots">
+                  {featuredCardSlides.map((_, i) => (
+                    <span
+                      class="hero__featuredCardDot"
+                      class:list={{ 'is-active': i === 0 }}
+                      data-index={i}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         )
       }
     </div>
   </div>
+  <p class="hero__scrollCue">{scrollCueLabel}</p>
 </section>
+
+<script>
+  // Respect reduced-motion: swap to the static poster instead of an
+  // autoplaying loop, and skip fighting the video element for a state it
+  // won't reliably honor via CSS alone.
+  const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+  if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.pause();
+    video.removeAttribute('autoplay');
+    video.currentTime = 0;
+  }
+</script>
+
+<script define:vars={{ slides: featuredCardSlides }}>
+  // Desktop-only card carousel (see .hero__featuredCard) — cycles through
+  // the same up-to-three featured posts the mobile list shows, one at a
+  // time. Only wired up when there's more than one slide to move between;
+  // a single post just renders the static card with no prev/next.
+  if (slides.length > 1) {
+    const card = document.getElementById('hero-featured-card');
+    const link = document.getElementById('hf-card-link');
+    const img = document.getElementById('hf-card-img');
+    const label = document.getElementById('hf-card-label');
+    const title = document.getElementById('hf-card-title');
+    const prevButton = document.getElementById('hf-card-prev');
+    const nextButton = document.getElementById('hf-card-next');
+    const dots = document.querySelectorAll('#hf-card-dots [data-index]');
+
+    let index = 0;
+
+    function render() {
+      const slide = slides[index];
+      link.href = slide.href;
+      img.src = slide.src;
+      img.alt = slide.alt;
+      label.textContent = slide.label;
+      title.textContent = slide.title;
+      card.dataset.index = String(index);
+      dots.forEach((dot) => {
+        dot.classList.toggle('is-active', Number(dot.dataset.index) === index);
+      });
+    }
+
+    function go(delta) {
+      index = (index + delta + slides.length) % slides.length;
+      render();
+    }
+
+    prevButton.addEventListener('click', () => go(-1));
+    nextButton.addEventListener('click', () => go(1));
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        index = Number(dot.dataset.index);
+        render();
+      });
+    });
+  }
+</script>
 
 <style>
   .hero {
     position: relative;
-    color: var(--color-text);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    /* Fixed light text — this sits on a dark scrim over a photo, which is
+       independent of the site's own light/dark theme. */
+    color: var(--color-on-photo);
+  }
+
+  .hero .eyebrow {
+    color: var(--color-accent-strong);
   }
 
   .hero__media {
@@ -57,26 +295,399 @@ const heroImage = getImage('hero-home');
     z-index: -1;
   }
 
+  .hero__video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 70%;
+  }
+
   .hero__media::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgb(11 15 25 / 55%) 0%, rgb(11 15 25 / 88%) 100%);
+    background: linear-gradient(180deg, rgb(11 15 25 / 52%) 0%, rgb(11 15 25 / 90%) 100%);
+  }
+
+  @media (min-width: 900px) {
+    .hero__media::after {
+      /* Two layers: a top-down fade guarantees contrast for the header
+         (wordmark, nav) regardless of what's behind it, since the diagonal
+         layer below is at its weakest exactly at the top-left corner where
+         the wordmark sits. Stops raised across the board — a pale/hazy sky
+         (e.g. behind the quick-nav eyebrow) still needs real contrast, not
+         just the lightest 20% this used to bottom out at. */
+      background:
+        linear-gradient(180deg, rgb(11 15 25 / 65%) 0%, rgb(11 15 25 / 0%) 22%),
+        linear-gradient(
+          135deg,
+          rgb(11 15 25 / 42%) 0%,
+          rgb(11 15 25 / 55%) 45%,
+          rgb(11 15 25 / 75%) 100%
+        );
+    }
+  }
+
+  .hero__layout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+    /* Clears the fixed header (h-16/h-20-equivalent) plus real breathing
+       room, rather than the old bottom-aligned layout's arbitrary top gap. */
+    padding-top: clamp(6rem, 4.5rem + 6vw, 9rem);
+    padding-bottom: var(--space-6);
+    /* Belt-and-braces on top of the gradient — guarantees contrast against
+       any part of the photo, including light sky, regardless of crop/pan
+       at a given viewport. Two shadows: a tight one for edge definition,
+       a soft wide one so pale text still separates from a near-white sky. */
+    text-shadow:
+      0 1px 3px rgb(11 15 25 / 70%),
+      0 2px 14px rgb(11 15 25 / 50%);
   }
 
   .hero__content {
-    padding-block: clamp(5rem, 4rem + 5vw, 9rem) var(--space-7);
     max-width: 42rem;
+    /* .hero__layout uses align-items: flex-start (column flex), so without
+       this a flex item's default min-width:auto lets its min-content size
+       win over the container — and the long nowrap Journal title inside
+       .hero__featured below was doing exactly that, pushing this whole
+       column wider than the viewport on mobile. */
+    min-width: 0;
+    width: 100%;
   }
 
+  /* Up to three currently-promoted Journal posts (see Props.featuredPosts).
+     Mobile: a normal in-flow list sitting right below the "Plan Your
+     Journey" button. Desktop (≥900px below): pulled out to the empty
+     right side of the hero instead, next to the main content rather than
+     under it. */
+  .hero__featured {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    max-width: 28rem;
+    background: rgb(247 243 236 / 12%);
+    border: 1px solid var(--color-border-on-photo);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+  }
+
+  .hero__featured li + li {
+    border-top: 1px solid var(--color-border-on-photo);
+  }
+
+  .hero__featuredItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2);
+    padding-right: var(--space-3);
+    color: inherit;
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+  }
+
+  .hero__featuredItem:hover {
+    background: rgb(247 243 236 / 12%);
+  }
+
+  .hero__featuredImage {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .hero__featuredImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero__featuredBody {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .hero__featuredLabel {
+    font-size: var(--text-eyebrow);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--color-accent-strong);
+  }
+
+  .hero__featuredTitle {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-small);
+    text-transform: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .hero__featuredArrow {
+    flex-shrink: 0;
+    color: var(--color-accent-strong);
+  }
+
+  /* Desktop-only big card carousel — replaces the compact list above on
+     wider screens (see .hero__featured's own display:none at ≥900px
+     below). Hidden here by default so mobile never renders/lays it out. */
+  .hero__featuredCard {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    /* .hero__sidePanel (quick-access column + featured card) is now
+       absolutely positioned, so it no longer contributes to .hero__layout's
+       own flow height the way the old in-flow quick-access row did —
+       without this, the scroll cue below would collapse up to sit right
+       under the tagline/CTA instead of at the bottom of the screen. */
+    .hero {
+      justify-content: space-between;
+    }
+
+    .hero__layout {
+      position: relative;
+    }
+
+    /* The list is a mobile-only pattern now — the card below takes over
+       the same visual slot on wider screens. */
+    .hero__featured {
+      display: none;
+    }
+
+    /* Holds the vertical quick-access column and the featured card side by
+       side. Roughly level with the MYVIPSERVICE headline — absolute
+       positioning measures from the padding edge (i.e. ignores
+       .hero__layout's own padding-top, which clears the fixed header), so
+       this has to repeat that same clamp() and add the eyebrow's height on
+       top, not just a small extra offset. align-items: flex-end bottom-
+       aligns the quick-access column's last item ("See all services") with
+       the card's bottom edge automatically, however tall either one ends
+       up being — no hand-computed height needed on either side. */
+    .hero__sidePanel {
+      position: absolute;
+      top: calc(clamp(6rem, 4.5rem + 6vw, 9rem) + 2.25rem);
+      /* Spans the full layout width instead of hugging the card — pins the
+         quick-access column to the left edge (level with the headline
+         column above it) and the card to the right edge, with the gap
+         between them growing/shrinking automatically as the viewport
+         changes width instead of needing a fixed value. */
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      /* Stretch (not flex-end) — now that the quick-access column sits at
+         the same left edge as the headline/CTA above it, it needs its own
+         top clearance (see .hero__quickNav's padding-top) rather than
+         being vertically centered by its own short content; stretching it
+         to the card's full height and pinning "See all services" to the
+         bottom of THAT (via margin-top: auto, see .hero__quickNavCta) is
+         what keeps the two bottoms aligned once the column has real
+         top-padding of its own. */
+      align-items: stretch;
+      gap: var(--space-5);
+    }
+
+    .hero__featuredCard {
+      display: block;
+      /* .hero__sidePanel uses align-items: stretch so the quick-access
+         column can be forced tall enough to clear the CTA button above it
+         (see .hero__quickNav) — left at the default, that same stretch
+         would also pull this card taller than its own photo, leaving a
+         plain color strip (this background) showing below the image.
+         align-self: flex-end opts it back out: it keeps its own
+         photo-driven height and sits at the bottom of the shared row,
+         which is what actually keeps it level with "See all services". */
+      align-self: flex-end;
+      position: relative;
+      width: 28rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--color-bg-inset);
+      box-shadow: var(--shadow-elevated);
+    }
+
+    .hero__featuredCardLink {
+      display: block;
+      position: relative;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hero__featuredCardImage {
+      display: block;
+      width: 100%;
+      height: auto;
+      /* Tall, Instagram-post-like crop — the point of the card is the
+         photo, with the caption pinned over the bottom of it rather than
+         competing with it for space. */
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      transition: transform var(--transition-base);
+    }
+
+    .hero__featuredCardLink:hover .hero__featuredCardImage {
+      transform: scale(1.03);
+    }
+
+    .hero__featuredCardScrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgb(11 15 25 / 0%) 40%, rgb(11 15 25 / 88%) 100%);
+    }
+
+    .hero__featuredCardCaption {
+      position: absolute;
+      left: var(--space-4);
+      right: var(--space-4);
+      bottom: var(--space-4);
+    }
+
+    .hero__featuredCardLabel {
+      display: block;
+      font-size: var(--text-eyebrow);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-eyebrow);
+      color: var(--color-accent-strong);
+      margin-bottom: var(--space-2);
+    }
+
+    .hero__featuredCardTitle {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--text-h4);
+      line-height: 1.15;
+      color: var(--color-on-photo);
+    }
+
+    /* A few concrete "why us" bullets (see Props.highlightPoints) — held
+       back until hover/focus so the card reads as a clean photo+headline
+       at rest, and only offers the extra detail to someone already
+       interested enough to linger on it. */
+    .hero__featuredCardHighlights {
+      list-style: none;
+      margin: var(--space-2) 0 0;
+      padding: 0;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition:
+        max-height var(--transition-base),
+        opacity var(--transition-fast);
+    }
+
+    .hero__featuredCardLink:hover .hero__featuredCardHighlights,
+    .hero__featuredCardLink:focus-visible .hero__featuredCardHighlights {
+      max-height: 10rem;
+      opacity: 1;
+    }
+
+    .hero__featuredCardHighlights li {
+      position: relative;
+      padding-left: var(--space-3);
+      font-size: var(--text-small);
+      color: var(--color-on-photo-muted);
+      line-height: 1.4;
+    }
+
+    .hero__featuredCardHighlights li + li {
+      margin-top: 0.25rem;
+    }
+
+    .hero__featuredCardHighlights li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.3rem;
+      height: 0.3rem;
+      border-radius: 50%;
+      background: var(--color-accent-strong);
+    }
+
+    .hero__featuredCardNav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border: none;
+      border-radius: 50%;
+      background: rgb(11 15 25 / 45%);
+      color: var(--color-on-photo);
+      font-size: var(--text-h4);
+      line-height: 1;
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
+    }
+
+    .hero__featuredCardNav:hover {
+      background: rgb(11 15 25 / 70%);
+    }
+
+    .hero__featuredCardNav--prev {
+      left: var(--space-2);
+    }
+
+    .hero__featuredCardNav--next {
+      right: var(--space-2);
+    }
+
+    .hero__featuredCardDots {
+      position: absolute;
+      top: var(--space-3);
+      right: var(--space-3);
+      display: flex;
+      gap: var(--space-1);
+    }
+
+    .hero__featuredCardDot {
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: rgb(247 243 236 / 45%);
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
+    }
+
+    .hero__featuredCardDot.is-active {
+      background: var(--color-on-photo);
+    }
+  }
+
+  /* --font-display is now Oswald site-wide (see tokens.css) — this just
+     pushes the hero's own h1 bigger/heavier than the shared h1 default,
+     since it's the single most prominent headline on the site. */
   .hero h1 {
-    font-size: var(--text-h1);
-    letter-spacing: var(--tracking-wordmark);
+    font-size: clamp(2.75rem, 2.1rem + 3.4vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
   }
 
   .hero__tagline {
-    color: var(--color-text-muted);
+    color: var(--color-on-photo-muted);
     font-size: var(--text-body-lg);
+    font-weight: 500;
     max-width: 34rem;
   }
 
@@ -85,5 +696,219 @@ const heroImage = getImage('hero-home');
     flex-wrap: wrap;
     gap: var(--space-3);
     margin-top: var(--space-4);
+  }
+
+  /* Same slot a "Backed by" logo row would occupy in a template like this
+     — filled with our own real services instead of any client logos, so
+     it stays both on-brand and honest (no fabricated trust signals) while
+     still doing the same "glance and understand" job. */
+  .hero__quickNav {
+    width: 100%;
+    /* No divider line above this row anymore — the extra top padding alone
+       (vs. the old border-top + smaller gap) is what pushes this whole
+       block further down from the CTA button above it. */
+    padding-top: var(--space-7);
+  }
+
+  .hero__quickNavRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-5);
+    margin-top: var(--space-3);
+  }
+
+  .hero__quickNav ul {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero__quickNav ul a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    /* Grows to fill the row evenly across whatever the current item count
+       is (no hardcoded column count) instead of sitting left-aligned at
+       its own content width — reflows to fewer/narrower columns on its own
+       as the viewport shrinks. */
+    flex: 1 1 12rem;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border-on-photo);
+    border-radius: var(--radius);
+    color: inherit;
+    text-decoration: none;
+    /* Solid (not blurred) — a backdrop-filter glass effect over an
+       autoplaying video is unreliable to composite correctly across
+       browsers/devices, and a flat dark chip already contrasts fine on
+       any frame the video is on. */
+    background: rgb(11 15 25 / 45%);
+    transition: background-color 200ms ease;
+  }
+
+  .hero__quickNav ul a:hover {
+    background: rgb(11 15 25 / 62%);
+  }
+
+  .hero__quickNavTitle {
+    font-family: var(--font-display);
+    font-size: var(--text-body-lg);
+  }
+
+  .hero__quickNav ul a:hover .hero__quickNavTitle {
+    color: var(--color-accent-strong);
+  }
+
+  .hero__quickNavPrice {
+    color: var(--color-on-photo-muted);
+    font-size: var(--text-small);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .hero__quickNavCta {
+    /* Sits in the same row as the pills, pushed to the far right by the
+       row's justify-content: space-between — falls onto its own line only
+       when the row wraps on narrow viewports. */
+    flex: 0 0 auto;
+    color: var(--color-accent-strong);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .hero__quickNavCta:hover {
+    text-decoration: underline;
+  }
+
+  .hero__scrollCue {
+    align-self: center;
+    margin-bottom: var(--space-5);
+    color: var(--color-on-photo-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-size: var(--text-eyebrow);
+    text-shadow: 0 1px 3px rgb(11 15 25 / 55%);
+  }
+
+  @media (min-width: 900px) {
+    .hero__content {
+      max-width: 46rem;
+    }
+
+    /* Vertical column instead of a horizontal row — sits beside the
+       featured card (see .hero__sidePanel) — now at the same left edge as
+       the headline column above it, so it needs its own top clearance
+       (this padding-top) to clear the tagline/CTA button rather than
+       relying on horizontal offset the way it used to. .hero__sidePanel
+       stretches this column to the card's full height; the padding-top
+       here eats into that height from the top, and .hero__quickNavCta's
+       margin-top: auto (below) claims what's left at the bottom — landing
+       "See all services" level with the card's bottom either way. */
+    .hero__quickNav {
+      width: 14rem;
+      display: flex;
+      flex-direction: column;
+      padding-top: 18rem;
+    }
+
+    .hero__quickNavRow {
+      flex: 1;
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-2);
+    }
+
+    .hero__quickNav ul {
+      flex-direction: column;
+    }
+
+    .hero__quickNav ul a {
+      flex: none;
+    }
+
+    .hero__quickNavCta {
+      margin-top: auto;
+    }
+  }
+
+  /* Mobile: the stack of headline + tagline + CTA + featured post + quick
+     access used to run noticeably taller than a single phone screen.
+     Tighter spacing and smaller type below claw back height without
+     dropping any content — the quick-access grid is the biggest win,
+     since 4 pills stacked one-per-row (their desktop min-width doesn't fit
+     a phone) ran to 4 full rows; a fixed 2-column grid halves that. */
+  @media (max-width: 899px) {
+    .hero__layout {
+      gap: var(--space-4);
+      padding-top: calc(4.5rem + var(--space-3));
+      padding-bottom: var(--space-4);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.25rem, 1.9rem + 3vw, 2.75rem);
+    }
+
+    .hero__tagline {
+      font-size: var(--text-body);
+    }
+
+    .hero__actions {
+      margin-top: var(--space-3);
+    }
+
+    .hero__featured {
+      margin-top: var(--space-3);
+    }
+
+    .hero__featuredItem {
+      padding: var(--space-1) var(--space-2);
+    }
+
+    .hero__featuredImage {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+
+    .hero__quickNav {
+      /* Pushes the quick-access block (and the scroll cue right after it)
+         further down so it lands near the bottom of the screen instead of
+         floating with dead space beneath it — there's real slack on a
+         phone screen once the section above was tightened up. */
+      padding-top: 7rem;
+    }
+
+    .hero__quickNavRow {
+      margin-top: var(--space-2);
+    }
+
+    /* Real content is always exactly 4 quick-access items (see
+       quickServices in site-content.ts), so a fixed 2-column grid is safe
+       here — it won't leave a dangling half-empty row. */
+    .hero__quickNav ul {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-2);
+    }
+
+    .hero__quickNav ul a {
+      padding: var(--space-2) var(--space-3);
+    }
+
+    .hero__quickNavTitle {
+      font-size: var(--text-small);
+    }
+
+    .hero__quickNavCta {
+      margin-left: auto;
+    }
+
+    .hero__scrollCue {
+      margin-bottom: var(--space-3);
+    }
   }
 </style>

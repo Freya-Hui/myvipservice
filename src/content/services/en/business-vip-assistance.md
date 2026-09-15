@@ -5,7 +5,19 @@ order: 10
 group: 'Groups & Corporate'
 investmentTier: 'standard'
 image: service-business
-gallery: ['service-la-defense', 'service-meeting-room']
+storyFeatures:
+  [
+    {
+      title: 'Introductions, Not Cold Calls',
+      body: "That network reaches into French luxury and retail circles — senior-level introductions at groups such as Printemps and Galeries Lafayette — as well as conversations with established European family offices on succession and asset allocation, where relevant to a client's visit.",
+      imageId: 'service-la-defense',
+    },
+    {
+      title: "Logistics That Don't Interrupt the Day",
+      body: 'Interpreters, discreet transport and meeting-day logistics are arranged around a demanding schedule, coordinated with the rest of the trip rather than booked separately.',
+      imageId: 'service-meeting-room',
+    },
+  ]
 highlights:
   [
     'Introductions within French luxury-retail circles, including senior contacts at groups such as Printemps and Galeries Lafayette, arranged on a case-by-case basis',
@@ -14,8 +26,4 @@ highlights:
   ]
 ---
 
-Beyond itinerary planning, our network creates access to private business exchanges, meeting logistics and interpreters where needed.
-
-That network reaches into French luxury and retail circles — senior-level introductions at groups such as Printemps and Galeries Lafayette — as well as conversations with established European family offices on succession and asset allocation, where relevant to a client's visit.
-
-For a more innovation-focused itinerary, we arrange visits to landmarks such as Station F, the world's largest start-up campus, Schneider Electric's headquarters for a look at digital transformation and ESG strategy in practice, or Dassault Systèmes for its 3D virtual-experience and digital-twin work — each arranged around a client's actual interests rather than offered as a fixed tour.
+Beyond itinerary planning, the network creates access to private business exchanges, meeting logistics and interpreters where needed.

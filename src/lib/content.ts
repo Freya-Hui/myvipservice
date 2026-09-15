@@ -92,17 +92,26 @@ export async function getRelatedDestinations(
 }
 
 /**
- * Reverse lookup: accommodations/experiences located at a given destination
- * (by their own `destinationKey`), for when a destination page wants to
- * feature everything tied to it without maintaining a manual key list.
+ * Reverse lookup: accommodations/experiences/journeys tied to a given
+ * destination, for when a destination page wants to feature everything
+ * linked to it without maintaining a manual key list. Accommodations and
+ * experiences carry a single `destinationKey`; journeys carry a
+ * `destinationKeys` array (a themed journey can span several places), so
+ * the match logic branches by collection rather than assuming one shape.
  */
-export async function getEntriesByDestination<C extends 'accommodations' | 'experiences'>(
-  collection: C,
-  locale: Locale,
-  destinationKey: string,
-): Promise<CollectionEntry<C>[]> {
+export async function getEntriesByDestination<
+  C extends 'accommodations' | 'experiences' | 'journeys',
+>(collection: C, locale: Locale, destinationKey: string): Promise<CollectionEntry<C>[]> {
   const entries = await getLocaleEntries(collection, locale);
-  return entries.filter((entry) => entry.data.destinationKey === destinationKey);
+  if (collection === 'journeys') {
+    return entries.filter((entry) =>
+      (entry.data as CollectionEntry<'journeys'>['data']).destinationKeys.includes(destinationKey),
+    );
+  }
+  return entries.filter(
+    (entry) =>
+      (entry.data as CollectionEntry<'accommodations'>['data']).destinationKey === destinationKey,
+  );
 }
 
 /**
@@ -133,4 +142,20 @@ export async function getDetailSwitchUrl(
   return match
     ? `/${targetLocale}/${collection}/${match.data.slug}/`
     : `/${targetLocale}/${collection}/`;
+}
+
+/**
+ * Drops related-content items whose card would show an image already
+ * visible elsewhere on this same page (the hero/gallery) — many
+ * experiences/journal pieces borrow their destination's photo rather than
+ * having their own, so without this a "related" card can look like the
+ * exact same thing you're already looking at. Pass the current page's own
+ * `[data.coverImage, ...data.gallery]` as `shownImageIds`.
+ */
+export function excludeShownImages<T extends { data: { coverImage: string } }>(
+  items: T[],
+  shownImageIds: string[],
+): T[] {
+  const shown = new Set(shownImageIds);
+  return items.filter((item) => !shown.has(item.data.coverImage));
 }

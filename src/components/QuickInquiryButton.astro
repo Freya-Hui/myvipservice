@@ -1,0 +1,25 @@
+---
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  /** Page title — passed to the contact form so it can prefill the message. */
+  subject: string;
+  label: string;
+  /** Overrides the default contact-form link — for a service with its own booking flow. */
+  href?: string;
+}
+
+const { locale, subject, label, href: hrefOverride } = Astro.props;
+const href = hrefOverride ?? `/${locale}/contact/?about=${encodeURIComponent(subject)}`;
+---
+
+<div class="container quick-inquiry">
+  <a class="button button--primary" href={href}>{label} →</a>
+</div>
+
+<style>
+  .quick-inquiry {
+    margin-bottom: var(--space-5);
+  }
+</style>

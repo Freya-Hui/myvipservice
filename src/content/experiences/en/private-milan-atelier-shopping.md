@@ -9,7 +9,7 @@ destinationKey: 'milan'
 featured: true
 status: 'published'
 coverImage: 'destination-milan'
-gallery: ['destination-milan', 'service-fashion-shopping']
+gallery: ['destination-milan', 'service-boutique-appointment']
 duration: 'Half day'
 suitableFor: ['Individuals', 'Couples', 'Small groups']
 familySuitable: false

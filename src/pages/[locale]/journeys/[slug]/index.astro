@@ -1,15 +1,18 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PageHero from '../../../../components/PageHero.astro';
+import QuickInquiryButton from '../../../../components/QuickInquiryButton.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import Gallery from '../../../../components/Gallery.astro';
 import SectionHeading from '../../../../components/SectionHeading.astro';
 import ContentSection from '../../../../components/ContentSection.astro';
+import DayItinerary from '../../../../components/DayItinerary.astro';
+import MediaHighlightList from '../../../../components/MediaHighlightList.astro';
 import KeyFacts from '../../../../components/KeyFacts.astro';
 import RelatedContent from '../../../../components/RelatedContent.astro';
 import ContentStatusBadge from '../../../../components/ContentStatusBadge.astro';
 import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
-import { getDetailStaticPaths, resolveRelated } from '../../../../lib/content';
+import { getDetailStaticPaths, resolveRelated, excludeShownImages } from '../../../../lib/content';
 import { useTranslations, type Locale } from '../../../../i18n/ui';
 
 export const getStaticPaths = () => getDetailStaticPaths('journeys');
@@ -19,18 +22,36 @@ const { entry } = Astro.props as Awaited<ReturnType<typeof getDetailStaticPaths>
 const { data } = entry;
 const t = useTranslations(locale);
 
-const includedExperiences = await resolveRelated(
-  'experiences',
-  locale,
-  data.includedExperienceKeys,
+// Destinations covered stays unfiltered — those cities are the journey's
+// core content, not a tangential suggestion, so they belong even if a
+// photo repeats. Included experiences and journal picks are supplementary,
+// so a duplicate-image one is dropped rather than shown looking identical.
+const shownImageIds = [data.coverImage, ...data.gallery];
+const includedExperiences = excludeShownImages(
+  await resolveRelated('experiences', locale, data.includedExperienceKeys),
+  shownImageIds,
 );
 const destinationsCovered = await resolveRelated('destinations', locale, data.destinationKeys);
-const journalArticles = await resolveRelated('journal', locale, data.relatedJournalKeys);
+const journalArticles = excludeShownImages(
+  await resolveRelated('journal', locale, data.relatedJournalKeys),
+  shownImageIds,
+);
 
 const keyFacts = [
   { label: t('journeys.detail.themeLabel'), value: data.theme },
   ...(data.duration ? [{ label: t('journeys.detail.durationLabel'), value: data.duration }] : []),
 ];
+
+// A highlight is either a plain string or a {text, image} pair — same
+// normalization as the accommodations template, so MediaHighlightList
+// doesn't need to branch on it.
+interface HighlightItem {
+  text: string;
+  image?: string;
+}
+const normalizeHighlights = (items: (string | HighlightItem)[]): HighlightItem[] =>
+  items.map((item) => (typeof item === 'string' ? { text: item, image: undefined } : item));
+const highlights = normalizeHighlights(data.highlights);
 
 const structuredData = [
   {
@@ -62,6 +83,7 @@ const structuredData = [
   </div>
 
   <PageHero eyebrow={data.theme} title={data.title} />
+  <QuickInquiryButton locale={locale} subject={data.title} label={t('common.ctaQuote')} />
   {
     data.draft && (
       <div class="container badge-row">
@@ -77,15 +99,22 @@ const structuredData = [
   <ContentSection title={t('journeys.detail.overviewTitle')} body={data.description} />
 
   {
-    data.highlights.length > 0 && (
+    data.itinerary.length > 0 && (
+      <DayItinerary
+        eyebrow={data.theme}
+        title={t('journeys.detail.itineraryTitle')}
+        days={data.itinerary}
+        locale={locale}
+      />
+    )
+  }
+
+  {
+    highlights.length > 0 && (
       <section class="section">
         <div class="container prose">
           <SectionHeading eyebrow={data.theme} title={t('journeys.detail.highlightsTitle')} />
-          <ul class="highlight-list">
-            {data.highlights.map((item: string) => (
-              <li>{item}</li>
-            ))}
-          </ul>
+          <MediaHighlightList items={highlights} locale={locale} />
         </div>
       </section>
     )
@@ -165,11 +194,5 @@ const structuredData = [
     display: flex;
     gap: var(--space-2);
     margin-top: var(--space-3);
-  }
-
-  .highlight-list {
-    display: grid;
-    gap: var(--space-2);
-    padding-left: 1.25em;
   }
 </style>

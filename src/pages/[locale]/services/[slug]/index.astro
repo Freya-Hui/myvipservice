@@ -5,7 +5,9 @@ import PageHero from '../../../../components/PageHero.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import SectionHeading from '../../../../components/SectionHeading.astro';
 import Gallery from '../../../../components/Gallery.astro';
+import StoryFeature from '../../../../components/about/StoryFeature.astro';
 import RelatedContent from '../../../../components/RelatedContent.astro';
+import MediaHighlightList from '../../../../components/MediaHighlightList.astro';
 import TravelTypes from '../../../../components/home/TravelTypes.astro';
 import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
 import { getLocaleEntries } from '../../../../lib/content';
@@ -31,13 +33,79 @@ const slug = slugOf(entry.id);
 const t = useTranslations(locale);
 const { Content } = await render(entry);
 
+// A curated handful, not the entire catalogue — mixing the palace-hotel and
+// villa styles this page's storyFeatures actually contrast.
+const FEATURED_ACCOMMODATION_KEYS = [
+  'ritz-paris',
+  'four-seasons-george-v',
+  'hotel-de-crillon',
+  'cheval-blanc',
+  'grand-villa-geneva-mies',
+  'chateau-de-neydens',
+];
 const accommodations =
-  slug === 'hotel-villa-reservations' ? await getLocaleEntries('accommodations', locale) : [];
+  slug === 'hotel-villa-reservations'
+    ? (await getLocaleEntries('accommodations', locale)).filter((entry) =>
+        FEATURED_ACCOMMODATION_KEYS.includes(entry.data.translationKey),
+      )
+    : [];
+
+const transportationTopics =
+  slug === 'private-transportation'
+    ? (
+        await getCollection('transportationTopics', (topic) => topic.id.startsWith(`${locale}/`))
+      ).sort((a, b) => a.data.order - b.data.order)
+    : [];
 
 const featuredTravelStyles =
   slug === 'tailor-made-travel-planning'
     ? travelTypes[locale].filter((item) => item.featured).sort((a, b) => a.order - b.order)
     : [];
+
+// Tailor-made planning names the themes it covers (wine, art, skiing, the
+// coast) as plain content — the sample journeys built around those themes
+// are a separate "go see one" section afterwards, not links buried inside
+// the descriptive text itself.
+const SAMPLE_JOURNEY_KEYS = [
+  'bordeaux-burgundy-wine-journey',
+  'paris-loire-valley-journey',
+  'alps-geneva-journey',
+  'cote-dazur-provence-journey',
+];
+const sampleJourneys =
+  slug === 'tailor-made-travel-planning'
+    ? (await getLocaleEntries('journeys', locale)).filter((entry) =>
+        SAMPLE_JOURNEY_KEYS.includes(entry.data.translationKey),
+      )
+    : [];
+
+// A highlight is either a plain string or a {text, image?, href?} object —
+// normalize both to one shape, same as the accommodations/journeys
+// templates, so MediaHighlightList doesn't need to branch on it.
+interface HighlightItem {
+  text: string;
+  image?: string;
+  href?: string;
+}
+const highlights: HighlightItem[] = data.highlights.map((item) =>
+  typeof item === 'string' ? { text: item } : item,
+);
+
+// The quote/booking CTA sits on the same row as the title (PageHero's `cta`
+// slot), so it's computed once here instead of via QuickInquiryButton's own
+// full-width row further down the page.
+const ctaLabel =
+  slug === 'vip-airport-reception'
+    ? t('vipReceptionBooking.title')
+    : slug === 'tickets-events'
+      ? t('ticketBooking.title')
+      : t('common.ctaQuote');
+const ctaHref =
+  slug === 'vip-airport-reception'
+    ? `/${locale}/services/vip-airport-reception/book/`
+    : slug === 'tickets-events'
+      ? `/${locale}/services/tickets-events/book/`
+      : `/${locale}/contact/?about=${encodeURIComponent(data.title)}`;
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -73,7 +141,96 @@ const structuredData = {
     subtitle={data.summary}
     imageId={data.image}
     locale={locale}
-  />
+  >
+    <a slot="cta" class="button button--primary" href={ctaHref}>
+      {ctaLabel} →
+    </a>
+  </PageHero>
+
+  {
+    // The top gallery band is a fallback for pages that have no other
+    // photography — once a page's highlights or sample-journey cards carry
+    // their own images further down, a second photo strip up here is
+    // redundant clutter, not added value.
+    data.storyFeatures.length === 0 &&
+      data.gallery.length > 0 &&
+      sampleJourneys.length === 0 &&
+      !highlights.some((item) => item.image) && (
+        <div class="container">
+          <Gallery images={data.gallery} locale={locale} />
+        </div>
+      )
+  }
+
+  <section class="section">
+    <div class="container prose">
+      <Content />
+    </div>
+  </section>
+
+  {
+    data.storyFeatures.map((feature, index) => (
+      <StoryFeature
+        title={feature.title}
+        body={feature.body}
+        imageId={feature.imageId}
+        locale={locale}
+        reverse={index % 2 === 1}
+      />
+    ))
+  }
+
+  {
+    highlights.length > 0 && (
+      <section class="section highlights-section">
+        <div class="container prose">
+          <SectionHeading eyebrow={data.title} title={t('services.detail.highlightsTitle')} />
+          <MediaHighlightList items={highlights} locale={locale} />
+        </div>
+      </section>
+    )
+  }
+
+  {
+    transportationTopics.length > 0 && (
+      <RelatedContent
+        locale={locale}
+        eyebrow={data.title}
+        title={t('services.detail.transportationTopicsHeading')}
+        items={transportationTopics.map((topic) => ({
+          href: `/${locale}/services/${slug}/${topic.id.split('/').slice(1).join('/')}/`,
+          imageId: topic.data.image ?? data.image ?? 'service-private-transportation',
+          eyebrow: data.title,
+          title: topic.data.title,
+          summary: topic.data.summary,
+          meta: topic.data.price
+            ? `${topic.data.price}${topic.data.priceNote ? ` — ${topic.data.priceNote}` : ''}`
+            : undefined,
+          draftLabel: topic.data.draft ? t('badge.draftTranslation') : undefined,
+        }))}
+      />
+    )
+  }
+
+  {
+    sampleJourneys.length > 0 && (
+      <RelatedContent
+        locale={locale}
+        eyebrow={t('journeys.hero.title')}
+        title={t('services.detail.sampleJourneysHeading')}
+        items={sampleJourneys.map((item) => ({
+          href: `/${locale}/journeys/${item.data.slug}/`,
+          imageId: item.data.coverImage,
+          eyebrow: item.data.theme,
+          title: item.data.title,
+          summary: item.data.description,
+          meta: item.data.duration,
+        }))}
+        viewAllLabel={t('services.detail.viewAllJourneys')}
+        viewAllHref={`/${locale}/journeys/`}
+      />
+    )
+  }
 
   {
     data.investmentTier && (
@@ -87,43 +244,11 @@ const structuredData = {
     )
   }
 
-  <section class="section">
-    <div class="container prose">
-      <Content />
-    </div>
-  </section>
-
-  {
-    data.highlights.length > 0 && (
-      <section class="section highlights-section">
-        <div class="container prose">
-          <SectionHeading
-            eyebrow={t('nav.services')}
-            title={t('accommodations.detail.highlightsTitle')}
-          />
-          <ul class="highlight-list">
-            {data.highlights.map((item: string) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    )
-  }
-
-  {
-    data.gallery.length > 0 && (
-      <div class="container">
-        <Gallery images={data.gallery} locale={locale} />
-      </div>
-    )
-  }
-
   {
     accommodations.length > 0 && (
       <RelatedContent
         locale={locale}
-        eyebrow={t('nav.services')}
+        eyebrow={t('accommodations.hero.title')}
         title={t('services.detail.accommodationsHeading')}
         items={accommodations.map((item) => ({
           href: `/${locale}/accommodations/${item.data.slug}/`,
@@ -172,13 +297,6 @@ const structuredData = {
 <style>
   .highlights-section {
     padding-top: 0;
-  }
-
-  .highlight-list {
-    color: var(--color-text-muted);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
   }
 
   .view-all-row {

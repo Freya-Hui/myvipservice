@@ -1,0 +1,156 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+  label: string;
+}
+
+const { headings, label } = Astro.props;
+// Only the article's own top-level sections (## in markdown) — a full
+// depth-2-through-4 outline gets noisy fast, and every journal article in
+// this codebase only ever nests one level deep under its h2s anyway.
+const sections = headings.filter((heading) => heading.depth === 2);
+---
+
+{
+  sections.length > 1 && (
+    <nav class="article-toc" aria-label={label}>
+      <p class="article-toc__label">{label}</p>
+      <ul>
+        {sections.map((heading) => (
+          <li>
+            <a href={`#${heading.slug}`} data-toc-link data-toc-target={heading.slug}>
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <slot />
+    </nav>
+  )
+}
+
+<script>
+  // Scroll-spy: highlights whichever section heading is currently nearest
+  // the top of the viewport. Runs once per page since journal articles are
+  // static pages, not a client-router SPA — no cleanup needed.
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]');
+  if (links.length > 0) {
+    const targets = Array.from(links)
+      .map((link) => document.getElementById(link.dataset.tocTarget ?? ''))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const setActive = (slug: string) => {
+      links.forEach((link) => {
+        link.classList.toggle('is-active', link.dataset.tocTarget === slug);
+      });
+    };
+
+    // IntersectionObserver only reports entries whose state changed since
+    // the last callback — not every currently-intersecting target — so
+    // picking "topmost" from just that batch is wrong whenever two nearby
+    // headings are both already in the trigger band and only one of them
+    // fires on a given scroll tick (the other, unchanged, entry is simply
+    // absent from `entries`). Tracking each target's own last-known state
+    // here and recomputing topmost from that full picture avoids it.
+    const intersecting = new Map<Element, DOMRectReadOnly>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            intersecting.set(entry.target, entry.boundingClientRect);
+          } else {
+            intersecting.delete(entry.target);
+          }
+        }
+        if (intersecting.size > 0) {
+          const [topMost] = [...intersecting].sort((a, b) => a[1].top - b[1].top);
+          setActive(topMost[0].id);
+        }
+      },
+      { rootMargin: '-15% 0px -70% 0px' },
+    );
+
+    targets.forEach((target) => observer.observe(target));
+    if (targets[0]) setActive(targets[0].id);
+  }
+</script>
+
+<style>
+  .article-toc {
+    /* Right-rail affordance — below the breakpoint where the layout has a
+       second column for it (see .article-layout in the journal template),
+       this would otherwise render as a plain block after all the body
+       content, which is useless as a table of contents. Hidden rather
+       than repositioned to the top: a phone-width reader scrolls linearly
+       and doesn't need a persistent outline the way a wide-screen one
+       benefits from a sticky rail. */
+    display: none;
+  }
+
+  @media (min-width: 1000px) {
+    .article-toc {
+      display: block;
+      position: sticky;
+      top: var(--space-6);
+    }
+  }
+
+  .article-toc__label {
+    font-size: var(--text-eyebrow);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--color-text-faint);
+    margin: 0 0 var(--space-3);
+  }
+
+  .article-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    /* The rail itself — a continuous line down the left, with the active
+       link's own border segment standing out on top of it in the accent
+       color, rather than a per-item icon/marker. */
+    border-left: 2px solid var(--color-border);
+  }
+
+  .article-toc a {
+    display: block;
+    padding: 0.1rem 0 0.1rem var(--space-3);
+    margin-left: -2px;
+    border-left: 2px solid transparent;
+    font-size: var(--text-small);
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition:
+      color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .article-toc a:hover {
+    color: var(--color-text);
+  }
+
+  .article-toc a.is-active {
+    border-left-color: var(--color-accent);
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  /* Optional slotted content (e.g. a booking CTA) below the nav list —
+     unused by journal articles, opted into by pages that pass one. */
+  .article-toc :global(> a) {
+    margin-top: var(--space-4);
+    display: block;
+    text-align: center;
+  }
+</style>

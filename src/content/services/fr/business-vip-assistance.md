@@ -5,7 +5,19 @@ order: 10
 group: 'Groups & Corporate'
 investmentTier: 'standard'
 image: service-business
-gallery: ['service-la-defense', 'service-meeting-room']
+storyFeatures:
+  [
+    {
+      title: 'De vraies mises en relation, pas un contact à froid',
+      body: "Ce réseau s'étend aux cercles du luxe et du commerce français — mises en relation de haut niveau chez des groupes comme Printemps et Galeries Lafayette — ainsi qu'à des échanges avec des family offices européens établis sur les questions de succession et d'allocation d'actifs, selon la pertinence pour le séjour du client.",
+      imageId: 'service-la-defense',
+    },
+    {
+      title: "Une logistique qui n'interrompt pas la journée",
+      body: 'Interprètes, transport discret et logistique du jour de réunion sont organisés autour d’un emploi du temps chargé, coordonnés avec le reste du séjour plutôt que réservés séparément.',
+      imageId: 'service-meeting-room',
+    },
+  ]
 highlights:
   [
     'Mises en relation au sein des cercles du commerce de luxe français, y compris avec des contacts de haut niveau chez des groupes comme Printemps et Galeries Lafayette, organisées au cas par cas',
@@ -15,7 +27,3 @@ highlights:
 ---
 
 Au-delà de la planification de voyage, notre réseau ouvre l'accès à des échanges professionnels privés, à la logistique de réunions et à des interprètes lorsque nécessaire.
-
-Ce réseau s'étend aux cercles du luxe et du commerce français — mises en relation de haut niveau chez des groupes comme Printemps et Galeries Lafayette — ainsi qu'à des échanges avec des family offices européens établis sur les questions de succession et d'allocation d'actifs, selon la pertinence pour le séjour du client.
-
-Pour un itinéraire davantage tourné vers l'innovation, nous organisons des visites de sites comme Station F, le plus grand campus de start-up au monde, le siège de Schneider Electric pour observer concrètement la transformation numérique et la stratégie ESG, ou Dassault Systèmes pour ses expériences virtuelles 3D et sa technologie de jumeau numérique — chaque visite étant organisée autour des intérêts réels du client plutôt que proposée comme un circuit fixe.

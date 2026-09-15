@@ -4,6 +4,8 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PageHero from '../../../../components/PageHero.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import Gallery from '../../../../components/Gallery.astro';
+import StoryFeature from '../../../../components/about/StoryFeature.astro';
+import MediaHighlightList from '../../../../components/MediaHighlightList.astro';
 import SectionHeading from '../../../../components/SectionHeading.astro';
 import ContentSection from '../../../../components/ContentSection.astro';
 import KeyFacts from '../../../../components/KeyFacts.astro';
@@ -15,6 +17,7 @@ import {
   resolveRelated,
   getRelatedDestinations,
   getEntriesByDestination,
+  excludeShownImages,
 } from '../../../../lib/content';
 import { useTranslations, type Locale } from '../../../../i18n/ui';
 
@@ -25,6 +28,17 @@ const { entry } = Astro.props as Awaited<ReturnType<typeof getDetailStaticPaths>
 const { data } = entry;
 const t = useTranslations(locale);
 const { Content } = await render(entry);
+
+interface HighlightItem {
+  text: string;
+  image?: string;
+}
+
+const highlights: HighlightItem[] = data.highlights.map((item: string | HighlightItem) =>
+  typeof item === 'string' ? { text: item } : item,
+);
+
+const ctaHref = `/${locale}/contact/?about=${encodeURIComponent(data.title)}`;
 
 // Merge the manually curated list with a reverse lookup by the item's own
 // destinationKey — the manual list drifts out of sync as new accommodations/
@@ -44,19 +58,37 @@ const [
   accommodationsByDestination,
   experiencesManual,
   experiencesByDestination,
+  journeysManual,
+  journeysByDestination,
 ] = await Promise.all([
   resolveRelated('accommodations', locale, data.relatedAccommodationKeys, data.translationKey),
   getEntriesByDestination('accommodations', locale, data.translationKey),
   resolveRelated('experiences', locale, data.relatedExperienceKeys, data.translationKey),
   getEntriesByDestination('experiences', locale, data.translationKey),
+  resolveRelated('journeys', locale, data.relatedJourneyKeys, data.translationKey),
+  getEntriesByDestination('journeys', locale, data.translationKey),
 ]);
-const accommodations = dedupeByTranslationKey([
-  ...accommodationsManual,
-  ...accommodationsByDestination,
-]);
-const experiences = dedupeByTranslationKey([...experiencesManual, ...experiencesByDestination]);
-const relatedDestinations = await getRelatedDestinations(locale, data.translationKey, data.region);
-const journalArticles = await resolveRelated('journal', locale, data.relatedJournalKeys);
+const shownImageIds = [data.coverImage, ...data.gallery];
+const accommodations = excludeShownImages(
+  dedupeByTranslationKey([...accommodationsManual, ...accommodationsByDestination]),
+  shownImageIds,
+);
+const experiences = excludeShownImages(
+  dedupeByTranslationKey([...experiencesManual, ...experiencesByDestination]),
+  shownImageIds,
+);
+const journeys = excludeShownImages(
+  dedupeByTranslationKey([...journeysManual, ...journeysByDestination]),
+  shownImageIds,
+);
+const relatedDestinations = excludeShownImages(
+  await getRelatedDestinations(locale, data.translationKey, data.region),
+  shownImageIds,
+);
+const journalArticles = excludeShownImages(
+  await resolveRelated('journal', locale, data.relatedJournalKeys),
+  shownImageIds,
+);
 
 const keyFacts = [
   ...(data.bestTime
@@ -96,7 +128,9 @@ const structuredData = [
     />
   </div>
 
-  <PageHero eyebrow={t(`region.${data.region}` as never)} title={data.title} />
+  <PageHero eyebrow={t(`region.${data.region}` as never)} title={data.title}>
+    <a slot="cta" class="button button--primary" href={ctaHref}>{t('common.ctaQuote')} →</a>
+  </PageHero>
   {
     data.draft && (
       <div class="container">
@@ -105,9 +139,15 @@ const structuredData = [
     )
   }
 
-  <div class="container">
-    <Gallery images={data.gallery.length > 0 ? data.gallery : [data.coverImage]} locale={locale} />
-  </div>
+  {
+    data.storyFeatures.length === 0 &&
+      data.gallery.length > 0 &&
+      !highlights.some((item) => item.image) && (
+        <div class="container">
+          <Gallery images={data.gallery} locale={locale} />
+        </div>
+      )
+  }
 
   <ContentSection title={t('destinations.detail.overviewTitle')} body={data.description} />
 
@@ -122,18 +162,25 @@ const structuredData = [
   }
 
   {
-    data.highlights.length > 0 && (
+    data.storyFeatures.map(
+      (feature: { title: string; body: string; imageId: string }, index: number) => (
+        <StoryFeature
+          title={feature.title}
+          body={feature.body}
+          imageId={feature.imageId}
+          locale={locale}
+          reverse={index % 2 === 1}
+        />
+      ),
+    )
+  }
+
+  {
+    highlights.length > 0 && (
       <section class="section">
         <div class="container prose">
-          <SectionHeading
-            eyebrow={t('destinations.hero.eyebrow')}
-            title={t('destinations.detail.whyVisitTitle')}
-          />
-          <ul class="highlight-list">
-            {data.highlights.map((item: string) => (
-              <li>{item}</li>
-            ))}
-          </ul>
+          <SectionHeading eyebrow={data.title} title={t('destinations.detail.whyVisitTitle')} />
+          <MediaHighlightList items={highlights} locale={locale} />
         </div>
       </section>
     )
@@ -151,7 +198,7 @@ const structuredData = [
 
   <RelatedContent
     locale={locale}
-    eyebrow={t('destinations.hero.eyebrow')}
+    eyebrow={t('accommodations.hero.title')}
     title={t('destinations.detail.accommodationsHeading')}
     items={accommodations.map((item) => ({
       href: `/${locale}/accommodations/${item.data.slug}/`,
@@ -165,12 +212,26 @@ const structuredData = [
 
   <RelatedContent
     locale={locale}
-    eyebrow={t('destinations.hero.eyebrow')}
+    eyebrow={t('experiences.hero.title')}
     title={t('destinations.detail.experiencesHeading')}
     items={experiences.map((item) => ({
       href: `/${locale}/experiences/${item.data.slug}/`,
       imageId: item.data.coverImage,
       eyebrow: t(`category.${item.data.category}` as never),
+      title: item.data.title,
+      summary: item.data.description,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
+
+  <RelatedContent
+    locale={locale}
+    eyebrow={t('journeys.hero.title')}
+    title={t('destinations.detail.journeysHeading')}
+    items={journeys.map((item) => ({
+      href: `/${locale}/journeys/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t('journeys.hero.title'),
       title: item.data.title,
       summary: item.data.description,
       draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
@@ -185,7 +246,7 @@ const structuredData = [
 
   <RelatedContent
     locale={locale}
-    eyebrow={t('destinations.hero.eyebrow')}
+    eyebrow={t('journal.hero.title')}
     title={t('destinations.detail.journalHeading')}
     items={journalArticles.map((item) => ({
       href: `/${locale}/journal/${item.data.slug}/`,
@@ -213,10 +274,7 @@ const structuredData = [
 
   <section class="section">
     <div class="container prose">
-      <SectionHeading
-        eyebrow={t('destinations.hero.eyebrow')}
-        title={t('destinations.detail.whyUsTitle')}
-      />
+      <SectionHeading eyebrow={data.title} title={t('destinations.detail.whyUsTitle')} />
       <ul class="highlight-list">
         <li>{t('destinations.detail.whyUsPoint1')}</li>
         <li>{t('destinations.detail.whyUsPoint2')}</li>

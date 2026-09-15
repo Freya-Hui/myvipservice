@@ -1,18 +1,22 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/home/Hero.astro';
 import StoryFeature from '../../components/about/StoryFeature.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
-import AccommodationFeature from '../../components/home/AccommodationFeature.astro';
-import TravelTypes from '../../components/home/TravelTypes.astro';
-import ConciergeOverview from '../../components/home/ConciergeOverview.astro';
 import ProcessSteps from '../../components/home/ProcessSteps.astro';
 import JournalPreview from '../../components/home/JournalPreview.astro';
 import InquiryCTA from '../../components/home/InquiryCTA.astro';
+import MidPageCta from '../../components/home/MidPageCta.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
 import { getLocaleEntries } from '../../lib/content';
+import { getImage } from '../../data/image-attributions';
 import { languages, useTranslations, type Locale } from '../../i18n/ui';
-import { travelTypes, whyUsPoints, destinationCountryGroups } from '../../data/site-content';
+import {
+  travelTypes,
+  quickServices,
+  whyUsPoints,
+  destinationCountryGroups,
+} from '../../data/site-content';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((locale) => ({ params: { locale } }));
@@ -21,50 +25,78 @@ export function getStaticPaths() {
 const { locale } = Astro.params as { locale: Locale };
 const t = useTranslations(locale);
 
-function bySlug(entries: CollectionEntry<'services'>[], slug: string) {
-  const entry = entries.find((item) => item.id === `${locale}/${slug}`);
-  if (!entry) throw new Error(`Missing services entry "${slug}" for locale "${locale}"`);
-  return entry.data;
-}
-
-const services = (
-  await getCollection('services', (entry) => entry.id.startsWith(`${locale}/`))
-).sort((a, b) => a.data.order - b.data.order);
 const destinations = await getLocaleEntries('destinations', locale);
 // France first, then the rest of Europe — same priority order as the
 // Destinations list page's country grouping, so both pages agree.
 const destinationPriority = destinationCountryGroups.flatMap((group) => group.translationKeys);
+// Simple, uniform grid — every card the same size, capped at 6 purely for
+// visual sanity (a curated homepage highlight doesn't need to show every
+// featured destination).
 const featuredDestinations = destinations
   .filter((entry) => entry.data.featured)
   .sort(
     (a, b) =>
       destinationPriority.indexOf(a.data.translationKey) -
       destinationPriority.indexOf(b.data.translationKey),
-  );
-const journalEntries = (await getLocaleEntries('journal', locale))
-  .sort((a, b) => (b.data.publishedAt?.getTime() ?? 0) - (a.data.publishedAt?.getTime() ?? 0))
-  .slice(0, 3);
-const experiences = (await getLocaleEntries('experiences', locale)).filter(
+  )
+  .slice(0, 6);
+
+const allJournalEntries = (await getLocaleEntries('journal', locale)).sort(
+  (a, b) => (b.data.publishedAt?.getTime() ?? 0) - (a.data.publishedAt?.getTime() ?? 0),
+);
+const journalEntries = allJournalEntries.slice(0, 5);
+// Up to three articles can carry `featured: true` at a time (see the
+// schema comment in content.config.ts) — surfaced in the hero on top of
+// their normal place in the listing below.
+const featuredJournalEntries = allJournalEntries.filter((entry) => entry.data.featured).slice(0, 3);
+const featuredJourneys = (await getLocaleEntries('journeys', locale)).filter(
   (entry) => entry.data.featured,
 );
 
-const hotelsService = bySlug(services, 'hotel-villa-reservations');
-const conciergeService = bySlug(services, 'personal-concierge');
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'TravelAgency',
+  name: 'MYVIPSERVICE',
+  url: new URL(`/${locale}/`, Astro.site).toString(),
+  email: 'contact@myvipservice.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '29 rue de Mogador',
+    postalCode: '75009',
+    addressLocality: 'Paris',
+    addressCountry: 'FR',
+  },
+  areaServed: 'Europe',
+};
 ---
 
 <BaseLayout
   title={t('nav.home')}
   description="MYVIPSERVICE — private concierge and bespoke travel, based in Paris."
   path=""
+  structuredData={structuredData}
+  transparentHeader
 >
   <Hero
     eyebrow={t('home.hero.eyebrow')}
     tagline={t('home.hero.tagline')}
-    ctaLabel={t('common.cta')}
+    ctaLabel={t('header.planJourney')}
     ctaHref={`/${locale}/contact/`}
-    secondaryCtaLabel={t('home.hero.secondaryCta')}
-    secondaryCtaHref={`/${locale}/services/private-transportation/`}
+    quickNavEyebrow={t('home.quickServices.eyebrow')}
+    quickNavItems={quickServices[locale]}
+    quickNavCtaLabel={t('home.quickServices.cta')}
+    quickNavCtaHref={`/${locale}/services/`}
+    scrollCueLabel={t('home.hero.scrollCue')}
     locale={locale}
+    featuredPosts={featuredJournalEntries.map((entry) => ({
+      label: t('home.hero.featuredLabel'),
+      title: entry.data.title,
+      href: `/${locale}/journal/${entry.data.slug}/`,
+      imageId: entry.data.coverImage,
+    }))}
+    featuredPrevLabel={t('home.hero.featuredPrev')}
+    featuredNextLabel={t('home.hero.featuredNext')}
+    highlightPoints={whyUsPoints[locale].map((point) => point.title)}
   />
 
   <StoryFeature
@@ -73,6 +105,7 @@ const conciergeService = bySlug(services, 'personal-concierge');
     body={t('home.intro.body')}
     imageId="service-concierge"
     locale={locale}
+    compact
   />
 
   <ProcessSteps
@@ -81,59 +114,10 @@ const conciergeService = bySlug(services, 'personal-concierge');
     steps={whyUsPoints[locale]}
   />
 
-  <TravelTypes
-    eyebrow={t('home.travelTypes.eyebrow')}
-    title={t('home.travelTypes.title')}
-    subtitle={t('home.travelTypes.subtitle')}
-    items={travelTypes[locale].filter((item) => item.featured).sort((a, b) => a.order - b.order)}
-    ctaLabel={t('home.travelTypes.cta')}
+  <MidPageCta
+    label={t('home.midCta.label')}
+    ctaLabel={t('home.inquiry.cta')}
     ctaHref={`/${locale}/contact/`}
-  />
-
-  <RelatedContent
-    locale={locale}
-    eyebrow={t('home.destinations.eyebrow')}
-    title={t('home.destinations.title')}
-    items={featuredDestinations.map((entry) => ({
-      href: `/${locale}/destinations/${entry.data.slug}/`,
-      imageId: entry.data.coverImage,
-      eyebrow: t(`region.${entry.data.region}` as never),
-      title: entry.data.title,
-      summary: entry.data.description,
-      draftLabel: entry.data.draft ? t('badge.draftTranslation') : undefined,
-    }))}
-  />
-
-  <RelatedContent
-    locale={locale}
-    eyebrow={t('home.experience.eyebrow')}
-    title={t('home.experience.title')}
-    items={experiences.map((entry) => ({
-      href: `/${locale}/experiences/${entry.data.slug}/`,
-      imageId: entry.data.coverImage,
-      eyebrow: t(`category.${entry.data.category}` as never),
-      title: entry.data.title,
-      summary: entry.data.description,
-      draftLabel: entry.data.draft ? t('badge.draftTranslation') : undefined,
-    }))}
-  />
-
-  <AccommodationFeature
-    eyebrow={t('home.hotels.eyebrow')}
-    title={hotelsService.title}
-    body={hotelsService.summary}
-    ctaLabel={t('home.hotels.cta')}
-    ctaHref={`/${locale}/accommodations/`}
-    imageId="service-hotels-villas"
-    locale={locale}
-  />
-
-  <ConciergeOverview
-    eyebrow={t('home.concierge.eyebrow')}
-    title={t('home.concierge.title')}
-    body={conciergeService.summary}
-    ctaLabel={t('home.concierge.cta')}
-    ctaHref={`/${locale}/services/#personal-concierge`}
   />
 
   <JournalPreview
@@ -151,6 +135,84 @@ const conciergeService = bySlug(services, 'personal-concierge');
     locale={locale}
   />
 
+  {
+    (() => {
+      const travelMosaicItems = travelTypes[locale]
+        .filter((item) => item.featured && item.imageId && item.href)
+        .sort((a, b) => a.order - b.order)
+        .map((item) => ({
+          href: item.href as string,
+          image: getImage(item.imageId as string),
+          label: item.shortLabel ?? item.title,
+          description: item.description,
+        }));
+      return (
+        travelMosaicItems.length > 0 && (
+          <section class="section travel-mosaic">
+            <div class="container">
+              <SectionHeading
+                eyebrow={t('home.travelTypes.eyebrow')}
+                title={t('home.travelTypes.title')}
+              />
+              <ul class="travel-mosaic__grid">
+                {travelMosaicItems.map((item) => (
+                  <li class="travel-mosaic__item">
+                    <a href={item.href}>
+                      <img
+                        src={item.image.src}
+                        alt={item.image.altByLocale[locale]}
+                        width="1600"
+                        height="1200"
+                        loading="lazy"
+                      />
+                      <span class="travel-mosaic__scrim" aria-hidden="true" />
+                      <span class="travel-mosaic__caption">
+                        <span class="travel-mosaic__label">{item.label}</span>
+                        <span class="travel-mosaic__subtitle">{item.description}</span>
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )
+      );
+    })()
+  }
+
+  <RelatedContent
+    locale={locale}
+    eyebrow={t('home.destinations.eyebrow')}
+    title={t('home.destinations.title')}
+    items={featuredDestinations.map((entry) => ({
+      href: `/${locale}/destinations/${entry.data.slug}/`,
+      imageId: entry.data.coverImage,
+      eyebrow: t(`region.${entry.data.region}` as never),
+      title: entry.data.title,
+      summary: entry.data.description,
+      draftLabel: entry.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+    viewAllLabel={t('destinations.viewAll')}
+    viewAllHref={`/${locale}/destinations/`}
+  />
+
+  <RelatedContent
+    locale={locale}
+    eyebrow={t('home.journeys.eyebrow')}
+    title={t('home.journeys.title')}
+    items={featuredJourneys.map((entry) => ({
+      href: `/${locale}/journeys/${entry.data.slug}/`,
+      imageId: entry.data.coverImage,
+      eyebrow: entry.data.theme,
+      title: entry.data.title,
+      summary: entry.data.description,
+      draftLabel: entry.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+    viewAllLabel={t('journeys.viewAll')}
+    viewAllHref={`/${locale}/journeys/`}
+  />
+
   <InquiryCTA
     title={t('home.inquiry.title')}
     body={t('home.inquiry.body')}
@@ -158,3 +220,145 @@ const conciergeService = bySlug(services, 'personal-concierge');
     ctaHref={`/${locale}/contact/`}
   />
 </BaseLayout>
+
+<style>
+  /* Mobile: all 8 tiles stacked (even at 2 columns) ran to four rows —
+     too tall to read as "one screen" the way the rest of the homepage now
+     does. A single swipe-through row (same pattern as the Journal section
+     above) keeps every tile reachable while costing only one row of
+     height. Desktop/tablet (≥640px below) keeps the tight irregular
+     photo-mosaic instead — there's room for it there. */
+  .travel-mosaic__grid {
+    display: flex;
+    gap: var(--card-gap);
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0 0 var(--space-2);
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--space-4);
+  }
+
+  .travel-mosaic__item {
+    flex: 0 0 8.5rem;
+    scroll-snap-align: start;
+  }
+
+  /* One consistent shape everywhere now — same idea as the mobile row,
+     just applied at every width: a uniform grid of tiles reads calmer
+     than staggered heights, and it's what makes columns balance into neat
+     rows instead of a jagged collage once there's more than one row. */
+  .travel-mosaic__item img {
+    aspect-ratio: 4 / 5;
+  }
+
+  @media (min-width: 640px) {
+    .travel-mosaic__grid {
+      display: block;
+      columns: 3;
+      column-gap: var(--card-gap);
+      overflow-x: visible;
+      padding-bottom: 0;
+    }
+
+    .travel-mosaic__item {
+      break-inside: avoid;
+      margin-bottom: var(--card-gap);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .travel-mosaic__grid {
+      columns: 4;
+    }
+  }
+
+  .travel-mosaic__item a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--color-bg-inset);
+  }
+
+  .travel-mosaic__item img {
+    display: block;
+    width: 100%;
+    /* The site-wide img reset only sets max-width — without this, the
+       height="1200" HTML attribute (a sizing hint for the original 4:3
+       photo) wins over the aspect-ratio above and the browser renders the
+       image at its raw intrinsic height instead of scaling from width. */
+    height: auto;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+
+  .travel-mosaic__item a:hover img {
+    transform: scale(1.05);
+  }
+
+  .travel-mosaic__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(11 15 25 / 0%) 45%, rgb(11 15 25 / 85%) 100%);
+  }
+
+  .travel-mosaic__caption {
+    position: absolute;
+    left: var(--space-2);
+    right: var(--space-2);
+    bottom: var(--space-2);
+  }
+
+  .travel-mosaic__label {
+    display: block;
+    color: var(--color-on-photo);
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: var(--text-small);
+    text-shadow: 0 1px 3px rgb(11 15 25 / 55%);
+  }
+
+  /* The one-line "what this is" — desktop/tablet only, and only on
+     hover/focus (see below): there's no room for it on the mobile strip,
+     and no hover to reveal it there either. */
+  .travel-mosaic__subtitle {
+    display: none;
+    margin-top: var(--space-1);
+    color: var(--color-on-photo-muted);
+    font-size: var(--text-small);
+    text-shadow: 0 1px 3px rgb(11 15 25 / 55%);
+  }
+
+  @media (min-width: 640px) {
+    .travel-mosaic__caption {
+      left: var(--space-3);
+      right: var(--space-3);
+      bottom: var(--space-3);
+    }
+
+    .travel-mosaic__label {
+      font-size: var(--text-body-lg);
+    }
+
+    .travel-mosaic__subtitle {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition:
+        max-height var(--transition-fast),
+        opacity var(--transition-fast);
+    }
+
+    .travel-mosaic__item a:hover .travel-mosaic__subtitle,
+    .travel-mosaic__item a:focus-visible .travel-mosaic__subtitle {
+      max-height: 3.5rem;
+      opacity: 1;
+    }
+  }
+</style>

@@ -9,7 +9,7 @@ destinationKey: 'provence'
 featured: true
 status: 'published'
 coverImage: 'destination-provence-vineyard'
-gallery: ['destination-provence-vineyard', 'destination-provence']
+gallery: ['destination-provence-vineyard', 'service-chef-plating']
 duration: '半天'
 suitableFor: ['情侣', '小型团体', '葡萄酒爱好者']
 familySuitable: false

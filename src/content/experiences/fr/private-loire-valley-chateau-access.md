@@ -9,7 +9,7 @@ destinationKey: 'loire-valley'
 featured: true
 status: 'published'
 coverImage: 'destination-loire-valley'
-gallery: ['destination-loire-valley', 'experience-art-gallery']
+gallery: ['destination-loire-valley', 'journey-loire-valley-chambord']
 duration: '2 à 3 heures, le matin'
 suitableFor: ['Couples', 'Familles', 'Petits groupes']
 familySuitable: true

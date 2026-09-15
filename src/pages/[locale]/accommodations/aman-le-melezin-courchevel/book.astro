@@ -1,0 +1,66 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PageHero from '../../../../components/PageHero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import AccommodationBookingWidget from '../../../../components/AccommodationBookingWidget.astro';
+import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
+import { languages, useTranslations, type Locale } from '../../../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const t = useTranslations(locale);
+
+const property = await getEntry('accommodations', `${locale}/aman-le-melezin-courchevel`);
+if (!property) {
+  throw new Error(
+    `Missing accommodations entry "aman-le-melezin-courchevel" for locale "${locale}"`,
+  );
+}
+
+const pageTitle = `${t('common.ctaQuote')} — ${property.data.title}`;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={t('accommodationBooking.subtitle')}
+  path="accommodations/aman-le-melezin-courchevel/book"
+>
+  <div class="container">
+    <Breadcrumbs
+      items={[
+        { label: t('nav.home'), href: `/${locale}/` },
+        { label: t('accommodations.hero.title'), href: `/${locale}/accommodations/` },
+        {
+          label: property.data.title,
+          href: `/${locale}/accommodations/${property.data.slug}/`,
+        },
+        { label: t('common.ctaQuote') },
+      ]}
+    />
+  </div>
+
+  <PageHero
+    eyebrow={property.data.title}
+    title={t('common.ctaQuote')}
+    subtitle={t('accommodationBooking.subtitle')}
+  />
+
+  <div class="container prose">
+    <AccommodationBookingWidget
+      locale={locale}
+      propertyName={property.data.title}
+      propertySlug={property.data.translationKey}
+    />
+  </div>
+
+  <InquiryCTA
+    title={t('home.inquiry.title')}
+    body={t('home.inquiry.body')}
+    ctaLabel={t('common.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
+</BaseLayout>

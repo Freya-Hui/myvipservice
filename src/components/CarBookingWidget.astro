@@ -1,0 +1,1441 @@
+---
+import { useTranslations, type Locale } from '../i18n/ui';
+import { getImage } from '../data/image-attributions';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+// Stock photos standing in until real fleet photos are supplied — at least
+// distinct per vehicle type now, rather than both cards showing the same
+// sedan detail shot regardless of which one a customer picks.
+const standardVehicleImage = getImage('service-car-interior');
+const aviationVehicleImage = getImage('service-car-aviation-seats');
+
+// A real geocoding autocomplete (Google Places or similar) is off the table
+// here — the site's own rule against binding core features to Google Maps
+// is specifically about staying usable from mainland China. This is a
+// plain <datalist> instead: no API, no key, works offline, and covers the
+// pickup points that actually come up most for this clientele (partner
+// hotels plus the main Paris airports/stations). It suggests from this
+// fixed list only — it doesn't validate or correct an arbitrary address.
+const ADDRESS_SUGGESTIONS = [
+  'Aéroport Paris-Charles de Gaulle (CDG)',
+  'Aéroport Paris-Orly (ORY)',
+  'Aéroport Paris-Le Bourget (LBG)',
+  'Gare du Nord, Paris',
+  'Gare de Lyon, Paris',
+  "Gare de l'Est, Paris",
+  'Gare Montparnasse, Paris',
+  'Ritz Paris',
+  'Hôtel de Crillon',
+  'Le Meurice',
+  'Hôtel Plaza Athénée',
+  'Four Seasons Hotel George V',
+  'Mandarin Oriental, Paris',
+  'Shangri-La Paris',
+  'The Peninsula Paris',
+  'Bulgari Hotel Paris',
+  'Cheval Blanc Paris',
+  'La Réserve Paris',
+  'Aman Le Mélézin, Courchevel',
+  "Le Fouquet's Cannes",
+  'La Réserve Ramatuelle',
+  'Anantara Plaza Nice Hotel',
+  'Hôtel Negresco, Nice',
+  'InterContinental Marseille - Hôtel Dieu',
+  'Château de Neydens',
+  'Quai Wilson, Geneva',
+];
+
+// Paris gets the full rate card (incl. aviation seats); every other listed
+// city is standard-vehicle-only at a flat day/hour rate — see the pricing
+// table in the client script below. "other" always falls back to a custom
+// quote confirmed by an advisor, per the business rules given for this widget.
+const citiesByCountry: Record<string, Array<{ value: string; label: string }>> = {
+  france: [
+    { value: 'paris', label: t('carBooking.city.paris') },
+    { value: 'nice', label: t('carBooking.city.nice') },
+    { value: 'cannes', label: t('carBooking.city.cannes') },
+    { value: 'bordeaux', label: t('carBooking.city.bordeaux') },
+    { value: 'burgundy', label: t('carBooking.city.burgundy') },
+    { value: 'other', label: t('carBooking.city.other') },
+  ],
+  uk: [
+    { value: 'london', label: t('carBooking.city.london') },
+    { value: 'oxford', label: t('carBooking.city.oxford') },
+    { value: 'cambridge', label: t('carBooking.city.cambridge') },
+    { value: 'other', label: t('carBooking.city.other') },
+  ],
+  italy: [
+    { value: 'rome', label: t('carBooking.city.rome') },
+    { value: 'milan', label: t('carBooking.city.milan') },
+    { value: 'florence', label: t('carBooking.city.florence') },
+    { value: 'lakeComo', label: t('carBooking.city.lakeComo') },
+    { value: 'other', label: t('carBooking.city.other') },
+  ],
+  spain: [
+    { value: 'madrid', label: t('carBooking.city.madrid') },
+    { value: 'barcelona', label: t('carBooking.city.barcelona') },
+    { value: 'other', label: t('carBooking.city.other') },
+  ],
+  germany: [
+    { value: 'cologne', label: t('carBooking.city.cologne') },
+    { value: 'berlin', label: t('carBooking.city.berlin') },
+    { value: 'munich', label: t('carBooking.city.munich') },
+    { value: 'other', label: t('carBooking.city.other') },
+  ],
+  switzerland: [
+    { value: 'geneva', label: t('carBooking.city.geneva') },
+    { value: 'lausanne', label: t('carBooking.city.lausanne') },
+    { value: 'other', label: t('carBooking.city.other') },
+  ],
+};
+---
+
+<section class="car-booking" id="car-booking">
+  <p class="eyebrow">{t('carBooking.eyebrow')}</p>
+  <h2>{t('carBooking.title')}</h2>
+  <p class="car-booking__subtitle">{t('carBooking.subtitle')}</p>
+
+  <p class="car-booking__stepIndicator" id="cb-step-indicator">{t('carBooking.step1Of2')}</p>
+  <p class="car-booking__paymentBanner" id="cb-payment-banner" hidden></p>
+
+  <form
+    class="car-booking__form"
+    id="car-booking-form"
+    name="car-booking"
+    method="POST"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+  >
+    <input type="hidden" name="form-name" value="car-booking" />
+    <input type="hidden" name="locale" value={locale} />
+    <input type="hidden" name="estimatedTotal" id="cb-total-field" />
+    <p class="visually-hidden">
+      <label>
+        Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off" />
+      </label>
+    </p>
+
+    <div class="car-booking__layout">
+      <div class="car-booking__main">
+        <div class="car-booking__panel" id="cb-step-1">
+          <div class="field">
+            <span class="car-booking__label">{t('carBooking.serviceType.label')}</span>
+            <div class="car-booking__pills" role="radiogroup">
+              <button type="button" class="pill is-active" data-service="airport"
+                >{t('carBooking.serviceType.airport')}</button
+              >
+              <button type="button" class="pill" data-service="hourly"
+                >{t('carBooking.serviceType.hourly')}</button
+              >
+              <button type="button" class="pill" data-service="charter"
+                >{t('carBooking.serviceType.charter')}</button
+              >
+            </div>
+            <input type="hidden" name="serviceType" id="cb-service-field" value="airport" />
+          </div>
+
+          <label class="car-booking__checkbox">
+            <input type="checkbox" id="cb-multi-city" name="multiCity" value="yes" />
+            {t('carBooking.multiCityLabel')}
+          </label>
+
+          <fieldset class="field-group">
+            <legend class="visually-hidden">{t('carBooking.countryLabel')}</legend>
+            <div class="field-group__row">
+              <div class="field">
+                <label for="cb-country">{t('carBooking.countryLabel')}</label>
+                <select id="cb-country" name="country" required>
+                  <option value="france">{t('carBooking.country.france')}</option>
+                  <option value="uk">{t('carBooking.country.uk')}</option>
+                  <option value="italy">{t('carBooking.country.italy')}</option>
+                  <option value="spain">{t('carBooking.country.spain')}</option>
+                  <option value="germany">{t('carBooking.country.germany')}</option>
+                  <option value="switzerland">{t('carBooking.country.switzerland')}</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="cb-city" id="cb-city-label">{t('carBooking.cityLabel')}</label>
+                <select id="cb-city" name="city" required></select>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="field-group">
+            <legend class="visually-hidden">{t('carBooking.partySizeLabel')}</legend>
+            <div class="field-group__row">
+              <div class="field">
+                <label for="cb-party-size">{t('carBooking.partySizeLabel')}</label>
+                <input
+                  type="number"
+                  id="cb-party-size"
+                  name="partySize"
+                  min="1"
+                  max="7"
+                  step="1"
+                  value="1"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="cb-luggage">{t('carBooking.luggageLabel')}</label>
+                <input
+                  type="number"
+                  id="cb-luggage"
+                  name="luggage"
+                  min="0"
+                  max="6"
+                  step="1"
+                  value="1"
+                  required
+                />
+              </div>
+            </div>
+            <p class="car-booking__note">{t('carBooking.partySizeLimitNote')}</p>
+          </fieldset>
+
+          <fieldset class="field-group">
+            <legend class="visually-hidden">{t('carBooking.dateLabel')}</legend>
+            <div class="field-group__row">
+              <div class="field">
+                <label for="cb-date">{t('carBooking.dateLabel')}</label>
+                <input type="date" id="cb-date" name="date" required />
+              </div>
+              <div class="field" data-field="startTime" hidden>
+                <label for="cb-start-time">{t('carBooking.startTimeLabel')}</label>
+                <input type="time" id="cb-start-time" name="startTime" value="09:00" />
+              </div>
+              <div class="field" data-field="flightNumber" hidden>
+                <label for="cb-flight-number">{t('carBooking.flightNumberLabel')}</label>
+                <input type="text" id="cb-flight-number" name="flightNumber" />
+              </div>
+              <div class="field" data-field="hours" hidden>
+                <label for="cb-hours">
+                  {t('carBooking.hoursLabel')}
+                  <span class="text-small">({t('carBooking.hoursMinNote')})</span>
+                </label>
+                <input type="number" id="cb-hours" name="hours" min="3" step="1" value="3" />
+              </div>
+              <div class="field" data-field="days" hidden>
+                <label for="cb-days">{t('carBooking.daysLabel')}</label>
+                <input type="number" id="cb-days" name="days" min="1" step="1" value="1" />
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="car-booking__noteStack">
+            <p class="car-booking__note" data-field="timeRange" hidden id="cb-time-range"></p>
+            <p class="car-booking__note" id="cb-lead-note">{t('carBooking.leadTimeNote')}</p>
+            <p class="car-booking__note" data-field="airportNote" hidden>
+              {t('carBooking.airportWaitNote')}
+            </p>
+            <p class="car-booking__note" data-field="charterNote" hidden>
+              {t('carBooking.charterIncludesNote')}
+            </p>
+            <p class="car-booking__note" id="cb-service-hours-note" hidden>
+              {t('carBooking.serviceHoursNote')}
+            </p>
+            <p class="car-booking__note" id="cb-fashion-week-note" hidden>
+              {t('carBooking.fashionWeekNote')}
+            </p>
+          </div>
+          <input type="hidden" name="fashionWeek" id="cb-fashion-week-field" value="no" />
+
+          <div class="field">
+            <span class="car-booking__label">{t('carBooking.carTypeLabel')}</span>
+            <div class="car-booking__vehicles" role="radiogroup">
+              <button type="button" class="vehicle-card is-active" data-car="standard">
+                <img
+                  src={standardVehicleImage.src}
+                  alt={standardVehicleImage.altByLocale[locale]}
+                  loading="lazy"
+                />
+                <span class="vehicle-card__name">{t('carBooking.carType.standard')}</span>
+              </button>
+              <button type="button" class="vehicle-card" data-car="aviation" data-paris-only>
+                <img
+                  src={aviationVehicleImage.src}
+                  alt={aviationVehicleImage.altByLocale[locale]}
+                  loading="lazy"
+                />
+                <span class="vehicle-card__name">{t('carBooking.carType.aviation')}</span>
+              </button>
+            </div>
+            <input type="hidden" name="vehicle" id="cb-car-field" value="standard" />
+          </div>
+        </div>
+
+        <div class="car-booking__panel" id="cb-step-2" hidden>
+          <div class="field">
+            <label for="cb-address">{t('carBooking.addressLabel')}</label>
+            <input
+              type="text"
+              id="cb-address"
+              name="address"
+              placeholder={t('carBooking.addressPlaceholder')}
+              list="cb-address-list"
+              autocomplete="off"
+              required
+            />
+            <datalist id="cb-address-list">
+              {ADDRESS_SUGGESTIONS.map((address) => <option value={address} />)}
+            </datalist>
+          </div>
+
+          <label class="car-booking__checkbox">
+            <input type="checkbox" id="cb-interpreter" name="interpreter" value="yes" />
+            {t('carBooking.interpreterLabel')}
+          </label>
+
+          <div class="field">
+            <label for="cb-notes">{t('carBooking.notesLabel')}</label>
+            <textarea
+              id="cb-notes"
+              name="notes"
+              rows="3"
+              placeholder={t('carBooking.notesPlaceholder')}></textarea>
+          </div>
+
+          <fieldset class="field-group">
+            <legend class="visually-hidden">{t('carBooking.section.contact')}</legend>
+            <div class="field-group__row">
+              <div class="field">
+                <label for="cb-name">{t('carBooking.nameLabel')}</label>
+                <input type="text" id="cb-name" name="name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="cb-email">{t('carBooking.emailLabel')}</label>
+                <input type="email" id="cb-email" name="email" autocomplete="email" required />
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="cb-phone">{t('carBooking.phoneLabel')}</label>
+            <div class="car-booking__phoneRow">
+              <select
+                id="cb-phone-code"
+                name="phoneCountryCode"
+                aria-label={t('carBooking.phoneCodeLabel')}
+              >
+                <option value="+86">China +86</option>
+                <option value="+33">France +33</option>
+                <option value="+44">UK +44</option>
+                <option value="+49">Germany +49</option>
+                <option value="+39">Italy +39</option>
+                <option value="+34">Spain +34</option>
+                <option value="+41">Switzerland +41</option>
+                <option value="+7">Russia +7</option>
+                <option value="+1">US/Canada +1</option>
+                <option value="+852">Hong Kong +852</option>
+                <option value="+65">Singapore +65</option>
+                <option value="+81">Japan +81</option>
+              </select>
+              <input type="tel" id="cb-phone" name="phoneWechat" autocomplete="tel" required />
+            </div>
+            <p class="car-booking__note">{t('carBooking.whatsappNote')}</p>
+          </div>
+
+          <div class="field">
+            <span class="car-booking__label">{t('carBooking.contactMethodLabel')}</span>
+            <div class="car-booking__pills" role="radiogroup">
+              <button type="button" class="pill is-active" data-contact-method="whatsapp"
+                >{t('carBooking.contactMethod.whatsapp')}</button
+              >
+              <button type="button" class="pill" data-contact-method="email"
+                >{t('carBooking.contactMethod.email')}</button
+              >
+              <button type="button" class="pill" data-contact-method="imessage"
+                >{t('carBooking.contactMethod.imessage')}</button
+              >
+            </div>
+            <input
+              type="hidden"
+              name="preferredContactMethod"
+              id="cb-contact-method-field"
+              value="whatsapp"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="car-booking__side">
+        <div class="car-booking__summary" id="cb-summary">
+          <p class="car-booking__summaryTitle">{t('carBooking.summaryTitle')}</p>
+          <dl class="car-booking__summaryList" id="cb-summary-list"></dl>
+        </div>
+
+        <p class="car-booking__note" id="cb-custom-quote-note" hidden>
+          {t('carBooking.customQuoteNote')}
+        </p>
+
+        <div class="car-booking__total">
+          <span>{t('carBooking.totalLabel')}</span>
+          <span class="car-booking__totalValue" id="cb-total">€150</span>
+        </div>
+        <p class="car-booking__note">{t('carBooking.cancellationNote')}</p>
+        <p class="car-booking__note" id="cb-instant-pay-note" hidden>
+          {t('carBooking.instantPayNote')}
+        </p>
+        <p class="car-booking__note" id="cb-manual-confirm-note" hidden>
+          {t('carBooking.confirmNote')}
+        </p>
+
+        <p class="car-booking__leadError" id="cb-lead-error" hidden>
+          {t('carBooking.leadTimeError')}
+        </p>
+
+        <button
+          type="button"
+          class="button button--primary car-booking__wideButton"
+          id="cb-next-button">{t('carBooking.nextButton')}</button
+        >
+        <div class="car-booking__stepButtons" id="cb-step-buttons" hidden>
+          <button type="button" class="button button--quiet" id="cb-back-button"
+            >{t('carBooking.backButton')}</button
+          >
+          <button type="submit" class="button button--primary" id="cb-book-button"
+            >{t('carBooking.bookButton')}</button
+          >
+        </div>
+        <p class="text-small car-booking__confirmNote">{t('carBooking.nextStepsNote')}</p>
+        <p class="text-small car-booking__status" id="cb-status" role="status" aria-live="polite">
+        </p>
+      </div>
+    </div>
+  </form>
+
+  <div class="car-booking__sticky" id="cb-sticky" hidden>
+    <span class="car-booking__stickyLabel">{t('carBooking.totalLabel')}</span>
+    <span class="car-booking__totalValue" id="cb-total-sticky">€150</span>
+    <button type="submit" class="button button--primary" form="car-booking-form">
+      {t('carBooking.bookButton')}
+    </button>
+  </div>
+</section>
+
+<script
+  is:inline
+  define:vars={{
+    citiesByCountry,
+    customQuoteTotalLabel: t('carBooking.customQuoteTotal'),
+    timeRangeLabel: t('carBooking.timeRangeLabel'),
+    step1Label: t('carBooking.step1Of2'),
+    step2Label: t('carBooking.step2Of2'),
+    serviceTypeLabel: t('carBooking.serviceType.label'),
+    cityLabelText: t('carBooking.cityLabel'),
+    departureCityLabelText: t('carBooking.departureCityLabel'),
+    partySizeLabelText: t('carBooking.partySizeLabel'),
+    luggageLabelText: t('carBooking.luggageLabel'),
+    dateLabelText: t('carBooking.dateLabel'),
+    startTimeLabelText: t('carBooking.startTimeLabel'),
+    hoursLabelText: t('carBooking.hoursLabel'),
+    daysLabelText: t('carBooking.daysLabel'),
+    carTypeLabelText: t('carBooking.carTypeLabel'),
+    addonSummaryLabelText: t('carBooking.vipReceptionSummaryLabel'),
+    interpreterAddedLabelText: t('carBooking.interpreterAddedLabel'),
+    requestReceivedMessage: t('carBooking.requestReceivedNote'),
+    genericErrorMessage: t('carBooking.genericErrorNote'),
+    paymentSuccessMessage: t('carBooking.paymentSuccessNote'),
+    paymentCancelledMessage: t('carBooking.paymentCancelledNote'),
+  }}
+>
+  (function () {
+    // Paris is the only city with a fixed rate for all three service types
+    // and the only place the aviation-seat vehicle is offered. Every other
+    // listed city is standard-vehicle-only, flat-rate for hourly/charter —
+    // airport transfers there don't have a fixed number yet, so those (and
+    // anything under "other city") fall back to a custom quote.
+    // These rate tables are the hardcoded fallback, used until
+    // /.netlify/functions/get-pricing resolves (so the widget works
+    // instantly on load) — then live-swapped with whatever the admin page
+    // at /admin/pricing currently has saved, no redeploy required for a
+    // price change. Reassigned in place (never re-declared) so every
+    // closure below keeps seeing the current values.
+    let PARIS_RATES = {
+      airport: { standard: 150, aviation: 170 },
+      hourly: { standard: 100, aviation: 120 },
+      charter: { standard: 650, aviation: 800 },
+    };
+    // Paris only (the only city with an aviation-seat option) — the hourly
+    // rate itself changes during Fashion Week, rather than taking a flat
+    // per-day surcharge the way the charter rate does.
+    let PARIS_FASHION_WEEK_HOURLY = { standard: 120, aviation: 150 };
+    let STANDARD_CITY_RATES = {
+      hourly: 150,
+      charter: 800,
+    };
+    // Per-city day-rate override — only London differs from the standard
+    // non-Paris charter rate so far.
+    let CITY_CHARTER_OVERRIDES = {
+      london: 700,
+    };
+    // Country-level airport-transfer rate, used for every non-Paris city in
+    // that country (Paris keeps its own standard/aviation split above). UK
+    // and Switzerland don't have a confirmed rate yet, so airport transfers
+    // there still fall back to a custom quote.
+    let COUNTRY_AIRPORT_RATES = {
+      france: 150,
+      uk: 200,
+      germany: 200,
+      italy: 150,
+      spain: 150,
+      switzerland: 200,
+    };
+    // Flat day rate (8h) — see rates.interpreter's own comment in
+    // netlify/functions/lib/pricing.mjs.
+    let INTERPRETER = { rate: 300 };
+    // Cannes is always a custom quote — festival-period demand and access
+    // requirements mean it's never a fixed instant price. Not admin-editable
+    // (a rule, not a price) — kept in sync by hand with the server copy in
+    // netlify/functions/lib/pricing.mjs.
+    const ALWAYS_CUSTOM_QUOTE_CITIES = ['cannes'];
+    let FASHION_WEEK_SURCHARGE = 100;
+    let MIN_LEAD_DAYS = 3;
+    // Official Paris Fashion Week / Haute Couture windows (menswear,
+    // couture, womenswear), confirmed for 2026. Add next year's dates here
+    // once the Fédération de la Haute Couture et de la Mode publishes them.
+    let FASHION_WEEK_RANGES = [
+      ['2026-01-20', '2026-01-29'],
+      ['2026-03-02', '2026-03-10'],
+      ['2026-06-23', '2026-06-28'],
+      ['2026-07-06', '2026-07-09'],
+      ['2026-09-28', '2026-10-06'],
+    ];
+
+    let serviceType = 'airport';
+    let carType = 'standard';
+    let wantsInterpreter = false;
+
+    const root = document.getElementById('car-booking');
+    if (!root) return;
+
+    const form = document.getElementById('car-booking-form');
+    const stepIndicator = document.getElementById('cb-step-indicator');
+    const paymentBanner = document.getElementById('cb-payment-banner');
+    const bookButton = document.getElementById('cb-book-button');
+    const step1 = document.getElementById('cb-step-1');
+    const step2 = document.getElementById('cb-step-2');
+    const nextButton = document.getElementById('cb-next-button');
+    const backButton = document.getElementById('cb-back-button');
+    const stepButtonsEl = document.getElementById('cb-step-buttons');
+    const summaryList = document.getElementById('cb-summary-list');
+    const servicePills = root.querySelectorAll('[data-service]');
+    const carPills = root.querySelectorAll('[data-car]');
+    const contactMethodPills = root.querySelectorAll('[data-contact-method]');
+    const contactMethodField = document.getElementById('cb-contact-method-field');
+    const aviationPill = root.querySelector('[data-car="aviation"]');
+    const serviceField = document.getElementById('cb-service-field');
+    const multiCityInput = document.getElementById('cb-multi-city');
+    const carField = document.getElementById('cb-car-field');
+    const countrySelect = document.getElementById('cb-country');
+    const citySelect = document.getElementById('cb-city');
+    const cityLabelEl = document.getElementById('cb-city-label');
+    const partySizeInput = document.getElementById('cb-party-size');
+    const luggageInput = document.getElementById('cb-luggage');
+    const dateInput = document.getElementById('cb-date');
+    const startTimeField = root.querySelector('[data-field="startTime"]');
+    const flightNumberField = root.querySelector('[data-field="flightNumber"]');
+    const startTimeInput = document.getElementById('cb-start-time');
+    const hoursField = root.querySelector('[data-field="hours"]');
+    const hoursInput = document.getElementById('cb-hours');
+    const daysField = root.querySelector('[data-field="days"]');
+    const daysInput = document.getElementById('cb-days');
+    const airportNote = root.querySelector('[data-field="airportNote"]');
+    const interpreterCheckbox = document.getElementById('cb-interpreter');
+    const timeRangeNote = document.getElementById('cb-time-range');
+    const fashionWeekNote = document.getElementById('cb-fashion-week-note');
+    const fashionWeekField = document.getElementById('cb-fashion-week-field');
+    const charterNote = root.querySelector('[data-field="charterNote"]');
+    const serviceHoursNote = document.getElementById('cb-service-hours-note');
+    const leadNote = document.getElementById('cb-lead-note');
+    const customQuoteNote = document.getElementById('cb-custom-quote-note');
+    const instantPayNote = document.getElementById('cb-instant-pay-note');
+    const manualConfirmNote = document.getElementById('cb-manual-confirm-note');
+    const totalEls = [
+      document.getElementById('cb-total'),
+      document.getElementById('cb-total-sticky'),
+    ];
+    const totalField = document.getElementById('cb-total-field');
+    const leadError = document.getElementById('cb-lead-error');
+    const status = document.getElementById('cb-status');
+    const stickyBar = document.getElementById('cb-sticky');
+
+    function populateCities() {
+      const cities = citiesByCountry[countrySelect.value] || [];
+      citySelect.innerHTML = '';
+      cities.forEach((city) => {
+        const option = document.createElement('option');
+        option.value = city.value;
+        option.textContent = city.label;
+        citySelect.appendChild(option);
+      });
+    }
+
+    function setMinDate() {
+      const min = new Date();
+      const iso = min.toISOString().slice(0, 10);
+      dateInput.setAttribute('min', iso);
+      if (!dateInput.value) {
+        const defaultDate = new Date();
+        defaultDate.setDate(defaultDate.getDate() + MIN_LEAD_DAYS);
+        dateInput.value = defaultDate.toISOString().slice(0, 10);
+      }
+    }
+
+    function isLeadTimeShort() {
+      if (!dateInput.value) return true;
+      const chosen = new Date(dateInput.value);
+      const min = new Date();
+      min.setDate(min.getDate() + MIN_LEAD_DAYS);
+      min.setHours(0, 0, 0, 0);
+      return chosen < min;
+    }
+
+    function isPast() {
+      if (!dateInput.value) return false;
+      const chosen = new Date(dateInput.value);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return chosen < today;
+    }
+
+    function isParis() {
+      return citySelect.value === 'paris';
+    }
+
+    function isOtherCity() {
+      return citySelect.value === 'other';
+    }
+
+    function hasCountryAirportRate() {
+      return Object.prototype.hasOwnProperty.call(COUNTRY_AIRPORT_RATES, countrySelect.value);
+    }
+
+    // Vehicles run 06:00 to 01:00 the next day — a booking that starts
+    // inside the 01:00–06:00 gap falls outside normal service hours.
+    function isOutsideServiceHours() {
+      if (serviceType === 'airport' || !startTimeInput.value) return false;
+      const [h, m] = startTimeInput.value.split(':').map(Number);
+      const minutes = h * 60 + m;
+      return minutes >= 60 && minutes < 360;
+    }
+
+    function isCustomQuote() {
+      if (multiCityInput.checked) return true;
+      if (isOtherCity()) return true;
+      if (ALWAYS_CUSTOM_QUOTE_CITIES.includes(citySelect.value)) return true;
+      if (!isParis() && serviceType === 'airport' && !hasCountryAirportRate()) return true;
+      if (isLeadTimeShort()) return true;
+      if (isOutsideServiceHours()) return true;
+      return false;
+    }
+
+    function isFashionWeek() {
+      if (!dateInput.value) return false;
+      if (serviceType !== 'charter' && serviceType !== 'hourly') return false;
+      const start = new Date(dateInput.value);
+      const end = new Date(dateInput.value);
+      if (serviceType === 'charter') {
+        const days = Math.max(1, parseInt(daysInput.value, 10) || 1);
+        end.setDate(end.getDate() + days - 1);
+      }
+      return FASHION_WEEK_RANGES.some(([rangeStart, rangeEnd]) => {
+        const rs = new Date(rangeStart);
+        const re = new Date(rangeEnd);
+        return start <= re && end >= rs;
+      });
+    }
+
+    function updateFieldsVisibility() {
+      // Airport transfers ask for this too now — it's the pickup/arrival
+      // time, alongside the flight number, not just an hourly/charter thing.
+      startTimeField.hidden = false;
+      flightNumberField.hidden = serviceType !== 'airport';
+      hoursField.hidden = serviceType !== 'hourly';
+      daysField.hidden = serviceType !== 'charter';
+      airportNote.hidden = serviceType !== 'airport';
+      charterNote.hidden = serviceType !== 'charter';
+
+      const parisOnly = isParis();
+      aviationPill.hidden = !parisOnly;
+      if (!parisOnly && carType === 'aviation') {
+        carType = 'standard';
+        carField.value = 'standard';
+        carPills.forEach((b) => b.classList.toggle('is-active', b.dataset.car === 'standard'));
+      }
+    }
+
+    function updateTimeRange() {
+      timeRangeNote.hidden = serviceType !== 'hourly' || !startTimeInput.value;
+      if (timeRangeNote.hidden) return;
+      const hours = Math.max(3, parseInt(hoursInput.value, 10) || 3);
+      const [h, m] = startTimeInput.value.split(':').map(Number);
+      const endMinutes = (h * 60 + m + hours * 60) % (24 * 60);
+      const endH = String(Math.floor(endMinutes / 60)).padStart(2, '0');
+      const endM = String(endMinutes % 60).padStart(2, '0');
+      timeRangeNote.textContent = `${timeRangeLabel} ${startTimeInput.value} – ${endH}:${endM}`;
+    }
+
+    function updateSummary() {
+      if (!summaryList) return;
+      const activeService = root.querySelector('[data-service].is-active');
+      const activeCar = root.querySelector('[data-car].is-active');
+      const cityOption = citySelect.options[citySelect.selectedIndex];
+      const rows = [
+        [serviceTypeLabel, activeService ? activeService.textContent : ''],
+        [
+          multiCityInput.checked ? departureCityLabelText : cityLabelText,
+          cityOption ? cityOption.textContent : '',
+        ],
+        [partySizeLabelText, partySizeInput.value],
+        [luggageLabelText, luggageInput.value],
+        [dateLabelText, dateInput.value],
+      ];
+      if (startTimeInput.value) rows.push([startTimeLabelText, startTimeInput.value]);
+      if (serviceType === 'hourly') rows.push([hoursLabelText, hoursInput.value]);
+      if (serviceType === 'charter') rows.push([daysLabelText, daysInput.value]);
+      rows.push([
+        carTypeLabelText,
+        activeCar ? activeCar.querySelector('.vehicle-card__name').textContent : '',
+      ]);
+      if (wantsInterpreter) {
+        rows.push([addonSummaryLabelText, interpreterAddedLabelText]);
+      }
+      summaryList.innerHTML = rows
+        .map(([k, v]) => `<div class="car-booking__summaryRow"><dt>${k}</dt><dd>${v}</dd></div>`)
+        .join('');
+    }
+
+    function calculateTotal() {
+      leadError.hidden = true;
+      leadNote.hidden = !isLeadTimeShort();
+      serviceHoursNote.hidden = !isOutsideServiceHours();
+      updateTimeRange();
+      customQuoteNote.hidden = !(
+        isOtherCity() ||
+        ALWAYS_CUSTOM_QUOTE_CITIES.includes(citySelect.value) ||
+        isOutsideServiceHours() ||
+        (!isParis() && serviceType === 'airport' && !hasCountryAirportRate())
+      );
+      instantPayNote.hidden = isCustomQuote();
+      manualConfirmNote.hidden = !isCustomQuote();
+
+      const fashionWeek = isFashionWeek();
+      fashionWeekNote.hidden = !fashionWeek;
+      fashionWeekField.value = fashionWeek ? 'yes' : 'no';
+
+      let total = null;
+      if (isCustomQuote()) {
+        totalEls.forEach((el) => (el.textContent = customQuoteTotalLabel));
+        totalField.value = customQuoteTotalLabel;
+      } else {
+        total = 0;
+        if (isParis()) {
+          const base = PARIS_RATES[serviceType][carType];
+          if (serviceType === 'airport') {
+            total = base;
+          } else if (serviceType === 'hourly') {
+            const hours = Math.max(3, parseInt(hoursInput.value, 10) || 3);
+            hoursInput.value = String(hours);
+            const hourlyRate = fashionWeek ? PARIS_FASHION_WEEK_HOURLY[carType] : base;
+            total = hourlyRate * hours;
+          } else if (serviceType === 'charter') {
+            const days = Math.max(1, parseInt(daysInput.value, 10) || 1);
+            daysInput.value = String(days);
+            const fwSurcharge = fashionWeek ? FASHION_WEEK_SURCHARGE * days : 0;
+            total = base * days + fwSurcharge;
+          }
+        } else {
+          // Standard-only city rate. Airport transfers here are custom-quote
+          // unless the country has a confirmed rate (COUNTRY_AIRPORT_RATES).
+          if (serviceType === 'airport') {
+            total = COUNTRY_AIRPORT_RATES[countrySelect.value];
+          } else if (serviceType === 'hourly') {
+            const hours = Math.max(3, parseInt(hoursInput.value, 10) || 3);
+            hoursInput.value = String(hours);
+            total = STANDARD_CITY_RATES.hourly * hours;
+          } else if (serviceType === 'charter') {
+            const days = Math.max(1, parseInt(daysInput.value, 10) || 1);
+            daysInput.value = String(days);
+            const dayRate = CITY_CHARTER_OVERRIDES[citySelect.value] || STANDARD_CITY_RATES.charter;
+            const fwSurcharge = fashionWeek ? FASHION_WEEK_SURCHARGE * days : 0;
+            total = dayRate * days + fwSurcharge;
+          }
+        }
+        if (!total || total <= 0) {
+          // A saved rate of zero (e.g. a blank field in /admin/pricing)
+          // would otherwise show a bogus free price — fall back to
+          // custom-quote display, matching the server's own calculatePrice()
+          // guard so the widget never promises a total the backend won't
+          // honor.
+          total = null;
+          instantPayNote.hidden = true;
+          manualConfirmNote.hidden = false;
+          totalEls.forEach((el) => (el.textContent = customQuoteTotalLabel));
+          totalField.value = customQuoteTotalLabel;
+        } else {
+          // Matches the server's calculatePrice() ordering: the base fare
+          // is validated as a real fixed price first, then the add-on is
+          // layered on top — never the other way round.
+          if (wantsInterpreter) {
+            const days = Math.max(1, parseInt(daysInput.value, 10) || 1);
+            total += INTERPRETER.rate * (serviceType === 'charter' ? days : 1);
+          }
+          totalEls.forEach((el) => (el.textContent = `€${total.toLocaleString('en-US')}`));
+          totalField.value = `€${total}`;
+        }
+      }
+      updateSummary();
+      return total;
+    }
+
+    servicePills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        servicePills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        serviceType = btn.getAttribute('data-service');
+        serviceField.value = serviceType;
+        updateFieldsVisibility();
+        calculateTotal();
+      });
+    });
+
+    carPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (btn.hidden) return;
+        carPills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        carType = btn.getAttribute('data-car');
+        carField.value = carType;
+        calculateTotal();
+      });
+    });
+
+    contactMethodPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        contactMethodPills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        contactMethodField.value = btn.getAttribute('data-contact-method');
+      });
+    });
+
+    countrySelect.addEventListener('change', () => {
+      populateCities();
+      updateFieldsVisibility();
+      calculateTotal();
+    });
+
+    citySelect.addEventListener('change', () => {
+      updateFieldsVisibility();
+      calculateTotal();
+    });
+
+    [hoursInput, daysInput, startTimeInput].forEach((el) => {
+      el.addEventListener('input', calculateTotal);
+      el.addEventListener('change', calculateTotal);
+    });
+
+    dateInput.addEventListener('change', calculateTotal);
+    multiCityInput.addEventListener('change', () => {
+      // For a multi-city trip the city dropdown means the starting point —
+      // the rest of the route goes in the notes field (see multiCityLabel).
+      cityLabelEl.textContent = multiCityInput.checked ? departureCityLabelText : cityLabelText;
+      calculateTotal();
+    });
+
+    [partySizeInput, luggageInput].forEach((el) => {
+      el.addEventListener('input', updateSummary);
+    });
+
+    interpreterCheckbox.addEventListener('change', () => {
+      wantsInterpreter = interpreterCheckbox.checked;
+      calculateTotal();
+    });
+
+    // The `hidden` attribute doesn't bar fields from constraint validation
+    // (only `disabled` does), so a plain form.reportValidity() here would
+    // also trip on step 2's still-empty required fields. Scope the check to
+    // step 1's own fields instead.
+    nextButton.addEventListener('click', () => {
+      const invalid = step1.querySelector(':invalid');
+      if (invalid) {
+        invalid.reportValidity();
+        return;
+      }
+      step1.hidden = true;
+      step2.hidden = false;
+      nextButton.hidden = true;
+      stepButtonsEl.hidden = false;
+      stepIndicator.textContent = step2Label;
+      updateSummary();
+      root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    backButton.addEventListener('click', () => {
+      step2.hidden = true;
+      step1.hidden = false;
+      nextButton.hidden = false;
+      stepButtonsEl.hidden = true;
+      stepIndicator.textContent = step1Label;
+      root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    function encodeFormData(data) {
+      return Object.keys(data)
+        .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+        .join('&');
+    }
+
+    // Best-effort lead record — not awaited, since it must never block or
+    // break the customer-facing flow. Two calls: the raw Netlify Forms post
+    // keeps every submission archived in the Netlify dashboard, and the
+    // second sends the actual clearly-formatted notification email (see
+    // sendInternalBookingNotification in lib/email.mjs) — Netlify's own
+    // form-notification email is a raw field dump, not something this repo
+    // can restyle.
+    function submitLeadRecord(data) {
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData(data),
+      }).catch(() => {});
+      fetch('/.netlify/functions/notify-quote-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      }).catch(() => {});
+    }
+
+    function resetFormToStep1() {
+      form.reset();
+      serviceType = 'airport';
+      carType = 'standard';
+      wantsInterpreter = false;
+      interpreterCheckbox.checked = false;
+      // form.reset() doesn't fire a 'change' event, so the label swap tied
+      // to multiCityInput's listener wouldn't otherwise revert.
+      cityLabelEl.textContent = cityLabelText;
+      servicePills.forEach((b) => b.classList.toggle('is-active', b.dataset.service === 'airport'));
+      carPills.forEach((b) => b.classList.toggle('is-active', b.dataset.car === 'standard'));
+      contactMethodPills.forEach((b) =>
+        b.classList.toggle('is-active', b.dataset.contactMethod === 'whatsapp'),
+      );
+      contactMethodField.value = 'whatsapp';
+      serviceField.value = 'airport';
+      carField.value = 'standard';
+      populateCities();
+      updateFieldsVisibility();
+      setMinDate();
+      calculateTotal();
+      step2.hidden = true;
+      step1.hidden = false;
+      nextButton.hidden = false;
+      stepButtonsEl.hidden = true;
+      stepIndicator.textContent = step1Label;
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (isPast()) {
+        step1.hidden = false;
+        step2.hidden = true;
+        nextButton.hidden = false;
+        stepButtonsEl.hidden = true;
+        stepIndicator.textContent = step1Label;
+        leadError.hidden = false;
+        dateInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      const total = calculateTotal();
+      const data = Object.fromEntries(new FormData(form).entries());
+      bookButton.disabled = true;
+
+      if (total === null) {
+        // Custom-quote booking — no fixed price to charge yet, keep the
+        // existing lead-capture flow: an advisor confirms and follows up.
+        submitLeadRecord(data);
+        if (status) status.textContent = requestReceivedMessage;
+        bookButton.disabled = false;
+        resetFormToStep1();
+        return;
+      }
+
+      // Fixed-price booking — pay now. The server recomputes the price
+      // itself from the same booking fields rather than trusting this
+      // client's number, so estimatedTotal here is informational only.
+      // The lead-record/notification email fires later, from the
+      // create-checkout webhook, once Stripe confirms payment actually
+      // went through — not here, since reaching Stripe checkout doesn't
+      // mean the customer completed (or will complete) payment.
+      fetch('/.netlify/functions/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error('checkout_failed');
+          return res.json();
+        })
+        .then((result) => {
+          if (!result.url) throw new Error('checkout_failed');
+          window.location.href = result.url;
+        })
+        .catch(() => {
+          bookButton.disabled = false;
+          if (status) status.textContent = genericErrorMessage;
+        });
+    });
+
+    // If Stripe just redirected back here, show the outcome. This banner
+    // lives outside the form (not inside the hidden step panels) so it's
+    // visible no matter which step the fresh page load starts on.
+    const params = new URLSearchParams(window.location.search);
+    let paymentComplete = false;
+    if (params.has('paid')) {
+      const paid = params.get('paid') === '1';
+      paymentComplete = paid;
+      paymentBanner.textContent = paid ? paymentSuccessMessage : paymentCancelledMessage;
+      paymentBanner.classList.toggle('is-success', paid);
+      paymentBanner.hidden = false;
+      if (paid) form.hidden = true;
+      root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    populateCities();
+    setMinDate();
+    updateFieldsVisibility();
+
+    calculateTotal();
+
+    // Swap in whatever's currently saved via /admin/pricing, if different
+    // from the hardcoded fallback above — best-effort, since the widget
+    // already works fine on the fallback if this fails or is slow.
+    fetch('/.netlify/functions/get-pricing')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((result) => {
+        if (!result?.rates) return;
+        const rates = result.rates;
+        PARIS_RATES = rates.parisRates;
+        PARIS_FASHION_WEEK_HOURLY = rates.parisFashionWeekHourly;
+        STANDARD_CITY_RATES = rates.standardCityRates;
+        CITY_CHARTER_OVERRIDES = rates.cityCharterOverrides;
+        COUNTRY_AIRPORT_RATES = rates.countryAirportRates;
+        INTERPRETER = rates.interpreter;
+        FASHION_WEEK_SURCHARGE = rates.fashionWeekSurcharge;
+        MIN_LEAD_DAYS = rates.minLeadDays;
+        FASHION_WEEK_RANGES = rates.fashionWeekRanges;
+        calculateTotal();
+      })
+      .catch(() => {});
+
+    // The bottom price bar is a mobile-only fallback (see the media query
+    // below — desktop already has the sticky side column) so it stays
+    // visible while filling in a long single-column form — but it must
+    // disappear once the section itself scrolls out of view, or it sits on
+    // top of unrelated content further down the page. Once payment is
+    // complete there's no form left to pay for, so skip it entirely rather
+    // than have it fight the "hide after paid" state above.
+    if (paymentComplete) {
+      stickyBar.hidden = true;
+    } else if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          stickyBar.hidden = !entry.isIntersecting;
+        },
+        { threshold: 0 },
+      );
+      observer.observe(root);
+    }
+  })();
+</script>
+
+<style>
+  .car-booking {
+    padding-block: var(--space-6);
+    /* Room so the fixed mobile price bar never covers the last field. */
+    padding-bottom: calc(var(--space-6) + 4.5rem);
+  }
+
+  @media (min-width: 56rem) {
+    .car-booking {
+      /* The sticky side column covers this job on desktop. */
+      padding-bottom: var(--space-6);
+    }
+  }
+
+  .car-booking__sticky[hidden] {
+    display: none;
+  }
+
+  .car-booking__sticky {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg-elevated);
+    border-top: 1px solid var(--color-border);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  @media (min-width: 56rem) {
+    /* The sticky side column covers this job on desktop — after the base
+       rule above (source order, not just specificity, decides the cascade
+       here) so this actually wins. */
+    .car-booking__sticky {
+      display: none;
+    }
+  }
+
+  .car-booking__stickyLabel {
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+  }
+
+  .car-booking__sticky .car-booking__totalValue {
+    flex: 1;
+  }
+
+  .car-booking__sticky .button {
+    white-space: nowrap;
+  }
+
+  .car-booking__subtitle {
+    color: var(--color-text-muted);
+    max-width: var(--prose-max-width);
+  }
+
+  .car-booking__stepIndicator {
+    margin-top: var(--space-4);
+    font-size: var(--text-small);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .car-booking__paymentBanner {
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg-inset);
+    border-radius: var(--radius);
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+  }
+
+  .car-booking__paymentBanner[hidden] {
+    display: none;
+  }
+
+  .car-booking__paymentBanner.is-success {
+    color: var(--color-success);
+  }
+
+  .car-booking__form {
+    margin-top: var(--space-4);
+    /* Wider than the site's usual reading column — this page's whole job
+       is the widget, and the two-column layout below needs the room. */
+    max-width: 64rem;
+  }
+
+  .car-booking__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 56rem) {
+    .car-booking__layout {
+      grid-template-columns: 1fr 20rem;
+      align-items: start;
+    }
+
+    .car-booking__side {
+      position: sticky;
+      top: var(--space-5);
+    }
+  }
+
+  .car-booking__panel[hidden] {
+    display: none;
+  }
+
+  .field {
+    margin-bottom: var(--space-4);
+  }
+
+  .field-group {
+    border: none;
+    padding: 0;
+    margin: 0 0 var(--space-4);
+  }
+
+  .field-group__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  .car-booking__phoneRow {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: var(--space-3);
+  }
+
+  .car-booking__label {
+    display: block;
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .car-booking__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .pill {
+    font: inherit;
+    font-size: var(--text-small);
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  .pill.is-active {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: var(--color-bg-inset);
+  }
+
+  .car-booking__vehicles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  .vehicle-card {
+    font: inherit;
+    text-align: left;
+    padding: 0;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .vehicle-card[hidden] {
+    display: none;
+  }
+
+  .vehicle-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .vehicle-card__name {
+    display: block;
+    padding: var(--space-3);
+    font-size: var(--text-small);
+  }
+
+  .vehicle-card.is-active {
+    border-color: var(--color-accent);
+  }
+
+  .vehicle-card.is-active .vehicle-card__name {
+    color: var(--color-accent);
+    background: var(--color-bg-inset);
+  }
+
+  .car-booking__note {
+    color: var(--color-text-faint);
+    font-size: var(--text-small);
+    margin: calc(var(--space-3) * -1) 0 0;
+  }
+
+  /* Two notes can be visible back to back (e.g. the lead-time note and the
+     airport wait-time note) — give them normal spacing instead of stacking
+     the pull-up meant for the field above onto each other. */
+  .car-booking__note + .car-booking__note,
+  .car-booking__summary + .car-booking__note,
+  .car-booking__total + .car-booking__note {
+    margin-top: var(--space-2);
+  }
+
+  .car-booking__note[hidden] {
+    display: none;
+  }
+
+  #cb-lead-note {
+    color: var(--color-error);
+  }
+
+  /* The step-1 notes conditionally show/hide based on service type — the
+     adjacent-sibling rule above only fires when two visible notes are
+     literally back-to-back in the DOM, so a hidden note (or any other
+     element) sitting between two visible ones silently breaks it and their
+     negative top margins collide instead of stacking. `gap` sidesteps this
+     entirely: a [hidden] (display:none) child is never a flex item, so it
+     never counts against the gap regardless of which notes are visible. */
+  .car-booking__noteStack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: calc(var(--space-3) * -1);
+  }
+
+  .car-booking__noteStack .car-booking__note {
+    margin: 0;
+  }
+
+  /* A note directly under a checkbox (inside its own .field, inside the
+     stack) isn't part of the gap-managed row, so it needs its own small
+     offset under the checkbox above it. */
+  .car-booking__checkbox + .car-booking__note {
+    margin-top: var(--space-1);
+  }
+
+  /* The WhatsApp note under the phone row has the same problem in reverse:
+     .car-booking__note's default negative top margin assumes it's pulling
+     up against a .field's own margin-bottom, but the phone row isn't a
+     .field — with nothing to cancel out, the negative margin pulled the
+     note up until it nearly touched the input above it. */
+  .car-booking__phoneRow + .car-booking__note {
+    margin-top: var(--space-2);
+  }
+
+  /* Same fix for the party-size/luggage limit note — it follows
+     .field-group__row (a grid, not a .field), so the default negative
+     margin needs the same positive override. */
+  .field-group__row + .car-booking__note {
+    margin-top: var(--space-2);
+  }
+
+  .car-booking__checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  .car-booking__checkbox input {
+    width: auto;
+  }
+
+  .car-booking__side {
+    padding: var(--space-4);
+    background: var(--color-bg-inset);
+    border-radius: var(--radius);
+  }
+
+  .car-booking__summary {
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .car-booking__summaryTitle {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .car-booking__summaryList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin: 0;
+  }
+
+  /* These rows are built client-side via innerHTML (see updateSummary() in
+     the script below), so they never get Astro's scoping attribute —
+     :global() is required for the styles to reach them. */
+  :global(.car-booking__summaryRow) {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-size: var(--text-small);
+  }
+
+  :global(.car-booking__summaryRow dt) {
+    color: var(--color-text-muted);
+  }
+
+  :global(.car-booking__summaryRow dd) {
+    margin: 0;
+    text-align: right;
+  }
+
+  .car-booking__total {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    font-size: var(--text-body-lg);
+  }
+
+  .car-booking__totalValue {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    color: var(--color-accent);
+  }
+
+  .car-booking__leadError {
+    color: var(--color-error);
+    font-size: var(--text-small);
+  }
+
+  .car-booking__wideButton {
+    width: 100%;
+    margin-top: var(--space-4);
+  }
+
+  /* The global .button class sets its own `display`, and since that rule
+     has the same specificity as the UA stylesheet's [hidden]{display:none}
+     but loads after it, .button wins by default — so a hidden .button
+     button stays visible unless this is stated explicitly. (Same issue as
+     .car-booking__stepButtons below, and .car-booking__sticky above.) */
+  .car-booking__wideButton[hidden] {
+    display: none;
+  }
+
+  .car-booking__stepButtons {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .car-booking__stepButtons[hidden] {
+    display: none;
+  }
+
+  .car-booking__stepButtons .button--primary {
+    flex: 1;
+  }
+
+  .car-booking__confirmNote {
+    display: block;
+    margin-top: var(--space-3);
+    color: var(--color-text-faint);
+  }
+
+  .car-booking__status {
+    color: var(--color-success);
+  }
+</style>

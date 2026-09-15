@@ -1,0 +1,216 @@
+---
+import { getCollection, getEntry, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import PageHero from '../../../../../components/PageHero.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+import SectionHeading from '../../../../../components/SectionHeading.astro';
+import Gallery from '../../../../../components/Gallery.astro';
+import RelatedContent from '../../../../../components/RelatedContent.astro';
+import InquiryCTA from '../../../../../components/home/InquiryCTA.astro';
+import { useTranslations, type Locale } from '../../../../../i18n/ui';
+
+// Kept in sync with book.astro's own list — the two topics that route to a
+// dedicated booking/enquiry page instead of the generic contact form.
+const BOOKABLE_TOPICS = ['chauffeur', 'private-terminal'];
+
+export async function getStaticPaths() {
+  const topics = await getCollection('transportationTopics');
+  return topics.map((entry) => ({
+    params: { locale: entry.id.split('/')[0], topic: entry.id.split('/').slice(1).join('/') },
+    props: { entry },
+  }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const { entry } = Astro.props as { entry: CollectionEntry<'transportationTopics'> };
+const { data } = entry;
+const topicSlug = entry.id.split('/').slice(1).join('/');
+const t = useTranslations(locale);
+const { Content } = await render(entry);
+
+const parentService = await getEntry('services', `${locale}/private-transportation`);
+if (!parentService) {
+  throw new Error(`Missing services entry "private-transportation" for locale "${locale}"`);
+}
+
+const siblingTopics = (
+  await getCollection(
+    'transportationTopics',
+    (topic) => topic.id.startsWith(`${locale}/`) && topic.id !== entry.id,
+  )
+).sort((a, b) => a.data.order - b.data.order);
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: data.title,
+  description: data.seoDescription ?? data.summary,
+  provider: { '@type': 'Organization', name: 'MYVIPSERVICE' },
+  areaServed: 'Europe',
+  url: new URL(`/${locale}/services/private-transportation/${topicSlug}/`, Astro.site).toString(),
+};
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.seoDescription ?? data.summary}
+  path={`services/private-transportation/${topicSlug}`}
+  imageId={data.image}
+  structuredData={structuredData}
+>
+  <div class="container">
+    <Breadcrumbs
+      items={[
+        { label: t('nav.home'), href: `/${locale}/` },
+        { label: t('nav.services'), href: `/${locale}/services/` },
+        {
+          label: parentService.data.title,
+          href: `/${locale}/services/private-transportation/`,
+        },
+        { label: data.title },
+      ]}
+    />
+  </div>
+
+  <PageHero
+    eyebrow={parentService.data.title}
+    title={data.title}
+    subtitle={data.summary}
+    imageId={data.image}
+    locale={locale}
+  >
+    <a
+      slot="cta"
+      class="button button--primary"
+      href={BOOKABLE_TOPICS.includes(topicSlug)
+        ? `/${locale}/services/private-transportation/${topicSlug}/book/`
+        : `/${locale}/contact/?about=${encodeURIComponent(data.title)}`}
+    >
+      {
+        topicSlug === 'chauffeur'
+          ? t('carBooking.title')
+          : topicSlug === 'private-terminal'
+            ? t('terminalBooking.title')
+            : t('common.ctaQuote')
+      } →
+    </a>
+  </PageHero>
+
+  {
+    data.price && topicSlug !== 'chauffeur' && (
+      <div class="container">
+        <p class="price-callout">
+          <span class="price-callout__value">{data.price}</span>
+          {data.priceNote && <span class="price-callout__note">{data.priceNote}</span>}
+        </p>
+      </div>
+    )
+  }
+
+  {
+    data.gallery.length > 0 && (
+      <div class="container">
+        <Gallery images={data.gallery} locale={locale} />
+      </div>
+    )
+  }
+
+  <section class="section">
+    <div class="container prose">
+      <Content />
+    </div>
+  </section>
+
+  {
+    data.highlights.length > 0 && (
+      <section class="section highlights-section">
+        <div class="container prose">
+          <SectionHeading
+            eyebrow={parentService.data.title}
+            title={t('accommodations.detail.highlightsTitle')}
+          />
+          <ul class="highlight-list">
+            {data.highlights.map((item: string) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    BOOKABLE_TOPICS.includes(topicSlug) && (
+      <div class="container quick-inquiry">
+        <a
+          class="button button--primary"
+          href={`/${locale}/services/private-transportation/${topicSlug}/book/`}
+        >
+          {topicSlug === 'chauffeur' ? t('carBooking.title') : t('terminalBooking.title')} →
+        </a>
+      </div>
+    )
+  }
+
+  {
+    siblingTopics.length > 0 && (
+      <RelatedContent
+        locale={locale}
+        eyebrow={parentService.data.title}
+        title={t('services.detail.relatedTopicsHeading')}
+        items={siblingTopics.map((topic) => ({
+          href: `/${locale}/services/private-transportation/${topic.id.split('/').slice(1).join('/')}/`,
+          imageId: topic.data.image ?? parentService.data.image ?? 'service-private-transportation',
+          eyebrow: parentService.data.title,
+          title: topic.data.title,
+          summary: topic.data.summary,
+          meta: topic.data.price
+            ? `${topic.data.price}${topic.data.priceNote ? ` — ${topic.data.priceNote}` : ''}`
+            : undefined,
+          draftLabel: topic.data.draft ? t('badge.draftTranslation') : undefined,
+        }))}
+      />
+    )
+  }
+
+  <InquiryCTA
+    title={t('home.inquiry.title')}
+    body={t('home.inquiry.body')}
+    ctaLabel={t('common.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
+</BaseLayout>
+
+<style>
+  .quick-inquiry {
+    margin-bottom: var(--space-5);
+  }
+
+  .highlights-section {
+    padding-top: 0;
+  }
+
+  .highlight-list {
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .price-callout {
+    margin-bottom: var(--space-5);
+  }
+
+  .price-callout__value {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    color: var(--color-accent);
+  }
+
+  .price-callout__note {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+    margin-top: var(--space-1);
+  }
+</style>

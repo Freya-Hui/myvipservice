@@ -6,7 +6,7 @@ import type { Locale } from '../i18n/ui';
 interface Props {
   href: string;
   imageId: string;
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   summary: string;
   meta?: string;
@@ -14,13 +14,25 @@ interface Props {
   logo?: string;
   draftLabel?: string;
   locale: Locale;
+  class?: string;
 }
 
-const { href, imageId, eyebrow, title, summary, meta, logo, draftLabel, locale } = Astro.props;
+const {
+  href,
+  imageId,
+  eyebrow,
+  title,
+  summary,
+  meta,
+  logo,
+  draftLabel,
+  locale,
+  class: className,
+} = Astro.props;
 const image = getImageSafe(imageId);
 ---
 
-<li class="content-card">
+<li class="content-card" class:list={[className]}>
   <a href={href}>
     <div class="figure figure--standard">
       <img
@@ -39,7 +51,7 @@ const image = getImageSafe(imageId);
       }
     </div>
     <div class="content-card__body">
-      <p class="content-card__eyebrow text-small">{eyebrow}</p>
+      {eyebrow && <p class="content-card__eyebrow text-small">{eyebrow}</p>}
       <h3>{title}</h3>
       <p class="text-small content-card__summary">{summary}</p>
       {meta && <p class="text-small content-card__meta">{meta}</p>}

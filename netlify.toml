@@ -1,0 +1,29 @@
+[build]
+  publish = "dist"
+  functions = "netlify/functions"
+
+# Site is fully self-contained (no third-party scripts, fonts, or embeds —
+# self-hosted Cormorant Garamond, Stripe Checkout is a redirect, not an
+# embed), so script-src can stay locked to 'self' plus the widget's own
+# inline scripts (Astro's static build has no per-request nonce to hash
+# them against instead).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=(), payment=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' https://checkout.stripe.com"
+
+# Checks every 15 minutes for vehicle-confirmed bookings now within 5 hours
+# of pickup and sends the driver/vehicle-info email — see
+# netlify/functions/send-driver-info-sweep.mjs.
+[functions."send-driver-info-sweep"]
+  schedule = "*/15 * * * *"
+
+# Daily purge of long-abandoned orders — see
+# netlify/functions/cleanup-orders-sweep.mjs.
+[functions."cleanup-orders-sweep"]
+  schedule = "0 3 * * *"

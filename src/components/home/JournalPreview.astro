@@ -50,25 +50,46 @@ const fallbackImage = getImage('journal-preview-paris-cafe');
               </li>
             );
           })}
+          {/* The "view all" slide — reached by scrolling past the last
+              article instead of sitting as a separate static link below
+              the row, so it reads as part of the same swipe-through
+              sequence rather than a disconnected footer link. */}
+          <li class="journal__viewAllSlide">
+            <a href={viewAllHref}>
+              <span class="journal__viewAllArrow" aria-hidden="true">
+                →
+              </span>
+              <span>{viewAllLabel}</span>
+            </a>
+          </li>
         </ul>
       ) : (
         emptyNote && <p class="text-small journal__note">{emptyNote}</p>
       )
     }
-    <a class="text-small journal__view-all" href={viewAllHref}>
-      {viewAllLabel}
-    </a>
   </div>
 </section>
 
 <style>
+  /* A horizontal, swipe-to-see-more row instead of a wrapping grid — up to
+     five entries (see index.astro), so a fixed grid would either crowd a
+     narrow viewport or leave a lot of unused width on a wide one. Native
+     scroll-snap keeps it simple (no JS, works with touch/trackpad/arrow
+     keys out of the box) rather than building a custom carousel. */
   .journal__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    display: flex;
     gap: var(--card-gap);
     list-style: none;
-    margin: var(--space-5) 0;
-    padding: 0;
+    margin: var(--space-5) 0 0;
+    padding: 0 0 var(--space-2);
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--space-4);
+  }
+
+  .journal__grid li {
+    flex: 0 0 16rem;
+    scroll-snap-align: start;
   }
 
   .journal__grid a {
@@ -95,9 +116,43 @@ const fallbackImage = getImage('journal-preview-paris-cafe');
     margin-bottom: var(--space-3);
   }
 
-  .journal__view-all {
-    display: inline-block;
-    margin-top: var(--space-3);
+  /* The row is a flex container, so this <li> stretches to match the
+     height of the article cards beside it (default align-items: stretch)
+     — filling that with an arrow and the label instead of a photo makes
+     it read as one more slide in the row, not a mismatched tile. */
+  .journal__viewAllSlide a {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 100%;
+    padding: var(--space-4);
+    background: var(--color-bg-inset);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    transition:
+      background-color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .journal__viewAllSlide a:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  .journal__viewAllArrow {
+    font-size: var(--text-h3);
     color: var(--color-accent);
+    transition: color var(--transition-fast);
+  }
+
+  .journal__viewAllSlide a:hover .journal__viewAllArrow {
+    color: inherit;
   }
 </style>

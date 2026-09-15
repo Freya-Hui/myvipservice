@@ -17,7 +17,7 @@ languages: ['Anglais', 'Français']
 highlights:
   ['Bateau et skipper privés', 'Vue sur les Alpes depuis le lac', 'Itinéraire et horaire flexibles']
 customisationNotes: "L'itinéraire, la durée et la possibilité de prendre le petit-déjeuner à bord s'adaptent à votre groupe — indiquez-nous le nombre de participants et l'heure de départ souhaitée."
-relatedAccommodationKeys: ['demo-villa-geneva']
+relatedAccommodationKeys: ['grand-villa-geneva-mies']
 relatedExperienceKeys: []
 relatedJournalKeys: ['family-travel-choosing-experiences']
 publishedAt: 2026-08-07

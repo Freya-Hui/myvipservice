@@ -4,6 +4,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PageHero from '../../../components/PageHero.astro';
 import ContentSection from '../../../components/ContentSection.astro';
 import StoryFeature from '../../../components/about/StoryFeature.astro';
+import VideoFeature from '../../../components/home/VideoFeature.astro';
 import InquiryCTA from '../../../components/home/InquiryCTA.astro';
 import { languages, useTranslations, type Locale } from '../../../i18n/ui';
 
@@ -27,7 +28,16 @@ const { data } = about;
     eyebrow={t('about.hero.eyebrow')}
     title="MYVIPSERVICE"
     subtitle={t('about.hero.subtitle')}
-    imageId="hero-paris"
+    imageId="hero-home"
+    locale={locale}
+  />
+
+  <VideoFeature
+    eyebrow={t('about.founderVideo.eyebrow')}
+    title={t('about.founderVideo.title')}
+    body={t('about.founderVideo.body')}
+    posterImageId="service-lobby-detail"
+    comingSoonLabel={t('about.founderVideo.comingSoon')}
     locale={locale}
   />
 

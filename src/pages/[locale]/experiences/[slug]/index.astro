@@ -7,12 +7,14 @@ import SectionHeading from '../../../../components/SectionHeading.astro';
 import ContentSection from '../../../../components/ContentSection.astro';
 import KeyFacts from '../../../../components/KeyFacts.astro';
 import RelatedContent from '../../../../components/RelatedContent.astro';
+import MediaHighlightList from '../../../../components/MediaHighlightList.astro';
 import ContentStatusBadge from '../../../../components/ContentStatusBadge.astro';
 import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
 import {
   getDetailStaticPaths,
   resolveRelated,
   getEntryByTranslationKey,
+  excludeShownImages,
 } from '../../../../lib/content';
 import { useTranslations, type Locale } from '../../../../i18n/ui';
 
@@ -26,19 +28,25 @@ const t = useTranslations(locale);
 const destination = data.destinationKey
   ? await getEntryByTranslationKey('destinations', locale, data.destinationKey)
   : undefined;
-const accommodations = await resolveRelated(
-  'accommodations',
-  locale,
-  data.relatedAccommodationKeys,
-  data.translationKey,
+const shownImageIds = [data.coverImage, ...data.gallery];
+const accommodations = excludeShownImages(
+  await resolveRelated(
+    'accommodations',
+    locale,
+    data.relatedAccommodationKeys,
+    data.translationKey,
+  ),
+  shownImageIds,
 );
-const relatedExperiences = await resolveRelated(
-  'experiences',
-  locale,
-  data.relatedExperienceKeys,
-  data.translationKey,
+const relatedExperiences = excludeShownImages(
+  await resolveRelated('experiences', locale, data.relatedExperienceKeys, data.translationKey),
+  shownImageIds,
 );
-const journalArticles = await resolveRelated('journal', locale, data.relatedJournalKeys);
+const journalArticles = excludeShownImages(
+  await resolveRelated('journal', locale, data.relatedJournalKeys),
+  shownImageIds,
+);
+const relatedDestination = excludeShownImages(destination ? [destination] : [], shownImageIds);
 
 const keyFacts = [
   ...(destination
@@ -68,6 +76,17 @@ const keyFacts = [
 // for the same convention.
 const isDemoListing = data.translationKey.startsWith('demo-');
 
+// A highlight is either a plain string or a {text, image} pair — normalize
+// both to one shape, same as the accommodations/journeys templates, so
+// MediaHighlightList doesn't need to branch on it.
+interface HighlightItem {
+  text: string;
+  image?: string;
+}
+const highlights: HighlightItem[] = data.highlights.map((item: string | HighlightItem) =>
+  typeof item === 'string' ? { text: item } : item,
+);
+
 const structuredData = [
   {
     '@context': 'https://schema.org',
@@ -91,13 +110,21 @@ const structuredData = [
     <Breadcrumbs
       items={[
         { label: t('nav.home'), href: `/${locale}/` },
-        { label: t('journeys.hero.title'), href: `/${locale}/journeys/` },
+        { label: t('experiences.hero.title') },
         { label: data.title },
       ]}
     />
   </div>
 
-  <PageHero eyebrow={t(`category.${data.category}` as never)} title={data.title} />
+  <PageHero eyebrow={t(`category.${data.category}` as never)} title={data.title}>
+    <a
+      slot="cta"
+      class="button button--primary"
+      href={`/${locale}/contact/?about=${encodeURIComponent(data.title)}`}
+    >
+      {t('common.ctaQuote')} →
+    </a>
+  </PageHero>
   <div class="container badge-row">
     {isDemoListing && <ContentStatusBadge tone="demo" label={t('badge.demoListing')} />}
     {data.draft && <ContentStatusBadge tone="draft" label={t('badge.draftTranslation')} />}
@@ -110,18 +137,14 @@ const structuredData = [
   <ContentSection title={t('experiences.detail.overviewTitle')} body={data.description} />
 
   {
-    data.highlights.length > 0 && (
+    highlights.length > 0 && (
       <section class="section">
         <div class="container prose">
           <SectionHeading
             eyebrow={t(`category.${data.category}` as never)}
             title={t('experiences.detail.highlightsTitle')}
           />
-          <ul class="highlight-list">
-            {data.highlights.map((item: string) => (
-              <li>{item}</li>
-            ))}
-          </ul>
+          <MediaHighlightList items={highlights} locale={locale} />
         </div>
       </section>
     )
@@ -148,25 +171,21 @@ const structuredData = [
 
   <RelatedContent
     locale={locale}
-    eyebrow={t(`category.${data.category}` as never)}
+    eyebrow={t('destinations.hero.title')}
     title={t('experiences.detail.relatedDestinationHeading')}
-    items={destination
-      ? [
-          {
-            href: `/${locale}/destinations/${destination.data.slug}/`,
-            imageId: destination.data.coverImage,
-            eyebrow: t(`region.${destination.data.region}` as never),
-            title: destination.data.title,
-            summary: destination.data.description,
-            draftLabel: destination.data.draft ? t('badge.draftTranslation') : undefined,
-          },
-        ]
-      : []}
+    items={relatedDestination.map((item) => ({
+      href: `/${locale}/destinations/${item.data.slug}/`,
+      imageId: item.data.coverImage,
+      eyebrow: t(`region.${item.data.region}` as never),
+      title: item.data.title,
+      summary: item.data.description,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
   />
 
   <RelatedContent
     locale={locale}
-    eyebrow={t(`category.${data.category}` as never)}
+    eyebrow={t('accommodations.hero.title')}
     title={t('experiences.detail.nearbyAccommodationsHeading')}
     items={accommodations.map((item) => ({
       href: `/${locale}/accommodations/${item.data.slug}/`,
@@ -181,7 +200,7 @@ const structuredData = [
 
   <RelatedContent
     locale={locale}
-    eyebrow={t(`category.${data.category}` as never)}
+    eyebrow={t('experiences.hero.title')}
     title={t('experiences.detail.relatedExperiencesHeading')}
     items={relatedExperiences.map((item) => ({
       href: `/${locale}/experiences/${item.data.slug}/`,
@@ -195,7 +214,7 @@ const structuredData = [
 
   <RelatedContent
     locale={locale}
-    eyebrow={t(`category.${data.category}` as never)}
+    eyebrow={t('journal.hero.title')}
     title={t('experiences.detail.journalHeading')}
     items={journalArticles.map((item) => ({
       href: `/${locale}/journal/${item.data.slug}/`,
@@ -220,12 +239,5 @@ const structuredData = [
     display: flex;
     gap: var(--space-2);
     margin-bottom: var(--space-5);
-  }
-
-  .highlight-list {
-    color: var(--color-text-muted);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
   }
 </style>
