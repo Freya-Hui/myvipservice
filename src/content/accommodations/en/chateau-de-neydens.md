@@ -35,7 +35,7 @@ highlights:
     },
     {
       image: 'accommodation-chateau-de-neydens-cinema',
-      text: "The château's home cinema was voted Best Home Cinema in the EMEA region in 2022, and sits alongside a games room with billiards, foosball, arcade machines and two racing simulators, plus a fully equipped music recording studio.",
+      text: "The château's private screening room sits alongside a games room with billiards, foosball, arcade machines and two racing simulators, plus a fully equipped music recording studio.",
     },
     {
       image: 'accommodation-chateau-de-neydens-cars',
@@ -49,7 +49,7 @@ highlights:
   ]
 roomTypes:
   [
-    'The château sleeps up to 15 across three floors. The ground-floor bedroom is the most generous, with a 180x200 bed, both a bathtub and a walk-in shower, double vanity, dressing room, separate toilet and its own private terrace; two of the four Queen bedrooms on the second floor (160x200, walk-in shower) also open onto a private terrace, while the top-floor bedrooms share the same Queen configuration without a terrace. Eight bathrooms in total mean very little sharing even at full occupancy.',
+    'The château sleeps up to 19 across three floors: one bedroom on the ground floor, four on the second floor, and two more on the top floor — plus the dormitory below. The ground-floor bedroom is the most generous, with a 180x200 bed, both a bathtub and a walk-in shower, double vanity, dressing room, separate toilet and its own private terrace; two of the four Queen bedrooms on the second floor (160x200, walk-in shower) also open onto a private terrace, while the two Queen bedrooms on the top floor share the same configuration without a terrace. Eight bathrooms in total mean very little sharing even at full occupancy.',
     'For larger multi-generational groups, a dormitory-style room on the top floor sleeps five in single beds, with its own two bathrooms — well suited to children or a group of friends travelling together, without breaking up the rest of the house into smaller family suites.',
   ]
 suitableFor:

@@ -41,7 +41,7 @@ highlights:
   ]
 roomTypes:
   [
-    "Rooms span three tiers — Junior Suite, Deluxe Suite Terrace and Executive Suite — most with a private terrace or loggia, the most common of the hotel's 57 suite categories.",
+    "Rooms span three tiers — Junior Suite, Deluxe Suite Terrace and Executive Suite — most with a private terrace or loggia, among the most common of the hotel's 57 suites.",
     {
       image: 'accommodation-bulgari-paris-suite',
       text: "The Bvlgari Suite (I & III / II & IV) is the most brand-forward room type — a framed display of Bvlgari jewellery hangs in the living room, and the furnishings and palette carry the house's signature amber and bronze tones.",

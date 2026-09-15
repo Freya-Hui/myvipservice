@@ -12,8 +12,8 @@ positioning: ['Luxury', 'Private Residence']
 travelFit: ['Family', 'Wellness']
 featured: false
 status: 'published'
-coverImage: 'service-hotel-exterior'
-gallery: ['service-hotel-exterior']
+coverImage: 'accommodation-villa-lac-leman-vineyard'
+gallery: ['accommodation-villa-lac-leman-vineyard']
 highlights:
   [
     '7间卧室、7间浴室，最多可住9人，位于湖区沃州一侧的杜利，距日内瓦市中心约25分钟车程',

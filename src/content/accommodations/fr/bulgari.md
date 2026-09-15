@@ -41,7 +41,7 @@ highlights:
   ]
 roomTypes:
   [
-    "Les chambres se répartissent en trois catégories — Junior Suite, Deluxe Suite Terrace et Executive Suite — la plupart avec terrasse ou loggia privée, les plus courantes des 57 catégories de suites de l'hôtel.",
+    "Les chambres se répartissent en trois catégories — Junior Suite, Deluxe Suite Terrace et Executive Suite — la plupart avec terrasse ou loggia privée, parmi les plus courantes des 57 suites de l'hôtel.",
     {
       image: 'accommodation-bulgari-paris-suite',
       text: 'La Suite Bvlgari (I & III / II & IV) est la catégorie la plus marquée par la maison — un cadre exposant des bijoux Bvlgari orne le salon, et le mobilier comme les teintes reprennent les tons ambre et bronze signature de la maison.',

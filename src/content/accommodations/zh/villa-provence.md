@@ -10,8 +10,8 @@ city: '艾克斯普罗旺斯'
 country: '法国'
 featured: false
 status: 'published'
-coverImage: 'service-wine-cellar'
-gallery: ['service-wine-cellar']
+coverImage: 'accommodation-villa-provence-facade'
+gallery: ['accommodation-villa-provence-facade']
 highlights:
   [
     '私家围墙花园，普罗旺斯石砌农舍建筑，距艾克斯普罗旺斯车程不远',

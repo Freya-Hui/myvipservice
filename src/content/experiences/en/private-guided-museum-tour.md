@@ -19,6 +19,7 @@ highlights:
     'A dedicated expert guide, not a general audio tour or open group',
     'The visit shaped around what you want to see — the collection, the period, the artist',
     'Louvre, Musée d’Orsay, Versailles and other major museums, not limited to one',
+    'From €500 for a 2–3 hour private tour',
   ]
 customisationNotes: 'Tell us which museum and what you want to focus on — the guide plans the route around it. Not limited to one venue: the Louvre, Musée d’Orsay and Versailles are all regularly arranged. Please book at least 48 hours in advance.'
 relatedAccommodationKeys: ['ritz-paris']

@@ -24,7 +24,7 @@ gallery:
   ]
 highlights:
   [
-    "COMO Le Montrachet occupe une auberge « place du village » du XIXe siècle au cœur de Puligny-Montrachet, récompensée d'une Clé MICHELIN en 2025 et citée parmi les 101 Best Hotels in the World de Tatler, les 100 Best New Hotels de Travel + Leisure et les Best Hotels de U.S. News & World Report, le tout en 2024. Ses 28 chambres et suites se répartissent sur trois bâtiments du village datant du XIXe siècle — le Main Building, La Résidence et Villa Christine.",
+    "COMO Le Montrachet occupe une auberge « place du village » du XIXe siècle au cœur de Puligny-Montrachet, récompensée d'une Clé MICHELIN en 2025. Ses 28 chambres et suites se répartissent sur trois bâtiments du village datant du XIXe siècle — le Main Building, La Résidence et Villa Christine.",
     {
       image: 'accommodation-como-le-montrachet-vineyard',
       text: "Puligny-Montrachet se trouve en Côte-d'Or, à distance de route de Beaune, Dijon, Mâcon, Lyon et Paris. COMO organise des visites œnologiques d'une demi-journée ou d'une journée entière en Côte de Beaune sur place et en Côte de Nuits à environ 40 minutes au nord, ainsi que des sorties à vélo électrique dans les vignes avec un guide privé.",

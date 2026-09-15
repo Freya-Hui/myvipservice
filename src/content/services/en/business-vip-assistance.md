@@ -23,6 +23,7 @@ highlights:
     'Introductions within French luxury-retail circles, including senior contacts at groups such as Printemps and Galeries Lafayette, arranged on a case-by-case basis',
     "Visits to European innovation landmarks — Station F, the world's largest start-up campus; Schneider Electric, for digital transformation and ESG strategy; and Dassault Systèmes, for 3D virtual-experience and digital-twin technology",
     'Meeting logistics, interpreters and discreet transport for business travel across Europe',
+    'From €800 per day for interpreter and meeting-logistics coverage; introductions and landmark visits quoted per request',
   ]
 ---
 

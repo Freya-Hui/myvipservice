@@ -8,14 +8,19 @@ category: 'Food & Wine'
 destinationKey: 'provence'
 featured: true
 status: 'published'
-coverImage: 'destination-provence-vineyard'
-gallery: ['destination-provence-vineyard', 'service-chef-plating']
+coverImage: 'service-chef-plating'
+gallery: ['service-chef-plating', 'destination-provence-vineyard']
 duration: 'Half day'
 suitableFor: ['Couples', 'Small groups', 'Wine lovers']
 familySuitable: false
 languages: ['English', 'French']
 highlights:
-  ['Guided vineyard walk with the winemaker', 'Seasonal tasting menu', 'Estate wine pairing']
+  [
+    'Guided vineyard walk with the winemaker',
+    'Seasonal tasting menu',
+    'Estate wine pairing',
+    'From €450 per person for the vineyard walk and lunch',
+  ]
 customisationNotes: 'The menu, wine selection and length of the lunch are set around your group — tell us how many are joining and whether you would like the winemaker to stay for the full meal.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

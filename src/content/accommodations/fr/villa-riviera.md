@@ -10,8 +10,8 @@ city: 'Saint-Tropez'
 country: 'France'
 featured: false
 status: 'published'
-coverImage: 'service-floral-event'
-gallery: ['service-floral-event']
+coverImage: 'accommodation-villa-riviera-pool-view'
+gallery: ['accommodation-villa-riviera-pool-view']
 highlights:
   [
     "Terrain clos et piscine proches de l'eau, sur l'un des tronçons de littoral les plus demandés de la Côte d'Azur",

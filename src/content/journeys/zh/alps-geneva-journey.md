@@ -11,8 +11,14 @@ includedExperienceKeys:
 relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 featured: true
 status: 'published'
-coverImage: 'destination-french-alps-chalet'
-gallery: ['destination-french-alps-chalet', 'destination-french-alps', 'destination-geneva-lake']
+coverImage: 'journey-alps-mont-blanc'
+gallery:
+  [
+    'journey-alps-mont-blanc',
+    'destination-french-alps-chalet',
+    'destination-french-alps',
+    'destination-geneva-lake',
+  ]
 duration: '4-6 天'
 highlights: ['山间疗养晨间时光', '持证向导带领的私人野雪滑雪日', '日内瓦湖私人游船晨间']
 itinerary:

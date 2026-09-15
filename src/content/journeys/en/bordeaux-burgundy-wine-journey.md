@@ -10,11 +10,11 @@ includedExperienceKeys: []
 relatedJournalKeys: ['bordeaux-burgundy-private-wine-journey']
 featured: true
 status: 'published'
-coverImage: 'destination-bordeaux'
+coverImage: 'journey-bordeaux-burgundy-chateau'
 gallery:
   [
-    'destination-bordeaux',
     'journey-bordeaux-burgundy-chateau',
+    'destination-bordeaux',
     'destination-burgundy',
     'journey-bordeaux-burgundy-cote-de-nuits',
   ]

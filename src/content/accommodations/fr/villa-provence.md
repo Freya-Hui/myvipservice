@@ -10,8 +10,8 @@ city: 'Aix-en-Provence'
 country: 'France'
 featured: false
 status: 'published'
-coverImage: 'service-wine-cellar'
-gallery: ['service-wine-cellar']
+coverImage: 'accommodation-villa-provence-facade'
+gallery: ['accommodation-villa-provence-facade']
 highlights:
   [
     "Jardin clos privé et architecture de mas provençal en pierre, à quelques minutes d'Aix-en-Provence",

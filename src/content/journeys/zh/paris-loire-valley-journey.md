@@ -9,8 +9,8 @@ destinationKeys: ['paris', 'loire-valley']
 includedExperienceKeys: ['private-guided-museum-tour', 'private-loire-valley-chateau-access']
 featured: true
 status: 'published'
-coverImage: 'destination-loire-valley'
-gallery: ['destination-loire-valley', 'experience-art-gallery']
+coverImage: 'journey-loire-valley-villandry'
+gallery: ['journey-loire-valley-villandry', 'destination-loire-valley', 'experience-art-gallery']
 duration: '4-5 天'
 highlights: ['巴黎主要博物馆的专属金牌导览，围绕您想看的内容安排', '开馆前私享城堡与花园通道']
 itinerary:

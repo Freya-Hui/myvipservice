@@ -19,6 +19,7 @@ highlights:
     'Fondée en 1931, au bord du lac Léman à Montreux, avec les Alpes en toile de fond',
     'Programmes menés par des médecins — régénération cellulaire, détox et diagnostics génétiques, pas un menu spa',
     'Hébergement clinique 5 étoiles sur place, avec une équipe médicale de plus de 50 spécialistes',
+    'Les programmes résidentiels les plus courts sont rapportés à partir de 18 000 € environ ; le tarif exact est confirmé avec la clinique une fois le programme défini',
   ]
 customisationNotes: "L'une de nos cliniques partenaires. La durée et l'orientation du programme (revitalisation, détox, ou un parcours diagnostique spécifique) sont définies avec la clinique une fois les dates confirmées — il s'agit d'un programme médical réservé à l'avance, pas d'une journée spa sans rendez-vous."
 relatedAccommodationKeys: ['grand-villa-geneva-mies', 'quai-wilson-geneva']

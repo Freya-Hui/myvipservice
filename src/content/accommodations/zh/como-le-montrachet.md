@@ -24,7 +24,7 @@ gallery:
   ]
 highlights:
   [
-    'COMO Le Montrachet坐落于Puligny-Montrachet村中心一座19世纪的"广场客栈"建筑内，2025年荣获米其林指南Key评级，同时于2024年入选Tatler"全球101家最佳酒店"、Travel + Leisure"100家最佳新酒店"以及《美国新闻与世界报道》最佳酒店榜单。酒店28间客房与套房分布在村内三栋19世纪建筑中——主楼、La Résidence与Villa Christine。',
+    'COMO Le Montrachet坐落于Puligny-Montrachet村中心一座19世纪的"广场客栈"建筑内，2025年荣获米其林指南Key评级。酒店28间客房与套房分布在村内三栋19世纪建筑中——主楼、La Résidence与Villa Christine。',
     {
       image: 'accommodation-como-le-montrachet-vineyard',
       text: 'Puligny-Montrachet位于金丘（Côte-d’Or）产区，驱车即可到达博讷、第戎、马孔、里昂与巴黎。COMO可安排前往博讷丘（Côte de Beaune）的半日或全日酒庄之旅（就在酒店周边），以及约40分钟车程外夜丘（Côte de Nuits）的品鉴行程，还可配备私人向导的电动单车葡萄园骑行。',

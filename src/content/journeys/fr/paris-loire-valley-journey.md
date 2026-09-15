@@ -9,8 +9,8 @@ destinationKeys: ['paris', 'loire-valley']
 includedExperienceKeys: ['private-guided-museum-tour', 'private-loire-valley-chateau-access']
 featured: true
 status: 'published'
-coverImage: 'destination-loire-valley'
-gallery: ['destination-loire-valley', 'experience-art-gallery']
+coverImage: 'journey-loire-valley-villandry'
+gallery: ['journey-loire-valley-villandry', 'destination-loire-valley', 'experience-art-gallery']
 duration: '4 à 5 jours'
 highlights:
   [
