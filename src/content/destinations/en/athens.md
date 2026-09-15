@@ -43,4 +43,8 @@ Plaka, the old town at the foot of the Acropolis, has the city's oldest streets 
 
 July and August bring genuinely high heat, often into the high 30s Celsius, along with the year's biggest crowds at the main sites — an early morning start, ideally at opening, avoids both the sun and the queues. Many archaeological sites and museums close or reduce hours on public holidays, so it's worth confirming specific opening times before building a day around them. Athens is also, for most visitors, the first stop before island-hopping — two or three nights here before continuing on tends to work better than treating it as a single overnight stop.
 
+## Entry Requirements and Everyday Money
+
+Most passports — including the US, UK, Canada, Australia and Japan — allow entry to Greece and the wider Schengen area for up to 90 days within any rolling 180-day period, calculated backward from each day of your stay rather than from a fixed date; it's worth checking your passport has at least three months' validity left beyond your departure date. Cards are accepted almost everywhere in central Athens, though smaller tavernas and island ferries sometimes prefer cash. Service is generally included on restaurant bills, so a tip is a rounding-up gesture rather than an expectation.
+
 If you're planning an Athens trip, tell us how much time you have before the islands and we'll build the sightseeing and transfers around it.

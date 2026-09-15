@@ -21,8 +21,8 @@ highlights:
 seoTitle: 'French Alps Travel Guide: Resorts, Getting There and When to Go'
 seoDescription: 'A practical French Alps guide — Geneva versus Chambéry as gateways, how Courchevel and Méribel differ from Chamonix, and why Christmas and February half-term need booking a year ahead.'
 travelNotes: 'Peak weeks — Christmas and February half-term — book out chalets and instructors up to a year ahead; earlier planning matters more here than in most destinations.'
-relatedAccommodationKeys: []
-relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedAccommodationKeys: ['hotel-barriere-les-neiges-courchevel']
+relatedExperienceKeys: []
 relatedJourneyKeys: ['alps-geneva-journey']
 relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-06
@@ -43,3 +43,7 @@ Courchevel and Méribel, part of the Three Valleys — the world's largest linke
 ## Practical Notes
 
 Christmas week and the February French school half-term are the two periods that sell out chalets and instructors up to a year in advance — earlier planning matters more here than almost anywhere else on this list. Outside ski season, the same valleys open up for summer hiking, including sections of the Tour du Mont Blanc, and the pace slows considerably — a genuinely different trip on the same mountains.
+
+## Entry Requirements and Everyday Money
+
+Most passports — including the US, UK, Canada, Australia and Japan — allow entry to France and the wider Schengen area for up to 90 days within any rolling 180-day period, calculated backward from each day of your stay rather than from a fixed date; it's worth checking your passport has at least three months' validity left beyond your departure date. Cards are widely accepted at resorts, though some mountain refuges and smaller on-slope restaurants are cash-only — worth carrying some. Service is included in restaurant bills by law (_service compris_), so tipping beyond that is a rounding-up gesture rather than an expectation.

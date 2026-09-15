@@ -21,8 +21,9 @@ highlights:
 seoTitle: 'Guide de voyage sur la Côte d’Azur : villes, villages et déplacements'
 seoDescription: "Un guide pratique de la Côte d'Azur — arriver par Nice, la ligne côtière reliant Nice à Menton, quels villages perchés méritent une demi-journée, et la meilleure période pour y aller."
 travelNotes: 'Juillet et août sont les mois les plus fréquentés et les plus chers sur la côte ; mai, juin et septembre offrent un rythme plus calme, une météo tout aussi clémente et des réservations de restaurant plus faciles.'
-relatedAccommodationKeys: ['demo-hotel-french-riviera']
-relatedExperienceKeys: ['demo-private-riviera-yacht-afternoon']
+relatedAccommodationKeys:
+  ['hotel-negresco-nice', 'le-majestic-cannes', 'la-reserve-ramatuelle', 'anantara-plaza-nice']
+relatedExperienceKeys: ['private-riviera-yacht-afternoon']
 relatedJourneyKeys: ['cote-dazur-provence-journey']
 publishedAt: 2026-08-06
 updatedAt: 2026-08-08
@@ -41,3 +42,7 @@ Nice offre le plus large choix d'hôtels et de restaurants, ainsi que le vieux N
 ## Bon à savoir
 
 Juillet et août sont les mois les plus fréquentés et les plus chers, avec des réservations de restaurant nettement plus tendues ; fin mai, juin et septembre conservent la même météo clémente avec beaucoup plus de disponibilités. Le stationnement dans les vieilles villes est limité et rarement rentable en effort — c'est une destination où un chauffeur se justifie rien que par la frustration évitée.
+
+## Formalités d'entrée et argent au quotidien
+
+La plupart des passeports — américains, britanniques, canadiens, australiens ou japonais notamment — permettent d'entrer en France et dans l'espace Schengen pour un séjour de 90 jours maximum sur toute période glissante de 180 jours, un calcul qui remonte en arrière depuis chaque jour du séjour plutôt que depuis une date fixe ; mieux vaut vérifier que le passeport reste valide au moins trois mois après la date de départ. La carte bancaire est acceptée partout le long de la côte, y compris dans les marinas et les yacht clubs, et le service est inclus dans l'addition par la loi française (_service compris_), le pourboire reste donc un geste libre plutôt qu'une obligation.

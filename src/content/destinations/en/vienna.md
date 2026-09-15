@@ -14,7 +14,10 @@ bestTime: 'April–June and September–October; December for the Christmas mark
 suggestedStay: '2–4 nights'
 highlights:
   [
-    'Vienna State Opera and Musikverein tickets, subject to availability',
+    {
+      text: 'Vienna State Opera and Musikverein tickets, subject to availability',
+      image: 'service-opera-house',
+    },
     'Private tours of the Habsburg palaces',
     'Coffee house culture and traditional Konditorei',
     'Direct rail connections to Salzburg and Budapest',
@@ -42,5 +45,9 @@ The Hofburg, the Habsburgs' former winter residence, sits right in the Innere St
 ## Practical Notes
 
 The opera and concert season runs September to June with a summer pause; the Vienna State Opera also famously sells standing-room tickets on the day for a fraction of the seated price, a tradition worth knowing about even for visitors used to booking well ahead. Visiting outside the season means fewer performances but noticeably quieter palaces and museums. Direct rail connections put Salzburg about two and a half hours away and Budapest around two hours forty minutes, making either an easy add-on to a Vienna stay.
+
+## Entry Requirements and Everyday Money
+
+Most passports — including the US, UK, Canada, Australia and Japan — allow entry to Austria and the wider Schengen area for up to 90 days within any rolling 180-day period, calculated backward from each day of your stay rather than from a fixed date; it's worth checking your passport has at least three months' validity left beyond your departure date. Cards are accepted almost everywhere. Service is sometimes included but a small tip (rounding up, or roughly 5–10%) is still customary, usually stated to the server rather than left on the table.
 
 If you're planning a Vienna trip, tell us whether opera nights or the palaces matter more and we'll build the stay and tickets around it.

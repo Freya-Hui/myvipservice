@@ -15,7 +15,10 @@ suggestedStay: '2–4 nights, often paired with the French Riviera or Rome.'
 highlights:
   [
     'Fashion Week and Milan Design Week access, where available',
-    'Personal shopping in the Quadrilatero della Moda',
+    {
+      text: 'Personal shopping in the Quadrilatero della Moda',
+      image: 'service-boutique-appointment',
+    },
     "Private tours of La Scala and the city's design studios",
     'Direct rail connection to the Italian Lakes for a day trip',
   ]
@@ -43,3 +46,7 @@ The Quadrilatero della Moda — anchored by Via Montenapoleone — is the fashio
 ## Practical Notes
 
 Fashion Week (late February and late September) and Salone del Mobile, the design week held every April, both draw major international crowds and book hotels out months in advance — earlier planning matters if your visit lines up with either. Outside those windows, Milan is noticeably calmer than Italy's more tourist-heavy cities, which makes May–June and September good windows for sightseeing without the fashion-calendar crowds.
+
+## Entry Requirements and Everyday Money
+
+Most passports — including the US, UK, Canada, Australia and Japan — allow entry to Italy and the wider Schengen area for up to 90 days within any rolling 180-day period, calculated backward from each day of your stay rather than from a fixed date; it's worth checking your passport has at least three months' validity left beyond your departure date. Cards are accepted almost everywhere. Many restaurant bills include a small _coperto_ (cover charge) separate from service — it's standard practice, not an error on the check, and any additional tip is a rounding-up gesture rather than an expectation.

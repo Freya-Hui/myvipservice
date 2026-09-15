@@ -6,7 +6,7 @@ translationKey: 'bordeaux'
 description: 'The heart of French wine country — château visits, private tastings and a compact, walkable city centre.'
 region: 'Europe'
 countryCode: 'FR'
-featured: false
+featured: true
 status: 'published'
 coverImage: 'destination-bordeaux'
 gallery: ['destination-bordeaux']
@@ -14,7 +14,10 @@ bestTime: 'April–June and September–October for mild weather; September for 
 suggestedStay: '3–4 nights'
 highlights:
   [
-    'Private château visits and tastings across Saint-Émilion and Médoc',
+    {
+      text: 'Private château visits and tastings across Saint-Émilion and Médoc',
+      image: 'journey-bordeaux-burgundy-chateau',
+    },
     'Access to producers that rarely open to the public',
     'Riverside dining along the Garonne',
     'Half-day trips to the Arcachon Bay oyster villages',
@@ -42,5 +45,9 @@ Saint-Émilion, a UNESCO World Heritage site in its own right, is built on limes
 ## The City Itself
 
 Bordeaux's historic center — known as the Port of the Moon for the curve of the Garonne it follows — is itself UNESCO-listed, compact enough to explore on foot, and centers on the Place de la Bourse and its famous reflecting water mirror. La Cité du Vin, a wine museum and tasting venue on the riverfront, is worth a stop even for visitors doing château tastings elsewhere. September's harvest (les vendanges) is the most atmospheric time to visit but also the busiest for château access — tastings are worth booking several weeks ahead that month.
+
+## Entry Requirements and Everyday Money
+
+Most passports — including the US, UK, Canada, Australia and Japan — allow entry to France and the wider Schengen area for up to 90 days within any rolling 180-day period, calculated backward from each day of your stay rather than from a fixed date; it's worth checking your passport has at least three months' validity left beyond your departure date. Cards are accepted everywhere, including at château tasting rooms, and service is included in restaurant bills by law (_service compris_), so tipping beyond that is a rounding-up gesture rather than an expectation.
 
 If you're planning a Bordeaux trip, tell us whether Saint-Émilion or Médoc interests you more and we'll build the château visits and city time around it.

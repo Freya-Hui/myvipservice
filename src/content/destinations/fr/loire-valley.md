@@ -15,7 +15,10 @@ bestTime: 'Mai-juin et septembre, lorsque les jardins sont à leur meilleur et l
 suggestedStay: '2 à 4 nuits'
 highlights:
   [
-    "Accès privé, en dehors des heures d'ouverture, à une sélection de châteaux",
+    {
+      text: "Accès privé, en dehors des heures d'ouverture, à une sélection de châteaux",
+      image: 'destination-loire-valley-chambord',
+    },
     'Dégustations de vins dans les vignobles de la Loire',
     'Séjour dans un château, et pas seulement une visite à la journée',
     'Balades à vélo et visites de jardins à un rythme tranquille',
@@ -44,3 +47,7 @@ Chambord est le plus grand et le plus ambitieux sur le plan architectural, const
 ## Bon à savoir
 
 De nombreux châteaux réduisent leurs horaires ou ferment certaines ailes de novembre à mars, et leurs jardins sont à leur meilleur d'avril à septembre — mieux vaut vérifier les horaires précis avant de construire une journée autour d'une adresse. Les distances entre châteaux, de 30 à 60 minutes par des routes de campagne, expliquent pourquoi un chauffeur privé, plutôt qu'un itinéraire figé, fonctionne généralement mieux ici que presque partout ailleurs en France.
+
+## Formalités d'entrée et argent au quotidien
+
+La plupart des passeports — américains, britanniques, canadiens, australiens ou japonais notamment — permettent d'entrer en France et dans l'espace Schengen pour un séjour de 90 jours maximum sur toute période glissante de 180 jours, un calcul qui remonte en arrière depuis chaque jour du séjour plutôt que depuis une date fixe ; mieux vaut vérifier que le passeport reste valide au moins trois mois après la date de départ. La carte bancaire est acceptée à la billetterie de presque tous les châteaux et dans les restaurants, et le service est inclus dans l'addition par la loi française (_service compris_), le pourboire reste donc un geste libre plutôt qu'une obligation.

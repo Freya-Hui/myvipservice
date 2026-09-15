@@ -15,7 +15,10 @@ bestTime: 'May–June and September, when gardens are at their best and château
 suggestedStay: '2–4 nights'
 highlights:
   [
-    'Private, after-hours access to select châteaux',
+    {
+      text: 'Private, after-hours access to select châteaux',
+      image: 'destination-loire-valley-chambord',
+    },
     "Wine tastings across the Loire's vineyards",
     'Château-stay accommodation, not just day visits',
     'Cycling and garden tours at a relaxed pace',
@@ -44,3 +47,7 @@ Chambord is the largest and most architecturally ambitious, built for François 
 ## Practical Notes
 
 Many châteaux run shorter hours or close certain wings from November through March, and their gardens look their best April through September — worth checking specific opening times before building a day around one address. Distances between châteaux run 30–60 minutes along country roads, which is why a private driver, rather than a fixed itinerary, tends to work better here than almost anywhere else in France.
+
+## Entry Requirements and Everyday Money
+
+Most passports — including the US, UK, Canada, Australia and Japan — allow entry to France and the wider Schengen area for up to 90 days within any rolling 180-day period, calculated backward from each day of your stay rather than from a fixed date; it's worth checking your passport has at least three months' validity left beyond your departure date. Cards are accepted at nearly every château ticket office and restaurant, and service is included in bills by law (_service compris_), so tipping beyond that is a rounding-up gesture rather than an expectation.

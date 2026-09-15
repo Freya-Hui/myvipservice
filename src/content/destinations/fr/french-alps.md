@@ -21,8 +21,8 @@ highlights:
 seoTitle: 'Guide de voyage dans les Alpes françaises : stations, accès et meilleure période'
 seoDescription: "Un guide pratique des Alpes françaises — Genève ou Chambéry comme point d'entrée, ce qui distingue Courchevel et Méribel de Chamonix, et pourquoi Noël et les vacances de février se réservent un an à l'avance."
 travelNotes: "Les semaines de pointe — Noël et les vacances de février — voient chalets et moniteurs réservés jusqu'à un an à l'avance ; anticiper compte ici plus que dans la plupart des destinations."
-relatedAccommodationKeys: []
-relatedExperienceKeys: ['demo-alpine-wellness-retreat']
+relatedAccommodationKeys: ['hotel-barriere-les-neiges-courchevel']
+relatedExperienceKeys: []
 relatedJourneyKeys: ['alps-geneva-journey']
 relatedJournalKeys: ['alps-ski-holiday-wellness-and-off-piste']
 publishedAt: 2026-08-06
@@ -42,3 +42,7 @@ Courchevel et Méribel, qui font partie des Trois Vallées — le plus grand dom
 ## Bon à savoir
 
 La semaine de Noël et les vacances scolaires françaises de février sont les deux périodes qui saturent chalets et moniteurs jusqu'à un an à l'avance — anticiper compte ici plus que presque partout ailleurs sur cette liste. Hors saison de ski, ces mêmes vallées s'ouvrent à la randonnée estivale, avec notamment des tronçons du Tour du Mont Blanc, et le rythme ralentit nettement — un séjour véritablement différent sur les mêmes montagnes.
+
+## Formalités d'entrée et argent au quotidien
+
+La plupart des passeports — américains, britanniques, canadiens, australiens ou japonais notamment — permettent d'entrer en France et dans l'espace Schengen pour un séjour de 90 jours maximum sur toute période glissante de 180 jours, un calcul qui remonte en arrière depuis chaque jour du séjour plutôt que depuis une date fixe ; mieux vaut vérifier que le passeport reste valide au moins trois mois après la date de départ. La carte bancaire est largement acceptée dans les stations, mais certains refuges de montagne et petits restaurants sur les pistes ne prennent que les espèces — mieux vaut en avoir un peu sur soi. Le service est inclus dans l'addition par la loi française (_service compris_), le pourboire reste donc un geste libre plutôt qu'une obligation.

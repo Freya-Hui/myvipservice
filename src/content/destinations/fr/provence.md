@@ -21,7 +21,7 @@ highlights:
 seoTitle: 'Guide de voyage en Provence : villages, vignobles et accès'
 seoDescription: 'Un guide pratique de la Provence — comment y arriver via Marseille ou Avignon, quels villages du Luberon privilégier, les appellations viticoles à connaître, et la meilleure période pour y aller.'
 travelNotes: "Les distances entre villages sont courtes, mais les routes serpentent à travers les collines — un chauffeur privé évite d'avoir à conduire, surtout après un long déjeuner arrosé de vin local."
-relatedAccommodationKeys: []
+relatedAccommodationKeys: ['intercontinental-marseille-hotel-dieu']
 relatedExperienceKeys: []
 relatedJourneyKeys: ['cote-dazur-provence-journey']
 relatedJournalKeys: ['provence-five-day-itinerary-guide']
@@ -46,3 +46,7 @@ La Provence est surtout connue à l'international pour son rosé, produit dans d
 ## Bon à savoir
 
 Juillet et août correspondent à la saison de la lavande autour de Valensole et apportent la chaleur et l'affluence les plus fortes de l'année ; fin mai-juin et septembre offrent des paysages similaires avec nettement plus de tranquillité. Les espèces restent utiles sur les marchés villageois même si la carte est de plus en plus acceptée, et de nombreux restaurants ferment un ou deux jours par semaine — mieux vaut vérifier avant de construire un repas autour d'une adresse précise.
+
+## Formalités d'entrée et argent au quotidien
+
+La plupart des passeports — américains, britanniques, canadiens, australiens ou japonais notamment — permettent d'entrer en France et dans l'espace Schengen pour un séjour de 90 jours maximum sur toute période glissante de 180 jours, un calcul qui remonte en arrière depuis chaque jour du séjour plutôt que depuis une date fixe ; mieux vaut vérifier que le passeport reste valide au moins trois mois après la date de départ. Le service est inclus dans l'addition par la loi française (_service compris_), le pourboire reste donc un geste libre plutôt qu'une obligation.

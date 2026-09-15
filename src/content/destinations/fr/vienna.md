@@ -14,7 +14,10 @@ bestTime: "D'avril à juin et de septembre à octobre ; décembre pour les march
 suggestedStay: '2 à 4 nuits'
 highlights:
   [
-    "Billets pour l'Opéra national de Vienne et le Musikverein, selon les disponibilités",
+    {
+      text: "Billets pour l'Opéra national de Vienne et le Musikverein, selon les disponibilités",
+      image: 'service-opera-house',
+    },
     'Visites privées des palais des Habsbourg',
     'Culture des cafés viennois et Konditorei traditionnelles',
     'Liaisons ferroviaires directes vers Salzbourg et Budapest',
@@ -42,5 +45,9 @@ Le Hofburg, ancienne résidence d'hiver des Habsbourg, se trouve au cœur même 
 ## Bon à savoir
 
 La saison de l'opéra et des concerts s'étend de septembre à juin, avec une pause estivale ; l'Opéra national de Vienne vend aussi, fait notoire, des billets debout le jour même pour une fraction du prix des places assises — une tradition à connaître même pour les habitués des réservations bien à l'avance. Visiter en dehors de cette saison signifie moins de représentations, mais des palais et musées nettement plus calmes. Des liaisons ferroviaires directes placent Salzbourg à environ deux heures et demie et Budapest à environ deux heures quarante, ce qui permet d'ajouter facilement l'une ou l'autre à un séjour à Vienne.
+
+## Formalités d'entrée et argent au quotidien
+
+La plupart des passeports — américains, britanniques, canadiens, australiens ou japonais notamment — permettent d'entrer en Autriche et dans l'espace Schengen pour un séjour de 90 jours maximum sur toute période glissante de 180 jours, un calcul qui remonte en arrière depuis chaque jour du séjour plutôt que depuis une date fixe ; mieux vaut vérifier que le passeport reste valide au moins trois mois après la date de départ. La carte bancaire est acceptée presque partout. Le service est parfois inclus, mais un petit pourboire (arrondi, ou environ 5-10 %) reste d'usage, généralement annoncé oralement au serveur plutôt que laissé sur la table.
 
 Si vous préparez un séjour à Vienne, indiquez-nous si les soirées à l'opéra ou les palais comptent le plus pour vous et nous organiserons le séjour et les billets en conséquence.
