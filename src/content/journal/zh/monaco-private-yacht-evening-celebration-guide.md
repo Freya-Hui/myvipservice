@@ -10,6 +10,7 @@ gallery: ['destination-monaco', 'destination-french-riviera-yacht']
 relatedDestinationKeys: ['monaco']
 relatedExperienceKeys: ['private-monaco-harbour-evening']
 relatedJourneyKeys: ['cote-dazur-provence-journey']
+relatedTravelStyleKeys: ['celebrations', 'romantic-escapes']
 seoTitle: '摩纳哥私人游艇之夜攻略：最佳时间、避开大奖赛周与庆祝安排'
 seoDescription: '摩纳哥私人游艇之夜怎么安排？这篇指南涵盖最佳季节、日落时间、5 月大奖赛周的预订注意事项，以及如何围绕生日、纪念日等场合设计游船与晚餐流程。'
 status: 'published'

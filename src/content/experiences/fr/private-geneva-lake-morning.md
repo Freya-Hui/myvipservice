@@ -6,6 +6,7 @@ translationKey: 'private-geneva-lake-morning'
 description: "Une matinée paisible sur l'eau avec un skipper privé, les Alpes se dessinant derrière le rivage, sans itinéraire fixe au-delà de l'endroit où vous souhaitez aller."
 category: 'Nature'
 destinationKey: 'geneva'
+travelStyleKeys: ['family-journeys', 'romantic-escapes']
 featured: false
 status: 'published'
 coverImage: 'destination-geneva-lake'

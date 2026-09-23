@@ -6,6 +6,7 @@ translationKey: 'cote-dazur-provence-journey'
 description: "Un thème Sud de la France construit autour de l'eau, du littoral et du vignoble, entre la Côte d'Azur, Monaco et les collines de Provence, au rythme que vous choisissez."
 theme: 'Sud de la France'
 destinationKeys: ['french-riviera', 'monaco', 'provence']
+travelStyleKeys: ['romantic-escapes']
 includedExperienceKeys:
   [
     'private-riviera-yacht-afternoon',

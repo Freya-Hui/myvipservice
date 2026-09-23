@@ -6,6 +6,7 @@ translationKey: 'paris-loire-valley-journey'
 description: 'A theme built around what France does best — art, history and craft — pairing a private guided museum tour in Paris with unhurried access to a Loire Valley château.'
 theme: 'Paris & the Loire Valley'
 destinationKeys: ['paris', 'loire-valley']
+travelStyleKeys: ['family-journeys']
 includedExperienceKeys: ['private-guided-museum-tour', 'private-loire-valley-chateau-access']
 featured: true
 status: 'published'

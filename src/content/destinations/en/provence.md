@@ -8,6 +8,7 @@ region: 'Europe'
 featured: true
 status: 'published'
 coverImage: 'destination-provence'
+travelStyleKeys: ['family-journeys', 'romantic-escapes']
 gallery: ['destination-provence', 'destination-provence-vineyard', 'service-dining']
 bestTime: 'May to September, with lavender season from mid-June to late July.'
 suggestedStay: '3–5 nights'

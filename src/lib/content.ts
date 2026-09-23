@@ -8,7 +8,7 @@ import type { Locale } from '../i18n/ui';
  * relations.
  */
 export type LinkableCollection =
-  'destinations' | 'accommodations' | 'experiences' | 'journeys' | 'journal';
+  'destinations' | 'accommodations' | 'experiences' | 'journeys' | 'journal' | 'travelStyles';
 
 /**
  * `status: 'draft'` hides an item from production builds entirely (it's not
@@ -111,6 +111,38 @@ export async function getEntriesByDestination<
   return entries.filter(
     (entry) =>
       (entry.data as CollectionEntry<'accommodations'>['data']).destinationKey === destinationKey,
+  );
+}
+
+/**
+ * Reverse lookup for a `travelStyles` detail page's "featured for this
+ * style" sections. Experiences, journeys and destinations all carry a
+ * `travelStyleKeys` array keyed by the style's own `id` (matches the old
+ * site-content.ts#travelTypes ids); accommodations instead carry the
+ * older, differently-shaped `travelFit` enum array, so matching them needs
+ * the style's mapped `travelFitTag` rather than its id — pass both and the
+ * function picks the right one per collection, same branching pattern as
+ * `getEntriesByDestination`.
+ */
+export async function getEntriesByTravelStyle<
+  C extends 'accommodations' | 'experiences' | 'journeys' | 'destinations',
+>(
+  collection: C,
+  locale: Locale,
+  styleId: string,
+  travelFitTag?: string,
+): Promise<CollectionEntry<C>[]> {
+  const entries = await getLocaleEntries(collection, locale);
+  if (collection === 'accommodations') {
+    if (!travelFitTag) return [];
+    return entries.filter((entry) =>
+      (entry.data as CollectionEntry<'accommodations'>['data']).travelFit.includes(
+        travelFitTag as CollectionEntry<'accommodations'>['data']['travelFit'][number],
+      ),
+    );
+  }
+  return entries.filter((entry) =>
+    (entry.data as CollectionEntry<'experiences'>['data']).travelStyleKeys.includes(styleId),
   );
 }
 

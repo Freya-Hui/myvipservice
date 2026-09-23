@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ContentGrid from '../../../components/ContentGrid.astro';
+import ContentCard from '../../../components/ContentCard.astro';
+import EmptyState from '../../../components/EmptyState.astro';
+import InquiryCTA from '../../../components/home/InquiryCTA.astro';
+import { getLocaleEntries } from '../../../lib/content';
+import { languages, useTranslations, type Locale } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const t = useTranslations(locale);
+
+const travelStyles = (await getLocaleEntries('travelStyles', locale)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+  title={t('travelStyles.hero.title')}
+  description="MYVIPSERVICE — who we design for, and what each kind of trip actually includes."
+  path="travel-styles"
+>
+  <div class="container">
+    <Breadcrumbs
+      items={[
+        { label: t('nav.home'), href: `/${locale}/` },
+        { label: t('travelStyles.hero.title') },
+      ]}
+    />
+  </div>
+
+  <PageHero
+    eyebrow={t('travelStyles.hero.eyebrow')}
+    title={t('travelStyles.hero.title')}
+    subtitle={t('travelStyles.hero.subtitle')}
+  />
+
+  <section class="section">
+    <div class="container">
+      {
+        travelStyles.length === 0 ? (
+          <EmptyState message={t('travelStyles.emptyState')} />
+        ) : (
+          <ContentGrid>
+            {travelStyles.map((entry) => (
+              <ContentCard
+                href={`/${locale}/travel-styles/${entry.data.slug}/`}
+                imageId={entry.data.coverImage}
+                title={entry.data.title}
+                summary={entry.data.description}
+                draftLabel={entry.data.draft ? t('badge.draftTranslation') : undefined}
+                locale={locale}
+              />
+            ))}
+          </ContentGrid>
+        )
+      }
+    </div>
+  </section>
+
+  <InquiryCTA
+    title={t('home.inquiry.title')}
+    body={t('home.inquiry.body')}
+    ctaLabel={t('common.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
+</BaseLayout>

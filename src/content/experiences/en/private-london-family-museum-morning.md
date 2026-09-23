@@ -6,6 +6,7 @@ translationKey: 'private-london-family-museum-morning'
 description: "A guide who knows how to hold a child's attention leads a small-group morning through the museum of your choice, paced for the ages of the children joining."
 category: 'Family'
 destinationKey: 'london'
+travelStyleKeys: ['family-journeys']
 featured: false
 status: 'published'
 coverImage: 'service-family'

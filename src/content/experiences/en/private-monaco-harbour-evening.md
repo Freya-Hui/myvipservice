@@ -6,6 +6,7 @@ translationKey: 'private-monaco-harbour-evening'
 description: 'An evening that starts on the water in front of the harbour and moves on to a table reserved for you — the kind of night built around a celebration, not a checklist of sights.'
 category: 'Celebration'
 destinationKey: 'monaco'
+travelStyleKeys: ['celebrations', 'romantic-escapes']
 featured: true
 status: 'published'
 coverImage: 'experience-monaco-harbour-night'

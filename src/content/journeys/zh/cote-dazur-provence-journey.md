@@ -6,6 +6,7 @@ translationKey: 'cote-dazur-provence-journey'
 description: '一条围绕法国南部海岸与酒庄展开的主题行程，在里维埃拉、摩纳哥与普罗旺斯山丘之间移动，节奏完全由您决定。'
 theme: '法国南部'
 destinationKeys: ['french-riviera', 'monaco', 'provence']
+travelStyleKeys: ['romantic-escapes']
 includedExperienceKeys:
   [
     'private-riviera-yacht-afternoon',

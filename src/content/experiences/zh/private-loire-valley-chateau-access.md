@@ -6,6 +6,7 @@ translationKey: 'private-loire-valley-chateau-access'
 description: '在城堡对公众开放之前，私享参观城堡本体与花园，讲解深度可以根据您的兴趣自由调整，不用赶行程。'
 category: 'Art & Culture'
 destinationKey: 'loire-valley'
+travelStyleKeys: ['family-journeys']
 featured: true
 status: 'published'
 coverImage: 'journey-loire-valley-chambord'

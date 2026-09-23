@@ -11,7 +11,6 @@ import MediaHighlightList from '../../../../components/MediaHighlightList.astro'
 import TravelTypes from '../../../../components/home/TravelTypes.astro';
 import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
 import { getLocaleEntries } from '../../../../lib/content';
-import { travelTypes } from '../../../../data/site-content';
 import { useTranslations, type Locale } from '../../../../i18n/ui';
 
 function slugOf(id: string) {
@@ -59,7 +58,14 @@ const transportationTopics =
 
 const featuredTravelStyles =
   slug === 'tailor-made-travel-planning'
-    ? travelTypes[locale].filter((item) => item.featured).sort((a, b) => a.order - b.order)
+    ? (await getLocaleEntries('travelStyles', locale))
+        .filter((entry) => entry.data.featured)
+        .sort((a, b) => a.data.order - b.data.order)
+        .map((entry) => ({
+          title: entry.data.title,
+          description: entry.data.description,
+          href: `/${locale}/travel-styles/${entry.data.slug}/`,
+        }))
     : [];
 
 // Tailor-made planning names the themes it covers (wine, art, skiing, the

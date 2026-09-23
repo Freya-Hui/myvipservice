@@ -8,6 +8,7 @@ region: 'Europe'
 featured: false
 status: 'published'
 coverImage: 'destination-geneva'
+travelStyleKeys: ['business-vip', 'family-journeys']
 gallery: ['destination-geneva', 'destination-geneva-jet-deau']
 bestTime: 'De juin à septembre pour le lac et la montagne ; décembre-mars pour les Alpes.'
 suggestedStay: '2 à 4 nuits, souvent associées à un séjour dans les Alpes.'

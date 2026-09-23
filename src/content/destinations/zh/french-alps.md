@@ -8,6 +8,7 @@ region: 'Europe'
 featured: true
 status: 'published'
 coverImage: 'destination-french-alps'
+travelStyleKeys: ['family-journeys']
 gallery: ['destination-french-alps', 'destination-french-alps-chalet', 'service-dining']
 bestTime: '12 月至 4 月适合滑雪；7 月至 8 月适合夏季山间度假。'
 suggestedStay: '4–7 晚'

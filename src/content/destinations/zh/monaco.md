@@ -9,6 +9,7 @@ countryCode: 'MC'
 featured: false
 status: 'published'
 coverImage: 'destination-monaco'
+travelStyleKeys: ['romantic-escapes', 'celebrations']
 gallery: ['destination-monaco']
 bestTime: '5 月适逢摩纳哥大奖赛；6 月至 9 月是港口与海滩季节。'
 suggestedStay: '2–3 晚，常与法国里维埃拉行程搭配。'

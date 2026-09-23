@@ -66,6 +66,7 @@ export const ui = {
     'home.travelTypes.subtitle':
       'These are common starting points — every journey is shaped around your specific group and occasion.',
     'home.travelTypes.cta': 'Tell Us What You Have in Mind',
+    'home.travelTypes.viewAll': 'View all travel styles',
     'home.journeys.eyebrow': 'Themed Journeys',
     'home.journeys.title': 'Journeys Built Around a Theme',
     'home.whyUs.eyebrow': 'Why MYVIPSERVICE',
@@ -490,6 +491,22 @@ export const ui = {
     'journeys.hero.subtitle':
       'Multi-day themes built from real experiences we can arrange, focused on Europe — each journey names exactly what it includes.',
     'journeys.emptyState': 'No journeys are published yet — check back soon.',
+    'travelStyles.hero.eyebrow': 'Who We Design For',
+    'travelStyles.hero.title': 'Travel Styles',
+    'travelStyles.hero.subtitle':
+      'Every trip starts from who is travelling — browse the kind of journey closest to yours, or tell us directly and we will build from there.',
+    'travelStyles.emptyState': 'No travel styles are published yet — check back soon.',
+    'travelStyles.detail.includesTitle': 'What This Includes',
+    'travelStyles.detail.destinationsHeading': 'Featured Destinations',
+    'travelStyles.detail.journeysHeading': 'Featured Journeys',
+    'travelStyles.detail.accommodationsHeading': 'Featured Accommodations',
+    'travelStyles.detail.experiencesHeading': 'Featured Experiences',
+    'travelStyles.detail.journalHeading': 'Related Reading',
+    'travelStyles.detail.faqTitle': 'Frequently Asked Questions',
+    'travelStyles.detail.fullServiceTitle': 'See the Full Service',
+    'travelStyles.detail.fullServiceBody':
+      'This page covers who this kind of trip suits — the service page below has the complete details.',
+    'travelStyles.detail.fullServiceLink': 'View full service details',
     'journeys.detail.overviewTitle': 'Journey Overview',
     'journeys.detail.itineraryTitle': 'Day by Day',
     'journeys.detail.highlightsTitle': 'Highlights',
@@ -605,6 +622,7 @@ export const ui = {
     'home.travelTypes.subtitle':
       '以下是常见的出行类型——每一次旅程都会根据您的具体团体与场合重新设计。',
     'home.travelTypes.cta': '告诉我们您的想法',
+    'home.travelTypes.viewAll': '查看全部人群规划',
     'home.journeys.eyebrow': '主题游',
     'home.journeys.title': '按主题规划您的旅程',
     'home.whyUs.eyebrow': '为什么选择 MYVIPSERVICE',
@@ -1006,6 +1024,22 @@ export const ui = {
     'journeys.hero.subtitle':
       '由真实可安排的体验组成的多日主题行程，主要聚焦欧洲——每条主题游都明确列出包含哪些体验。',
     'journeys.emptyState': '暂无已发布的主题游，敬请期待。',
+    'travelStyles.hero.eyebrow': '我们为谁设计',
+    'travelStyles.hero.title': '按人群规划',
+    'travelStyles.hero.subtitle':
+      '每一次行程都从"谁在出行"开始——先看看哪种最贴近您的需求，或者直接告诉我们，我们从这里开始规划。',
+    'travelStyles.emptyState': '暂无已发布的内容，敬请期待。',
+    'travelStyles.detail.includesTitle': '服务包含',
+    'travelStyles.detail.destinationsHeading': '精选目的地',
+    'travelStyles.detail.journeysHeading': '精选主题游',
+    'travelStyles.detail.accommodationsHeading': '精选住宿',
+    'travelStyles.detail.experiencesHeading': '精选体验',
+    'travelStyles.detail.journalHeading': '相关阅读',
+    'travelStyles.detail.faqTitle': '常见问题',
+    'travelStyles.detail.fullServiceTitle': '查看完整服务说明',
+    'travelStyles.detail.fullServiceBody':
+      '这个页面说明这类行程适合谁，完整的服务细节请见下方服务页面。',
+    'travelStyles.detail.fullServiceLink': '查看完整服务说明',
     'journeys.detail.overviewTitle': '行程概览',
     'journeys.detail.itineraryTitle': '每日行程',
     'journeys.detail.highlightsTitle': '亮点',
@@ -1122,6 +1156,7 @@ export const ui = {
     'home.travelTypes.subtitle':
       'Voici des points de départ courants — chaque voyage est conçu autour de votre groupe et de l’occasion.',
     'home.travelTypes.cta': 'Partagez votre projet',
+    'home.travelTypes.viewAll': 'Voir tous les styles de voyage',
     'home.journeys.eyebrow': 'Voyages thématiques',
     'home.journeys.title': 'Des voyages construits autour d’un thème',
     'home.whyUs.eyebrow': 'Pourquoi MYVIPSERVICE',
@@ -1558,6 +1593,22 @@ export const ui = {
     'journeys.hero.subtitle':
       "Des thèmes de plusieurs jours construits à partir d'expériences réelles que nous pouvons organiser, centrés sur l'Europe — chaque voyage précise exactement ce qu'il inclut.",
     'journeys.emptyState': 'Aucun voyage publié pour le moment — revenez bientôt.',
+    'travelStyles.hero.eyebrow': 'Pour qui nous concevons',
+    'travelStyles.hero.title': 'Styles de voyage',
+    'travelStyles.hero.subtitle':
+      'Chaque voyage part de qui part en voyage — parcourez le style le plus proche du vôtre, ou dites-le-nous directement et nous construirons à partir de là.',
+    'travelStyles.emptyState': 'Aucun contenu publié pour le moment — revenez bientôt.',
+    'travelStyles.detail.includesTitle': 'Ce que cela comprend',
+    'travelStyles.detail.destinationsHeading': 'Destinations en vedette',
+    'travelStyles.detail.journeysHeading': 'Voyages en vedette',
+    'travelStyles.detail.accommodationsHeading': 'Hébergements en vedette',
+    'travelStyles.detail.experiencesHeading': 'Expériences en vedette',
+    'travelStyles.detail.journalHeading': 'Lectures associées',
+    'travelStyles.detail.faqTitle': 'Questions fréquentes',
+    'travelStyles.detail.fullServiceTitle': 'Voir le service complet',
+    'travelStyles.detail.fullServiceBody':
+      'Cette page présente à qui ce type de voyage convient — la page de service ci-dessous détaille l’ensemble du service.',
+    'travelStyles.detail.fullServiceLink': 'Voir le détail complet du service',
     'journeys.detail.overviewTitle': 'Aperçu du voyage',
     'journeys.detail.itineraryTitle': 'Jour par jour',
     'journeys.detail.highlightsTitle': 'Points forts',

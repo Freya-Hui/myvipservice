@@ -10,6 +10,7 @@ countryCode: 'FR'
 featured: false
 status: 'published'
 coverImage: 'destination-loire-valley'
+travelStyleKeys: ['family-journeys']
 gallery: ['destination-loire-valley']
 bestTime: 'Mai-juin et septembre, lorsque les jardins sont à leur meilleur et les châteaux moins fréquentés.'
 suggestedStay: '2 à 4 nuits'

@@ -6,6 +6,7 @@ translationKey: 'ducasse-sur-seine-private-cruise-dining'
 category: 'Food & Dining'
 excerpt: '巴黎第一艘全电动餐厅船，主厨 Alain Ducasse 团队掌勺，塞纳河上两小时，从埃菲尔铁塔一路开到圣路易岛，中途经过卢浮宫、圣母院——不是一次观光船，是一顿真正意义上的晚餐，只是餐厅在水上。'
 coverImage: 'experience-ducasse-seine-table-eiffel'
+relatedTravelStyleKeys: ['romantic-escapes']
 gallery:
   [
     'experience-ducasse-seine-table-eiffel',

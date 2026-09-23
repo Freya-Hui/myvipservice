@@ -6,6 +6,7 @@ translationKey: 'private-loire-valley-chateau-access'
 description: 'A private walk through a château and its gardens before the gates open to the public, with a guide who can go as deep into the history as you want.'
 category: 'Art & Culture'
 destinationKey: 'loire-valley'
+travelStyleKeys: ['family-journeys']
 featured: true
 status: 'published'
 coverImage: 'journey-loire-valley-chambord'

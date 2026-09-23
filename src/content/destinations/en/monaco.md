@@ -9,6 +9,7 @@ countryCode: 'MC'
 featured: false
 status: 'published'
 coverImage: 'destination-monaco'
+travelStyleKeys: ['romantic-escapes', 'celebrations']
 gallery: ['destination-monaco']
 bestTime: 'May for the Grand Prix; June–September for the harbour and beach season.'
 suggestedStay: '2–3 nights, often paired with the French Riviera.'

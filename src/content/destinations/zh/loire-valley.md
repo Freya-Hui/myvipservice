@@ -10,6 +10,7 @@ countryCode: 'FR'
 featured: false
 status: 'published'
 coverImage: 'destination-loire-valley'
+travelStyleKeys: ['family-journeys']
 gallery: ['destination-loire-valley']
 bestTime: '5、6 月与 9 月最佳，此时花园正盛且城堡人潮较少。'
 suggestedStay: '2–4 晚'

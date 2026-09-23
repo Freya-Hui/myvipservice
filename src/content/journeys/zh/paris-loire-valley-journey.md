@@ -6,6 +6,7 @@ translationKey: 'paris-loire-valley-journey'
 description: '一条围绕法国最擅长的领域——艺术、历史与工艺——展开的主题行程，将巴黎博物馆专属金牌导览与卢瓦河谷城堡的从容参观结合在一起。'
 theme: '巴黎与卢瓦河谷'
 destinationKeys: ['paris', 'loire-valley']
+travelStyleKeys: ['family-journeys']
 includedExperienceKeys: ['private-guided-museum-tour', 'private-loire-valley-chateau-access']
 featured: true
 status: 'published'

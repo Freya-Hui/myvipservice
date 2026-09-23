@@ -8,6 +8,7 @@ region: 'Europe'
 featured: false
 status: 'published'
 coverImage: 'destination-geneva'
+travelStyleKeys: ['business-vip', 'family-journeys']
 gallery: ['destination-geneva', 'destination-geneva-jet-deau']
 bestTime: '6 月至 9 月适合湖区与登山活动；12 月至次年 3 月适合阿尔卑斯山之旅。'
 suggestedStay: '2–4 晚，常与阿尔卑斯山行程搭配。'

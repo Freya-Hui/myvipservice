@@ -1,11 +1,9 @@
 ---
-import type { TravelType } from '../../data/site-content';
-
 interface Props {
   eyebrow: string;
   title: string;
   subtitle?: string;
-  items: TravelType[];
+  items: Array<{ title: string; description: string; href?: string }>;
   ctaLabel: string;
   ctaHref: string;
 }

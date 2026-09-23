@@ -6,6 +6,7 @@ translationKey: 'cote-dazur-provence-journey'
 description: 'A South of France theme built around water, coastline and vineyard, moving between the Riviera, Monaco and the hills of Provence at a pace set by you.'
 theme: 'South of France'
 destinationKeys: ['french-riviera', 'monaco', 'provence']
+travelStyleKeys: ['romantic-escapes']
 includedExperienceKeys:
   [
     'private-riviera-yacht-afternoon',

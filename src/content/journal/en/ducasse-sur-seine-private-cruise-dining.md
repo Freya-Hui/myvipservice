@@ -6,6 +6,7 @@ translationKey: 'ducasse-sur-seine-private-cruise-dining'
 category: 'Food & Dining'
 excerpt: "Paris's first fully electric restaurant boat, run by Alain Ducasse's own team — a two-hour route down the Seine past the Eiffel Tower, the Louvre and Notre-Dame. This isn't a sightseeing cruise with dinner attached. It's a genuine restaurant that happens to be on the water."
 coverImage: 'experience-ducasse-seine-table-eiffel'
+relatedTravelStyleKeys: ['romantic-escapes']
 gallery:
   [
     'experience-ducasse-seine-table-eiffel',

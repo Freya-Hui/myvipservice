@@ -6,6 +6,7 @@ translationKey: 'private-geneva-lake-morning'
 description: 'A quiet morning on the water with a private skipper, the Alps rising behind the shoreline and no fixed itinerary beyond where you want to go.'
 category: 'Nature'
 destinationKey: 'geneva'
+travelStyleKeys: ['family-journeys', 'romantic-escapes']
 featured: false
 status: 'published'
 coverImage: 'destination-geneva-lake'

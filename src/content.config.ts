@@ -195,6 +195,11 @@ const destinations = defineCollection({
     relatedExperienceKeys: z.array(z.string()).default([]),
     relatedJournalKeys: z.array(z.string()).default([]),
     relatedJourneyKeys: z.array(z.string()).default([]),
+    /** `id` values from `travelStyles` — which audience segments this place
+     *  suits, so a travel-style detail page can recommend real destinations
+     *  instead of an empty section. Optional/empty by default; only backfilled
+     *  where a destination genuinely fits one of the published styles. */
+    travelStyleKeys: z.array(z.string()).default([]),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     publishedAt: z.date().optional(),
@@ -395,6 +400,10 @@ const journeys = defineCollection({
       )
       .default([]),
     customisationNotes: z.string().optional(),
+    /** `id` values from `travelStyles` — same field/shape as experiences'
+     *  travelStyleKeys, so a travel-style detail page can pull real
+     *  itineraries into its "featured journeys" section. */
+    travelStyleKeys: z.array(z.string()).default([]),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     publishedAt: z.date().optional(),
@@ -457,6 +466,11 @@ const journal = defineCollection({
     relatedExperienceKeys: z.array(z.string()).default([]),
     /** Added post-spec: docs/content-architecture.md predates the `journeys` collection. */
     relatedJourneyKeys: z.array(z.string()).default([]),
+    /** `id` values from `travelStyles`, per content-architecture.md §7's
+     *  planned "relatedTravelStyleKeys-driven related articles" hook —
+     *  only set where an article is genuinely relevant to a published
+     *  style, not backfilled for every entry. */
+    relatedTravelStyleKeys: z.array(z.string()).default([]),
     /** Up to three entries across the whole collection should carry this at
      *  any time — whichever articles are the current primary promotions
      *  (e.g. "ski season booking is open") get surfaced as a short list in
@@ -482,6 +496,74 @@ const legal = defineCollection({
   }),
 });
 
+// "Who we design for" — the homepage's audience-segment cards, upgraded
+// from a plain data-file entry (src/data/site-content.ts#travelTypes) into
+// real detail pages per docs/url-conventions.md's already-planned
+// `/travel-styles/{slug}/` route. Only the 4 already-live segments
+// (family-journeys / romantic-escapes / celebrations / business-vip) get
+// real entries for now — the other 12 candidate styles stay as a plain
+// backlog list in site-content.ts until there's a decision to build them
+// out too; this collection doesn't need placeholder files for them.
+const travelStyles = defineCollection({
+  loader: glob({
+    pattern: '**/*.md',
+    base: './src/content/travel-styles',
+    generateId: localeSlugId,
+  }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    locale,
+    translationKey: z.string(),
+    /** Punchier "For ___" card label — same role as the old TravelType.shortLabel. */
+    shortLabel: z.string(),
+    /** Card/hero subtitle — written for the "who is this for" framing, not
+     *  copied from the linked service's own summary (see the
+     *  travel-audience-segments skill's lesson on this). */
+    description: z.string(),
+    /** Which accommodations.travelFit enum value this style corresponds
+     *  to, for the accommodations-matching RelatedContent section. Not
+     *  every style will have a clean 1:1 mapping — optional. */
+    travelFitTag: z
+      .enum([
+        'Family',
+        'Romantic',
+        'Business',
+        'Wellness',
+        'Ski',
+        'Beach',
+        'Long Stay',
+        'Celebration',
+      ])
+      .optional(),
+    featured: z.boolean().default(false),
+    order: z.number().default(0),
+    status: contentStatus,
+    coverImage: z.string(),
+    gallery: z.array(z.string()).default([]),
+    storyFeatures: z
+      .array(
+        z.object({
+          title: z.string(),
+          body: z.string(),
+          imageId: z.string(),
+        }),
+      )
+      .default([]),
+    /** "What this includes" — same shape as services' highlights. */
+    highlights: z.array(highlightItem).default([]),
+    faq: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
+    /** Optional link to the closest matching services entry, for a "see the
+     *  full service details" link from the detail page. */
+    href: z.string().optional(),
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
+    publishedAt: z.date().optional(),
+    updatedAt: z.date().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   services,
   transportationTopics,
@@ -492,4 +574,5 @@ export const collections = {
   about,
   journal,
   legal,
+  travelStyles,
 };

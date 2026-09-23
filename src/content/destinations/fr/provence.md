@@ -8,6 +8,7 @@ region: 'Europe'
 featured: true
 status: 'published'
 coverImage: 'destination-provence'
+travelStyleKeys: ['family-journeys', 'romantic-escapes']
 gallery: ['destination-provence', 'destination-provence-vineyard', 'service-dining']
 bestTime: 'De mai à septembre, avec la saison de la lavande de mi-juin à fin juillet.'
 suggestedStay: '3 à 5 nuits'
