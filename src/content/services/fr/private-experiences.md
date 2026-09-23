@@ -4,13 +4,13 @@ summary: "Mariages, célébrations marquantes et événements privés, organisé
 order: 7
 group: 'Private Travel'
 investmentTier: 'bespoke'
-image: service-private-experiences
+image: service-floral-event
 storyFeatures:
   [
     {
       title: 'Un thème pensé pour l’occasion, pas un modèle standard',
       body: "L'accès aux lieux s'étend aux opéras parisiens et aux châteaux privés des environs, associé à la direction créative de fleuristes français et de stylistes visuels. La même équipe de production coordonne coiffure et maquillage, photographie et animation, afin que rien ne soit organisé séparément le jour même.",
-      imageId: 'service-floral-event',
+      imageId: 'service-private-experiences',
     },
     {
       title: 'Une maison entière, pas une salle louée',
