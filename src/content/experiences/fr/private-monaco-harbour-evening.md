@@ -19,7 +19,6 @@ highlights:
     'Temps privé en bateau dans le port',
     'Table réservée pour clore la soirée',
     "Rythme de la soirée adapté à l'occasion",
-    'À partir de 1 200 € pour la soirée, temps en bateau et réservation au restaurant inclus',
   ]
 customisationNotes: "Dites-nous ce que vous célébrez et le nombre de convives — le temps en bateau, le restaurant et le rythme de la soirée s'organisent autour de cela."
 relatedAccommodationKeys: []

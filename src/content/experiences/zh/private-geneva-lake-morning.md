@@ -14,8 +14,7 @@ duration: '半天，上午'
 suitableFor: ['情侣', '家庭', '小型团体']
 familySuitable: true
 languages: ['英语', '法语']
-highlights:
-  ['私人游船与船长', '湖面眺望阿尔卑斯山景', '航线与时长灵活安排', '半天晨间包船价格从 €450 起']
+highlights: ['私人游船与船长', '湖面眺望阿尔卑斯山景', '航线与时长灵活安排']
 customisationNotes: '航线、时长以及是否需要船上早餐都可按团体情况调整——请告知同行人数与希望出发的时间。带孩子的家庭可提前说明孩子年龄，方便安排合适的活动节奏。'
 relatedAccommodationKeys: ['grand-villa-geneva-mies']
 relatedExperienceKeys: []

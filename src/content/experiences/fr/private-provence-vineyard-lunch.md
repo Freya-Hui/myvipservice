@@ -14,13 +14,7 @@ duration: 'Demi-journée'
 suitableFor: ['Couples', 'Petits groupes', 'Amateurs de vin']
 familySuitable: false
 languages: ['Anglais', 'Français']
-highlights:
-  [
-    'Visite du vignoble avec le vigneron',
-    'Menu de saison',
-    'Accord mets-vins du domaine',
-    'À partir de 450 € par personne pour la visite du vignoble et le déjeuner',
-  ]
+highlights: ['Visite du vignoble avec le vigneron', 'Menu de saison', 'Accord mets-vins du domaine']
 customisationNotes: "Le menu, la sélection des vins et la durée du déjeuner s'adaptent à votre groupe — indiquez-nous le nombre de convives et si vous souhaitez que le vigneron reste pour tout le repas."
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

@@ -23,7 +23,6 @@ highlights:
     'Mises en relation au sein des cercles du commerce de luxe français, y compris avec des contacts de haut niveau chez des groupes comme Printemps et Galeries Lafayette, organisées au cas par cas',
     "Visites de sites emblématiques de l'innovation européenne — Station F, le plus grand campus de start-up au monde ; Schneider Electric, pour la transformation numérique et la stratégie ESG ; et Dassault Systèmes, pour les expériences virtuelles 3D et la technologie du jumeau numérique",
     'Logistique de réunions, interprètes et transport discret pour vos déplacements professionnels en Europe',
-    'À partir de 800 € par jour pour la couverture interprète et logistique de réunions ; mises en relation et visites de sites emblématiques sur devis',
   ]
 ---
 

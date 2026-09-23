@@ -31,7 +31,6 @@ highlights:
       text: 'Une autre adresse au bord du lac pour les séjours multigénérationnels, également près de Genève — la Grande Villa à Mies',
       href: '/fr/accommodations/grand-villa-geneva-mies/',
     },
-    "À partir de 250 € par jour pour une garde d'enfants de confiance et un itinéraire adapté au rythme familial ; ateliers, coaching sportif et places en école d'été sur devis",
   ]
 ---
 

@@ -31,7 +31,6 @@ highlights:
       text: 'A lake-side alternative for multi-generational stays — the Grand Villa in Mies, also near Geneva',
       href: '/en/accommodations/grand-villa-geneva-mies/',
     },
-    'From €250 per day for trusted childcare and family-paced itinerary planning; workshops, coaching and summer-school placements quoted per request',
   ]
 ---
 

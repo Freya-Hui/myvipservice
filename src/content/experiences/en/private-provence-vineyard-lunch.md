@@ -15,12 +15,7 @@ suitableFor: ['Couples', 'Small groups', 'Wine lovers']
 familySuitable: false
 languages: ['English', 'French']
 highlights:
-  [
-    'Guided vineyard walk with the winemaker',
-    'Seasonal tasting menu',
-    'Estate wine pairing',
-    'From €450 per person for the vineyard walk and lunch',
-  ]
+  ['Guided vineyard walk with the winemaker', 'Seasonal tasting menu', 'Estate wine pairing']
 customisationNotes: 'The menu, wine selection and length of the lunch are set around your group — tell us how many are joining and whether you would like the winemaker to stay for the full meal.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

@@ -14,13 +14,7 @@ duration: '2–3 hours, morning'
 suitableFor: ['Couples', 'Families', 'Small groups']
 familySuitable: true
 languages: ['English', 'French']
-highlights:
-  [
-    'Access before public opening hours',
-    'Private guide',
-    'Garden walk included',
-    'From €600 for a 2–3 hour private morning visit',
-  ]
+highlights: ['Access before public opening hours', 'Private guide', 'Garden walk included']
 customisationNotes: 'Which château, group size and how much history versus garden time you want are all adjusted in advance — access is confirmed directly with the estate for each request.'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
