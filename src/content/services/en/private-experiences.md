@@ -26,7 +26,6 @@ highlights:
       href: '/en/accommodations/chateau-de-neydens/',
     },
     'Corporate retreats and client-appreciation events delivered end to end, from concept to on-site production',
-    'From €15,000 for a fully produced wedding or landmark celebration; smaller private events quoted per venue and guest count',
   ]
 ---
 
