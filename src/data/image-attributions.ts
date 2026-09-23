@@ -4048,6 +4048,23 @@ export const imageAttributions: ImageAttribution[] = [
     },
   },
   {
+    id: 'experience-london-museum-family',
+    src: '/images/experience-london-museum-family.jpg',
+    sourceUrl:
+      'https://unsplash.com/photos/a-little-girl-standing-in-front-of-a-building-XhPgnxvLa5g',
+    sourceName: 'Unsplash',
+    author: 'Mieke Campbell',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'A child looking closely at ancient marble relief sculptures in a museum gallery.',
+      zh: '一个孩子在博物馆展厅里，近距离观看古代大理石浮雕。',
+      fr: 'Un enfant observant de près des bas-reliefs en marbre antique dans une galerie de musée.',
+    },
+    notes:
+      'Tagged by the source as the British Museum — depicts a real museum interior, not a named institutional partnership.',
+  },
+  {
     id: 'accommodation-villa-riviera-pool-view',
     src: '/images/accommodation-villa-riviera-pool-view.jpg',
     sourceUrl:
