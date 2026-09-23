@@ -48,7 +48,7 @@ faq:
       answer: '不是——同样的后勤标准与低调接待，也适用于对隐私和可靠性有同等要求的私人贵宾出行。',
     },
   ]
-href: '/zh/services/business-vip-assistance/'
+relatedServiceKeys: ['business-vip-assistance', 'private-transportation', 'vip-airport-reception']
 seoTitle: '商务与贵宾出行：会议后勤、传译与商务引荐'
 seoDescription: '为繁忙行程安排会议后勤、传译、低调接送与商务引荐，覆盖欧洲各地。'
 publishedAt: 2026-09-23

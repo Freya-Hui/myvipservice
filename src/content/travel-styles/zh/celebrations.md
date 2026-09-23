@@ -51,7 +51,7 @@ faq:
       answer: '不是——企业团建与客户答谢活动同样可以端到端安排，从创意概念到现场执行。',
     },
   ]
-href: '/zh/services/private-experiences/'
+relatedServiceKeys: ['private-experiences', 'dining-culinary-experiences', 'tickets-events']
 seoTitle: '婚礼与私人庆典：歌剧院场地、私人城堡与专属别墅'
 seoDescription: '婚礼、里程碑生日与私人庆典，在巴黎歌剧院场地、私人城堡与专属包场别墅举办。'
 publishedAt: 2026-09-23

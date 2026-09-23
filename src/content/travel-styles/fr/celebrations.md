@@ -51,7 +51,7 @@ faq:
       answer: "Non — séminaires d'entreprise et événements de remerciement clients sont également organisés de bout en bout, du concept à la production sur site.",
     },
   ]
-href: '/fr/services/private-experiences/'
+relatedServiceKeys: ['private-experiences', 'dining-culinary-experiences', 'tickets-events']
 seoTitle: 'Mariages & célébrations privées : opéras, châteaux et villas privatisées'
 seoDescription: 'Mariages, anniversaires marquants et célébrations privées organisés dans des opéras parisiens, châteaux privés et lieux privatisés en France.'
 publishedAt: 2026-09-23

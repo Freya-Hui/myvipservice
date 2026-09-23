@@ -55,7 +55,7 @@ faq:
       answer: 'No — anniversaries, proposals and any trip built around two people fall under this, not only honeymoons.',
     },
   ]
-href: '/en/services/romantic-travel/'
+relatedServiceKeys: ['romantic-travel', 'dining-culinary-experiences', 'hotel-villa-reservations']
 seoTitle: 'Romantic Travel Planning: Honeymoons, Anniversaries and Proposals'
 seoDescription: 'Honeymoons, anniversaries and proposals in France and across Europe, with private dinners, pre-wedding photography and secluded stays planned around two people.'
 publishedAt: 2026-09-23

@@ -48,7 +48,7 @@ faq:
       answer: 'Both — the same logistics and discretion apply whether the trip is a business agenda or a personal visit that calls for the same level of privacy and reliability.',
     },
   ]
-href: '/en/services/business-vip-assistance/'
+relatedServiceKeys: ['business-vip-assistance', 'private-transportation', 'vip-airport-reception']
 seoTitle: 'Business & VIP Travel: Meeting Logistics, Interpreters and Introductions'
 seoDescription: 'Meeting logistics, interpreters, discreet transport and business introductions arranged for demanding schedules across Europe.'
 publishedAt: 2026-09-23

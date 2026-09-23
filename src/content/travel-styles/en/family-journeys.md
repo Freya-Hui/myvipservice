@@ -52,7 +52,7 @@ faq:
       answer: 'For school holiday periods (especially European summer school placements or ski season), 2–3 months ahead gives the most flexibility on villas and summer school availability; other times of year, a few weeks is usually enough.',
     },
   ]
-href: '/en/services/family-children-services/'
+relatedServiceKeys: ['family-children-services', 'hotel-villa-reservations', 'personal-concierge']
 seoTitle: 'Family Travel Planning: Childcare, Villas and Multi-Generational Trips'
 seoDescription: 'Family journeys planned around the ages of your children, with trusted childcare, multi-generational villas and priority access to European summer schools.'
 publishedAt: 2026-09-23

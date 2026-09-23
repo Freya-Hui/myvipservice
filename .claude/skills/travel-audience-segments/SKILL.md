@@ -6,10 +6,10 @@ MYVIPSERVICE 有一套按人群而非按内容类型组织的入口——首页"
 
 ## 一、现状：`travelStyles` Collection + 详情/列表页
 
-- **数据源**：`src/content/travel-styles/{en,zh,fr}/*.md`，schema 定义在 `src/content.config.ts`（搜索 `travelStyles = defineCollection`）。字段：`title`/`slug`/`locale`/`translationKey`（与 destinations/experiences 同构，`getDetailStaticPaths`/`getEntryByTranslationKey`/`resolveRelated`/`getDetailSwitchUrl` 直接复用）、`shortLabel`（首页卡片短标签）、`description`（卡片副标题+详情页 Hero 副标题，独立撰写，见"三"）、`travelFitTag`（可选，对应 `accommodations.travelFit` 枚举值之一，用于住宿反查，见"四"）、`coverImage`/`gallery`、`storyFeatures`（复用 `about/StoryFeature.astro` 形状）、`highlights`（复用 `highlightItem` 形状，当"服务包含"板块）、`faq`（`{question, answer}[]`，直接对接 `src/components/Faq.astro`）、`href`（可选，指向对应的完整服务详情页）。
+- **数据源**：`src/content/travel-styles/{en,zh,fr}/*.md`，schema 定义在 `src/content.config.ts`（搜索 `travelStyles = defineCollection`）。字段：`title`/`slug`/`locale`/`translationKey`（与 destinations/experiences 同构，`getDetailStaticPaths`/`getEntryByTranslationKey`/`resolveRelated`/`getDetailSwitchUrl` 直接复用）、`shortLabel`（首页卡片短标签）、`description`（卡片副标题+详情页 Hero 副标题，独立撰写，见"三"）、`travelFitTag`（可选，对应 `accommodations.travelFit` 枚举值之一，用于住宿反查，见"四"）、`coverImage`/`gallery`、`storyFeatures`（复用 `about/StoryFeature.astro` 形状）、`highlights`（复用 `highlightItem` 形状，当"服务包含"板块）、`faq`（`{question, answer}[]`，直接对接 `src/components/Faq.astro`）、`relatedServiceKeys`（`services` collection 的 `slug` 数组，见"四.1"）。
 - **列表页**：`src/pages/[locale]/travel-styles/index.astro`，照抄 `src/pages/[locale]/journeys/index.astro` 的结构（`getLocaleEntries('travelStyles', locale)` + `ContentGrid`/`ContentCard` + `EmptyState`）。
-- **详情页**：`src/pages/[locale]/travel-styles/[slug]/index.astro`，照抄 `destinations/[slug]/index.astro` 的组合方式：`PageHero` → `StoryFeature` 循环 → `MediaHighlightList`（highlights）→ 四个 `RelatedContent` 区块（目的地/主题游/住宿/体验，见"四"）→ 一个 journal 相关阅读区块 → `Faq` → "查看完整服务说明"链接（`data.href`）→ `InquiryCTA`。
-- **首页联动**：`src/pages/[locale]/index.astro` 的 `travelMosaicItems` 现在从 `getLocaleEntries('travelStyles', locale)`（`featured: true`）取数据，卡片 `href` 指向 `/travel-styles/{slug}/`（**不再**直接指向服务页——这是这次升级里唯一的用户点击路径变化，专属页里仍有链接跳去服务页，路径没断）。首页区块底部有一个"View all"链接指向 `/travel-styles/`。
+- **详情页**：`src/pages/[locale]/travel-styles/[slug]/index.astro`，照抄 `destinations/[slug]/index.astro` 的组合方式：`PageHero` → `StoryFeature` 循环 → `MediaHighlightList`（highlights）→ **相关服务**（`relatedServiceKeys` 驱动的 `RelatedContent`，见"四.1"）→ 四个 `RelatedContent` 区块（目的地/主题游/住宿/体验，见"四.2"）→ 一个 journal 相关阅读区块 → `Faq` → `InquiryCTA`。
+- **首页联动**：`src/pages/[locale]/index.astro` 的 `travelMosaicItems` 现在从 `getLocaleEntries('travelStyles', locale)`（`featured: true`）取数据，卡片 `href` 指向 `/travel-styles/{slug}/`（**不再**直接指向服务页——这是这次升级里唯一的用户点击路径变化，专属页里仍有链接跳去服务页，路径没断）。首页区块**没有**"查看全部"链接——只有 4 个人群，全部已经在首页展示，加一个"查看全部"暗示还有更多内容反而误导（2026-09-23 曾经加过又删掉，见"四.1"）。
 - **服务页联动**：`src/pages/[locale]/services/[slug]/index.astro` 里 `tailor-made-travel-planning` 页面的 `featuredTravelStyles` 区块（`TravelTypes.astro` 组件渲染）同样从 `travelStyles` collection 取数据，`href` 也改成指向 `/travel-styles/{slug}/`。
 - **`TravelTypes.astro`** 组件（`src/components/home/TravelTypes.astro`）的 `items` prop 类型已经从旧的 `TravelType[]`（`site-content.ts` 里的类型）松绑成结构化的 `{title, description, href?}[]`，不再依赖那个旧数据文件的类型——这个组件本身没有图片，纯文字编号列表，改动数据源时不需要碰组件本身。
 
@@ -28,7 +28,22 @@ MYVIPSERVICE 有一套按人群而非按内容类型组织的入口——首页"
 
 ## 四、标签联动：给已有字段回填，不新建标签系统
 
-已上线人群的详情页会自动查询并展示"精选目的地/主题游/住宿/体验/相关阅读"——这些板块的数据来自其他 collection 里的标签字段，**大部分字段本来就存在，只是之前没人回填/消费**：
+### 四.1 人群（4 个，who）≠ 服务（12 个，what）——2026-09-23 的教训
+
+刚上线这套系统时，详情页底部只有一个"查看完整服务说明"的单一链接，指向"最接近"的那一个服务页（比如家庭人群只链到"家庭与儿童服务"一个服务）。客户反馈指出这是把"人群"和"服务"两个概念搞混了：
+
+- **人群固定就是 4 个**（`family-journeys`/`romantic-escapes`/`celebrations`/`business-vip`），回答"这适合谁"，不是越多越好，首页 4 张卡片已经是全部——**不要在首页或列表页放"查看全部"这类暗示还有更多内容的入口**（之前加过，客户反馈后已删除）。
+- **服务是站内真实存在的 12 个**（`src/content/services/`，`hotel-villa-reservations`/`tailor-made-travel-planning`/`private-transportation`/`dining-culinary-experiences`/`tickets-events`/`private-experiences`/`personal-concierge`/`business-vip-assistance`/`romantic-travel`/`family-children-services`/`fashion-shopping`/`vip-airport-reception`），回答"具体能预订什么"。**一个人群通常关联好几个服务，不是唯一对应一个**——家庭人群不只关联"家庭与儿童服务"，也可能关联"酒店与别墅预订"（多代同游别墅）、"私人管家"这类真实相关的服务。
+- 修复方式：`travelStyles` schema 的 `href`（单一链接）字段改成 `relatedServiceKeys: string[]`（`services` collection 的 `slug` 数组），详情页对应改成一个真正的 `RelatedContent` 卡片区块（"相关服务"），从 `services` collection 里按 slug 匹配出多条，不是死链一个。四个已上线人群目前各关联 3 个服务：
+  - `family-journeys` → `family-children-services`（主）/ `hotel-villa-reservations` / `personal-concierge`
+  - `romantic-escapes` → `romantic-travel`（主）/ `dining-culinary-experiences` / `hotel-villa-reservations`
+  - `celebrations` → `private-experiences`（主）/ `dining-culinary-experiences` / `tickets-events`
+  - `business-vip` → `business-vip-assistance`（主）/ `private-transportation` / `vip-airport-reception`
+- **不要把"人群"的 12 个候选 backlog（`site-content.ts#travelTypes` 里那 12 条，见"二"）和"服务"的 12 个真实 collection 条目混为一谈**——两者都是"12"纯属巧合，是完全不同的两份东西：前者是"还没做的人群候选"（who 维度，未来可能扩展成第 5、6 个人群页面），后者是"已经上线的服务"（what 维度，站内一直都在）。
+
+### 四.2 内容标签联动：给已有字段回填，不新建标签系统
+
+已上线人群的详情页会自动查询并展示"相关服务/精选目的地/主题游/住宿/体验/相关阅读"——除了上面"四.1"的服务关联外，其余板块的数据来自其他 collection 里的标签字段，**大部分字段本来就存在，只是之前没人回填/消费**：
 
 | 内容类型         | 字段                                                                                                                  | 状态                                                                                                                                           |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -58,13 +73,14 @@ MYVIPSERVICE 有一套按人群而非按内容类型组织的入口——首页"
 
 ## 七、跳转与页面架构决策记录
 
-- 详情页结构（Hero → StoryFeature → highlights → 精选目的地/主题游/住宿/体验/相关阅读 → FAQ → 完整服务链接 → InquiryCTA）已经是实现好的固定模板，新增人群条目不需要重新设计页面结构，写好 frontmatter 数据即可。
+- 详情页结构（Hero → StoryFeature → highlights → 相关服务 → 精选目的地/主题游/住宿/体验/相关阅读 → FAQ → InquiryCTA）已经是实现好的固定模板，新增人群条目不需要重新设计页面结构，写好 frontmatter 数据即可。
 - **没有在顶部导航加"Travel Styles"入口**——`Header.astro` 已有 7 个一级导航项，源码注释提过"每加一项都要占宽度"，这次选择用首页卡片 + `/travel-styles/` 列表页 + Footer Quick Links 一条轻量入口来做可达性，没有动一级导航。如果以后要加导航入口，是一个独立的、需要跟客户确认的视觉/信息架构决策，不是这份 skill 范围内的事。
 - **没有做**：案例/客户故事模块（全站目前零真实客户案例，通用参考 skill 自己也写了"没有就先不放，不要编"）；行程/目的地/体验详情页上加"适合：亲子·浪漫"反向徽章（交叉引流锦上添花，非核心）；联系表单按人群预填字段（`enquiryType` 和"人群"是两个不同维度，要做需要重新设计表单分支）。这些如果客户后续提出，按 CLAUDE.md"做板块前先想四个问题"的要求先想清楚，再进 plan mode 讨论，不要直接动手。
 
 ## 八、验收
 
 - [ ] `description`/`storyFeatures`/`highlights`/`faq` 是不是独立写的，不是抄目标服务页对应字段；有没有覆盖目标页标题里的核心词。
+- [ ] **人群和服务有没有混淆**（见"四.1"）——`relatedServiceKeys` 是不是列了多个真正相关的服务，不是塞一个了事；首页/列表页有没有出现"查看全部"这类暗示人群数量还会增加的措辞。
 - [ ] `coverImage` 和目标服务页 `image:` 字段是否一致；不一致时按"六"的方法核查、修正。
 - [ ] 有没有写死"from €X"这类未经客户确认的具体价格数字——没有真实数据就用"价格需咨询"类文字，不要编数字。
 - [ ] 三语（en/zh/fr）是否同步——新建人群条目三语都要有完整文件，不是只写英文。

@@ -52,7 +52,7 @@ faq:
       answer: "Pour les périodes de vacances scolaires (notamment les places en école d'été européenne ou la saison de ski), 2 à 3 mois à l'avance offrent le plus de flexibilité ; en dehors de ces périodes, quelques semaines suffisent généralement.",
     },
   ]
-href: '/fr/services/family-children-services/'
+relatedServiceKeys: ['family-children-services', 'hotel-villa-reservations', 'personal-concierge']
 seoTitle: 'Voyages en famille sur mesure : garde d’enfants, villas et séjours multigénérationnels'
 seoDescription: "Des séjours en famille pensés pour l'âge de vos enfants, avec garde de confiance, villas multigénérationnelles et accès prioritaire aux écoles d'été européennes."
 publishedAt: 2026-09-23

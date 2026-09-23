@@ -55,7 +55,7 @@ faq:
       answer: '不是——纪念日、求婚以及任何围绕两个人设计的行程都在这个范畴内，不只限于蜜月。',
     },
   ]
-href: '/zh/services/romantic-travel/'
+relatedServiceKeys: ['romantic-travel', 'dining-culinary-experiences', 'hotel-villa-reservations']
 seoTitle: '浪漫旅行规划：蜜月、纪念日与求婚安排'
 seoDescription: '在法国与欧洲各地为两人规划蜜月、纪念日与求婚行程，含私享晚餐、婚纱跟拍与僻静居所。'
 publishedAt: 2026-09-23

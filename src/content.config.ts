@@ -553,9 +553,12 @@ const travelStyles = defineCollection({
     /** "What this includes" — same shape as services' highlights. */
     highlights: z.array(highlightItem).default([]),
     faq: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
-    /** Optional link to the closest matching services entry, for a "see the
-     *  full service details" link from the detail page. */
-    href: z.string().optional(),
+    /** `slug` values from the `services` collection (services share one slug
+     *  across all locales, so a plain string works here) — the real,
+     *  bookable services relevant to this audience. A travel style is a
+     *  "who", a service is a "what"; one audience is usually relevant to
+     *  several services, not just one. */
+    relatedServiceKeys: z.array(z.string()).default([]),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     publishedAt: z.date().optional(),

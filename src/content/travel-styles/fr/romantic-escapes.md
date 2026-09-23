@@ -55,7 +55,7 @@ faq:
       answer: 'Non — anniversaires, demandes en mariage et tout séjour pensé pour deux personnes relèvent de ce service, pas seulement les lunes de miel.',
     },
   ]
-href: '/fr/services/romantic-travel/'
+relatedServiceKeys: ['romantic-travel', 'dining-culinary-experiences', 'hotel-villa-reservations']
 seoTitle: 'Voyage romantique sur mesure : lunes de miel, anniversaires, demandes en mariage'
 seoDescription: 'Lunes de miel, anniversaires et demandes en mariage en France et en Europe, avec dîners privés, séances photo pré-mariage et adresses discrètes pensées pour deux.'
 publishedAt: 2026-09-23
