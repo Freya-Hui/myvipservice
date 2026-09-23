@@ -54,7 +54,7 @@ roomTypes:
 suitableFor: ['注重设计的旅客', '情侣', '商务出行']
 servicePerspective: '宝格丽酒店巴黎适合喜欢当代意式设计、又想住在香榭丽舍大道附近的旅客——Antonio Citterio 的设计语言、Niko Romito 的意大利菜、宝格丽自身的珠宝美学贯穿全酒店。如果更偏好古典宫殿式的装饰，可以考虑装饰更传统的酒店；但如果想要一种低调、精致、带点意大利风情的巴黎住宿体验，这里很合适。'
 relatedExperienceKeys: []
-relatedAccommodationKeys: ['la-reserve', 'mandarin-oriental']
+relatedAccommodationKeys: ['la-reserve', 'mandarin-oriental', 'maison-villeroy']
 relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 updatedAt: 2026-09-11

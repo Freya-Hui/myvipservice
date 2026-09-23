@@ -38,7 +38,7 @@ suitableFor:
   ]
 servicePerspective: "Un hôtel partenaire de longue date, particulièrement adapté aux clients qui préfèrent une adresse plus petite et plus confidentielle que les grands palaces de la rive droite — la taille joue dans les deux sens : elle convient à un couple ou une petite famille qui n'a pas besoin d'un grand hall ou de plusieurs restaurants, moins à un grand groupe en quête d'un cadre plus vaste. Selon disponibilité, nous pouvons organiser surclassements, réservations prioritaires au Gabriel et tarifs longs séjours."
 relatedExperienceKeys: []
-relatedAccommodationKeys: ['bulgari', 'mandarin-oriental']
+relatedAccommodationKeys: ['bulgari', 'mandarin-oriental', 'maison-villeroy']
 relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 updatedAt: 2026-09-15

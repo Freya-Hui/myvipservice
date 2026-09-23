@@ -38,7 +38,7 @@ suitableFor:
   ]
 servicePerspective: "A long-standing partner hotel, well suited to guests who want a smaller, more private address than the grand Right Bank palaces — the size cuts both ways: it suits a couple or a small family who don't need a large public lobby or several restaurants, less so a large group that wants a bigger stage. Where available, we can arrange upgrades, priority dining at Le Gabriel and longer-stay rates."
 relatedExperienceKeys: []
-relatedAccommodationKeys: ['bulgari', 'mandarin-oriental']
+relatedAccommodationKeys: ['bulgari', 'mandarin-oriental', 'maison-villeroy']
 relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 updatedAt: 2026-09-15
