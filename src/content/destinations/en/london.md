@@ -19,6 +19,10 @@ highlights:
     "Private viewings at London's auction houses and galleries",
     'Mayfair and Knightsbridge personal shopping',
     'Discreet business meeting support in the City and Canary Wharf',
+    {
+      text: "Private family mornings at London's museums — the British Museum among them — with a guide who paces the visit to the children's ages",
+      image: 'experience-london-museum-family',
+    },
   ]
 seoTitle: 'London Travel Guide: Airports, Neighborhoods and When to Go'
 seoDescription: 'A practical London guide — Heathrow versus City Airport, why Mayfair, Knightsbridge and the City each serve a different kind of trip, and how Wimbledon and other events reshape timing.'

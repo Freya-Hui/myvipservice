@@ -9,7 +9,7 @@ coverImage: 'destination-london'
 relatedTravelStyleKeys: ['family-journeys']
 gallery: ['destination-london', 'destination-geneva-lake']
 relatedDestinationKeys: ['london', 'geneva']
-relatedExperienceKeys: ['private-london-family-museum-morning', 'private-geneva-lake-morning']
+relatedExperienceKeys: ['private-geneva-lake-morning']
 seoTitle: 'Choosing Family Experiences for European Travel: A Practical Age-by-Age Guide'
 seoDescription: "How do you actually tell if a family experience is a good fit for your kids? This guide breaks it down by age — attention span, pacing, pickup arrangements — so you can avoid experiences that are 'family-friendly' in name only."
 status: 'published'
@@ -26,7 +26,7 @@ There are two things families dread most when travelling with children: an itine
 - **9–12:** largely able to participate like a small adult, though the pace should still run a little slower than an adult-only group, and building in interactive moments still helps.
 - **Teenagers:** tend to respond better to an itinerary with some room for their own choices, rather than being fully scheduled — a little "pick your own" space makes a visible difference in engagement.
 
-Our private family museum morning in London is built around this — the guide confirms the children's ages first and sets the depth of commentary accordingly.
+A London museum morning we arrange for families is built around this — the guide confirms the children's ages first and sets the depth of commentary accordingly.
 
 ## Does the guide actually engage with the kids
 

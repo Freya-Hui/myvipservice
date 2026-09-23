@@ -9,7 +9,7 @@ coverImage: 'destination-london'
 relatedTravelStyleKeys: ['family-journeys']
 gallery: ['destination-london', 'destination-geneva-lake']
 relatedDestinationKeys: ['london', 'geneva']
-relatedExperienceKeys: ['private-london-family-museum-morning', 'private-geneva-lake-morning']
+relatedExperienceKeys: ['private-geneva-lake-morning']
 seoTitle: '亲子欧洲旅行怎么选体验？按年龄段的实操指南'
 seoDescription: '带孩子去欧洲旅行，怎么判断一个体验是否真的适合家庭？这篇指南按年龄段拆解注意力时长、行程节奏、接送安排，帮您避开"亲子友好"只是营销标签的坑。'
 status: 'published'
@@ -26,7 +26,7 @@ draft: false
 - **9-12 岁**：基本能像小大人一样参与，但节奏还是要比纯成人团慢一些，适当加入互动环节效果更好。
 - **青少年**：往往更适合有一定自主选择空间的行程，而不是全程被安排——给一点"自己选"的余地，参与度会明显不同。
 
-伦敦的私享博物馆亲子早晨会先了解孩子年龄再确定讲解深度，就是按这个逻辑设计的。
+我们为家庭客人安排的伦敦博物馆早晨行程，会先了解孩子年龄再确定讲解深度，就是按这个逻辑设计的。
 
 ## 讲解者是否真的会和孩子互动
 

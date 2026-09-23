@@ -9,7 +9,7 @@ coverImage: 'destination-london'
 relatedTravelStyleKeys: ['family-journeys']
 gallery: ['destination-london', 'destination-geneva-lake']
 relatedDestinationKeys: ['london', 'geneva']
-relatedExperienceKeys: ['private-london-family-museum-morning', 'private-geneva-lake-morning']
+relatedExperienceKeys: ['private-geneva-lake-morning']
 seoTitle: 'Choisir des expériences familiales pour un voyage en Europe : guide pratique par âge'
 seoDescription: "Comment savoir si une expérience familiale convient vraiment à vos enfants ? Ce guide détaille par tranche d'âge la durée d'attention, le rythme, l'organisation des prises en charge, pour éviter les expériences « adaptées aux familles » seulement de nom."
 status: 'published'
@@ -26,7 +26,7 @@ Deux choses inquiètent le plus les familles voyageant avec des enfants : un pro
 - **9-12 ans :** peut globalement participer presque comme un adulte, même si le rythme doit rester un peu plus lent qu'avec un groupe uniquement adulte, et intégrer des moments interactifs reste bénéfique.
 - **Adolescents :** répondent en général mieux à un programme laissant une marge de choix personnel plutôt qu'entièrement planifié — un peu de liberté « à vous de choisir » change nettement l'implication.
 
-Notre matinée privée en famille au musée à Londres est conçue selon cette logique — le guide confirme d'abord l'âge des enfants avant de fixer le niveau de détail du commentaire.
+Une matinée au musée que nous organisons pour les familles à Londres est conçue selon cette logique — le guide confirme d'abord l'âge des enfants avant de fixer le niveau de détail du commentaire.
 
 ## Le guide interagit-il vraiment avec les enfants
 
