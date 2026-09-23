@@ -52,7 +52,7 @@ faq:
       answer: '学校假期（尤其是欧洲夏校名额或滑雪季）建议提前 2-3 个月，可选择余地更大；其他时段提前几周通常就够用。',
     },
   ]
-href: '/zh/services/family-children-services/'
+relatedServiceKeys: ['family-children-services', 'hotel-villa-reservations', 'personal-concierge']
 seoTitle: '亲子家庭旅行规划：儿童看护、别墅与多代同游'
 seoDescription: '按孩子年龄量身安排的亲子行程，含可信赖的儿童看护、多代同游别墅与欧洲顶尖夏校优先名额。'
 publishedAt: 2026-09-23

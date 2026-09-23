@@ -48,7 +48,7 @@ faq:
       answer: "Non — la même logistique et la même discrétion s'appliquent à un agenda professionnel comme à un séjour VIP personnel exigeant le même niveau de confidentialité et de fiabilité.",
     },
   ]
-href: '/fr/services/business-vip-assistance/'
+relatedServiceKeys: ['business-vip-assistance', 'private-transportation', 'vip-airport-reception']
 seoTitle: 'Business & voyages VIP : logistique de réunions, interprètes et mises en relation'
 seoDescription: "Logistique de réunions, interprètes, transport discret et mises en relation professionnelles pour vos agendas exigeants à travers l'Europe."
 publishedAt: 2026-09-23

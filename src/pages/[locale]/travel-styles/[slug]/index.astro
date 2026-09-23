@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PageHero from '../../../../components/PageHero.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
@@ -57,6 +58,20 @@ const journeys = journeysAll.slice(0, RELATED_LIMIT);
 const journalArticles = (await getLocaleEntries('journal', locale))
   .filter((entry) => entry.data.relatedTravelStyleKeys.includes(data.translationKey))
   .slice(0, RELATED_LIMIT);
+
+// Services share one slug across locales (no translationKey), so this is a
+// plain slug match — order follows `relatedServiceKeys` (first entry is the
+// closest match), not collection order.
+const allServices = await getCollection('services', (entry) => entry.id.startsWith(`${locale}/`));
+function serviceSlugOf(id: string) {
+  return id.split('/').slice(1).join('/');
+}
+const relatedServices = data.relatedServiceKeys
+  .map((slug: string) => allServices.find((entry) => serviceSlugOf(entry.id) === slug))
+  .filter(
+    (entry: (typeof allServices)[number] | undefined): entry is (typeof allServices)[number] =>
+      entry !== undefined,
+  );
 
 const structuredData = [
   {
@@ -122,6 +137,19 @@ const structuredData = [
       </section>
     )
   }
+
+  <RelatedContent
+    locale={locale}
+    eyebrow={t('nav.services')}
+    title={t('travelStyles.detail.servicesHeading')}
+    items={relatedServices.map((item: (typeof allServices)[number]) => ({
+      href: `/${locale}/services/${serviceSlugOf(item.id)}/`,
+      imageId: item.data.image ?? 'hero-home',
+      title: item.data.title,
+      summary: item.data.summary,
+      draftLabel: item.data.draft ? t('badge.draftTranslation') : undefined,
+    }))}
+  />
 
   <RelatedContent
     locale={locale}
@@ -207,20 +235,6 @@ const structuredData = [
     )
   }
 
-  {
-    data.href && (
-      <section class="section full-service-link">
-        <div class="container prose">
-          <h2>{t('travelStyles.detail.fullServiceTitle')}</h2>
-          <p class="full-service-link__body">{t('travelStyles.detail.fullServiceBody')}</p>
-          <a class="text-small" href={data.href}>
-            {t('travelStyles.detail.fullServiceLink')} →
-          </a>
-        </div>
-      </section>
-    )
-  }
-
   <InquiryCTA
     title={t('home.inquiry.title')}
     body={t('home.inquiry.body')}
@@ -228,9 +242,3 @@ const structuredData = [
     ctaHref={`/${locale}/contact/`}
   />
 </BaseLayout>
-
-<style>
-  .full-service-link__body {
-    color: var(--color-text-muted);
-  }
-</style>

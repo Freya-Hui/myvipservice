@@ -51,7 +51,7 @@ faq:
       answer: 'No — corporate retreats and client-appreciation events are also handled end to end, from concept through on-site production.',
     },
   ]
-href: '/en/services/private-experiences/'
+relatedServiceKeys: ['private-experiences', 'dining-culinary-experiences', 'tickets-events']
 seoTitle: 'Weddings & Private Celebrations: Opera Venues, Châteaux and Villas'
 seoDescription: 'Weddings, milestone birthdays and private celebrations staged at Paris opera venues, private châteaux and whole-house venues across France.'
 publishedAt: 2026-09-23
