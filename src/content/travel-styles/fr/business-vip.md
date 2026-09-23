@@ -13,20 +13,28 @@ gallery: ['service-business']
 storyFeatures:
   [
     {
-      title: 'De vraies mises en relation, pas un contact à froid',
-      body: "Ce réseau s'étend aux cercles du luxe et du commerce français — mises en relation de haut niveau chez des groupes comme Printemps et Galeries Lafayette — ainsi qu'à des échanges avec des family offices européens établis sur les questions de succession et d'allocation d'actifs, selon la pertinence pour le séjour du client.",
+      title: "Une journée structurée autour de l'agenda, pas du tourisme",
+      body: "Réunions enchaînées, un interprète présent sans réservation séparée, un transport minuté entre chaque rendez-vous — la journée est construite autour de ce qui doit se passer, avec des temps morts intégrés seulement là où ils trouvent naturellement leur place, plutôt qu'un itinéraire standard dans lequel on case des réunions. Un seul conseiller planifie et ajuste toute la journée : si une réunion se prolonge, la voiture, le rendez-vous suivant et les réservations de dîner évoluent en conséquence, sans que chaque prestataire soit recontacté séparément.",
+      imageId: 'service-meeting-room',
+    },
+    {
+      title: 'Des mises en relation nées de véritables relations, pas un annuaire',
+      body: "Ce réseau s'étend aux cercles du luxe et du commerce français — mises en relation de haut niveau chez des groupes comme Printemps et Galeries Lafayette — ainsi qu'à des échanges avec des family offices européens établis sur les questions de succession et d'allocation d'actifs, selon la pertinence pour le séjour du client. Ces mises en relation passent par les relations personnelles du conseiller et sont vérifiées pour leur pertinence réelle des deux côtés avant toute prise de contact — ce n'est jamais un e-mail à froid envoyé au nom du client, ce qui explique aussi pourquoi une mise en relation demande un vrai délai et n'est jamais présentée comme certaine.",
       imageId: 'service-la-defense',
     },
     {
-      title: "Une logistique qui n'interrompt pas la journée",
-      body: 'Interprètes, transport discret et logistique du jour de réunion sont organisés autour d’un emploi du temps chargé, coordonnés avec le reste du séjour plutôt que réservés séparément.',
-      imageId: 'service-meeting-room',
+      title: 'La confidentialité comme point de départ, pas comme option',
+      body: "Un seul interlocuteur signifie que les détails sensibles — qui rencontre qui, l'objet réel d'un déplacement — ne sont jamais répétés à une deuxième ou une troisième personne en cours de route. Réunions et interprétariat sont organisés par défaut dans des lieux privés plutôt que publics, et la même discrétion s'applique, qu'il s'agisse de l'agenda du conseil d'administration d'une entreprise cotée ou des affaires personnelles d'un family office.",
+      imageId: 'service-lobby-detail',
     },
   ]
 highlights:
   [
-    'Mises en relation au sein des cercles du commerce de luxe français, y compris avec des contacts de haut niveau chez des groupes comme Printemps et Galeries Lafayette, organisées au cas par cas',
+    'Un seul conseiller planifie et ajuste toute la journée — si une réunion se prolonge, le transport et le reste du programme évoluent en conséquence, sans demande séparée',
+    'Mises en relation au sein des cercles du commerce de luxe français, y compris avec des contacts de haut niveau chez des groupes comme Printemps et Galeries Lafayette, organisées via les relations personnelles du conseiller et vérifiées pour leur pertinence avant toute prise de contact',
     "Visites de sites emblématiques de l'innovation européenne — Station F, le plus grand campus de start-up au monde ; Schneider Electric, pour la transformation numérique et la stratégie ESG ; et Dassault Systèmes, pour les expériences virtuelles 3D et la technologie du jumeau numérique",
+    "Réunions et interprétariat organisés par défaut dans des lieux privés plutôt que publics, avec un interlocuteur unique qui ne répète les informations du client à personne d'autre",
+    'Conseillers à l’aise en anglais, en français et en mandarin — un interprète intervient quand c’est réellement nécessaire, pas à chaque conversation',
     'Logistique de réunions, interprètes et transport discret pour vos déplacements professionnels en Europe',
   ]
 faq:
@@ -46,6 +54,10 @@ faq:
     {
       question: 'Est-ce réservé aux déplacements professionnels d’entreprise ?',
       answer: "Non — la même logistique et la même discrétion s'appliquent à un agenda professionnel comme à un séjour VIP personnel exigeant le même niveau de confidentialité et de fiabilité.",
+    },
+    {
+      question: "Les réunions peuvent-elles se tenir dans un lieu privé, plutôt qu'un hall d'hôtel ou un restaurant public ?",
+      answer: "Oui — un lieu privé est l'option par défaut dès que l'agenda le justifie, sans qu'il soit nécessaire de le demander spécifiquement.",
     },
   ]
 relatedServiceKeys: ['business-vip-assistance', 'private-transportation', 'vip-airport-reception']
