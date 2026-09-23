@@ -9,6 +9,7 @@ countryCode: 'GB'
 featured: false
 status: 'published'
 coverImage: 'destination-london'
+travelStyleKeys: ['family-journeys']
 gallery: ['destination-london']
 bestTime: '5、6 月与 9 月气候温和，活动日程丰富；6 月底至 7 月初适逢温布尔登网球赛。'
 suggestedStay: '3–5 晚'

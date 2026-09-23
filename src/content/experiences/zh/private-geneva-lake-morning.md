@@ -6,6 +6,7 @@ translationKey: 'private-geneva-lake-morning'
 description: '一个安静的清晨，配私人船长在湖上悠然而行，阿尔卑斯山脉在湖岸后方展开，没有固定路线，去哪里由您决定。'
 category: 'Nature'
 destinationKey: 'geneva'
+travelStyleKeys: ['family-journeys', 'romantic-escapes']
 featured: false
 status: 'published'
 coverImage: 'destination-geneva-lake'

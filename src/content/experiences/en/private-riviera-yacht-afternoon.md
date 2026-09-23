@@ -6,6 +6,7 @@ translationKey: 'private-riviera-yacht-afternoon'
 description: 'A private afternoon on the water along the coast, with the boat and route shaped around who is travelling with you.'
 category: 'Private Access'
 destinationKey: 'french-riviera'
+travelStyleKeys: ['family-journeys', 'romantic-escapes']
 featured: false
 status: 'published'
 coverImage: 'destination-french-riviera-yacht'

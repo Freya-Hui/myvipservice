@@ -207,7 +207,13 @@
 
 ## 5. Travel Styles
 
-见第 8 节的完整讨论——**结论：本阶段维持数据文件（`src/data/site-content.ts#travelTypes`），不建 Collection**。字段设计、独立 Collection 的最小 schema 也在该节给出，供未来升级时参考。
+**2026-09-23 更新：本节此前的结论（维持数据文件、不建 Collection）已被推翻**——第三批路线图设定的前提（体验数量达到 10-15 条）已满足，客户也明确要求把首页"人群"板块升级为真正的落地页系统，详见 `.claude/skills/travel-audience-segments/SKILL.md` 记录的实现方案与教训。
+
+**已实现**：独立 Collection `travelStyles`（`src/content/travel-styles/`，schema 见 `src/content.config.ts`），字段包括 `shortLabel`/`description`/`travelFitTag`/`coverImage`/`gallery`/`storyFeatures`/`highlights`/`faq`/`href`，与 `destinations`/`experiences` 同构（`translationKey` + 独立 `slug`，复用 `src/lib/content.ts` 的 `getDetailStaticPaths`/`getEntryByTranslationKey`/`resolveRelated`）。详情页 `/{locale}/travel-styles/{slug}/`、列表页 `/{locale}/travel-styles/`（均已实现，路径与本文档一直沿用的 §URL 规范一致）。
+
+**只迁移了 4 个已上线的人群**（family-journeys / romantic-escapes / celebrations / business-vip），对应首页此前的"WHO WE DESIGN FOR"板块。`src/data/site-content.ts#travelTypes` 现在只保留另外 12 个候选人群，作为未翻译、未建页的纯 backlog，不再是任何页面的数据源。
+
+**标签联动**：新增 `src/lib/content.ts#getEntriesByTravelStyle`，反查 `experiences.travelStyleKeys`（Phase 2C 定义的字段，这次第一次真正回填）、`journeys.travelStyleKeys`（本次新增字段）、`destinations.travelStyleKeys`（本次新增字段，回填 7 个目的地）、`accommodations.travelFit`（Phase 2C 就已经在几乎每份住宿内容里填好，这次是第一次被任何页面消费）。`journal.relatedTravelStyleKeys`（本节此前规划的字段，见 §7）也已实现并回填 3 篇文章，详情页用简单的内存 reverse lookup 消费（未走 `getEntriesByTravelStyle`，因为字段命名不同、只有一处消费者，没必要为此扩展共享函数）。
 
 ---
 

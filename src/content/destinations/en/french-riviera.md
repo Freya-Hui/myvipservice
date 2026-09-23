@@ -8,6 +8,7 @@ region: 'Europe'
 featured: true
 status: 'published'
 coverImage: 'destination-french-riviera'
+travelStyleKeys: ['romantic-escapes', 'celebrations']
 gallery: ['destination-french-riviera', 'destination-french-riviera-yacht', 'service-dining']
 bestTime: 'May to September for the coast; April and October for quieter, milder days.'
 suggestedStay: '4–7 nights'

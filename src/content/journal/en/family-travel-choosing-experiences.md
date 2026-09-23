@@ -6,6 +6,7 @@ translationKey: 'family-travel-choosing-experiences'
 category: 'Family Travel'
 excerpt: '"Family-friendly" shouldn''t just be marketing language — here''s what we actually check for when selecting family experiences, from age fit to pacing to whether the driver waits.'
 coverImage: 'destination-london'
+relatedTravelStyleKeys: ['family-journeys']
 gallery: ['destination-london', 'destination-geneva-lake']
 relatedDestinationKeys: ['london', 'geneva']
 relatedExperienceKeys: ['private-london-family-museum-morning', 'private-geneva-lake-morning']

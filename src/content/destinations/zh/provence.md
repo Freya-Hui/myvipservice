@@ -8,6 +8,7 @@ region: 'Europe'
 featured: true
 status: 'published'
 coverImage: 'destination-provence'
+travelStyleKeys: ['family-journeys', 'romantic-escapes']
 gallery: ['destination-provence', 'destination-provence-vineyard', 'service-dining']
 bestTime: '5 月至 9 月最佳，6 月中旬至 7 月下旬为薰衣草花期。'
 suggestedStay: '3–5 晚'

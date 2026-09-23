@@ -8,6 +8,7 @@ region: 'Europe'
 featured: false
 status: 'published'
 coverImage: 'destination-geneva'
+travelStyleKeys: ['business-vip', 'family-journeys']
 gallery: ['destination-geneva', 'destination-geneva-jet-deau']
 bestTime: 'June to September for lake and mountain access; December–March for the Alps.'
 suggestedStay: '2–4 nights, often paired with an Alpine stay.'

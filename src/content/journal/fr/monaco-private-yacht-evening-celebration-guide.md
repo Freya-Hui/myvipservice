@@ -10,6 +10,7 @@ gallery: ['destination-monaco', 'destination-french-riviera-yacht']
 relatedDestinationKeys: ['monaco']
 relatedExperienceKeys: ['private-monaco-harbour-evening']
 relatedJourneyKeys: ['cote-dazur-provence-journey']
+relatedTravelStyleKeys: ['celebrations', 'romantic-escapes']
 seoTitle: 'Soirée privée en yacht à Monaco : meilleure période, éviter la semaine du Grand Prix et organiser une célébration'
 seoDescription: "Comment organiser une soirée privée en yacht à Monaco ? Ce guide couvre la meilleure saison, les horaires de coucher de soleil, ce qu'il faut savoir pour réserver autour de la semaine du Grand Prix en mai, et comment construire le temps en mer et le dîner autour d'un anniversaire ou d'une autre occasion."
 status: 'published'

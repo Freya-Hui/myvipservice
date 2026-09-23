@@ -37,9 +37,9 @@ France 是核心市场，且已有 3 个可关联的住宿/体验都挂在法国
 
 按第二、第三优先级（Switzerland: Lausanne/Montreux/Gstaad/St. Moritz/Zermatt/Lucerne/Zurich；Italy: Milan/Lake Como/Venice/Florence/Tuscany/Rome/Amalfi Coast/Sicily）补目的地，同时给已有和新增目的地各配 1-2 个住宿——**目的地和住宿最好同批推进**，避免出现"有目的地介绍但点进去空空如也"的空壳页面（现有 `EmptyState` 组件已经处理了这种情况的展示，但内容体验上仍然建议避免）。
 
-### 第三批：私人体验补齐 + Travel Styles 关联回填
+### 第三批：私人体验补齐 + Travel Styles 关联回填 —— 已完成（2026-09-23）
 
-体验数量补到 10-15 条后，回头给第一、二批的体验和目的地补上 `travelStyleKeys`（Phase 2C 新增字段）关联，让 Travel Styles 首页模块未来可以升级为"点进去看这个风格下有哪些体验/住宿"的真实列表页（见 [content-architecture.md](./content-architecture.md#5-travel-styles)）。
+体验数量补到 10 条后，`travelStyleKeys` 已回填到 5 条体验、2 条主题游、7 个目的地，`accommodations.travelFit`（Phase 2C 就已填好但从未被消费）也接上了。Travel Styles 首页模块已经升级为真实列表页/详情页系统（`/travel-styles/`），不再是纯数据文件卡片，详见 [content-architecture.md](./content-architecture.md#5-travel-styles) 更新后的内容。已上线的 4 个人群（family-journeys / romantic-escapes / celebrations / business-vip）之外的 12 个候选人群仍未建页，留在 `site-content.ts#travelTypes` 里作为 backlog。
 
 ### 第四批：United Kingdom + 其他欧洲补充
 

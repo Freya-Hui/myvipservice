@@ -9,6 +9,7 @@ countryCode: 'GB'
 featured: false
 status: 'published'
 coverImage: 'destination-london'
+travelStyleKeys: ['family-journeys']
 gallery: ['destination-london']
 bestTime: 'May–June and September for mild weather and a full events calendar; late June/early July for Wimbledon.'
 suggestedStay: '3–5 nights'

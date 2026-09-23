@@ -10,6 +10,7 @@ gallery: ['destination-monaco', 'destination-french-riviera-yacht']
 relatedDestinationKeys: ['monaco']
 relatedExperienceKeys: ['private-monaco-harbour-evening']
 relatedJourneyKeys: ['cote-dazur-provence-journey']
+relatedTravelStyleKeys: ['celebrations', 'romantic-escapes']
 seoTitle: 'Monaco Private Yacht Evening Guide: Best Timing, Avoiding Grand Prix Week and Planning a Celebration'
 seoDescription: "How do you plan a private yacht evening in Monaco? This guide covers the best season, sunset timing, what to know about booking around May's Grand Prix week, and how to build the boat time and dinner around a birthday, anniversary or other occasion."
 status: 'published'

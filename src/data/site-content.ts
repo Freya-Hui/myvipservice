@@ -72,58 +72,17 @@ export interface TravelType extends SiteDataItem {
   shortLabel?: string;
 }
 
-// Site-logic-realignment: this grid answers "who is this for", not "what
-// happens on the trip" — the theme/activity dimension (wine, ski, art,
-// coastal) now lives entirely in the `journeys` collection, so it isn't
-// duplicated here. English carries the full 16-item taxonomy (6 featured +
-// 10 dormant, kept for future use); zh/fr cover only the 6 featured items,
-// since no "view all" UI exists in those locales yet.
+// This array is now a pure backlog, not a page data source: the 4
+// previously-featured entries (family-journeys / romantic-escapes /
+// celebrations / business-vip) have been migrated into the real
+// `travelStyles` content collection (src/content/travel-styles/) and its
+// `/travel-styles/{slug}/` detail pages — see docs/content-architecture.md
+// §5 and the `travel-audience-segments` skill. The 12 entries below are
+// candidate future travel styles, kept for reference only; nothing reads
+// this array. Building one out means adding a real travelStyles entry per
+// locale, not un-commenting anything here.
 export const travelTypes: Record<Locale, TravelType[]> = {
   en: [
-    {
-      id: 'family-journeys',
-      title: 'Family Journeys',
-      shortLabel: 'For Families',
-      description:
-        'Itineraries paced for children, with childcare support — and for three generations travelling together, a full villa rather than several separate hotel rooms.',
-      featured: true,
-      imageId: 'service-family',
-      order: 1,
-      href: '/en/services/family-children-services/',
-    },
-    {
-      id: 'romantic-escapes',
-      title: 'Romantic Escapes',
-      shortLabel: 'For Romance',
-      description:
-        'Honeymoons, anniversaries and proposals, paced for two rather than a checklist of sights.',
-      featured: true,
-      imageId: 'service-romantic-travel',
-      order: 2,
-      href: '/en/services/romantic-travel/',
-    },
-    {
-      id: 'celebrations',
-      title: 'Celebrations & Special Occasions',
-      shortLabel: 'For Celebrations',
-      description:
-        'Weddings, anniversaries and milestone celebrations, staged at venues that suit the occasion — from a Paris opera house to a private château.',
-      featured: true,
-      imageId: 'service-floral-event',
-      order: 3,
-      href: '/en/services/private-experiences/',
-    },
-    {
-      id: 'business-vip',
-      title: 'Business & VIP Travel',
-      shortLabel: 'For Business',
-      description:
-        "A demanding schedule handled end to end — meetings, discreet transport and introductions that don't wait on translation.",
-      featured: true,
-      imageId: 'service-business',
-      order: 4,
-      href: '/en/services/business-vip-assistance/',
-    },
     {
       id: 'multi-generational',
       title: 'Multi-Generational Travel',
@@ -222,95 +181,10 @@ export const travelTypes: Record<Locale, TravelType[]> = {
       order: 16,
     },
   ],
-  zh: [
-    {
-      id: 'family-journeys',
-      title: '家庭旅行',
-      shortLabel: '亲子家庭',
-      description:
-        '围绕孩子设计的行程节奏，配儿童看护支持——若是祖孙三代同游，也能安排一栋容纳全家的别墅，而非分散预订的多间客房。',
-      featured: true,
-      imageId: 'service-family',
-      order: 1,
-      href: '/zh/services/family-children-services/',
-    },
-    {
-      id: 'romantic-escapes',
-      title: '浪漫之旅',
-      shortLabel: '浪漫两人',
-      description: '蜜月、纪念日与求婚安排，围绕两个人的节奏展开，不是景点打卡清单。',
-      featured: true,
-      imageId: 'service-romantic-travel',
-      order: 2,
-      href: '/zh/services/romantic-travel/',
-    },
-    {
-      id: 'celebrations',
-      title: '庆典与特别时刻',
-      shortLabel: '庆典时刻',
-      description: '婚礼、纪念日与里程碑庆典，在合适的场地举办——从巴黎歌剧院到私人城堡。',
-      featured: true,
-      imageId: 'service-floral-event',
-      order: 3,
-      href: '/zh/services/private-experiences/',
-    },
-    {
-      id: 'business-vip',
-      title: '商务与贵宾出行',
-      shortLabel: '商务贵宾',
-      description: '围绕繁忙行程端到端安排——会议、专属接送与商务引荐，无需等待翻译。',
-      featured: true,
-      imageId: 'service-business',
-      order: 4,
-      href: '/zh/services/business-vip-assistance/',
-    },
-  ],
-  fr: [
-    {
-      id: 'family-journeys',
-      title: 'Voyages en famille',
-      shortLabel: 'Pour la famille',
-      description:
-        "Un rythme pensé pour les enfants, avec accompagnement — et pour trois générations réunies, une villa entière plutôt que plusieurs chambres d'hôtel séparées.",
-      featured: true,
-      imageId: 'service-family',
-      order: 1,
-      href: '/fr/services/family-children-services/',
-    },
-    {
-      id: 'romantic-escapes',
-      title: 'Escapades romantiques',
-      shortLabel: 'Pour le romantisme',
-      description:
-        "Lunes de miel, anniversaires et demandes en mariage, au rythme de deux personnes plutôt que d'une liste de lieux à voir.",
-      featured: true,
-      imageId: 'service-romantic-travel',
-      order: 2,
-      href: '/fr/services/romantic-travel/',
-    },
-    {
-      id: 'celebrations',
-      title: 'Célébrations & occasions spéciales',
-      shortLabel: 'Pour les célébrations',
-      description:
-        "Mariages, anniversaires et célébrations marquantes, organisés dans des lieux adaptés — d'un opéra parisien à un château privé.",
-      featured: true,
-      imageId: 'service-floral-event',
-      order: 3,
-      href: '/fr/services/private-experiences/',
-    },
-    {
-      id: 'business-vip',
-      title: 'Business & voyages VIP',
-      shortLabel: 'Pour le business',
-      description:
-        'Un emploi du temps exigeant pris en charge de bout en bout — réunions, transport discret et mises en relation, sans attendre la traduction.',
-      featured: true,
-      imageId: 'service-business',
-      order: 4,
-      href: '/fr/services/business-vip-assistance/',
-    },
-  ],
+  // The 12 backlog styles have never been translated (only the now-migrated
+  // 4 were) — kept empty rather than partially populated.
+  zh: [],
+  fr: [],
 };
 
 export const whyUsPoints: Record<Locale, SiteDataItem[]> = {

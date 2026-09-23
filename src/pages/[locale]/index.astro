@@ -11,12 +11,7 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import { getLocaleEntries } from '../../lib/content';
 import { getImage } from '../../data/image-attributions';
 import { languages, useTranslations, type Locale } from '../../i18n/ui';
-import {
-  travelTypes,
-  quickServices,
-  whyUsPoints,
-  destinationCountryGroups,
-} from '../../data/site-content';
+import { quickServices, whyUsPoints, destinationCountryGroups } from '../../data/site-content';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((locale) => ({ params: { locale } }));
@@ -52,6 +47,15 @@ const featuredJournalEntries = allJournalEntries.filter((entry) => entry.data.fe
 const featuredJourneys = (await getLocaleEntries('journeys', locale)).filter(
   (entry) => entry.data.featured,
 );
+const travelMosaicItems = (await getLocaleEntries('travelStyles', locale))
+  .filter((entry) => entry.data.featured)
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => ({
+    href: `/${locale}/travel-styles/${entry.data.slug}/`,
+    image: getImage(entry.data.coverImage),
+    label: entry.data.shortLabel,
+    description: entry.data.description,
+  }));
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -136,49 +140,39 @@ const structuredData = {
   />
 
   {
-    (() => {
-      const travelMosaicItems = travelTypes[locale]
-        .filter((item) => item.featured && item.imageId && item.href)
-        .sort((a, b) => a.order - b.order)
-        .map((item) => ({
-          href: item.href as string,
-          image: getImage(item.imageId as string),
-          label: item.shortLabel ?? item.title,
-          description: item.description,
-        }));
-      return (
-        travelMosaicItems.length > 0 && (
-          <section class="section travel-mosaic">
-            <div class="container">
-              <SectionHeading
-                eyebrow={t('home.travelTypes.eyebrow')}
-                title={t('home.travelTypes.title')}
-              />
-              <ul class="travel-mosaic__grid">
-                {travelMosaicItems.map((item) => (
-                  <li class="travel-mosaic__item">
-                    <a href={item.href}>
-                      <img
-                        src={item.image.src}
-                        alt={item.image.altByLocale[locale]}
-                        width="1600"
-                        height="1200"
-                        loading="lazy"
-                      />
-                      <span class="travel-mosaic__scrim" aria-hidden="true" />
-                      <span class="travel-mosaic__caption">
-                        <span class="travel-mosaic__label">{item.label}</span>
-                        <span class="travel-mosaic__subtitle">{item.description}</span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        )
-      );
-    })()
+    travelMosaicItems.length > 0 && (
+      <section class="section travel-mosaic">
+        <div class="container">
+          <SectionHeading
+            eyebrow={t('home.travelTypes.eyebrow')}
+            title={t('home.travelTypes.title')}
+          />
+          <ul class="travel-mosaic__grid">
+            {travelMosaicItems.map((item) => (
+              <li class="travel-mosaic__item">
+                <a href={item.href}>
+                  <img
+                    src={item.image.src}
+                    alt={item.image.altByLocale[locale]}
+                    width="1600"
+                    height="1200"
+                    loading="lazy"
+                  />
+                  <span class="travel-mosaic__scrim" aria-hidden="true" />
+                  <span class="travel-mosaic__caption">
+                    <span class="travel-mosaic__label">{item.label}</span>
+                    <span class="travel-mosaic__subtitle">{item.description}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a class="text-small travel-mosaic__view-all" href={`/${locale}/travel-styles/`}>
+            {t('home.travelTypes.viewAll')} →
+          </a>
+        </div>
+      </section>
+    )
   }
 
   <RelatedContent
@@ -360,5 +354,11 @@ const structuredData = {
       max-height: 3.5rem;
       opacity: 1;
     }
+  }
+
+  .travel-mosaic__view-all {
+    display: inline-block;
+    margin-top: var(--space-5);
+    color: var(--color-accent);
   }
 </style>

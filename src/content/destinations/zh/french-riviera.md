@@ -8,6 +8,7 @@ region: 'Europe'
 featured: true
 status: 'published'
 coverImage: 'destination-french-riviera'
+travelStyleKeys: ['romantic-escapes', 'celebrations']
 gallery: ['destination-french-riviera', 'destination-french-riviera-yacht', 'service-dining']
 bestTime: '5 月至 9 月适合海岸活动；4 月与 10 月则更宁静、气候更温和。'
 suggestedStay: '4–7 晚'

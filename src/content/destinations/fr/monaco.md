@@ -9,6 +9,7 @@ countryCode: 'MC'
 featured: false
 status: 'published'
 coverImage: 'destination-monaco'
+travelStyleKeys: ['romantic-escapes', 'celebrations']
 gallery: ['destination-monaco']
 bestTime: 'Mai pour le Grand Prix ; juin à septembre pour le port et la saison balnéaire.'
 suggestedStay: '2 à 3 nuits, souvent associées à la Côte d’Azur.'

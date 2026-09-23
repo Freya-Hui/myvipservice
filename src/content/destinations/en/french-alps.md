@@ -8,6 +8,7 @@ region: 'Europe'
 featured: true
 status: 'published'
 coverImage: 'destination-french-alps'
+travelStyleKeys: ['family-journeys']
 gallery: ['destination-french-alps', 'destination-french-alps-chalet', 'service-dining']
 bestTime: 'December to April for skiing; July–August for summer in the mountains.'
 suggestedStay: '4–7 nights'

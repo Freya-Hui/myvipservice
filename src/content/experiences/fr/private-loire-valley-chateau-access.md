@@ -6,6 +6,7 @@ translationKey: 'private-loire-valley-chateau-access'
 description: "Une visite privée d'un château et de ses jardins avant l'ouverture au public, avec un guide qui peut approfondir l'histoire autant que vous le souhaitez."
 category: 'Art & Culture'
 destinationKey: 'loire-valley'
+travelStyleKeys: ['family-journeys']
 featured: true
 status: 'published'
 coverImage: 'journey-loire-valley-chambord'

@@ -6,6 +6,7 @@ translationKey: 'family-travel-choosing-experiences'
 category: 'Family Travel'
 excerpt: "« Adapté aux familles » ne devrait pas être qu'un argument marketing — voici ce que nous vérifions vraiment en sélectionnant des expériences familiales, de l'adéquation à l'âge au rythme, en passant par l'attente du chauffeur."
 coverImage: 'destination-london'
+relatedTravelStyleKeys: ['family-journeys']
 gallery: ['destination-london', 'destination-geneva-lake']
 relatedDestinationKeys: ['london', 'geneva']
 relatedExperienceKeys: ['private-london-family-museum-morning', 'private-geneva-lake-morning']

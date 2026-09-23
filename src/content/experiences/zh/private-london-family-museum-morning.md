@@ -6,6 +6,7 @@ translationKey: 'private-london-family-museum-morning'
 description: '由擅长与孩子互动的向导带领，在您选定的博物馆进行小团体参观，讲解节奏根据同行孩子的年龄调整，不用担心孩子坐不住。'
 category: 'Family'
 destinationKey: 'london'
+travelStyleKeys: ['family-journeys']
 featured: false
 status: 'published'
 coverImage: 'service-family'

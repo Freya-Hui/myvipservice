@@ -6,6 +6,7 @@ translationKey: 'private-riviera-yacht-afternoon'
 description: '沿海岸线度过的私人海上午后，游艇与航线都会根据同行人数与偏好量身安排。'
 category: 'Private Access'
 destinationKey: 'french-riviera'
+travelStyleKeys: ['family-journeys', 'romantic-escapes']
 featured: false
 status: 'published'
 coverImage: 'destination-french-riviera-yacht'

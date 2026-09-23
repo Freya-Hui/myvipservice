@@ -6,6 +6,7 @@ translationKey: 'family-travel-choosing-experiences'
 category: 'Family Travel'
 excerpt: '"适合家庭"不该只是宣传语——从年龄适配、节奏安排到司机等候，这里是我们实际筛选亲子体验的标准。'
 coverImage: 'destination-london'
+relatedTravelStyleKeys: ['family-journeys']
 gallery: ['destination-london', 'destination-geneva-lake']
 relatedDestinationKeys: ['london', 'geneva']
 relatedExperienceKeys: ['private-london-family-museum-morning', 'private-geneva-lake-morning']
