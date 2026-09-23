@@ -33,7 +33,7 @@ roomTypes:
 suitableFor: ['注重私密性的情侣', '长住需求', '想体验巴黎最新米其林三星餐厅的旅客']
 servicePerspective: '长期合作酒店，特别适合偏好小型、私密地址、不需要右岸宫殿酒店那种大堂气派的客人——情侣或小家庭会更适合，需要更大公共空间的大团组则未必是最佳选择。视具体情况，可协助安排房型升级、Le Gabriel 优先订位与长住价格。'
 relatedExperienceKeys: []
-relatedAccommodationKeys: ['bulgari', 'mandarin-oriental']
+relatedAccommodationKeys: ['bulgari', 'mandarin-oriental', 'maison-villeroy']
 relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 updatedAt: 2026-09-15

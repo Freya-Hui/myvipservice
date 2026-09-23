@@ -54,7 +54,7 @@ roomTypes:
 suitableFor: ['Travellers interested in design', 'Couples', 'Business travellers']
 servicePerspective: "Bvlgari Hotel Paris suits travellers drawn to contemporary Italian design who also want to stay near the Champs-Élysées — Antonio Citterio's design language, Niko Romito's Italian cooking and Bvlgari's own jewellery aesthetic run through the whole property. For a more classically decorated palace-style stay, a traditional hotel is worth considering instead — but for a low-key, refined stay in Paris with an Italian accent, this is a strong fit."
 relatedExperienceKeys: []
-relatedAccommodationKeys: ['la-reserve', 'mandarin-oriental']
+relatedAccommodationKeys: ['la-reserve', 'mandarin-oriental', 'maison-villeroy']
 relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 updatedAt: 2026-09-11

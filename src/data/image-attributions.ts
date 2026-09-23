@@ -4138,6 +4138,135 @@ export const imageAttributions: ImageAttribution[] = [
       fr: 'Le bar de La Réserve Paris, boiseries laquées noires, filets dorés et velours rouge profond.',
     },
   },
+  {
+    id: 'accommodation-maison-villeroy-facade',
+    src: '/images/accommodation-maison-villeroy-facade.jpg',
+    sourceUrl: 'https://guide.michelin.com/us/en/hotels-stays/paris/maison-villeroy-9456',
+    sourceName: 'MICHELIN Guide (property-supplied photo)',
+    author: 'Maison Villeroy',
+    license:
+      'Unconfirmed — sourced from the property listing on the MICHELIN Guide, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: "Maison Villeroy's stone facade on Rue Jean Goujon, in Paris's 8th arrondissement.",
+      zh: 'Maison Villeroy 位于让·古戎街的石材立面，巴黎第八区。',
+      fr: 'La façade en pierre de Maison Villeroy, rue Jean Goujon, dans le 8e arrondissement de Paris.',
+    },
+    notes: '1908 mansion, designated a historic monument (monument historique).',
+  },
+  {
+    id: 'accommodation-maison-villeroy-staircase',
+    src: '/images/accommodation-maison-villeroy-staircase.jpg',
+    sourceUrl: 'https://guide.michelin.com/us/en/hotels-stays/paris/maison-villeroy-9456',
+    sourceName: 'MICHELIN Guide (property-supplied photo)',
+    author: 'Maison Villeroy',
+    license:
+      'Unconfirmed — sourced from the property listing on the MICHELIN Guide, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: "The mansion's original stairwell, framed by a mirrored doorway and hanging glass-globe lights.",
+      zh: '宅邸原有的楼梯间，镜面门框与悬挂玻璃球灯相映。',
+      fr: "La cage d'escalier d'origine de l'hôtel particulier, encadrée d'une porte en miroir et de suspensions en verre.",
+    },
+    notes: 'Restored by design firm Atelier Alain Ellouz, preserving the 1908 architecture.',
+  },
+  {
+    id: 'accommodation-maison-villeroy-trente-trois',
+    src: '/images/accommodation-maison-villeroy-trente-trois.jpg',
+    sourceUrl: 'https://guide.michelin.com/us/en/hotels-stays/paris/maison-villeroy-9456',
+    sourceName: 'MICHELIN Guide (property-supplied photo)',
+    author: 'Maison Villeroy',
+    license:
+      'Unconfirmed — sourced from the property listing on the MICHELIN Guide, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: "Trente-Trois's wood-panelled dining room, tables set beneath a carved marble fireplace mirror.",
+      zh: 'Trente-Trois 餐厅的木饰面用餐厅，餐桌设于雕花大理石壁炉镜前。',
+      fr: 'La salle à manger lambrissée de Trente-Trois, tables dressées sous un miroir de cheminée en marbre sculpté.',
+    },
+    notes: 'One Michelin star since January 2021, chef Sébastien Sanjou.',
+  },
+  {
+    id: 'accommodation-maison-villeroy-spa',
+    src: '/images/accommodation-maison-villeroy-spa.jpg',
+    sourceUrl: 'https://guide.michelin.com/us/en/hotels-stays/paris/maison-villeroy-9456',
+    sourceName: 'MICHELIN Guide (property-supplied photo)',
+    author: 'Maison Villeroy',
+    license:
+      'Unconfirmed — sourced from the property listing on the MICHELIN Guide, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'A dark-stone spa treatment room opening onto a private planted courtyard.',
+      zh: '深色石材水疗理疗室，通向私人种植庭院。',
+      fr: 'Une salle de soins du spa en pierre sombre ouvrant sur une cour privée plantée.',
+    },
+    notes:
+      'Spa occupies the entire lower ground floor, treatments by Officine Universelle Buly 1803.',
+  },
+  {
+    id: 'accommodation-maison-villeroy-bar',
+    src: '/images/accommodation-maison-villeroy-bar.jpg',
+    sourceUrl: 'https://guide.michelin.com/us/en/hotels-stays/paris/maison-villeroy-9456',
+    sourceName: 'MICHELIN Guide (property-supplied photo)',
+    author: 'Maison Villeroy',
+    license:
+      'Unconfirmed — sourced from the property listing on the MICHELIN Guide, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'Bar Jean Goujon, its gold-leaf ceiling molding original to the 1908 mansion.',
+      zh: 'Jean Goujon 酒吧，其金箔天花线脚为1908年宅邸原物。',
+      fr: 'Le Bar Jean Goujon, dont les moulures dorées au plafond datent de l’hôtel particulier de 1908.',
+    },
+    notes: 'Known for an extensive Japanese whisky selection.',
+  },
+  {
+    id: 'accommodation-maison-villeroy-premier-room',
+    src: '/images/accommodation-maison-villeroy-premier-room.jpg',
+    sourceUrl: 'https://guide.michelin.com/us/en/hotels-stays/paris/maison-villeroy-9456',
+    sourceName: 'MICHELIN Guide (property-supplied photo)',
+    author: 'Maison Villeroy',
+    license:
+      'Unconfirmed — sourced from the property listing on the MICHELIN Guide, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'A Premier Room in soft greige tones, with panelled walls and a reading chair by the window.',
+      zh: '灰米色调的高级客房，护墙板墙面，窗边设有阅读椅。',
+      fr: 'Une Premier Room aux tons taupe doux, murs à panneaux et fauteuil de lecture près de la fenêtre.',
+    },
+    notes: 'One of the four Premier Room-tier accommodations.',
+  },
+  {
+    id: 'accommodation-maison-villeroy-suite-living-room',
+    src: '/images/accommodation-maison-villeroy-suite-living-room.jpg',
+    sourceUrl: 'https://guide.michelin.com/us/en/hotels-stays/paris/maison-villeroy-9456',
+    sourceName: 'MICHELIN Guide (property-supplied photo)',
+    author: 'Maison Villeroy',
+    license:
+      'Unconfirmed — sourced from the property listing on the MICHELIN Guide, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'A suite living room with a marble fireplace and its own dressing room visible through the doorway.',
+      zh: '套房客厅，设有大理石壁炉，门后可见独立更衣室。',
+      fr: 'Le salon d’une suite avec cheminée en marbre et dressing privé visible par la porte.',
+    },
+    notes: 'Representative of the Grand Premier Suite / apartment tier.',
+  },
+  {
+    id: 'accommodation-maison-villeroy-bathroom',
+    src: '/images/accommodation-maison-villeroy-bathroom.jpg',
+    sourceUrl: 'https://guide.michelin.com/us/en/hotels-stays/paris/maison-villeroy-9456',
+    sourceName: 'MICHELIN Guide (property-supplied photo)',
+    author: 'Maison Villeroy',
+    license:
+      'Unconfirmed — sourced from the property listing on the MICHELIN Guide, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'A marble bathroom with a deep soaking tub and a dedicated vanity counter.',
+      zh: '大理石浴室，设有深浴缸与独立梳妆台面。',
+      fr: 'Une salle de bain en marbre avec une baignoire profonde et un plan vasque dédié.',
+    },
+    notes: 'Marble bathrooms throughout, per property listing.',
+  },
 ];
 
 export function getImage(id: string): ImageAttribution {

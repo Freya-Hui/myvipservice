@@ -54,7 +54,7 @@ roomTypes:
 suitableFor: ['Voyageurs intéressés par le design', 'Couples', "Voyageurs d'affaires"]
 servicePerspective: "Le Bvlgari Hotel Paris convient aux voyageurs sensibles au design italien contemporain qui souhaitent aussi loger près des Champs-Élysées — le langage design d'Antonio Citterio, la cuisine italienne de Niko Romito et l'esthétique joaillière propre à Bvlgari traversent toute la propriété. Pour un séjour de palace au décor plus classique, un hôtel traditionnel mérite d'être envisagé à la place — mais pour un séjour discret et raffiné à Paris, avec un accent italien, celui-ci convient parfaitement."
 relatedExperienceKeys: []
-relatedAccommodationKeys: ['la-reserve', 'mandarin-oriental']
+relatedAccommodationKeys: ['la-reserve', 'mandarin-oriental', 'maison-villeroy']
 relatedJournalKeys: ['paris-palace-vs-boutique-hotels-guide']
 publishedAt: 2026-08-07
 updatedAt: 2026-09-11
