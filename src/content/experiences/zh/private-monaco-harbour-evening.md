@@ -14,13 +14,7 @@ duration: '晚间'
 suitableFor: ['情侣', '小型团体', '庆祝场合']
 familySuitable: false
 languages: ['英语', '法语']
-highlights:
-  [
-    '港湾私人游船时光',
-    '收尾晚宴已预留餐桌',
-    '整晚节奏围绕庆祝主题安排',
-    '整晚行程价格从 €1,200 起，含游船与晚宴订位',
-  ]
+highlights: ['港湾私人游船时光', '收尾晚宴已预留餐桌', '整晚节奏围绕庆祝主题安排']
 customisationNotes: '告诉我们这是什么样的庆祝场合、同行人数——游船时长、餐厅选择与整晚节奏都会据此安排。生日、纪念日等特殊安排（如香槟、鲜花）可提前告知。'
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

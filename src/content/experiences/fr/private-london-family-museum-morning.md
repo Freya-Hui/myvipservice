@@ -20,7 +20,6 @@ highlights:
     'Guide expérimenté avec les enfants',
     'Rythme en petit groupe, pas une visite publique',
     'Musée et thèmes choisis avec vous à l’avance',
-    'À partir de 400 € pour une matinée en petit groupe de 2 à 3 heures',
   ]
 customisationNotes: "Indiquez-nous l'âge des enfants et les sujets qui les intéressent — l'itinéraire et le rythme sont construits autour de cela."
 relatedAccommodationKeys: []

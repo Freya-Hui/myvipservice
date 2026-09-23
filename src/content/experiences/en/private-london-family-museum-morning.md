@@ -20,7 +20,6 @@ highlights:
     'Guide experienced with children',
     'Small-group pacing, not a public tour',
     'Museum and themes chosen with you in advance',
-    'From €400 for a 2–3 hour small-group morning',
   ]
 customisationNotes: 'Tell us the ages of the children joining and which museum or subjects interest them — the route and pacing are built around that.'
 relatedAccommodationKeys: []

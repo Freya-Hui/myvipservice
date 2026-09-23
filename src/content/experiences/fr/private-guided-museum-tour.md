@@ -19,7 +19,6 @@ highlights:
     'Un guide expert dédié, pas un audioguide général ni un grand groupe',
     'La visite façonnée autour de ce que vous voulez voir — la collection, l’époque, l’artiste',
     "Le Louvre, le musée d'Orsay, Versailles et d'autres grands musées, sans se limiter à un seul",
-    'À partir de 500 € pour une visite privée de 2 à 3 heures',
   ]
 customisationNotes: "Indiquez-nous quel musée et sur quoi porter l'attention — le guide construit le parcours en conséquence. Sans se limiter à un seul lieu : le Louvre, le musée d'Orsay et Versailles sont régulièrement organisés. Merci de réserver au moins 48 heures à l'avance."
 relatedAccommodationKeys: ['ritz-paris']

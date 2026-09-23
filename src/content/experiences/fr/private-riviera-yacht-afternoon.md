@@ -14,13 +14,7 @@ duration: 'Demi-journée'
 suitableFor: ['Couples', 'Petits groupes']
 familySuitable: true
 languages: ['Anglais', 'Français']
-highlights:
-  [
-    'Location privée',
-    'Vue sur la côte',
-    'Rafraîchissements à bord',
-    "À partir de 2 500 € pour une location privée d'une demi-journée",
-  ]
+highlights: ['Location privée', 'Vue sur la côte', 'Rafraîchissements à bord']
 customisationNotes: "L'itinéraire, la durée et les rafraîchissements à bord sont tous adaptés au groupe — dites-nous qui vous accompagne et le type d'après-midi que vous avez en tête."
 relatedAccommodationKeys: ['hotel-negresco-nice']
 relatedExperienceKeys: []

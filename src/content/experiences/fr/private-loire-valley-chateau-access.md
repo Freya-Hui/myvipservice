@@ -14,13 +14,7 @@ duration: '2 à 3 heures, le matin'
 suitableFor: ['Couples', 'Familles', 'Petits groupes']
 familySuitable: true
 languages: ['Anglais', 'Français']
-highlights:
-  [
-    "Accès avant l'ouverture au public",
-    'Guide privé',
-    'Visite des jardins incluse',
-    'À partir de 600 € pour une visite privée de 2 à 3 heures le matin',
-  ]
+highlights: ["Accès avant l'ouverture au public", 'Guide privé', 'Visite des jardins incluse']
 customisationNotes: "Le choix du château, la taille du groupe et l'équilibre entre histoire et jardins s'ajustent à l'avance — l'accès est confirmé directement avec le domaine pour chaque demande."
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
