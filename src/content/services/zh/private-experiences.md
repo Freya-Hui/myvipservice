@@ -4,13 +4,13 @@ summary: '婚礼、里程碑庆典与私人活动，在欧洲最具特色的场�
 order: 7
 group: 'Private Travel'
 investmentTier: 'bespoke'
-image: service-private-experiences
+image: service-floral-event
 storyFeatures:
   [
     {
       title: '围绕场合定制主题，而非套用模板',
       body: '场地资源涵盖巴黎歌剧院场地以及周边地区的私人城堡，并由法国花艺设计师与视觉造型师提供创意统筹。同一支制作团队也会协调发型化妆、摄影与娱乐环节，确保当天不必分头临时安排。',
-      imageId: 'service-floral-event',
+      imageId: 'service-private-experiences',
     },
     {
       title: '一整栋别墅，而非租用的宴会厅',

@@ -4,13 +4,13 @@ summary: "Weddings, milestone celebrations and private events, staged at some of
 order: 7
 group: 'Private Travel'
 investmentTier: 'bespoke'
-image: service-private-experiences
+image: service-floral-event
 storyFeatures:
   [
     {
       title: 'A Theme Built Around the Occasion, Not a Template',
       body: 'Venue access spans Paris opera houses and private châteaux in the surrounding region, paired with creative direction from French floral designers and visual stylists. The same production team coordinates hair and make-up, photography and entertainment, so nothing is arranged separately on the day itself.',
-      imageId: 'service-floral-event',
+      imageId: 'service-private-experiences',
     },
     {
       title: 'A Whole House, Not a Rented Hall',
