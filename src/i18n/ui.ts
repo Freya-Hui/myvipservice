@@ -362,6 +362,28 @@ export const ui = {
     'contact.form.success': "Thank you — your message has been sent. We'll be in touch shortly.",
     'contact.form.error':
       'Something went wrong sending your message. Please try again, or email us directly at contact@myvipservice.com.',
+    'contact.intro.eyebrow': 'Who Reads This',
+    'contact.intro.title': 'A Dedicated Advisor, Not a Call Centre',
+    'contact.intro.body':
+      "Every enquiry is read by a member of the team working across France and Europe — not a ticketing queue. Once we understand what you're planning, we come back with a proposal shaped around it, not a menu of fixed packages.",
+    'contact.process.eyebrow': 'What Happens Next',
+    'contact.process.title': 'From Enquiry to Itinerary',
+    'contact.process.step1.title': 'Share Your Plans',
+    'contact.process.step1.description':
+      'Tell us the destination, dates and what matters most — the form below takes a few minutes.',
+    'contact.process.step2.title': 'We Review It Within 24 Hours',
+    'contact.process.step2.description':
+      'A consultant reads every enquiry personally and may follow up with a few questions before proposing anything.',
+    'contact.process.step3.title': 'Receive a Tailored Proposal',
+    'contact.process.step3.description':
+      'Hotels, transportation and experiences shaped around your dates and budget — not a fixed package.',
+    'contact.process.step4.title': 'Confirm and We Arrange Everything',
+    'contact.process.step4.description':
+      'Once you approve, we handle bookings, logistics and any changes along the way.',
+    'contact.other.heading': 'Not Planning a Trip?',
+    'contact.section.partnershipBody':
+      "Hotels, drivers and other potential partners: write to us at contact@myvipservice.com — the form above isn't the right fit for a partnership proposal.",
+    'contact.section.mediaBody': 'Press and media enquiries reach the team at the same address.',
 
     'badge.draftTranslation': 'Draft translation',
     'badge.demoListing': 'Demo listing',
@@ -857,6 +879,27 @@ export const ui = {
     'contact.form.submit': '发送咨询',
     'contact.form.success': '感谢您的留言——我们已收到，会尽快与您联系。',
     'contact.form.error': '发送失败，请重试，或直接发邮件至 contact@myvipservice.com 联系我们。',
+    'contact.intro.eyebrow': '谁会看到您的留言',
+    'contact.intro.title': '有一位专属顾问跟进，不是客服排队',
+    'contact.intro.body':
+      '每一条咨询都会由常驻法国、活跃于欧洲各地的团队成员亲自查看——不是自动排队系统。了解您的需求后，我们会给出针对这次行程量身定制的方案，而不是套餐式的固定选项。',
+    'contact.process.eyebrow': '接下来会发生什么',
+    'contact.process.title': '从提交咨询到完整行程',
+    'contact.process.step1.title': '提交您的需求',
+    'contact.process.step1.description':
+      '告诉我们目的地、日期与您最看重的部分——几分钟即可填完下方表单。',
+    'contact.process.step2.title': '顾问 24 小时内跟进',
+    'contact.process.step2.description':
+      '顾问会亲自查看每一条咨询，如有需要会先确认一些细节，再给出方案。',
+    'contact.process.step3.title': '收到定制方案',
+    'contact.process.step3.description':
+      '根据您的日期与预算，为您搭配酒店、用车与体验安排——不是固定套餐。',
+    'contact.process.step4.title': '确认后我们全程安排',
+    'contact.process.step4.description': '方案确认后，预订、后勤与行程中的临时调整都由我们负责。',
+    'contact.other.heading': '不是在计划旅行？',
+    'contact.section.partnershipBody':
+      '酒店、司机或其他潜在合作方：请直接发邮件至 contact@myvipservice.com——上方的旅行表单不适合用来提交合作意向。',
+    'contact.section.mediaBody': '媒体与采访咨询同样可以发送至这个邮箱，团队会直接看到。',
 
     'badge.draftTranslation': '译文草稿',
     'badge.demoListing': '示例房源',
@@ -1386,6 +1429,29 @@ export const ui = {
       'Merci — votre message a bien été envoyé. Nous vous répondrons rapidement.',
     'contact.form.error':
       "Une erreur s'est produite lors de l'envoi. Merci de réessayer, ou écrivez-nous directement à contact@myvipservice.com.",
+    'contact.intro.eyebrow': 'Qui lit votre message',
+    'contact.intro.title': 'Un conseiller dédié, pas un centre d’appels',
+    'contact.intro.body':
+      "Chaque demande est lue par un membre de notre équipe basée en France et active dans toute l'Europe — pas par une file d'attente automatisée. Une fois votre projet compris, nous revenons vers vous avec une proposition construite autour de vos besoins, et non un catalogue de forfaits fixes.",
+    'contact.process.eyebrow': 'La suite des événements',
+    'contact.process.title': 'De la demande à l’itinéraire',
+    'contact.process.step1.title': 'Partagez votre projet',
+    'contact.process.step1.description':
+      'Indiquez-nous la destination, les dates et vos priorités — le formulaire ci-dessous prend quelques minutes.',
+    'contact.process.step2.title': 'Nous l’examinons sous 24 heures',
+    'contact.process.step2.description':
+      'Un conseiller lit personnellement chaque demande et peut vous recontacter pour quelques précisions avant de proposer une offre.',
+    'contact.process.step3.title': 'Recevez une proposition sur mesure',
+    'contact.process.step3.description':
+      'Hôtels, transport et expériences adaptés à vos dates et votre budget — pas un forfait figé.',
+    'contact.process.step4.title': 'Confirmez, nous nous occupons du reste',
+    'contact.process.step4.description':
+      'Une fois votre accord donné, nous gérons les réservations, la logistique et les ajustements en cours de route.',
+    'contact.other.heading': 'Vous ne planifiez pas de voyage ?',
+    'contact.section.partnershipBody':
+      'Hôtels, chauffeurs et autres partenaires potentiels : écrivez-nous à contact@myvipservice.com — le formulaire ci-dessus ne convient pas à une proposition de partenariat.',
+    'contact.section.mediaBody':
+      'Les demandes presse et média sont également les bienvenues à cette même adresse.',
 
     'badge.draftTranslation': 'Traduction provisoire',
     'badge.demoListing': 'Annonce de démonstration',
