@@ -9,8 +9,8 @@ destinationKey: 'london'
 travelStyleKeys: ['family-journeys']
 featured: false
 status: 'published'
-coverImage: 'service-family'
-gallery: ['service-family', 'destination-london']
+coverImage: 'experience-london-museum-family'
+gallery: ['experience-london-museum-family', 'destination-london']
 duration: '2–3 hours, morning'
 suitableFor: ['Families', 'Small groups']
 familySuitable: true
