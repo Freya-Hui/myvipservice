@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PageHero from '../../../components/PageHero.astro';
+import StoryFeature from '../../../components/about/StoryFeature.astro';
+import ProcessSteps from '../../../components/home/ProcessSteps.astro';
 import { languages, useTranslations, type Locale } from '../../../i18n/ui';
 
 export function getStaticPaths() {
@@ -17,7 +19,17 @@ const enquiryTypes = [
   { value: 'private-travel', label: t('servicesGroup.Private Travel') },
   { value: 'hotels-villas', label: t('servicesGroup.Hotels & Villas') },
   { value: 'private-transportation', label: t('servicesGroup.Private Transportation') },
+  { value: 'concierge-lifestyle', label: t('servicesGroup.Concierge & Lifestyle') },
   { value: 'groups-corporate', label: t('servicesGroup.Groups & Corporate') },
+];
+
+// A real sequence (submit -> review -> proposal -> arrange), not a
+// "why choose us" list, so numbered steps are honest here.
+const processSteps = [
+  { title: t('contact.process.step1.title'), description: t('contact.process.step1.description') },
+  { title: t('contact.process.step2.title'), description: t('contact.process.step2.description') },
+  { title: t('contact.process.step3.title'), description: t('contact.process.step3.description') },
+  { title: t('contact.process.step4.title'), description: t('contact.process.step4.description') },
 ];
 
 // Ranges rather than free text — the client wants budget to qualify
@@ -51,6 +63,21 @@ const contactEmail = 'contact@myvipservice.com';
     eyebrow={t('contact.hero.eyebrow')}
     title={t('contact.hero.title')}
     subtitle={t('contact.hero.subtitle')}
+  />
+
+  <StoryFeature
+    eyebrow={t('contact.intro.eyebrow')}
+    title={t('contact.intro.title')}
+    body={t('contact.intro.body')}
+    imageId="service-reception-desk-call"
+    locale={locale}
+    compact
+  />
+
+  <ProcessSteps
+    eyebrow={t('contact.process.eyebrow')}
+    title={t('contact.process.title')}
+    steps={processSteps}
   />
 
   <section class="section contact">
@@ -188,6 +215,20 @@ const contactEmail = 'contact@myvipservice.com';
         <button class="button button--primary" type="submit">{t('contact.form.submit')}</button>
         <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
+
+      <div class="contact__other">
+        <h2 class="text-h4">{t('contact.other.heading')}</h2>
+        <dl class="contact__other-list">
+          <div>
+            <dt>{t('contact.section.partnership')}</dt>
+            <dd>{t('contact.section.partnershipBody')}</dd>
+          </div>
+          <div>
+            <dt>{t('contact.section.media')}</dt>
+            <dd>{t('contact.section.mediaBody')}</dd>
+          </div>
+        </dl>
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -313,5 +354,35 @@ const contactEmail = 'contact@myvipservice.com';
   .form-status {
     margin-top: var(--space-3);
     color: var(--color-success);
+  }
+
+  .contact__other {
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact__other-list {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+  }
+
+  .contact__other-list dt {
+    font-family: var(--font-display);
+    font-size: var(--text-body-lg);
+    margin-bottom: var(--space-1);
+  }
+
+  .contact__other-list dd {
+    color: var(--color-text-muted);
+    margin-left: 0;
+  }
+
+  @media (min-width: 640px) {
+    .contact__other-list {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+    }
   }
 </style>
