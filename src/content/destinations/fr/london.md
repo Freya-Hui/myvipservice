@@ -19,6 +19,10 @@ highlights:
     'Visites privées dans les maisons de vente aux enchères et galeries de Londres',
     'Shopping personnalisé à Mayfair et Knightsbridge',
     'Accompagnement discret pour réunions d’affaires dans la City et à Canary Wharf',
+    {
+      text: "Des matinées familiales privées dans les musées de Londres — le British Museum notamment — avec un guide qui adapte le rythme à l'âge des enfants",
+      image: 'experience-london-museum-family',
+    },
   ]
 seoTitle: 'Guide de voyage à Londres : aéroports, quartiers et meilleure période'
 seoDescription: "Un guide pratique de Londres — Heathrow ou London City, pourquoi Mayfair, Knightsbridge et la City servent des séjours différents, et comment Wimbledon et d'autres événements changent le calendrier."
