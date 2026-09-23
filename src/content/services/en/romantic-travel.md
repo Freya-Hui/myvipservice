@@ -30,6 +30,7 @@ highlights:
       text: 'Quiet, less-visited corners of the French coast and countryside, chosen for privacy over crowds — La Réserve Ramatuelle near Saint-Tropez is one address built entirely around this',
       href: '/en/accommodations/la-reserve-ramatuelle/',
     },
+    'From €1,500 for a full day of pre-wedding photography with photographer and stylist; dinners and proposal planning quoted per request',
   ]
 ---
 

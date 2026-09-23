@@ -30,6 +30,7 @@ highlights:
       text: '法国海岸与乡间人少僻静的角落，优先考虑私密性而非打卡热度——圣特罗佩附近的 La Réserve Ramatuelle 正是围绕这种私密感打造的一处地址',
       href: '/zh/accommodations/la-reserve-ramatuelle/',
     },
+    '婚纱照跟拍（含摄影师与造型师）全天价格从 €1,500 起，晚宴与求婚策划按需求单独报价',
   ]
 ---
 

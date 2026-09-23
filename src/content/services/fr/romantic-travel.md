@@ -30,6 +30,7 @@ highlights:
       text: 'Coins tranquilles et peu fréquentés du littoral et de la campagne française, choisis pour leur intimité plutôt que leur affluence — La Réserve Ramatuelle, près de Saint-Tropez, est une adresse entièrement construite autour de cette discrétion',
       href: '/fr/accommodations/la-reserve-ramatuelle/',
     },
+    'À partir de 1 500 € pour une journée complète de photos pré-mariage avec photographe et styliste ; dîners et demandes en mariage sur devis',
   ]
 ---
 

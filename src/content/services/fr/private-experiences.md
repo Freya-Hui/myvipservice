@@ -26,6 +26,7 @@ highlights:
       href: '/fr/accommodations/chateau-de-neydens/',
     },
     'Séminaires d’entreprise et événements de remerciement clients livrés de bout en bout, du concept à la production sur site',
+    "À partir de 15 000 € pour un mariage ou une célébration d'exception entièrement produite ; événements privés plus restreints sur devis selon le lieu et le nombre d'invités",
   ]
 ---
 
