@@ -14,12 +14,12 @@ storyFeatures:
   [
     {
       title: 'A Backdrop for the Day, Not Just a Photo Op',
-      body: "Pre-wedding photography is one of the most requested parts of a trip planned for two: a full day, or two, built around Paris's classic backdrops and quieter alternatives away from the crowds, with photographers and stylists whose portfolios include major fashion campaigns and shoots for well-known public figures — arranged and credited privately, as is standard for that kind of work.",
+      body: "Pre-wedding photography is one of the most requested parts of a trip planned for two: a full day, or two, built around Paris's classic backdrops and quieter alternatives away from the crowds, with photographers and stylists whose portfolios include major fashion campaigns and shoots for well-known public figures — arranged and credited privately, as is standard for that kind of work. The route is planned around light as much as location — an early call for soft morning light on a quiet street, then a second setting timed to golden hour rather than a fixed midday slot — so the day has a natural arc instead of shots taken wherever the schedule allows.",
       imageId: 'service-pont-alexandre',
     },
     {
       title: 'A Table for Two, Not a Set Menu',
-      body: 'A private dinner on a rooftop or riverside terrace, a discreetly planned proposal, a honeymoon itinerary that favours quiet addresses over crowded ones — the setting, pace and level of privacy are set around the two of you rather than a fixed package.',
+      body: "A private dinner on a rooftop or riverside terrace, a discreetly planned proposal, a honeymoon itinerary that favours quiet addresses over crowded ones — the setting, pace and level of privacy are set around the two of you rather than a fixed package. For a proposal specifically, the planning runs backwards from the moment itself: the ring's safe handling, a discreet signal for a photographer waiting nearby, a table or boat held exactly on schedule so the timing isn't left to chance — coordinated with only the person planning it, so the surprise stays a surprise until it's meant to land.",
       imageId: 'accommodation-anantara-plaza-nice-rooftop',
     },
   ]
@@ -30,7 +30,8 @@ highlights:
       text: 'Private candlelit dinners on rooftop terraces, riverside settings or secluded courtyards',
       href: '/en/accommodations/anantara-plaza-nice/',
     },
-    'Proposal planning, from location scouting to discreet on-the-day coordination',
+    'Proposal planning, from location scouting and ring logistics to a discreetly placed photographer and exact on-the-day timing',
+    'Sunset and golden-hour timing confirmed against the actual month and location — not a generic "early evening" slot that may already be dark, or still bright, by the time you arrive',
     {
       text: 'Quiet, less-visited corners of the French coast and countryside, chosen for privacy over crowds — La Réserve Ramatuelle near Saint-Tropez is one address built entirely around this',
       href: '/en/accommodations/la-reserve-ramatuelle/',
@@ -53,6 +54,10 @@ faq:
     {
       question: 'Is this only for honeymoons?',
       answer: 'No — anniversaries, proposals and any trip built around two people fall under this, not only honeymoons.',
+    },
+    {
+      question: 'Can the photography and the proposal happen on the same trip?',
+      answer: "Yes — a common request is pre-wedding-style photography earlier in the trip, then the proposal itself a day or two later at a different setting, so the two moments don't compete for the same backdrop or the same light.",
     },
   ]
 relatedServiceKeys: ['romantic-travel', 'dining-culinary-experiences', 'hotel-villa-reservations']
