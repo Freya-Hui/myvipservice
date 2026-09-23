@@ -36,32 +36,34 @@ const highlights: HighlightItem[] = data.highlights.map((item: string | Highligh
   typeof item === 'string' ? { text: item } : item,
 );
 
-const shownImageIds = [data.coverImage, ...data.gallery];
+// Accumulated across every section on the page, in render order, not just
+// this page's own cover/gallery — a destination and a journal article often
+// share the same photo (both legitimately use it), and without tracking
+// what's already been shown by an earlier section, the same image can
+// appear twice on one page. storyFeature images are included too, since a
+// storyFeature's photo (e.g. an accommodation's own exterior shot) can
+// otherwise reappear a few sections down in that same accommodation's
+// RelatedContent card.
+const shownImageIds = new Set<string>([
+  data.coverImage,
+  ...data.gallery,
+  ...data.storyFeatures.map((f: { imageId: string }) => f.imageId),
+]);
+
 // `travelFit` in particular is a broad, already-populated tag (most
 // accommodations carry several values), so cap each section rather than
 // dumping the whole matching set onto one page.
 const RELATED_LIMIT = 6;
-const [accommodationsAll, experiencesAll, journeysAll, destinationsAll] = await Promise.all([
-  getEntriesByTravelStyle('accommodations', locale, data.translationKey, data.travelFitTag),
-  getEntriesByTravelStyle('experiences', locale, data.translationKey),
-  getEntriesByTravelStyle('journeys', locale, data.translationKey),
-  getEntriesByTravelStyle('destinations', locale, data.translationKey),
-]);
-const accommodations = accommodationsAll.slice(0, RELATED_LIMIT);
-const experiences = experiencesAll.slice(0, RELATED_LIMIT);
-const destinations = destinationsAll.slice(0, RELATED_LIMIT);
-const journeys = journeysAll.slice(0, RELATED_LIMIT);
-// Journal's relatedTravelStyleKeys is a forward reference (content-architecture.md
-// §7's planned hook), so this is a plain in-memory reverse lookup rather
-// than going through getEntriesByTravelStyle — a one-off, not reused
-// elsewhere, so it isn't worth generalising the shared helper for it.
-const journalArticles = (await getLocaleEntries('journal', locale))
-  .filter((entry) => entry.data.relatedTravelStyleKeys.includes(data.translationKey))
-  .slice(0, RELATED_LIMIT);
+function pickUnique<T extends { data: { coverImage: string } }>(items: T[]): T[] {
+  const picked = excludeShownImages(items, [...shownImageIds]).slice(0, RELATED_LIMIT);
+  for (const item of picked) shownImageIds.add(item.data.coverImage);
+  return picked;
+}
 
 // Services share one slug across locales (no translationKey), so this is a
 // plain slug match — order follows `relatedServiceKeys` (first entry is the
-// closest match), not collection order.
+// closest match), not collection order. Rendered first, so its images count
+// toward `shownImageIds` before the sections below are deduped against it.
 const allServices = await getCollection('services', (entry) => entry.id.startsWith(`${locale}/`));
 function serviceSlugOf(id: string) {
   return id.split('/').slice(1).join('/');
@@ -72,6 +74,30 @@ const relatedServices = data.relatedServiceKeys
     (entry: (typeof allServices)[number] | undefined): entry is (typeof allServices)[number] =>
       entry !== undefined,
   );
+for (const service of relatedServices) {
+  if (service.data.image) shownImageIds.add(service.data.image);
+}
+
+const [accommodationsAll, experiencesAll, journeysAll, destinationsAll] = await Promise.all([
+  getEntriesByTravelStyle('accommodations', locale, data.translationKey, data.travelFitTag),
+  getEntriesByTravelStyle('experiences', locale, data.translationKey),
+  getEntriesByTravelStyle('journeys', locale, data.translationKey),
+  getEntriesByTravelStyle('destinations', locale, data.translationKey),
+]);
+// Order matches the render order below (destinations, journeys,
+// accommodations, experiences, journal) so dedup accumulates correctly.
+const destinations = pickUnique(destinationsAll);
+const journeys = pickUnique(journeysAll);
+const accommodations = pickUnique(accommodationsAll);
+const experiences = pickUnique(experiencesAll);
+// Journal's relatedTravelStyleKeys is a forward reference (content-architecture.md
+// §7's planned hook), so this is a plain in-memory reverse lookup rather
+// than going through getEntriesByTravelStyle — a one-off, not reused
+// elsewhere, so it isn't worth generalising the shared helper for it.
+const journalArticlesAll = (await getLocaleEntries('journal', locale)).filter((entry) =>
+  entry.data.relatedTravelStyleKeys.includes(data.translationKey),
+);
+const journalArticles = pickUnique(journalArticlesAll);
 
 const structuredData = [
   {
@@ -155,7 +181,7 @@ const structuredData = [
     locale={locale}
     eyebrow={t('destinations.hero.eyebrow')}
     title={t('travelStyles.detail.destinationsHeading')}
-    items={excludeShownImages(destinations, shownImageIds).map((item) => ({
+    items={destinations.map((item) => ({
       href: `/${locale}/destinations/${item.data.slug}/`,
       imageId: item.data.coverImage,
       eyebrow: t(`region.${item.data.region}` as never),
@@ -169,7 +195,7 @@ const structuredData = [
     locale={locale}
     eyebrow={t('journeys.hero.title')}
     title={t('travelStyles.detail.journeysHeading')}
-    items={excludeShownImages(journeys, shownImageIds).map((item) => ({
+    items={journeys.map((item) => ({
       href: `/${locale}/journeys/${item.data.slug}/`,
       imageId: item.data.coverImage,
       eyebrow: t('journeys.hero.title'),
@@ -183,7 +209,7 @@ const structuredData = [
     locale={locale}
     eyebrow={t('accommodations.hero.title')}
     title={t('travelStyles.detail.accommodationsHeading')}
-    items={excludeShownImages(accommodations, shownImageIds).map((item) => ({
+    items={accommodations.map((item) => ({
       href: `/${locale}/accommodations/${item.data.slug}/`,
       imageId: item.data.coverImage,
       eyebrow: t(`type.${item.data.type}` as never),
@@ -197,7 +223,7 @@ const structuredData = [
     locale={locale}
     eyebrow={t('experiences.hero.title')}
     title={t('travelStyles.detail.experiencesHeading')}
-    items={excludeShownImages(experiences, shownImageIds).map((item) => ({
+    items={experiences.map((item) => ({
       href: `/${locale}/experiences/${item.data.slug}/`,
       imageId: item.data.coverImage,
       eyebrow: t(`category.${item.data.category}` as never),
@@ -211,7 +237,7 @@ const structuredData = [
     locale={locale}
     eyebrow={t('journal.hero.title')}
     title={t('travelStyles.detail.journalHeading')}
-    items={excludeShownImages(journalArticles, shownImageIds).map((item) => ({
+    items={journalArticles.map((item) => ({
       href: `/${locale}/journal/${item.data.slug}/`,
       imageId: item.data.coverImage,
       eyebrow: t(`journalCategory.${item.data.category}` as never),
