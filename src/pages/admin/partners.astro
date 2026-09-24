@@ -77,6 +77,18 @@ import '../../styles/global.css';
           id="partners-search"
           placeholder="搜索名称 / 类别 / 网站 / 邮箱 / 电话…"
         />
+        <select id="partners-category-filter">
+          <option value="">全部分类</option>
+          <option value="酒店 / 别墅">酒店 / 别墅</option>
+          <option value="用车 / 司机">用车 / 司机</option>
+          <option value="游艇 / 游船">游艇 / 游船</option>
+          <option value="餐厅">餐厅</option>
+          <option value="票务 / 演出赛事">票务 / 演出赛事</option>
+          <option value="向导 / 讲解">向导 / 讲解</option>
+          <option value="家庭 / 儿童服务">家庭 / 儿童服务</option>
+          <option value="摄影 / 活动布置">摄影 / 活动布置</option>
+          <option value="其他">其他</option>
+        </select>
         <p class="partners-search__count" id="partners-search-count" role="status"></p>
       </div>
 
@@ -118,6 +130,7 @@ import '../../styles/global.css';
         const noMatchNote = document.getElementById('no-match-note');
         const searchWrap = document.getElementById('partners-search-wrap');
         const searchInput = document.getElementById('partners-search');
+        const categoryFilter = document.getElementById('partners-category-filter');
         const searchCount = document.getElementById('partners-search-count');
         const form = document.getElementById('partner-form');
         const formStatus = document.getElementById('pf-status');
@@ -176,7 +189,8 @@ import '../../styles/global.css';
 
           emptyNote.hidden = true;
           searchWrap.hidden = false;
-          searchCount.textContent = `共 ${allPartners.length} 条${searchInput.value ? `，匹配 ${partners.length} 条` : ''}`;
+          const filterActive = Boolean(searchInput.value || categoryFilter.value);
+          searchCount.textContent = `共 ${allPartners.length} 条${filterActive ? `，匹配 ${partners.length} 条` : ''}`;
 
           if (partners.length === 0) {
             noMatchNote.hidden = false;
@@ -190,21 +204,25 @@ import '../../styles/global.css';
 
         function applySearch() {
           const query = searchInput.value.trim().toLowerCase();
-          if (!query) {
-            renderList(allPartners);
-            return;
+          const category = categoryFilter.value;
+          let filtered = allPartners;
+          if (category) {
+            filtered = filtered.filter((p) => p.category === category);
           }
-          const filtered = allPartners.filter((p) =>
-            [p.name, p.category, p.website, p.email, p.phone].some((field) =>
-              String(field ?? '')
-                .toLowerCase()
-                .includes(query),
-            ),
-          );
+          if (query) {
+            filtered = filtered.filter((p) =>
+              [p.name, p.category, p.website, p.email, p.phone].some((field) =>
+                String(field ?? '')
+                  .toLowerCase()
+                  .includes(query),
+              ),
+            );
+          }
           renderList(filtered);
         }
 
         searchInput.addEventListener('input', applySearch);
+        categoryFilter.addEventListener('change', applySearch);
 
         async function loadPartners() {
           const res = await authedFetch('/.netlify/functions/admin-partners');
@@ -410,6 +428,16 @@ import '../../styles/global.css';
       .partners-search input {
         flex: 1;
         min-width: 12rem;
+        font: inherit;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg-elevated);
+        color: inherit;
+      }
+
+      .partners-search select {
+        flex-shrink: 0;
         font: inherit;
         padding: 0.5rem 0.75rem;
         border: 1px solid var(--color-border-strong);
