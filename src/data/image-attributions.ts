@@ -4269,12 +4269,44 @@ export const imageAttributions: ImageAttribution[] = [
   },
 ];
 
+function findImage(id: string | undefined): ImageAttribution | undefined {
+  return imageAttributions.find((entry) => entry.id === id);
+}
+
+// Netlify sets this during its own build (both `netlify deploy` locally and
+// its CI) — absent from a plain `astro dev`/`astro build` run. The
+// transform endpoint only exists on deployed Netlify infrastructure, so
+// gating on this keeps local dev images working instead of 404ing against
+// an endpoint that isn't there.
+const isNetlifyBuild = Boolean(process.env.NETLIFY);
+const IMAGE_CDN_MAX_WIDTH = 2400;
+
+/**
+ * Routes a local /images/*.jpg path through Netlify's on-demand Image CDN
+ * for WebP conversion and a max-width safety cap (see the print-resolution
+ * Bulgari images this caught) — real measured savings run 35-50% per image.
+ * Every <img> the site renders picks this up for free via getImage()/
+ * getImageSafe(); og:image/twitter:image deliberately opt out (see
+ * getRawImage()) since not every link-preview crawler fetches WebP
+ * reliably.
+ */
+function toOptimizedSrc(src: string): string {
+  if (!isNetlifyBuild || !src.startsWith('/images/')) return src;
+  const params = new URLSearchParams({
+    url: src,
+    w: String(IMAGE_CDN_MAX_WIDTH),
+    fm: 'webp',
+    q: '82',
+  });
+  return `/.netlify/images?${params.toString()}`;
+}
+
 export function getImage(id: string): ImageAttribution {
-  const image = imageAttributions.find((entry) => entry.id === id);
+  const image = findImage(id);
   if (!image) {
     throw new Error(`Unknown image id "${id}" — add it to src/data/image-attributions.ts first.`);
   }
-  return image;
+  return { ...image, src: toOptimizedSrc(image.src) };
 }
 
 /**
@@ -4283,6 +4315,14 @@ export function getImage(id: string): ImageAttribution {
  * back to the hero image, which always exists.
  */
 export function getImageSafe(id: string | undefined, fallbackId = 'hero-home'): ImageAttribution {
-  const image = imageAttributions.find((entry) => entry.id === id);
-  return image ?? getImage(fallbackId);
+  const image = findImage(id);
+  return image ? { ...image, src: toOptimizedSrc(image.src) } : getImage(fallbackId);
+}
+
+/**
+ * The untransformed original — for og:image/twitter:image specifically,
+ * never for an <img> tag (use getImage/getImageSafe for those).
+ */
+export function getRawImage(id: string | undefined, fallbackId = 'hero-home'): ImageAttribution {
+  return findImage(id) ?? findImage(fallbackId)!;
 }
