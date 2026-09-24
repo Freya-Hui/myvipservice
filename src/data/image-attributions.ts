@@ -4273,12 +4273,14 @@ function findImage(id: string | undefined): ImageAttribution | undefined {
   return imageAttributions.find((entry) => entry.id === id);
 }
 
-// Netlify sets this during its own build (both `netlify deploy` locally and
-// its CI) — absent from a plain `astro dev`/`astro build` run. The
-// transform endpoint only exists on deployed Netlify infrastructure, so
-// gating on this keeps local dev images working instead of 404ing against
-// an endpoint that isn't there.
-const isNetlifyBuild = Boolean(process.env.NETLIFY);
+// This project deploys via `netlify deploy` (the CLI), not a git-linked
+// CI build — confirmed by inspecting the actual env vars a real deploy
+// injects: NETLIFY isn't set, but NETLIFY_LOCAL is (server-side Netlify
+// CI builds, if this project ever adds one, do set plain NETLIFY — checked
+// for too). Absent from a plain `astro dev`/`astro build` run, so this
+// keeps local dev images working instead of 404ing against a transform
+// endpoint that only exists on deployed infrastructure.
+const isNetlifyBuild = Boolean(process.env.NETLIFY_LOCAL || process.env.NETLIFY);
 const IMAGE_CDN_MAX_WIDTH = 2400;
 
 /**
