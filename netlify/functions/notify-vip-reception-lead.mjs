@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { sendVipReceptionBookingNotification } from './lib/email.mjs';
 import { createOrder } from './lib/orders.mjs';
+import { isHoneypotFilled } from './lib/spam-check.mjs';
 
 // Fired client-side (VipReceptionBookingWidget.astro) — VIP reception
 // always starts as an enquiry, never an instant payment: the widget's own
@@ -19,6 +20,12 @@ export const handler = async (event) => {
     raw = JSON.parse(event.body || '{}');
   } catch {
     return { statusCode: 400, body: JSON.stringify({ error: 'invalid_body' }) };
+  }
+
+  // Silently accept — telling a bot its submission was rejected just
+  // teaches it to leave the honeypot blank next time.
+  if (isHoneypotFilled(raw)) {
+    return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   }
 
   const booking = {

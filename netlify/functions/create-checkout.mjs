@@ -2,6 +2,7 @@ import Stripe from 'stripe';
 import { getRates, calculatePrice } from './lib/pricing.mjs';
 import { createOrder } from './lib/orders.mjs';
 import { createBookingCheckoutSession, chauffeurProductDetails } from './lib/checkout.mjs';
+import { isHoneypotFilled } from './lib/spam-check.mjs';
 
 export const handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -17,6 +18,10 @@ export const handler = async (event) => {
   try {
     rawBooking = JSON.parse(event.body || '{}');
   } catch {
+    return { statusCode: 400, body: JSON.stringify({ error: 'invalid_body' }) };
+  }
+
+  if (isHoneypotFilled(rawBooking)) {
     return { statusCode: 400, body: JSON.stringify({ error: 'invalid_body' }) };
   }
 
