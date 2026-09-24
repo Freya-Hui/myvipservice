@@ -1,6 +1,6 @@
 ---
 import { languages, type Locale } from '../i18n/ui';
-import { getImageSafe } from '../data/image-attributions';
+import { getRawImage } from '../data/image-attributions';
 
 interface Props {
   title: string;
@@ -21,7 +21,10 @@ const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 const suffix = path ? `/${path}/` : '/';
 const canonicalPath = `/${currentLocale}${suffix}`;
 const canonicalUrl = new URL(canonicalPath, Astro.site);
-const ogImage = new URL(getImageSafe(imageId).src, Astro.site);
+// Deliberately the untransformed original, not getImageSafe()'s WebP —
+// not every link-preview crawler (WeChat's included) fetches WebP OG
+// images reliably.
+const ogImage = new URL(getRawImage(imageId).src, Astro.site);
 const structuredDataList = structuredData
   ? Array.isArray(structuredData)
     ? structuredData
