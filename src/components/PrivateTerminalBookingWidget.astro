@@ -15,6 +15,11 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
 
 <div class="terminal-booking" id="terminal-booking-root">
   <form id="terminal-booking-form">
+    <p class="visually-hidden">
+      <label>
+        Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off" />
+      </label>
+    </p>
     <input type="hidden" name="locale" value={locale} />
 
     <div class="field">
