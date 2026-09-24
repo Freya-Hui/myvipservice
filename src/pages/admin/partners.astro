@@ -38,12 +38,18 @@ import '../../styles/global.css';
           </label>
           <label>
             类别
-            <input
-              type="text"
-              name="category"
-              id="pf-category"
-              placeholder="例如：酒店 / 别墅代理 / 游艇租赁"
-            />
+            <select name="category" id="pf-category">
+              <option value="">请选择</option>
+              <option value="酒店 / 别墅">酒店 / 别墅</option>
+              <option value="用车 / 司机">用车 / 司机</option>
+              <option value="游艇 / 游船">游艇 / 游船</option>
+              <option value="餐厅">餐厅</option>
+              <option value="票务 / 演出赛事">票务 / 演出赛事</option>
+              <option value="向导 / 讲解">向导 / 讲解</option>
+              <option value="家庭 / 儿童服务">家庭 / 儿童服务</option>
+              <option value="摄影 / 活动布置">摄影 / 活动布置</option>
+              <option value="其他">其他</option>
+            </select>
           </label>
           <label>
             网站
@@ -353,7 +359,8 @@ import '../../styles/global.css';
         color: var(--color-text-muted);
       }
 
-      .partner-form__grid input {
+      .partner-form__grid input,
+      .partner-form__grid select {
         width: 100%;
         margin-top: var(--space-1);
         font: inherit;
