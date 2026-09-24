@@ -301,6 +301,19 @@ ol {
   max-width: var(--prose-max-width);
 }
 
+/* `.container` and `.prose` are combined on one element throughout the
+   site (titles, article bodies, section text). `.container` centers
+   itself in the viewport via margin-inline: auto, and without this rule
+   `.prose`'s narrower max-width re-centers inside that already-centered
+   box — pushing titles and body text rightward, out of line with
+   full-width elements like the header and breadcrumbs above them. This
+   keeps the narrower measure flush against the container's left edge
+   instead, so text consistently starts at the same left position as the
+   rest of the page. */
+.container.prose {
+  margin-inline: 0;
+}
+
 /* Article-with-sidebar-TOC layout — shared by the journal detail template
    and the accommodation detail template (see ArticleTOC.astro). */
 .article-layout {
@@ -311,22 +324,23 @@ ol {
 .article-layout__body {
   min-width: 0;
   /* Without a TOC, this column is the grid's full 1fr track (the whole
-     .container width) — .prose's own max-width then needs its own
-     centering, same as it had when .container and .prose were classes
-     on a single element together. With a TOC, the track is already
-     sized to match .prose's max-width exactly, so this is a no-op. */
-  margin-inline: auto;
+     .container width) — .prose's narrower max-width would otherwise need
+     margin-inline: auto to stay centered inside it, but that pushes the
+     text right of the container's own left edge. 0 keeps it flush left,
+     matching the container-only elements (breadcrumbs, header) above it.
+     With a TOC, the track is already sized to match .prose's max-width
+     exactly, so this is a no-op either way. */
+  margin-inline: 0;
 }
 
 /* Only reserves the sidebar column when ArticleTOC will actually render
    one — a short page with too few sections for a table of contents just
-   keeps its single centered prose column instead of leaving an empty
+   keeps its single left-aligned prose column instead of leaving an empty
    16rem gap where the sidebar would sit. */
 @media (min-width: 1000px) {
   .article-layout.has-toc {
     grid-template-columns: minmax(0, var(--prose-max-width)) 16rem;
     gap: var(--space-6);
-    justify-content: center;
     /* Without this, the sidebar (a grid item) stretches to match the
        prose column's full height by default — harmless for its own
        position: sticky behavior, but an oversized box for no reason. */

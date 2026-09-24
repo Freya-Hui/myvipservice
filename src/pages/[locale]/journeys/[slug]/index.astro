@@ -96,18 +96,9 @@ const structuredData = [
     <Gallery images={data.gallery.length > 0 ? data.gallery : [data.coverImage]} locale={locale} />
   </div>
 
-  <ContentSection title={t('journeys.detail.overviewTitle')} body={data.description} />
-
-  {
-    data.itinerary.length > 0 && (
-      <DayItinerary
-        eyebrow={data.theme}
-        title={t('journeys.detail.itineraryTitle')}
-        days={data.itinerary}
-        locale={locale}
-      />
-    )
-  }
+  <ContentSection title={t('journeys.detail.overviewTitle')} body={data.description}>
+    {data.itinerary.length > 0 && <DayItinerary days={data.itinerary} locale={locale} />}
+  </ContentSection>
 
   {
     highlights.length > 0 && (
