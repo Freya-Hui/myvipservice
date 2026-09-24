@@ -120,6 +120,10 @@ const { items, locale } = Astro.props;
   }
 
   .highlight-list__link:hover p {
-    color: var(--color-accent-strong);
+    /* --color-accent-strong is tuned for text on a dark photo scrim (see
+       tokens.css) — 2.49:1 against the light page background, below WCAG
+       AA even for large text. --color-text clears AA comfortably and
+       still reads as a clear "darkens on hover" cue. */
+    color: var(--color-text);
   }
 </style>
