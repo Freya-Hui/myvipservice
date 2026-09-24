@@ -10,60 +10,52 @@ interface Day {
 }
 
 interface Props {
-  eyebrow: string;
-  title: string;
   days: Day[];
   locale: Locale;
 }
 
-const { eyebrow, title, days, locale } = Astro.props;
+const { days, locale } = Astro.props;
 ---
 
-<section class="section">
-  <div class="container prose">
-    <p class="eyebrow">{eyebrow}</p>
-    <h2>{title}</h2>
-    <ol class="day-itinerary">
-      {
-        days.map((entry) => {
-          const image = entry.image ? getImageSafe(entry.image) : undefined;
-          const needsCredit = image && image.license !== 'Unsplash License';
-          return (
-            <li class="day-itinerary__item">
-              <span class="day-itinerary__index" aria-hidden="true">
-                {String(entry.day).padStart(2, '0')}
-              </span>
-              <div class="day-itinerary__body">
-                <h3>{entry.title}</h3>
-                <p class="text-small">{entry.body}</p>
-                {image && (
-                  <figure class="figure figure--standard day-itinerary__figure">
-                    <img
-                      src={image.src}
-                      alt={image.altByLocale[locale]}
-                      loading="lazy"
-                      width="1600"
-                      height="1200"
-                    />
-                    {needsCredit && (
-                      <figcaption class="gallery__credit text-small">
-                        Photo:{' '}
-                        <a href={image.sourceUrl} target="_blank" rel="noopener noreferrer">
-                          {image.author} / {image.sourceName}
-                        </a>
-                        , {image.license}
-                      </figcaption>
-                    )}
-                  </figure>
+<ol class="day-itinerary">
+  {
+    days.map((entry) => {
+      const image = entry.image ? getImageSafe(entry.image) : undefined;
+      const needsCredit = image && image.license !== 'Unsplash License';
+      return (
+        <li class="day-itinerary__item">
+          <span class="day-itinerary__index" aria-hidden="true">
+            {String(entry.day).padStart(2, '0')}
+          </span>
+          <div class="day-itinerary__body">
+            <h3>{entry.title}</h3>
+            <p class="text-small">{entry.body}</p>
+            {image && (
+              <figure class="figure figure--standard day-itinerary__figure">
+                <img
+                  src={image.src}
+                  alt={image.altByLocale[locale]}
+                  loading="lazy"
+                  width="1600"
+                  height="1200"
+                />
+                {needsCredit && (
+                  <figcaption class="gallery__credit text-small">
+                    Photo:{' '}
+                    <a href={image.sourceUrl} target="_blank" rel="noopener noreferrer">
+                      {image.author} / {image.sourceName}
+                    </a>
+                    , {image.license}
+                  </figcaption>
                 )}
-              </div>
-            </li>
-          );
-        })
-      }
-    </ol>
-  </div>
-</section>
+              </figure>
+            )}
+          </div>
+        </li>
+      );
+    })
+  }
+</ol>
 
 <style>
   .day-itinerary {
