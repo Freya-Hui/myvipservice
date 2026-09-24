@@ -48,6 +48,11 @@ const structuredDataList = structuredData
 <meta property="og:image" content={ogImage} />
 <meta property="og:locale" content={currentLocale} />
 
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={`${title} · MYVIPSERVICE`} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
 {
   structuredDataList.map((entry) => (
     <script type="application/ld+json" is:inline set:html={JSON.stringify(entry)} />
