@@ -22,6 +22,10 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // Password-protected internal tool, not public content — already
+      // noindex'd per-page, but shouldn't be listed as "pages to index"
+      // in the sitemap we submit to search engines either.
+      filter: (page) => !page.includes('/admin/'),
       i18n: {
         locales: { en: 'en', zh: 'zh', fr: 'fr' },
         defaultLocale: 'en',
