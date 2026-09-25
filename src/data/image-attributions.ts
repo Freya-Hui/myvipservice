@@ -2590,6 +2590,112 @@ export const imageAttributions: ImageAttribution[] = [
       'Client-supplied brochure image (more defensible than a site scrape, same precedent as the aviation-seats photo), but still needs a confirmed usage license before this goes past internal review — see docs/image-asset-register.md.',
   },
   {
+    id: 'accommodation-fouquets-courchevel-suite',
+    src: '/images/accommodation-fouquets-courchevel-suite.jpg',
+    sourceUrl: '',
+    sourceName:
+      "Fouquet’s Courchevel — client-supplied (高雪维尔图片库/Fouquet's Courchevel/room-1.jpg)",
+    author: 'Groupe Barrière',
+    license:
+      'Unconfirmed — client-supplied image, no public URL, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'A suite living room at Fouquet’s Courchevel, a three-sided fireplace lit beside a wood-panelled sitting area.',
+      zh: 'Fouquet’s Courchevel 套房客厅，三面通透的壁炉在木饰面起居区旁燃起。',
+      fr: 'Le salon d’une suite à Fouquet’s Courchevel, cheminée à trois faces allumée près d’un coin salon lambrissé.',
+    },
+    notes:
+      'Official gallery image — needs confirmed usage license before this goes past internal review.',
+  },
+  {
+    id: 'accommodation-fouquets-courchevel-loulou',
+    src: '/images/accommodation-fouquets-courchevel-loulou.jpg',
+    sourceUrl: '',
+    sourceName:
+      "Fouquet’s Courchevel — client-supplied (高雪维尔图片库/Fouquet's Courchevel/restaurant-loulou-1.jpg)",
+    author: 'Groupe Barrière',
+    license:
+      'Unconfirmed — client-supplied image, no public URL, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'The Loulou restaurant’s outdoor terrace at Fouquet’s Courchevel, set tables among snow-covered pines.',
+      zh: 'Fouquet’s Courchevel 的 Loulou 餐厅露台，餐桌布置在积雪的松林间。',
+      fr: 'La terrasse extérieure du restaurant Loulou à Fouquet’s Courchevel, tables dressées parmi les pins enneigés.',
+    },
+    notes:
+      'Official site image — needs confirmed usage license before this goes past internal review.',
+  },
+  {
+    id: 'accommodation-fouquets-courchevel-spa',
+    src: '/images/accommodation-fouquets-courchevel-spa.jpg',
+    sourceUrl: 'https://www.hotelsbarriere.com/en/collection-fouquet-s/courchevel/gallery',
+    sourceName: 'Fouquet’s Courchevel official site (hotelsbarriere.com)',
+    author: 'Groupe Barrière',
+    license:
+      'Unconfirmed — sourced from the property’s official site gallery, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'The indoor pool at Fouquet’s Courchevel’s spa, loungers along a stained-glass wall with snow visible through the windows.',
+      zh: 'Fouquet’s Courchevel 水疗中心的室内泳池，彩色玻璃墙边摆着躺椅，窗外可见雪景。',
+      fr: 'La piscine intérieure du spa de Fouquet’s Courchevel, transats le long d’un mur en verre coloré, neige visible par les fenêtres.',
+    },
+    notes:
+      'Official gallery image — needs confirmed usage license before this goes past internal review.',
+  },
+  {
+    id: 'accommodation-fouquets-paris-facade',
+    src: '/images/accommodation-fouquets-paris-facade.jpg',
+    sourceUrl:
+      'https://www.hotelsbarriere.com/en/collection-fouquet-s/paris/restaurants-and-bars/brasserie-fouquet-s-paris',
+    sourceName: 'Fouquet’s Paris official site (hotelsbarriere.com)',
+    author: 'Adrien Hue (credited on the official site)',
+    license:
+      'Unconfirmed — sourced from the property’s official site, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'Fouquet’s Paris’s ground-floor facade on the Champs-Élysées, gold signage above a red awning and pavement terrace.',
+      zh: 'Fouquet’s Paris 面向香榭丽舍大街的底层外立面，红色遮阳篷上方是金色招牌，门前设有露台。',
+      fr: 'La façade du rez-de-chaussée de Fouquet’s Paris sur les Champs-Élysées, enseigne dorée au-dessus d’un store rouge et d’une terrasse.',
+    },
+    notes:
+      'Official site image, photo credited to Adrien Hue in the source filename — needs confirmed usage license before this goes past internal review.',
+  },
+  {
+    id: 'accommodation-fouquets-paris-suite',
+    src: '/images/accommodation-fouquets-paris-suite.jpg',
+    sourceUrl: 'https://www.hotelsbarriere.com/en/collection-fouquet-s/paris/rooms-and-suites',
+    sourceName: 'Fouquet’s Paris official site (hotelsbarriere.com)',
+    author: 'Groupe Barrière',
+    license:
+      'Unconfirmed — sourced from the property’s official site, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'The Suite Prestige Champs-Élysées at Fouquet’s Paris, a quilted gold headboard beside French doors onto a wrought-iron balcony.',
+      zh: 'Fouquet’s Paris 的香榭丽舍尊贵套房，金色绗缝床头板旁是通向锻铁阳台的落地窗门。',
+      fr: 'La Suite Prestige Champs-Élysées de Fouquet’s Paris, tête de lit matelassée dorée près d’une porte-fenêtre donnant sur un balcon en fer forgé.',
+    },
+    notes:
+      'Official site image — needs confirmed usage license before this goes past internal review.',
+  },
+  {
+    id: 'accommodation-fouquets-paris-le-joy',
+    src: '/images/accommodation-fouquets-paris-le-joy.jpg',
+    sourceUrl:
+      'https://www.hotelsbarriere.com/en/collection-fouquet-s/paris/restaurants-and-bars/joy',
+    sourceName: 'Fouquet’s Paris official site (hotelsbarriere.com)',
+    author: 'Groupe Barrière',
+    license:
+      'Unconfirmed — sourced from the property’s official site, commercial-use rights not yet confirmed',
+    usageStatus: 'pending-approval',
+    altByLocale: {
+      en: 'Le Joy restaurant at Fouquet’s Paris, a library-alcove dining room in dark green and mahogany opening onto a private garden.',
+      zh: 'Fouquet’s Paris 的 Le Joy 餐厅，深绿与红木色调的图书角式用餐区，一侧通向私密花园。',
+      fr: 'Le restaurant Joy de Fouquet’s Paris, salle à manger façon bibliothèque en vert foncé et acajou ouvrant sur un jardin privé.',
+    },
+    notes:
+      'Official site image — needs confirmed usage license before this goes past internal review.',
+  },
+  {
     id: 'accommodation-aman-le-melezin-exterior',
     src: '/images/accommodation-aman-le-melezin-exterior.jpg',
     sourceUrl: '',
