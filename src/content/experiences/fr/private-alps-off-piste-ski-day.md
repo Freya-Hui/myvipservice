@@ -7,6 +7,7 @@ description: "Une journée en montagne avec un guide privé certifié, l'itinér
 category: 'Sports'
 destinationKey: 'french-alps'
 featured: false
+focusThemeKeys: ['Skiing']
 status: 'published'
 coverImage: 'journey-alps-geneva-offpiste-ski'
 gallery: ['journey-alps-geneva-offpiste-ski', 'destination-french-alps-chalet']

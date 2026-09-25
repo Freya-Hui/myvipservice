@@ -7,6 +7,7 @@ description: '在吕贝隆山区一座仍在正常运营的酒庄享用一顿悠
 category: 'Food & Wine'
 destinationKey: 'provence'
 featured: true
+focusThemeKeys: ['South of France', 'Wine']
 status: 'published'
 coverImage: 'service-chef-plating'
 gallery: ['service-chef-plating', 'destination-provence-vineyard']

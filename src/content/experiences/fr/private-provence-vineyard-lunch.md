@@ -7,6 +7,7 @@ description: "Un déjeuner qui s'étire dans un domaine viticole en activité da
 category: 'Food & Wine'
 destinationKey: 'provence'
 featured: true
+focusThemeKeys: ['South of France', 'Wine']
 status: 'published'
 coverImage: 'service-chef-plating'
 gallery: ['service-chef-plating', 'destination-provence-vineyard']

@@ -7,6 +7,7 @@ description: '由持证私人向导带领的一整天山地行程，路线根据
 category: 'Sports'
 destinationKey: 'french-alps'
 featured: false
+focusThemeKeys: ['Skiing']
 status: 'published'
 coverImage: 'journey-alps-geneva-offpiste-ski'
 gallery: ['journey-alps-geneva-offpiste-ski', 'destination-french-alps-chalet']

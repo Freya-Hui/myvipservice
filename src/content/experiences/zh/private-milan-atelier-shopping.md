@@ -7,6 +7,7 @@ description: '在米兰"时尚四方街"各大品牌专柜安排私人预约，�
 category: 'Fashion'
 destinationKey: 'milan'
 featured: true
+focusThemeKeys: ['Fashion']
 status: 'published'
 coverImage: 'service-boutique-appointment'
 gallery: ['service-boutique-appointment', 'destination-milan']

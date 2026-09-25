@@ -7,6 +7,7 @@ description: '在正常开放时间内，由资深金牌导览带您参观卢浮
 category: 'Art & Culture'
 destinationKey: 'paris'
 featured: false
+focusThemeKeys: ['Paris']
 status: 'published'
 coverImage: 'experience-art-gallery'
 gallery: ['experience-art-gallery', 'destination-paris']

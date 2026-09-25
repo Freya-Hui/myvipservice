@@ -7,6 +7,7 @@ description: 'A private appointment at ateliers across the Quadrilatero della Mo
 category: 'Fashion'
 destinationKey: 'milan'
 featured: true
+focusThemeKeys: ['Fashion']
 status: 'published'
 coverImage: 'service-boutique-appointment'
 gallery: ['service-boutique-appointment', 'destination-milan']

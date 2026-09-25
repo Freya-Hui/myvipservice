@@ -7,6 +7,7 @@ description: "Un guide expert vous fait découvrir le Louvre, le musée d'Orsay,
 category: 'Art & Culture'
 destinationKey: 'paris'
 featured: false
+focusThemeKeys: ['Paris']
 status: 'published'
 coverImage: 'experience-art-gallery'
 gallery: ['experience-art-gallery', 'destination-paris']
