@@ -49,6 +49,17 @@ const hotelBudgetRanges = [
   { value: 'over-5000', label: t('contact.form.hotelBudget.over5000') },
 ];
 
+// Lets the team see which channel is actually driving enquiries — optional,
+// so it doesn't block submission for a visitor who'd rather not say.
+const referralSources = [
+  { value: 'wechat', label: t('contact.form.referralSource.wechat') },
+  { value: 'xiaohongshu', label: t('contact.form.referralSource.xiaohongshu') },
+  { value: 'instagram', label: t('contact.form.referralSource.instagram') },
+  { value: 'referral', label: t('contact.form.referralSource.referral') },
+  { value: 'search', label: t('contact.form.referralSource.search') },
+  { value: 'other', label: t('contact.form.referralSource.other') },
+];
+
 // Personal phone lines and unconfirmed WeChat/WhatsApp/hours placeholders
 // are intentionally not shown — email is the single public contact channel.
 const contactEmail = 'contact@myvipservice.com';
@@ -144,6 +155,21 @@ const contactEmail = 'contact@myvipservice.com';
               <span class="text-small">({t('common.optional')})</span>
             </label>
             <input type="text" id="phoneWechat" name="phoneWechat" autocomplete="tel" />
+          </div>
+
+          <div class="field">
+            <label for="referralSource">
+              {t('contact.form.referralSource')}
+              <span class="text-small">({t('common.optional')})</span>
+            </label>
+            <select id="referralSource" name="referralSource">
+              <option value="">{t('contact.form.referralSourcePlaceholder')}</option>
+              {
+                referralSources.map((source) => (
+                  <option value={source.value}>{source.label}</option>
+                ))
+              }
+            </select>
           </div>
         </div>
 
