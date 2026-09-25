@@ -29,7 +29,7 @@ The French Alps ski season runs roughly December through April. January and Febr
 
 Off-piste demands meaningfully more leg strength and cardio than skiing within marked runs — routes are longer, snow conditions less even, and there's essentially no lift access mid-route. If you don't have a regular exercise habit, we'd suggest starting some baseline conditioning (brisk walking, squats, cycling all work) 3–4 weeks ahead of departure — it makes a noticeable difference on the day.
 
-Off-piste days are led by a genuinely certified guide, not a standard resort lesson — routes are set according to your actual ability level, with avalanche safety equipment (beacon, probe, shovel) provided as part of a private itinerary. The guide confirms how to use the equipment before setting off, so there's no need to learn it beforehand. The fitness and skill requirements are real, and we'll confirm your ability level with you in advance to avoid setting a mismatched route.
+Off-piste days are led by a genuinely certified guide, not a standard resort lesson — see our [**A Private Off-Piste Ski Day, French Alps**](/en/experiences/private-alps-off-piste-ski-day/) experience page for exactly how it's arranged and what to confirm beforehand. The fitness and skill requirements are real, and we'll confirm your ability level with you in advance to avoid setting a mismatched route.
 
 ## How to plan wellness time
 
