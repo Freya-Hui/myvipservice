@@ -29,7 +29,7 @@ La saison de ski dans les Alpes françaises s'étend globalement de décembre à
 
 Le hors-piste exige nettement plus de force dans les jambes et d'endurance cardio que le ski sur pistes balisées — les itinéraires sont plus longs, l'enneigement moins régulier, et il n'y a pratiquement aucun accès aux remontées en cours de parcours. Si vous n'avez pas d'activité physique régulière, nous suggérons de commencer une préparation de base (marche rapide, squats, vélo conviennent tous) 3 à 4 semaines avant le départ — la différence se ressent nettement le jour venu.
 
-Les journées hors-piste sont encadrées par un guide réellement diplômé, pas un cours standard de station — les itinéraires sont définis selon votre niveau réel, avec un équipement de sécurité avalanche (DVA, sonde, pelle) fourni dans le cadre d'un programme privé. Le guide confirme le mode d'emploi de l'équipement avant le départ, inutile donc de l'apprendre au préalable. Les exigences physiques et techniques sont réelles, et nous confirmerons votre niveau avec vous à l'avance pour éviter un itinéraire mal adapté.
+Les journées hors-piste sont encadrées par un guide réellement diplômé, pas un cours standard de station — pour le détail de l'organisation et de ce qu'il faut confirmer à l'avance, voir notre page expérience [**Une journée privée de ski hors-piste dans les Alpes françaises**](/fr/experiences/private-alps-off-piste-ski-day/). Les exigences physiques et techniques sont réelles, et nous confirmerons votre niveau avec vous à l'avance pour éviter un itinéraire mal adapté.
 
 ## Comment organiser le temps de bien-être
 
