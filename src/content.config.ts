@@ -479,6 +479,13 @@ const journal = defineCollection({
      *  fourth would just be silently dropped there — not enforced by the
      *  schema, a manual convention. */
     featured: z.boolean().default(false),
+    /** 2–3 short bullets specific to THIS article's own content — shown on
+     *  hover/focus over its homepage Hero card when `featured` is true.
+     *  Only meaningful on a featured entry; harmless (just unused) on any
+     *  other. Not a generic "why book with us" list — that already exists
+     *  as site-content.ts#whyUsPoints for the separate "how it works"
+     *  section elsewhere on the homepage. */
+    heroHighlights: z.array(z.string()).default([]),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     status: contentStatus,

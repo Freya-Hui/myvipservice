@@ -8,6 +8,9 @@ interface FeaturedPost {
   title: string;
   href: string;
   imageId: string;
+  /** This post's own 2–3 highlight bullets (see journal's heroHighlights) —
+   *  shown on hover/focus, swapped per-slide as the carousel cycles. */
+  highlights: string[];
 }
 
 interface Props {
@@ -30,10 +33,6 @@ interface Props {
    *  rendered (and only needed) when there's more than one featured post. */
   featuredPrevLabel?: string;
   featuredNextLabel?: string;
-  /** Short, real "why us" bullet points (see whyUsPoints in site-content.ts)
-   *  — revealed on hover/focus over the desktop featured card. Optional:
-   *  the card works fine with nothing to show there. */
-  highlightPoints?: string[];
 }
 
 const {
@@ -50,7 +49,6 @@ const {
   featuredPosts = [],
   featuredPrevLabel,
   featuredNextLabel,
-  highlightPoints = [],
 } = Astro.props;
 const heroImage = getImage('hero-home');
 const featuredItems = featuredPosts
@@ -65,6 +63,7 @@ const featuredCardSlides = featuredItems.map(({ post, image }) => ({
   title: post.title,
   src: image.src,
   alt: image.altByLocale[locale],
+  highlights: post.highlights,
 }));
 ---
 
@@ -168,13 +167,11 @@ const featuredCardSlides = featuredItems.map(({ post, image }) => ({
                 <span class="hero__featuredCardTitle" id="hf-card-title">
                   {featuredCardSlides[0].title}
                 </span>
-                {highlightPoints.length > 0 && (
-                  <ul class="hero__featuredCardHighlights">
-                    {highlightPoints.map((point) => (
-                      <li>{point}</li>
-                    ))}
-                  </ul>
-                )}
+                <ul class="hero__featuredCardHighlights" id="hf-card-highlights">
+                  {featuredCardSlides[0].highlights.map((point) => (
+                    <li>{point}</li>
+                  ))}
+                </ul>
               </span>
             </a>
             {featuredCardSlides.length > 1 && (
@@ -237,6 +234,7 @@ const featuredCardSlides = featuredItems.map(({ post, image }) => ({
     const img = document.getElementById('hf-card-img');
     const label = document.getElementById('hf-card-label');
     const title = document.getElementById('hf-card-title');
+    const highlights = document.getElementById('hf-card-highlights');
     const prevButton = document.getElementById('hf-card-prev');
     const nextButton = document.getElementById('hf-card-next');
     const dots = document.querySelectorAll('#hf-card-dots [data-index]');
@@ -250,6 +248,13 @@ const featuredCardSlides = featuredItems.map(({ post, image }) => ({
       img.alt = slide.alt;
       label.textContent = slide.label;
       title.textContent = slide.title;
+      highlights.replaceChildren(
+        ...slide.highlights.map((point) => {
+          const li = document.createElement('li');
+          li.textContent = point;
+          return li;
+        }),
+      );
       card.dataset.index = String(index);
       dots.forEach((dot) => {
         dot.classList.toggle('is-active', Number(dot.dataset.index) === index);
@@ -576,10 +581,11 @@ const featuredCardSlides = featuredItems.map(({ post, image }) => ({
       color: var(--color-on-photo);
     }
 
-    /* A few concrete "why us" bullets (see Props.highlightPoints) — held
-       back until hover/focus so the card reads as a clean photo+headline
-       at rest, and only offers the extra detail to someone already
-       interested enough to linger on it. */
+    /* This slide's own 2–3 highlight bullets (see FeaturedPost.highlights,
+       sourced from journal's heroHighlights) — held back until hover/focus
+       so the card reads as a clean photo+headline at rest, and only offers
+       the extra detail to someone already interested enough to linger on
+       it. */
     .hero__featuredCardHighlights {
       list-style: none;
       margin: var(--space-2) 0 0;
