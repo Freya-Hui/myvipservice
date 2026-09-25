@@ -11,6 +11,21 @@ export type LinkableCollection =
   'destinations' | 'accommodations' | 'experiences' | 'journeys' | 'journal' | 'travelStyles';
 
 /**
+ * The collection name doubles as its URL segment everywhere except
+ * `travelStyles` — its route is `/travel-styles/`, kebab-case. Every other
+ * entry here is a no-op (the identity mapping), kept explicit so a URL
+ * builder never has to assume collection name === path segment.
+ */
+const COLLECTION_PATH: Record<LinkableCollection, string> = {
+  destinations: 'destinations',
+  accommodations: 'accommodations',
+  experiences: 'experiences',
+  journeys: 'journeys',
+  journal: 'journal',
+  travelStyles: 'travel-styles',
+};
+
+/**
  * `status: 'draft'` hides an item from production builds entirely (it's not
  * ready to exist publicly, in any locale) while still being queryable in
  * `astro dev` so it can be previewed. This is unrelated to the per-locale
@@ -171,9 +186,8 @@ export async function getDetailSwitchUrl(
   translationKey: string,
 ): Promise<string> {
   const match = await getEntryByTranslationKey(collection, targetLocale, translationKey);
-  return match
-    ? `/${targetLocale}/${collection}/${match.data.slug}/`
-    : `/${targetLocale}/${collection}/`;
+  const path = COLLECTION_PATH[collection];
+  return match ? `/${targetLocale}/${path}/${match.data.slug}/` : `/${targetLocale}/${path}/`;
 }
 
 /**
