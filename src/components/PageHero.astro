@@ -93,7 +93,14 @@ const hasCta = Astro.slots.has('cta');
       justify-content: space-between;
     }
 
-    .page-hero__heading {
+    /* Scoped to the CTA-row layout specifically — a bare .page-hero__heading
+       selector here was also shrinking the heading on every CTA-less page
+       (journal, destinations, journeys, experiences...), which has no CTA
+       competing for the row and needs the full measure. Real bug: a long
+       CJK title on a journal article was wrapping to 4 narrow lines with a
+       huge stretch of empty space beside it, instead of using the width it
+       actually had. */
+    .page-hero__row .page-hero__heading {
       /* Flex-wrap decides whether the CTA fits on this line using each
          item's hypothetical (unshrunk) size — a heading claiming the full
          prose measure leaves less than the CTA's width free even when
