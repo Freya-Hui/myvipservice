@@ -8,6 +8,7 @@ category: 'Private Access'
 destinationKey: 'french-riviera'
 travelStyleKeys: ['family-journeys', 'romantic-escapes']
 featured: false
+focusThemeKeys: ['South of France']
 status: 'published'
 coverImage: 'destination-french-riviera-yacht'
 gallery: ['destination-french-riviera-yacht', 'destination-monaco']

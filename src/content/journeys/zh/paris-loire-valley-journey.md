@@ -9,6 +9,7 @@ destinationKeys: ['paris', 'loire-valley']
 travelStyleKeys: ['family-journeys']
 includedExperienceKeys: ['private-guided-museum-tour', 'private-loire-valley-chateau-access']
 featured: true
+focusThemeKeys: ['Paris']
 status: 'published'
 coverImage: 'journey-loire-valley-villandry'
 gallery: ['journey-loire-valley-villandry', 'destination-loire-valley', 'experience-art-gallery']

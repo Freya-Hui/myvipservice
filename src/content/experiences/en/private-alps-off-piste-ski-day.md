@@ -7,6 +7,7 @@ description: 'A day on the mountain with a certified private guide, the route ma
 category: 'Sports'
 destinationKey: 'french-alps'
 featured: false
+focusThemeKeys: ['Skiing']
 status: 'published'
 coverImage: 'journey-alps-geneva-offpiste-ski'
 gallery: ['journey-alps-geneva-offpiste-ski', 'destination-french-alps-chalet']

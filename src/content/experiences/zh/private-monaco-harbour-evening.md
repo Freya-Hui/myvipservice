@@ -8,6 +8,7 @@ category: 'Celebration'
 destinationKey: 'monaco'
 travelStyleKeys: ['celebrations', 'romantic-escapes']
 featured: true
+focusThemeKeys: ['South of France']
 status: 'published'
 coverImage: 'experience-monaco-harbour-night'
 gallery: ['experience-monaco-harbour-night', 'destination-monaco']

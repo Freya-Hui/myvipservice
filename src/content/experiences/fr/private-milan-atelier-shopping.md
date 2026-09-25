@@ -7,6 +7,7 @@ description: "Un rendez-vous privé dans les maisons du Quadrilatero della Moda,
 category: 'Fashion'
 destinationKey: 'milan'
 featured: true
+focusThemeKeys: ['Fashion']
 status: 'published'
 coverImage: 'service-boutique-appointment'
 gallery: ['service-boutique-appointment', 'destination-milan']

@@ -9,6 +9,7 @@ destinationKeys: ['bordeaux', 'burgundy']
 includedExperienceKeys: []
 relatedJournalKeys: ['bordeaux-burgundy-private-wine-journey']
 featured: true
+focusThemeKeys: ['Wine']
 status: 'published'
 coverImage: 'journey-bordeaux-burgundy-chateau'
 gallery:

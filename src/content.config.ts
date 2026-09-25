@@ -292,6 +292,21 @@ const accommodations = defineCollection({
   }),
 });
 
+// 2026-09-25 client-requested focus themes: six pillars the site should
+// foreground on journeys/experiences (fashion, skiing, wine, South of
+// France, Paris, kids' summer camps) — a classification pass over existing
+// content, not a new content type. An item can carry zero, one or several;
+// most existing entries won't match any of these six, and that's expected
+// (nothing is deleted or moved for not matching — see focusThemeKeys below).
+const focusTheme = z.enum([
+  'Fashion',
+  'Skiing',
+  'Wine',
+  'South of France',
+  'Paris',
+  'Kids Summer Camp',
+]);
+
 // Widened in Phase 2C with 'Seasonal' and 'Sports' (see docs/taxonomy.md);
 // all 8 previously-existing values stay valid.
 const experienceCategory = z.enum([
@@ -327,6 +342,9 @@ const experiences = defineCollection({
     /** translationKey values matching future Travel Styles entries; the data
      *  file today lives at src/data/site-content.ts#travelTypes. */
     travelStyleKeys: z.array(z.string()).default([]),
+    /** 2026-09-25: which of the six client-requested focus themes this
+     *  experience genuinely fits — see `focusTheme` above. Empty is normal. */
+    focusThemeKeys: z.array(focusTheme).default([]),
     featured: z.boolean().default(false),
     status: contentStatus,
     coverImage: z.string(),
@@ -404,6 +422,11 @@ const journeys = defineCollection({
      *  travelStyleKeys, so a travel-style detail page can pull real
      *  itineraries into its "featured journeys" section. */
     travelStyleKeys: z.array(z.string()).default([]),
+    /** 2026-09-25: which of the six client-requested focus themes this
+     *  journey genuinely fits — see `focusTheme` above. Empty is normal;
+     *  a journey that doesn't match any of the six stays in Journeys
+     *  unchanged, it just isn't tagged into one of them. */
+    focusThemeKeys: z.array(focusTheme).default([]),
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
     publishedAt: z.date().optional(),

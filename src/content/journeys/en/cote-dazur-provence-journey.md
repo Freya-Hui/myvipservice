@@ -16,6 +16,7 @@ includedExperienceKeys:
 relatedJournalKeys:
   ['provence-five-day-itinerary-guide', 'monaco-private-yacht-evening-celebration-guide']
 featured: true
+focusThemeKeys: ['South of France']
 status: 'published'
 coverImage: 'destination-provence-gordes'
 gallery:
