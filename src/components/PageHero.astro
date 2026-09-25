@@ -101,14 +101,24 @@ const hasCta = Astro.slots.has('cta');
        huge stretch of empty space beside it, instead of using the width it
        actually had. */
     .page-hero__row .page-hero__heading {
-      /* Flex-wrap decides whether the CTA fits on this line using each
-         item's hypothetical (unshrunk) size — a heading claiming the full
-         prose measure leaves less than the CTA's width free even when
-         there looks like room, forcing an unwanted wrap. Capping it to
-         leave space for the CTA (plus the row's gap) keeps them on one
-         line down to this breakpoint, only reaching the full measure once
-         the row is wide enough to spare it. */
-      max-width: min(var(--prose-max-width), calc(100% - 20rem));
+      /* A fixed-rem guess at "how much room the CTA needs" (the previous
+         approach) breaks for any CTA label wider than the guess — French
+         booking CTAs like "Demande d'accès au terminal privé" are wider
+         than a 20rem reservation, so the row still wrapped the button onto
+         its own line below, except the heading had already shrunk itself
+         for nothing, leaving it narrower than it needed to be. A small
+         flex-basis plus flex-grow lets the row size itself from the CTA's
+         *actual* rendered width instead of a guess: on one line, the
+         heading claims whatever space the real CTA doesn't need (capped at
+         the prose measure); if even a comfortable minimum can't fit beside
+         the real CTA, flex-wrap drops the CTA to its own line below and the
+         now-solo heading grows back out to the full row width. */
+      flex: 1 1 12rem;
+      max-width: var(--prose-max-width);
+    }
+
+    .page-hero__cta {
+      flex: 0 0 auto;
     }
   }
 </style>
