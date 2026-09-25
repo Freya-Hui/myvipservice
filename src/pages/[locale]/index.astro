@@ -97,10 +97,10 @@ const structuredData = {
       title: entry.data.title,
       href: `/${locale}/journal/${entry.data.slug}/`,
       imageId: entry.data.coverImage,
+      highlights: entry.data.heroHighlights,
     }))}
     featuredPrevLabel={t('home.hero.featuredPrev')}
     featuredNextLabel={t('home.hero.featuredNext')}
-    highlightPoints={whyUsPoints[locale].map((point) => point.title)}
   />
 
   <StoryFeature

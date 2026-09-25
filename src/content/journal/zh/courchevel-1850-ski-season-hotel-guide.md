@@ -16,6 +16,12 @@ status: 'published'
 publishedAt: 2026-09-10
 draft: false
 featured: true
+heroHighlights:
+  [
+    '库尔雪维尔 1850 十家顶奢酒店实测对比',
+    'Jardin Alpin / Bellecôte / La Croisette 怎么选',
+    '旺季提前 3-6 个月订房，我们帮您锁房',
+  ]
 ---
 
 缆车穿云而上，缆厢冲出云层的那一刻，才看清脚下连绵的雪峰——这大概是很多人对库尔雪维尔 1850 的第一印象。Cheval Blanc、Aman、Les Airelles、Le K2、瑰丽（Rosewood）、六善（Six Senses）……几乎叫得出名字的顶奢酒店品牌，都挤在这一个不算大的小镇里各占一席。这篇整理的是我们目前确认过信息的库尔雪维尔 1850 雪季情况，会持续更新。
