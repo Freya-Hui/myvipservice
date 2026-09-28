@@ -17,8 +17,6 @@ const hotelBudgetRanges = [
 ---
 
 <div class="hotel-enquiry" id="hotel-enquiry-root">
-  <p class="hotel-enquiry__stepIndicator" id="he-step-indicator">{t('hotelEnquiry.step1Of3')}</p>
-
   <form id="hotel-enquiry-form">
     <p class="visually-hidden">
       <label>
@@ -27,125 +25,143 @@ const hotelBudgetRanges = [
     </p>
     <input type="hidden" name="locale" value={locale} />
 
-    <div class="hotel-enquiry__panel" id="he-step-1">
-      <h2 class="hotel-enquiry__stepHeading">{t('hotelEnquiry.step1Heading')}</h2>
+    <div class="hotel-enquiry__layout">
+      <div class="hotel-enquiry__main">
+        <div class="hotel-enquiry__panel" id="he-step-1">
+          <h2 class="hotel-enquiry__stepHeading">{t('hotelEnquiry.step1Heading')}</h2>
 
-      <div class="field">
-        <label for="he-destination">{t('contact.form.destination')}</label>
-        <input type="text" id="he-destination" name="destination" required />
-      </div>
-
-      <div class="field-group__row">
-        <div class="field">
-          <label for="he-check-in">{t('accommodationBooking.checkInLabel')}</label>
-          <input type="date" id="he-check-in" name="checkIn" required />
-        </div>
-        <div class="field">
-          <label for="he-check-out">{t('accommodationBooking.checkOutLabel')}</label>
-          <input type="date" id="he-check-out" name="checkOut" required />
-        </div>
-        <div class="field">
-          <label for="he-party-size">{t('ticketBooking.partySizeLabel')}</label>
-          <input type="number" id="he-party-size" name="partySize" min="1" value="2" required />
-        </div>
-      </div>
-    </div>
-
-    <div class="hotel-enquiry__panel" id="he-step-2" hidden>
-      <h2 class="hotel-enquiry__stepHeading">{t('hotelEnquiry.step2Heading')}</h2>
-
-      <div class="field">
-        <label for="he-hotel-budget">{t('contact.form.hotelBudget')}</label>
-        <select id="he-hotel-budget" name="hotelBudget" required>
-          <option value="">{t('contact.form.hotelBudgetPlaceholder')}</option>
-          {hotelBudgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="he-notes">{t('carBooking.notesLabel')}</label>
-        <textarea id="he-notes" name="notes" rows="3" placeholder={t('carBooking.notesPlaceholder')}
-        ></textarea>
-      </div>
-    </div>
-
-    <div class="hotel-enquiry__panel" id="he-step-3" hidden>
-      <h2 class="hotel-enquiry__stepHeading">{t('carBooking.section.contact')}</h2>
-
-      <fieldset class="field-group">
-        <legend class="visually-hidden">{t('carBooking.section.contact')}</legend>
-        <div class="field-group__row">
           <div class="field">
-            <label for="he-name">{t('carBooking.nameLabel')}</label>
-            <input type="text" id="he-name" name="name" autocomplete="name" required />
+            <label for="he-destination">{t('contact.form.destination')}</label>
+            <input type="text" id="he-destination" name="destination" required />
           </div>
-          <div class="field">
-            <label for="he-email">{t('carBooking.emailLabel')}</label>
-            <input type="email" id="he-email" name="email" autocomplete="email" required />
+
+          <div class="field-group__row">
+            <div class="field">
+              <label for="he-check-in">{t('accommodationBooking.checkInLabel')}</label>
+              <input type="date" id="he-check-in" name="checkIn" required />
+            </div>
+            <div class="field">
+              <label for="he-check-out">{t('accommodationBooking.checkOutLabel')}</label>
+              <input type="date" id="he-check-out" name="checkOut" required />
+            </div>
+            <div class="field">
+              <label for="he-party-size">{t('ticketBooking.partySizeLabel')}</label>
+              <input type="number" id="he-party-size" name="partySize" min="1" value="2" required />
+            </div>
           </div>
         </div>
-      </fieldset>
 
-      <div class="field">
-        <label for="he-phone">{t('carBooking.phoneLabel')}</label>
-        <div class="hotel-enquiry__phoneRow">
-          <select
-            id="he-phone-code"
-            name="phoneCountryCode"
-            aria-label={t('carBooking.phoneCodeLabel')}
-          >
-            <option value="+86">China +86</option>
-            <option value="+33">France +33</option>
-            <option value="+44">UK +44</option>
-            <option value="+49">Germany +49</option>
-            <option value="+39">Italy +39</option>
-            <option value="+34">Spain +34</option>
-            <option value="+41">Switzerland +41</option>
-            <option value="+7">Russia +7</option>
-            <option value="+1">US/Canada +1</option>
-            <option value="+852">Hong Kong +852</option>
-            <option value="+65">Singapore +65</option>
-            <option value="+81">Japan +81</option>
-          </select>
-          <input type="tel" id="he-phone" name="phoneWechat" autocomplete="tel" required />
+        <div class="hotel-enquiry__panel" id="he-step-2" hidden>
+          <h2 class="hotel-enquiry__stepHeading">{t('hotelEnquiry.step2Heading')}</h2>
+
+          <div class="field">
+            <label for="he-hotel-budget">{t('contact.form.hotelBudget')}</label>
+            <select id="he-hotel-budget" name="hotelBudget" required>
+              <option value="">{t('contact.form.hotelBudgetPlaceholder')}</option>
+              {hotelBudgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="he-notes">{t('carBooking.notesLabel')}</label>
+            <textarea
+              id="he-notes"
+              name="notes"
+              rows="3"
+              placeholder={t('carBooking.notesPlaceholder')}></textarea>
+          </div>
         </div>
-        <p class="hotel-enquiry__note">{t('carBooking.whatsappNote')}</p>
+
+        <div class="hotel-enquiry__panel" id="he-step-3" hidden>
+          <h2 class="hotel-enquiry__stepHeading">{t('carBooking.section.contact')}</h2>
+
+          <fieldset class="field-group">
+            <legend class="visually-hidden">{t('carBooking.section.contact')}</legend>
+            <div class="field-group__row">
+              <div class="field">
+                <label for="he-name">{t('carBooking.nameLabel')}</label>
+                <input type="text" id="he-name" name="name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="he-email">{t('carBooking.emailLabel')}</label>
+                <input type="email" id="he-email" name="email" autocomplete="email" required />
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="he-phone">{t('carBooking.phoneLabel')}</label>
+            <div class="hotel-enquiry__phoneRow">
+              <select
+                id="he-phone-code"
+                name="phoneCountryCode"
+                aria-label={t('carBooking.phoneCodeLabel')}
+              >
+                <option value="+86">China +86</option>
+                <option value="+33">France +33</option>
+                <option value="+44">UK +44</option>
+                <option value="+49">Germany +49</option>
+                <option value="+39">Italy +39</option>
+                <option value="+34">Spain +34</option>
+                <option value="+41">Switzerland +41</option>
+                <option value="+7">Russia +7</option>
+                <option value="+1">US/Canada +1</option>
+                <option value="+852">Hong Kong +852</option>
+                <option value="+65">Singapore +65</option>
+                <option value="+81">Japan +81</option>
+              </select>
+              <input type="tel" id="he-phone" name="phoneWechat" autocomplete="tel" required />
+            </div>
+            <p class="hotel-enquiry__note">{t('carBooking.whatsappNote')}</p>
+          </div>
+
+          <div class="field">
+            <span class="hotel-enquiry__label">{t('carBooking.contactMethodLabel')}</span>
+            <div class="hotel-enquiry__pills" role="radiogroup">
+              <button type="button" class="pill is-active" data-contact-method="whatsapp"
+                >{t('carBooking.contactMethod.whatsapp')}</button
+              >
+              <button type="button" class="pill" data-contact-method="email"
+                >{t('carBooking.contactMethod.email')}</button
+              >
+              <button type="button" class="pill" data-contact-method="imessage"
+                >{t('carBooking.contactMethod.imessage')}</button
+              >
+            </div>
+            <input
+              type="hidden"
+              name="preferredContactMethod"
+              id="he-contact-method-field"
+              value="whatsapp"
+            />
+          </div>
+        </div>
       </div>
 
-      <div class="field">
-        <span class="hotel-enquiry__label">{t('carBooking.contactMethodLabel')}</span>
-        <div class="hotel-enquiry__pills" role="radiogroup">
-          <button type="button" class="pill is-active" data-contact-method="whatsapp"
-            >{t('carBooking.contactMethod.whatsapp')}</button
+      <div class="hotel-enquiry__side">
+        <p class="hotel-enquiry__stepIndicator" id="he-step-indicator">
+          {t('hotelEnquiry.step1Of3')}
+        </p>
+
+        <div class="hotel-enquiry__summary" id="he-summary">
+          <p class="hotel-enquiry__summaryTitle">{t('carBooking.summaryTitle')}</p>
+          <dl class="hotel-enquiry__summaryList" id="he-summary-list"></dl>
+        </div>
+
+        <div class="hotel-enquiry__actions">
+          <button type="button" class="button button--quiet" id="he-back-button" hidden
+            >{t('carBooking.backButton')}</button
           >
-          <button type="button" class="pill" data-contact-method="email"
-            >{t('carBooking.contactMethod.email')}</button
+          <button type="button" class="button button--primary" id="he-next-button"
+            >{t('hotelEnquiry.nextButton')}</button
           >
-          <button type="button" class="pill" data-contact-method="imessage"
-            >{t('carBooking.contactMethod.imessage')}</button
+          <button type="submit" class="button button--primary" id="he-submit-button" hidden
+            >{t('accommodationBooking.submit')}</button
           >
         </div>
-        <input
-          type="hidden"
-          name="preferredContactMethod"
-          id="he-contact-method-field"
-          value="whatsapp"
-        />
+        <p class="hotel-enquiry__status" id="he-status" role="status" aria-live="polite"></p>
       </div>
     </div>
-
-    <div class="hotel-enquiry__actions">
-      <button type="button" class="button button--quiet" id="he-back-button" hidden
-        >{t('carBooking.backButton')}</button
-      >
-      <button type="button" class="button button--primary" id="he-next-button"
-        >{t('hotelEnquiry.nextButton')}</button
-      >
-      <button type="submit" class="button button--primary" id="he-submit-button" hidden
-        >{t('accommodationBooking.submit')}</button
-      >
-    </div>
-    <p class="hotel-enquiry__status" id="he-status" role="status" aria-live="polite"></p>
   </form>
 </div>
 
@@ -156,6 +172,11 @@ const hotelBudgetRanges = [
     step3Label: t('hotelEnquiry.step3Of3'),
     requestReceivedNote: t('carBooking.requestReceivedNote'),
     genericErrorNote: t('carBooking.genericErrorNote'),
+    destinationLabelText: t('contact.form.destination'),
+    checkInLabelText: t('accommodationBooking.checkInLabel'),
+    checkOutLabelText: t('accommodationBooking.checkOutLabel'),
+    partySizeLabelText: t('ticketBooking.partySizeLabel'),
+    hotelBudgetLabelText: t('contact.form.hotelBudget'),
   }}
 >
   (function () {
@@ -173,10 +194,14 @@ const hotelBudgetRanges = [
     const nextButton = document.getElementById('he-next-button');
     const backButton = document.getElementById('he-back-button');
     const submitButton = document.getElementById('he-submit-button');
+    const destinationInput = document.getElementById('he-destination');
     const checkInInput = document.getElementById('he-check-in');
     const checkOutInput = document.getElementById('he-check-out');
+    const partySizeInput = document.getElementById('he-party-size');
+    const hotelBudgetSelect = document.getElementById('he-hotel-budget');
     const contactMethodPills = root.querySelectorAll('[data-contact-method]');
     const contactMethodField = document.getElementById('he-contact-method-field');
+    const summaryList = document.getElementById('he-summary-list');
     const statusEl = document.getElementById('he-status');
 
     let current = 0;
@@ -191,7 +216,30 @@ const hotelBudgetRanges = [
       if (checkOutInput.value && checkOutInput.value <= checkInInput.value) {
         checkOutInput.value = '';
       }
+      updateSummary();
     });
+
+    function updateSummary() {
+      if (!summaryList) return;
+      const rows = [];
+      if (destinationInput.value) rows.push([destinationLabelText, destinationInput.value]);
+      if (checkInInput.value) rows.push([checkInLabelText, checkInInput.value]);
+      if (checkOutInput.value) rows.push([checkOutLabelText, checkOutInput.value]);
+      if (partySizeInput.value) rows.push([partySizeLabelText, partySizeInput.value]);
+      const budgetOption = hotelBudgetSelect.options[hotelBudgetSelect.selectedIndex];
+      if (hotelBudgetSelect.value && budgetOption) {
+        rows.push([hotelBudgetLabelText, budgetOption.textContent]);
+      }
+      summaryList.innerHTML = rows
+        .map(([k, v]) => `<div class="hotel-enquiry__summaryRow"><dt>${k}</dt><dd>${v}</dd></div>`)
+        .join('');
+    }
+
+    [destinationInput, checkOutInput, partySizeInput].forEach((el) => {
+      el.addEventListener('input', updateSummary);
+      el.addEventListener('change', updateSummary);
+    });
+    hotelBudgetSelect.addEventListener('change', updateSummary);
 
     function showStep(index) {
       steps.forEach((panel, i) => (panel.hidden = i !== index));
@@ -255,6 +303,7 @@ const hotelBudgetRanges = [
         contactMethodField.value = 'whatsapp';
         current = 0;
         showStep(current);
+        updateSummary();
       } catch {
         statusEl.textContent = genericErrorNote;
       } finally {
@@ -263,15 +312,30 @@ const hotelBudgetRanges = [
     });
 
     showStep(current);
+    updateSummary();
   })();
 </script>
 
 <style>
-  .hotel-enquiry {
-    max-width: var(--prose-max-width);
-    padding: var(--space-5);
-    background: var(--color-bg-inset);
-    border-radius: var(--radius);
+  .hotel-enquiry__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    /* Wider than the site's usual reading column — this page's whole job
+       is the widget, and the two-column layout below needs the room. */
+    max-width: 64rem;
+  }
+
+  @media (min-width: 56rem) {
+    .hotel-enquiry__layout {
+      grid-template-columns: 1fr 20rem;
+      align-items: start;
+    }
+
+    .hotel-enquiry__side {
+      position: sticky;
+      top: var(--space-5);
+    }
   }
 
   .hotel-enquiry__stepIndicator {
@@ -373,10 +437,58 @@ const hotelBudgetRanges = [
     flex: 1;
   }
 
+  .hotel-enquiry__side {
+    padding: var(--space-4);
+    background: var(--color-bg-inset);
+    border-radius: var(--radius);
+  }
+
+  .hotel-enquiry__summary {
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hotel-enquiry__summary:empty,
+  .hotel-enquiry__summaryList:empty {
+    display: none;
+  }
+
+  .hotel-enquiry__summaryTitle {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .hotel-enquiry__summaryList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin: 0;
+  }
+
+  /* Built client-side via innerHTML (see updateSummary() above), so these
+     rows never get Astro's scoping attribute — :global() is required for
+     the styles to reach them. */
+  :global(.hotel-enquiry__summaryRow) {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-size: var(--text-small);
+  }
+
+  :global(.hotel-enquiry__summaryRow dt) {
+    color: var(--color-text-muted);
+  }
+
+  :global(.hotel-enquiry__summaryRow dd) {
+    margin: 0;
+    text-align: right;
+  }
+
   .hotel-enquiry__actions {
     display: flex;
     gap: var(--space-3);
-    margin-top: var(--space-5);
   }
 
   .hotel-enquiry__actions .button {
