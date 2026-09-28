@@ -21,167 +21,189 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     </p>
     <input type="hidden" name="locale" value={locale} />
 
-    <div class="field">
-      <span class="vip-reception__label">{t('terminalBooking.scenarioLabel')}</span>
-      <div class="vip-reception__pills" role="radiogroup">
-        <button type="button" class="pill is-active" data-scenario="arrival"
-          >{t('terminalBooking.scenario.arrival')}</button
-        >
-        <button type="button" class="pill" data-scenario="departure"
-          >{t('terminalBooking.scenario.departure')}</button
-        >
-        <button type="button" class="pill" data-scenario="connection"
-          >{t('terminalBooking.scenario.connection')}</button
-        >
-      </div>
-      <input type="hidden" name="scenario" id="vr-scenario-field" value="arrival" />
-    </div>
-
-    <div class="field-group__row">
-      <div class="field">
-        <label for="vr-country">{t('carBooking.countryLabel')}</label>
-        <select id="vr-country" name="country" required>
-          <option value="france">{t('carBooking.country.france')}</option>
-          <option value="uk">{t('carBooking.country.uk')}</option>
-          <option value="italy">{t('carBooking.country.italy')}</option>
-          <option value="spain">{t('carBooking.country.spain')}</option>
-          <option value="germany">{t('carBooking.country.germany')}</option>
-          <option value="switzerland">{t('carBooking.country.switzerland')}</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="vr-party-size">{t('ticketBooking.partySizeLabel')}</label>
-        <input
-          type="number"
-          id="vr-party-size"
-          name="partySize"
-          min="1"
-          max="7"
-          value="2"
-          required
-        />
-      </div>
-    </div>
-
-    <div class="field-group__row">
-      <div class="field">
-        <label for="vr-date">{t('carBooking.dateLabel')}</label>
-        <input type="date" id="vr-date" name="date" required />
-      </div>
-      <div class="field">
-        <label for="vr-flight-number">{t('carBooking.flightNumberLabel')}</label>
-        <input type="text" id="vr-flight-number" name="flightNumber" />
-      </div>
-    </div>
-
-    <label class="vip-reception__checkbox">
-      <input type="checkbox" id="vr-chauffeur" name="wantsChauffeur" value="yes" />
-      {t('terminalBooking.chauffeurLabel')}
-    </label>
-
-    <div class="field vip-reception__vehicles" id="vr-vehicles" hidden>
-      <span class="vip-reception__label">{t('carBooking.carTypeLabel')}</span>
-      <div class="vip-reception__vehicleCards">
-        <button type="button" class="vehicle-card is-active" data-vehicle="standard">
-          <img
-            src={standardVehicleImage.src}
-            alt={standardVehicleImage.altByLocale[locale]}
-            loading="lazy"
-          />
-          <span class="vehicle-card__name">{t('carBooking.carType.standard')}</span>
-        </button>
-        <button type="button" class="vehicle-card" data-vehicle="aviation">
-          <img
-            src={aviationVehicleImage.src}
-            alt={aviationVehicleImage.altByLocale[locale]}
-            loading="lazy"
-          />
-          <span class="vehicle-card__name">{t('carBooking.carType.aviation')}</span>
-        </button>
-      </div>
-      <input type="hidden" name="vehicle" id="vr-vehicle-field" value="standard" />
-    </div>
-
-    <div class="field">
-      <label for="vr-notes">{t('carBooking.notesLabel')}</label>
-      <textarea id="vr-notes" name="notes" rows="3" placeholder={t('carBooking.notesPlaceholder')}
-      ></textarea>
-    </div>
-
-    <fieldset class="field-group">
-      <legend class="visually-hidden">{t('carBooking.section.contact')}</legend>
-      <div class="field-group__row">
+    <div class="vip-reception__layout">
+      <div class="vip-reception__main">
         <div class="field">
-          <label for="vr-name">{t('carBooking.nameLabel')}</label>
-          <input type="text" id="vr-name" name="name" autocomplete="name" required />
+          <span class="vip-reception__label">{t('terminalBooking.scenarioLabel')}</span>
+          <div class="vip-reception__pills" role="radiogroup">
+            <button type="button" class="pill is-active" data-scenario="arrival"
+              >{t('terminalBooking.scenario.arrival')}</button
+            >
+            <button type="button" class="pill" data-scenario="departure"
+              >{t('terminalBooking.scenario.departure')}</button
+            >
+            <button type="button" class="pill" data-scenario="connection"
+              >{t('terminalBooking.scenario.connection')}</button
+            >
+          </div>
+          <input type="hidden" name="scenario" id="vr-scenario-field" value="arrival" />
         </div>
+
+        <div class="field-group__row">
+          <div class="field">
+            <label for="vr-country">{t('carBooking.countryLabel')}</label>
+            <select id="vr-country" name="country" required>
+              <option value="france">{t('carBooking.country.france')}</option>
+              <option value="uk">{t('carBooking.country.uk')}</option>
+              <option value="italy">{t('carBooking.country.italy')}</option>
+              <option value="spain">{t('carBooking.country.spain')}</option>
+              <option value="germany">{t('carBooking.country.germany')}</option>
+              <option value="switzerland">{t('carBooking.country.switzerland')}</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="vr-party-size">{t('ticketBooking.partySizeLabel')}</label>
+            <input
+              type="number"
+              id="vr-party-size"
+              name="partySize"
+              min="1"
+              max="7"
+              value="2"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field-group__row">
+          <div class="field">
+            <label for="vr-date">{t('carBooking.dateLabel')}</label>
+            <input type="date" id="vr-date" name="date" required />
+          </div>
+          <div class="field">
+            <label for="vr-flight-number">{t('carBooking.flightNumberLabel')}</label>
+            <input type="text" id="vr-flight-number" name="flightNumber" />
+          </div>
+        </div>
+
+        <label class="vip-reception__checkbox">
+          <input type="checkbox" id="vr-chauffeur" name="wantsChauffeur" value="yes" />
+          {t('terminalBooking.chauffeurLabel')}
+        </label>
+
+        <div class="field vip-reception__vehicles" id="vr-vehicles" hidden>
+          <span class="vip-reception__label">{t('carBooking.carTypeLabel')}</span>
+          <div class="vip-reception__vehicleCards">
+            <button type="button" class="vehicle-card is-active" data-vehicle="standard">
+              <img
+                src={standardVehicleImage.src}
+                alt={standardVehicleImage.altByLocale[locale]}
+                loading="lazy"
+              />
+              <span class="vehicle-card__name">{t('carBooking.carType.standard')}</span>
+            </button>
+            <button type="button" class="vehicle-card" data-vehicle="aviation">
+              <img
+                src={aviationVehicleImage.src}
+                alt={aviationVehicleImage.altByLocale[locale]}
+                loading="lazy"
+              />
+              <span class="vehicle-card__name">{t('carBooking.carType.aviation')}</span>
+            </button>
+          </div>
+          <input type="hidden" name="vehicle" id="vr-vehicle-field" value="standard" />
+        </div>
+
         <div class="field">
-          <label for="vr-email">{t('carBooking.emailLabel')}</label>
-          <input type="email" id="vr-email" name="email" autocomplete="email" required />
+          <label for="vr-notes">{t('carBooking.notesLabel')}</label>
+          <textarea
+            id="vr-notes"
+            name="notes"
+            rows="3"
+            placeholder={t('carBooking.notesPlaceholder')}></textarea>
+        </div>
+
+        <fieldset class="field-group">
+          <legend class="visually-hidden">{t('carBooking.section.contact')}</legend>
+          <div class="field-group__row">
+            <div class="field">
+              <label for="vr-name">{t('carBooking.nameLabel')}</label>
+              <input type="text" id="vr-name" name="name" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="vr-email">{t('carBooking.emailLabel')}</label>
+              <input type="email" id="vr-email" name="email" autocomplete="email" required />
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="vr-phone">{t('carBooking.phoneLabel')}</label>
+          <div class="vip-reception__phoneRow">
+            <select
+              id="vr-phone-code"
+              name="phoneCountryCode"
+              aria-label={t('carBooking.phoneCodeLabel')}
+            >
+              <option value="+86">China +86</option>
+              <option value="+33">France +33</option>
+              <option value="+44">UK +44</option>
+              <option value="+49">Germany +49</option>
+              <option value="+39">Italy +39</option>
+              <option value="+34">Spain +34</option>
+              <option value="+41">Switzerland +41</option>
+              <option value="+7">Russia +7</option>
+              <option value="+1">US/Canada +1</option>
+              <option value="+852">Hong Kong +852</option>
+              <option value="+65">Singapore +65</option>
+              <option value="+81">Japan +81</option>
+            </select>
+            <input type="tel" id="vr-phone" name="phoneWechat" autocomplete="tel" required />
+          </div>
+          <p class="vip-reception__note">{t('carBooking.whatsappNote')}</p>
+        </div>
+
+        <div class="field">
+          <span class="vip-reception__label">{t('carBooking.contactMethodLabel')}</span>
+          <div class="vip-reception__pills" role="radiogroup">
+            <button type="button" class="pill is-active" data-contact-method="whatsapp"
+              >{t('carBooking.contactMethod.whatsapp')}</button
+            >
+            <button type="button" class="pill" data-contact-method="email"
+              >{t('carBooking.contactMethod.email')}</button
+            >
+            <button type="button" class="pill" data-contact-method="imessage"
+              >{t('carBooking.contactMethod.imessage')}</button
+            >
+          </div>
+          <input
+            type="hidden"
+            name="preferredContactMethod"
+            id="vr-contact-method-field"
+            value="whatsapp"
+          />
         </div>
       </div>
-    </fieldset>
 
-    <div class="field">
-      <label for="vr-phone">{t('carBooking.phoneLabel')}</label>
-      <div class="vip-reception__phoneRow">
-        <select
-          id="vr-phone-code"
-          name="phoneCountryCode"
-          aria-label={t('carBooking.phoneCodeLabel')}
+      <div class="vip-reception__side">
+        <div class="vip-reception__summary" id="vr-summary">
+          <p class="vip-reception__summaryTitle">{t('carBooking.summaryTitle')}</p>
+          <dl class="vip-reception__summaryList" id="vr-summary-list"></dl>
+        </div>
+
+        <div class="vip-reception__total">
+          <span>{t('terminalBooking.priceLabel')}</span>
+          <span class="vip-reception__priceValue" id="vr-price-value">€189</span>
+        </div>
+        <p class="vip-reception__note" id="vr-price-note"></p>
+
+        <button
+          type="submit"
+          class="button button--primary vip-reception__wideButton"
+          id="vr-submit">{t('terminalBooking.submit')}</button
         >
-          <option value="+86">China +86</option>
-          <option value="+33">France +33</option>
-          <option value="+44">UK +44</option>
-          <option value="+49">Germany +49</option>
-          <option value="+39">Italy +39</option>
-          <option value="+34">Spain +34</option>
-          <option value="+41">Switzerland +41</option>
-          <option value="+7">Russia +7</option>
-          <option value="+1">US/Canada +1</option>
-          <option value="+852">Hong Kong +852</option>
-          <option value="+65">Singapore +65</option>
-          <option value="+81">Japan +81</option>
-        </select>
-        <input type="tel" id="vr-phone" name="phoneWechat" autocomplete="tel" required />
+        <p class="vip-reception__status" id="vr-status" role="status"></p>
       </div>
-      <p class="vip-reception__note">{t('carBooking.whatsappNote')}</p>
     </div>
-
-    <div class="field">
-      <span class="vip-reception__label">{t('carBooking.contactMethodLabel')}</span>
-      <div class="vip-reception__pills" role="radiogroup">
-        <button type="button" class="pill is-active" data-contact-method="whatsapp"
-          >{t('carBooking.contactMethod.whatsapp')}</button
-        >
-        <button type="button" class="pill" data-contact-method="email"
-          >{t('carBooking.contactMethod.email')}</button
-        >
-        <button type="button" class="pill" data-contact-method="imessage"
-          >{t('carBooking.contactMethod.imessage')}</button
-        >
-      </div>
-      <input
-        type="hidden"
-        name="preferredContactMethod"
-        id="vr-contact-method-field"
-        value="whatsapp"
-      />
-    </div>
-
-    <div class="vip-reception__summary">
-      <p class="vip-reception__price" id="vr-price">
-        <span class="vip-reception__priceLabel">{t('terminalBooking.priceLabel')}</span>
-        <span class="vip-reception__priceValue" id="vr-price-value">€189</span>
-      </p>
-      <p class="vip-reception__note" id="vr-price-note"></p>
-    </div>
-
-    <button type="submit" class="button button--primary" id="vr-submit"
-      >{t('terminalBooking.submit')}</button
-    >
-    <p class="vip-reception__status" id="vr-status" role="status"></p>
   </form>
+
+  <div class="vip-reception__sticky" id="vr-sticky" hidden>
+    <span class="vip-reception__stickyLabel">{t('terminalBooking.priceLabel')}</span>
+    <span class="vip-reception__priceValue" id="vr-price-sticky">€189</span>
+    <button type="submit" class="button button--primary" form="vip-reception-form">
+      {t('terminalBooking.submit')}
+    </button>
+  </div>
 </div>
 
 <script
@@ -189,6 +211,12 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     requestReceivedNote: t('carBooking.requestReceivedNote'),
     genericErrorNote: t('carBooking.genericErrorNote'),
     customQuoteNote: t('vipReceptionBooking.customQuoteNote'),
+    scenarioLabelText: t('terminalBooking.scenarioLabel'),
+    countryLabelText: t('carBooking.countryLabel'),
+    partySizeLabelText: t('ticketBooking.partySizeLabel'),
+    dateLabelText: t('carBooking.dateLabel'),
+    flightNumberLabelText: t('carBooking.flightNumberLabel'),
+    carTypeLabelText: t('carBooking.carTypeLabel'),
   }}
 >
   (function () {
@@ -203,18 +231,25 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     const scenarioPills = root.querySelectorAll('[data-scenario]');
     const scenarioField = document.getElementById('vr-scenario-field');
     const countrySelect = document.getElementById('vr-country');
+    const partySizeInput = document.getElementById('vr-party-size');
+    const dateInput = document.getElementById('vr-date');
+    const flightNumberInput = document.getElementById('vr-flight-number');
     const chauffeurCheckbox = document.getElementById('vr-chauffeur');
     const vehiclesField = document.getElementById('vr-vehicles');
     const vehicleCards = root.querySelectorAll('[data-vehicle]');
     const vehicleField = document.getElementById('vr-vehicle-field');
     const contactMethodPills = root.querySelectorAll('[data-contact-method]');
     const contactMethodField = document.getElementById('vr-contact-method-field');
-    const priceValueEl = document.getElementById('vr-price-value');
+    const priceValueEls = [
+      document.getElementById('vr-price-value'),
+      document.getElementById('vr-price-sticky'),
+    ];
     const priceNoteEl = document.getElementById('vr-price-note');
-    const dateInput = document.getElementById('vr-date');
+    const summaryList = document.getElementById('vr-summary-list');
     const form = document.getElementById('vip-reception-form');
     const submitButton = document.getElementById('vr-submit');
     const statusEl = document.getElementById('vr-status');
+    const stickyBar = document.getElementById('vr-sticky');
 
     let scenario = 'arrival';
 
@@ -224,16 +259,40 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     }
     setMinDate();
 
+    function updateSummary() {
+      if (!summaryList) return;
+      const activeScenario = root.querySelector('[data-scenario].is-active');
+      const countryOption = countrySelect.options[countrySelect.selectedIndex];
+      const rows = [
+        [scenarioLabelText, activeScenario ? activeScenario.textContent : ''],
+        [countryLabelText, countryOption ? countryOption.textContent : ''],
+        [partySizeLabelText, partySizeInput.value],
+      ];
+      if (dateInput.value) rows.push([dateLabelText, dateInput.value]);
+      if (flightNumberInput.value) rows.push([flightNumberLabelText, flightNumberInput.value]);
+      if (chauffeurCheckbox.checked) {
+        const activeVehicle = root.querySelector('[data-vehicle].is-active');
+        rows.push([
+          carTypeLabelText,
+          activeVehicle ? activeVehicle.querySelector('.vehicle-card__name').textContent : '',
+        ]);
+      }
+      summaryList.innerHTML = rows
+        .map(([k, v]) => `<div class="vip-reception__summaryRow"><dt>${k}</dt><dd>${v}</dd></div>`)
+        .join('');
+    }
+
     function updatePrice() {
       const base = RATES[countrySelect.value];
       if (!base) {
-        priceValueEl.textContent = '—';
+        priceValueEls.forEach((el) => (el.textContent = '—'));
         priceNoteEl.textContent = customQuoteNote;
-        return;
+      } else {
+        const total = scenario === 'connection' ? base * 2 : base;
+        priceValueEls.forEach((el) => (el.textContent = `€${total}`));
+        priceNoteEl.textContent = '';
       }
-      const total = scenario === 'connection' ? base * 2 : base;
-      priceValueEl.textContent = `€${total}`;
-      priceNoteEl.textContent = '';
+      updateSummary();
     }
 
     scenarioPills.forEach((btn) => {
@@ -247,10 +306,15 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     });
 
     countrySelect.addEventListener('change', updatePrice);
+    [partySizeInput, dateInput, flightNumberInput].forEach((el) => {
+      el.addEventListener('input', updateSummary);
+      el.addEventListener('change', updateSummary);
+    });
     updatePrice();
 
     chauffeurCheckbox.addEventListener('change', () => {
       vehiclesField.hidden = !chauffeurCheckbox.checked;
+      updateSummary();
     });
 
     vehicleCards.forEach((btn) => {
@@ -258,6 +322,7 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
         vehicleCards.forEach((b) => b.classList.remove('is-active'));
         btn.classList.add('is-active');
         vehicleField.value = btn.getAttribute('data-vehicle');
+        updateSummary();
       });
     });
 
@@ -307,16 +372,91 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
         submitButton.disabled = false;
       }
     });
+
+    // Mobile-only fallback price bar, matching CarBookingWidget's pattern —
+    // desktop already shows the sticky side column, so this only needs to
+    // appear once that column has scrolled out of view (see the media query
+    // in the styles below).
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          stickyBar.hidden = !entry.isIntersecting;
+        },
+        { threshold: 0 },
+      );
+      observer.observe(root);
+    }
   })();
 </script>
 
 <style>
   .vip-reception {
-    max-width: 40rem;
-    margin: 0 auto;
-    padding: var(--space-5);
-    background: var(--color-bg-inset);
-    border-radius: var(--radius);
+    padding-bottom: calc(var(--space-6) + 4.5rem);
+  }
+
+  @media (min-width: 56rem) {
+    .vip-reception {
+      /* The sticky side column covers this job on desktop. */
+      padding-bottom: 0;
+    }
+  }
+
+  .vip-reception__sticky[hidden] {
+    display: none;
+  }
+
+  .vip-reception__sticky {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg-elevated);
+    border-top: 1px solid var(--color-border);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  @media (min-width: 56rem) {
+    .vip-reception__sticky {
+      display: none;
+    }
+  }
+
+  .vip-reception__stickyLabel {
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+  }
+
+  .vip-reception__sticky .vip-reception__priceValue {
+    flex: 1;
+  }
+
+  .vip-reception__sticky .button {
+    white-space: nowrap;
+  }
+
+  .vip-reception__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    /* Wider than the site's usual reading column — this page's whole job
+       is the widget, and the two-column layout below needs the room. */
+    max-width: 64rem;
+  }
+
+  @media (min-width: 56rem) {
+    .vip-reception__layout {
+      grid-template-columns: 1fr 20rem;
+      align-items: start;
+    }
+
+    .vip-reception__side {
+      position: sticky;
+      top: var(--space-5);
+    }
   }
 
   .field {
@@ -347,6 +487,7 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     gap: var(--space-3);
+    margin-bottom: var(--space-4);
   }
 
   .visually-hidden {
@@ -447,22 +588,55 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     flex: 1;
   }
 
-  .vip-reception__summary {
-    padding: var(--space-4) 0;
-    border-top: 1px solid var(--color-border);
-    margin-bottom: var(--space-4);
+  .vip-reception__side {
+    padding: var(--space-4);
+    background: var(--color-bg-inset);
+    border-radius: var(--radius);
   }
 
-  .vip-reception__price {
+  .vip-reception__summary {
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .vip-reception__summaryTitle {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .vip-reception__summaryList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin: 0;
+  }
+
+  /* Built client-side via innerHTML (see updateSummary() above), so these
+     rows never get Astro's scoping attribute — :global() is required for
+     the styles to reach them. */
+  :global(.vip-reception__summaryRow) {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-size: var(--text-small);
+  }
+
+  :global(.vip-reception__summaryRow dt) {
+    color: var(--color-text-muted);
+  }
+
+  :global(.vip-reception__summaryRow dd) {
+    margin: 0;
+    text-align: right;
+  }
+
+  .vip-reception__total {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin: 0 0 var(--space-2);
-  }
-
-  .vip-reception__priceLabel {
-    font-size: var(--text-small);
-    color: var(--color-text-muted);
+    font-size: var(--text-body-lg);
   }
 
   .vip-reception__priceValue {
@@ -471,8 +645,9 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     color: var(--color-accent);
   }
 
-  #vip-reception-form button[type='submit'] {
+  .vip-reception__wideButton {
     width: 100%;
+    margin-top: var(--space-4);
   }
 
   .vip-reception__status {
