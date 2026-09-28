@@ -1,0 +1,65 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PageHero from '../../../../components/PageHero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import HotelEnquiryWidget from '../../../../components/HotelEnquiryWidget.astro';
+import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
+import { languages, useTranslations, type Locale } from '../../../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const t = useTranslations(locale);
+
+const parentService = await getEntry('services', `${locale}/hotel-villa-reservations`);
+if (!parentService) {
+  throw new Error(`Missing services entry "hotel-villa-reservations" for locale "${locale}"`);
+}
+
+const pageTitle = t('hotelEnquiry.title');
+const pageSubtitle = t('accommodationBooking.subtitle');
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageSubtitle}
+  path="services/hotel-villa-reservations/book"
+>
+  <div class="container">
+    <Breadcrumbs
+      items={[
+        { label: t('nav.home'), href: `/${locale}/` },
+        { label: t('nav.services'), href: `/${locale}/services/` },
+        {
+          label: parentService.data.title,
+          href: `/${locale}/services/hotel-villa-reservations/`,
+        },
+        { label: pageTitle },
+      ]}
+    />
+  </div>
+
+  <PageHero eyebrow={parentService.data.title} title={pageTitle} subtitle={pageSubtitle} />
+
+  <div class="container">
+    <HotelEnquiryWidget locale={locale} />
+  </div>
+
+  <InquiryCTA
+    title={t('home.inquiry.title')}
+    body={t('home.inquiry.body')}
+    ctaLabel={t('common.cta')}
+    ctaHref={`/${locale}/contact/`}
+  />
+</BaseLayout>
+
+<style>
+  /* Same widening as the other booking pages — the widget needs more room
+     than the site's usual prose column. */
+  :global(.page-hero .container.prose) {
+    max-width: var(--content-max-width);
+  }
+</style>

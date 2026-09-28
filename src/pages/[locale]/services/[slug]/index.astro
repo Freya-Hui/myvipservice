@@ -105,13 +105,17 @@ const ctaLabel =
     ? t('vipReceptionBooking.title')
     : slug === 'tickets-events'
       ? t('ticketBooking.title')
-      : t('common.ctaQuote');
+      : slug === 'hotel-villa-reservations'
+        ? t('hotelEnquiry.title')
+        : t('common.ctaQuote');
 const ctaHref =
   slug === 'vip-airport-reception'
     ? `/${locale}/services/vip-airport-reception/book/`
     : slug === 'tickets-events'
       ? `/${locale}/services/tickets-events/book/`
-      : `/${locale}/contact/?about=${encodeURIComponent(data.title)}`;
+      : slug === 'hotel-villa-reservations'
+        ? `/${locale}/services/hotel-villa-reservations/book/`
+        : `/${locale}/contact/?about=${encodeURIComponent(data.title)}`;
 
 const structuredData = {
   '@context': 'https://schema.org',

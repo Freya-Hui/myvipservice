@@ -267,7 +267,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
       description: 'Long-standing partner hotels — upgrades and priority perks where possible.',
       featured: true,
       order: 1,
-      href: '/en/services/hotel-villa-reservations/',
+      href: '/en/services/hotel-villa-reservations/book/',
     },
     {
       id: 'quick-transfer',
@@ -302,7 +302,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
       description: '长期合作的地标酒店，视情况协助升房与优先礼遇。',
       featured: true,
       order: 1,
-      href: '/zh/services/hotel-villa-reservations/',
+      href: '/zh/services/hotel-villa-reservations/book/',
     },
     {
       id: 'quick-transfer',
@@ -337,7 +337,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
         'Hôtels partenaires de longue date — surclassements et égards prioritaires selon disponibilité.',
       featured: true,
       order: 1,
-      href: '/fr/services/hotel-villa-reservations/',
+      href: '/fr/services/hotel-villa-reservations/book/',
     },
     {
       id: 'quick-transfer',

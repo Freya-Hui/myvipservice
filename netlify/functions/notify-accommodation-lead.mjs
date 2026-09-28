@@ -29,6 +29,11 @@ export const handler = async (event) => {
     locale: ['en', 'zh', 'fr'].includes(raw.locale) ? raw.locale : 'en',
     propertyName: raw.propertyName || '',
     propertySlug: raw.propertySlug || '',
+    // Only set for the general hotel-enquiry widget (no specific property
+    // chosen yet) — the per-property AccommodationBookingWidget never sends
+    // these, since propertyName already says where.
+    destination: raw.destination || '',
+    hotelBudget: raw.hotelBudget || '',
     partySize: Number(raw.partySize) || null,
     checkIn: raw.checkIn || '',
     checkOut: raw.checkOut || '',
