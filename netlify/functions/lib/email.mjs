@@ -712,10 +712,14 @@ export async function sendAccommodationBookingNotification(booking) {
     `偏好联系方式：${booking.preferredContactMethod || '—'}`,
     '',
     '【需求信息】',
-    `酒店：${booking.propertyName || '—'}`,
+    // propertyName is set by the per-property widget; destination is set by
+    // the general hotel-enquiry widget (no specific property chosen yet) —
+    // never both, so this always shows whichever one applies.
+    `酒店：${booking.propertyName || booking.destination || '—'}`,
     `入住人数：${booking.partySize || '—'}`,
     `入住日期：${booking.checkIn || '—'}`,
     `离店日期：${booking.checkOut || '—'}`,
+    booking.hotelBudget ? `预算（每晚）：${booking.hotelBudget}` : '',
     `需要完整雪季行程规划：${booking.wantsFullSeasonPlanning ? '是' : '否'}`,
     `需要备选酒店方案：${booking.wantsAlternativeHotels ? '是' : '否'}`,
   ].filter(Boolean);
@@ -726,7 +730,7 @@ export async function sendAccommodationBookingNotification(booking) {
 
   await send({
     to: ADMIN_ADDRESS,
-    subject: `[待报价] 酒店预订咨询 — ${booking.propertyName || '—'} · ${booking.name || '未填写姓名'}`,
+    subject: `[待报价] 酒店预订咨询 — ${booking.propertyName || booking.destination || '—'} · ${booking.name || '未填写姓名'}`,
     text: lines.join('\n'),
   });
 }
