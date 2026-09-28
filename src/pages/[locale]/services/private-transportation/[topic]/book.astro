@@ -1,10 +1,12 @@
 ---
-import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
+import { getCollection, getEntry, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../../../../layouts/BaseLayout.astro';
 import PageHero from '../../../../../components/PageHero.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 import CarBookingWidget from '../../../../../components/CarBookingWidget.astro';
 import PrivateTerminalBookingWidget from '../../../../../components/PrivateTerminalBookingWidget.astro';
+import Gallery from '../../../../../components/Gallery.astro';
+import SectionHeading from '../../../../../components/SectionHeading.astro';
 import Faq from '../../../../../components/Faq.astro';
 import RelatedContent from '../../../../../components/RelatedContent.astro';
 import InquiryCTA from '../../../../../components/home/InquiryCTA.astro';
@@ -31,6 +33,7 @@ export async function getStaticPaths() {
 const { locale } = Astro.params as { locale: Locale };
 const { entry } = Astro.props as { entry: CollectionEntry<'transportationTopics'> };
 const { data } = entry;
+const { Content } = await render(entry);
 const topicSlug = entry.id.split('/').slice(1).join('/');
 const isTerminal = topicSlug === 'private-terminal';
 const t = useTranslations(locale);
@@ -98,6 +101,42 @@ const faqItems = [
   </div>
 
   {
+    // The quick-nav shortcut now lands directly here, skipping the topic's
+    // own detail page — so what used to be the only place explaining this
+    // service moves below the form instead of disappearing. Same
+    // gallery/body/highlights the detail page renders, not a rewrite.
+    data.gallery.length > 0 && (
+      <div class="container">
+        <Gallery images={data.gallery} locale={locale} />
+      </div>
+    )
+  }
+
+  <section class="section">
+    <div class="container prose">
+      <Content />
+    </div>
+  </section>
+
+  {
+    data.highlights.length > 0 && (
+      <section class="section highlights-section">
+        <div class="container prose">
+          <SectionHeading
+            eyebrow={parentService.data.title}
+            title={t('services.detail.highlightsTitle')}
+          />
+          <ul class="highlight-list">
+            {data.highlights.map((item: string) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
     !isTerminal && (
       <section class="section">
         <div class="container">
@@ -146,5 +185,16 @@ const faqItems = [
      the narrow, centered version). */
   :global(.page-hero .container.prose) {
     max-width: var(--content-max-width);
+  }
+
+  .highlights-section {
+    padding-top: 0;
+  }
+
+  .highlight-list {
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
   }
 </style>
