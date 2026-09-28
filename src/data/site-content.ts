@@ -275,7 +275,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
       description: 'Meet-and-assist from the gate to a car waiting outside.',
       featured: true,
       order: 2,
-      href: '/en/services/vip-airport-reception/',
+      href: '/en/services/vip-airport-reception/book/',
     },
     {
       id: 'quick-chauffeur',
@@ -283,7 +283,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
       description: 'A car and driver on call, for a few hours or the full stay.',
       featured: true,
       order: 3,
-      href: '/en/services/private-transportation/chauffeur/',
+      href: '/en/services/private-transportation/chauffeur/book/',
     },
     {
       id: 'quick-tickets',
@@ -310,7 +310,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
       description: '从舱门口到座驾，全程有人迎接。',
       featured: true,
       order: 2,
-      href: '/zh/services/vip-airport-reception/',
+      href: '/zh/services/vip-airport-reception/book/',
     },
     {
       id: 'quick-chauffeur',
@@ -318,7 +318,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
       description: '专车专属司机随叫随到，按小时或全程安排。',
       featured: true,
       order: 3,
-      href: '/zh/services/private-transportation/chauffeur/',
+      href: '/zh/services/private-transportation/chauffeur/book/',
     },
     {
       id: 'quick-tickets',
@@ -345,7 +345,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
       description: "Accueil dès la porte d'embarquement jusqu'à la voiture.",
       featured: true,
       order: 2,
-      href: '/fr/services/vip-airport-reception/',
+      href: '/fr/services/vip-airport-reception/book/',
     },
     {
       id: 'quick-chauffeur',
@@ -353,7 +353,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
       description: "Voiture et chauffeur disponibles, à l'heure ou pour tout le séjour.",
       featured: true,
       order: 3,
-      href: '/fr/services/private-transportation/chauffeur/',
+      href: '/fr/services/private-transportation/chauffeur/book/',
     },
     {
       id: 'quick-tickets',
