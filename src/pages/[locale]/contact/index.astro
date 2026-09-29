@@ -121,20 +121,22 @@ const contactEmail = 'contact@myvipservice.com';
         <div class="form-section" id="contact-step-1">
           <fieldset>
             <legend>{t('contact.form.enquiryType')}</legend>
-            {
-              enquiryTypes.map((type, index) => (
-                <label class="radio-label" for={`enquiry-${type.value}`}>
-                  <input
-                    type="radio"
-                    id={`enquiry-${type.value}`}
-                    name="enquiryType"
-                    value={type.value}
-                    checked={index === 0}
-                  />
-                  {type.label}
-                </label>
-              ))
-            }
+            <div class="radio-grid">
+              {
+                enquiryTypes.map((type, index) => (
+                  <label class="radio-label" for={`enquiry-${type.value}`}>
+                    <input
+                      type="radio"
+                      id={`enquiry-${type.value}`}
+                      name="enquiryType"
+                      value={type.value}
+                      checked={index === 0}
+                    />
+                    {type.label}
+                  </label>
+                ))
+              }
+            </div>
           </fieldset>
 
           <div class="field">
@@ -412,6 +414,12 @@ const contactEmail = 'contact@myvipservice.com';
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
     gap: var(--space-3);
+  }
+
+  .radio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    column-gap: var(--space-4);
   }
 
   .radio-label {
