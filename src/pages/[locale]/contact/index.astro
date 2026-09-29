@@ -92,7 +92,7 @@ const contactEmail = 'contact@myvipservice.com';
   />
 
   <section class="section contact">
-    <div class="container contact__layout">
+    <div class="container">
       <p class="contact__email text-small">
         {t('contact.info.email')}: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
       </p>
@@ -114,132 +114,148 @@ const contactEmail = 'contact@myvipservice.com';
         </p>
 
         <h2>{t('contact.form.heading')}</h2>
-        <p class="contact__stepIndicator" id="contact-step-indicator">
-          {t('contact.form.step1Of3')}
-        </p>
 
-        <div class="form-section" id="contact-step-1">
-          <fieldset>
-            <legend>{t('contact.form.enquiryType')}</legend>
-            <div class="radio-grid">
-              {
-                enquiryTypes.map((type, index) => (
-                  <label class="radio-label" for={`enquiry-${type.value}`}>
-                    <input
-                      type="radio"
-                      id={`enquiry-${type.value}`}
-                      name="enquiryType"
-                      value={type.value}
-                      checked={index === 0}
-                    />
-                    {type.label}
-                  </label>
-                ))
-              }
-            </div>
-          </fieldset>
+        <div class="contact__layout">
+          <div class="contact__main">
+            <div class="form-section" id="contact-step-1">
+              <fieldset>
+                <legend>{t('contact.form.enquiryType')}</legend>
+                <div class="radio-grid">
+                  {
+                    enquiryTypes.map((type, index) => (
+                      <label class="radio-label" for={`enquiry-${type.value}`}>
+                        <input
+                          type="radio"
+                          id={`enquiry-${type.value}`}
+                          name="enquiryType"
+                          value={type.value}
+                          checked={index === 0}
+                        />
+                        {type.label}
+                      </label>
+                    ))
+                  }
+                </div>
+              </fieldset>
 
-          <div class="field">
-            <label for="name">{t('contact.form.name')}</label>
-            <input type="text" id="name" name="name" autocomplete="name" required />
-          </div>
-
-          <div class="field">
-            <label for="email">{t('contact.form.email')}</label>
-            <input type="email" id="email" name="email" autocomplete="email" required />
-          </div>
-
-          <div class="field">
-            <label for="phoneWechat">
-              {t('contact.form.phoneWechat')}
-              <span class="text-small">({t('common.optional')})</span>
-            </label>
-            <input type="text" id="phoneWechat" name="phoneWechat" autocomplete="tel" />
-          </div>
-
-          <div class="field">
-            <label for="referralSource">
-              {t('contact.form.referralSource')}
-              <span class="text-small">({t('common.optional')})</span>
-            </label>
-            <select id="referralSource" name="referralSource">
-              <option value="">{t('contact.form.referralSourcePlaceholder')}</option>
-              {
-                referralSources.map((source) => (
-                  <option value={source.value}>{source.label}</option>
-                ))
-              }
-            </select>
-          </div>
-        </div>
-
-        <div class="form-section" id="contact-step-2" hidden>
-          <div class="field">
-            <label for="destination">{t('contact.form.destination')}</label>
-            <input type="text" id="destination" name="destination" required />
-          </div>
-
-          <fieldset class="field-group">
-            <legend>{t('contact.form.dates')}</legend>
-            <div class="field-group__row">
               <div class="field">
-                <label for="dateStart">{t('contact.form.dateStart')}</label>
-                <input type="date" id="dateStart" name="dateStart" required />
+                <label for="name">{t('contact.form.name')}</label>
+                <input type="text" id="name" name="name" autocomplete="name" required />
               </div>
+
               <div class="field">
-                <label for="dateEnd">{t('contact.form.dateEnd')}</label>
-                <input type="date" id="dateEnd" name="dateEnd" required />
+                <label for="email">{t('contact.form.email')}</label>
+                <input type="email" id="email" name="email" autocomplete="email" required />
+              </div>
+
+              <div class="field">
+                <label for="phoneWechat">
+                  {t('contact.form.phoneWechat')}
+                  <span class="text-small">({t('common.optional')})</span>
+                </label>
+                <input type="text" id="phoneWechat" name="phoneWechat" autocomplete="tel" />
+              </div>
+
+              <div class="field">
+                <label for="referralSource">
+                  {t('contact.form.referralSource')}
+                  <span class="text-small">({t('common.optional')})</span>
+                </label>
+                <select id="referralSource" name="referralSource">
+                  <option value="">{t('contact.form.referralSourcePlaceholder')}</option>
+                  {
+                    referralSources.map((source) => (
+                      <option value={source.value}>{source.label}</option>
+                    ))
+                  }
+                </select>
               </div>
             </div>
-          </fieldset>
 
-          <div class="field">
-            <label for="travellers">
-              {t('contact.form.travellers')}
-              <span class="text-small">({t('common.optional')})</span>
-            </label>
-            <input type="number" id="travellers" name="travellers" min="1" step="1" />
+            <div class="form-section" id="contact-step-2" hidden>
+              <div class="field">
+                <label for="destination">{t('contact.form.destination')}</label>
+                <input type="text" id="destination" name="destination" required />
+              </div>
+
+              <fieldset class="field-group">
+                <legend>{t('contact.form.dates')}</legend>
+                <div class="field-group__row">
+                  <div class="field">
+                    <label for="dateStart">{t('contact.form.dateStart')}</label>
+                    <input type="date" id="dateStart" name="dateStart" required />
+                  </div>
+                  <div class="field">
+                    <label for="dateEnd">{t('contact.form.dateEnd')}</label>
+                    <input type="date" id="dateEnd" name="dateEnd" required />
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="field">
+                <label for="travellers">
+                  {t('contact.form.travellers')}
+                  <span class="text-small">({t('common.optional')})</span>
+                </label>
+                <input type="number" id="travellers" name="travellers" min="1" step="1" />
+              </div>
+
+              <div class="field">
+                <label for="budget">{t('contact.form.budget')}</label>
+                <select id="budget" name="budget" required>
+                  <option value="">{t('contact.form.budgetPlaceholder')}</option>
+                  {budgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
+                </select>
+              </div>
+            </div>
+
+            <div class="form-section" id="contact-step-3" hidden>
+              <div class="field">
+                <label for="hotelBudget">
+                  {t('contact.form.hotelBudget')}
+                  <span class="text-small">({t('common.optional')})</span>
+                </label>
+                <select id="hotelBudget" name="hotelBudget">
+                  <option value="">{t('contact.form.hotelBudgetPlaceholder')}</option>
+                  {
+                    hotelBudgetRanges.map((range) => (
+                      <option value={range.value}>{range.label}</option>
+                    ))
+                  }
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="details">{t('contact.form.details')}</label>
+                <textarea id="details" name="details" rows="5" required></textarea>
+              </div>
+            </div>
           </div>
 
-          <div class="field">
-            <label for="budget">{t('contact.form.budget')}</label>
-            <select id="budget" name="budget" required>
-              <option value="">{t('contact.form.budgetPlaceholder')}</option>
-              {budgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
-            </select>
+          <div class="contact__side">
+            <p class="contact__stepIndicator" id="contact-step-indicator">
+              {t('contact.form.step1Of3')}
+            </p>
+
+            <div class="contact__summary" id="contact-summary">
+              <p class="contact__summaryTitle">{t('carBooking.summaryTitle')}</p>
+              <dl class="contact__summaryList" id="contact-summary-list"></dl>
+            </div>
+
+            <div class="contact__actions">
+              <button type="button" class="button button--quiet" id="contact-back-button" hidden
+                >{t('carBooking.backButton')}</button
+              >
+              <button type="button" class="button button--primary" id="contact-next-button"
+                >{t('hotelEnquiry.nextButton')}</button
+              >
+              <button class="button button--primary" type="submit" id="contact-submit-button" hidden
+                >{t('contact.form.submit')}</button
+              >
+            </div>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           </div>
         </div>
-
-        <div class="form-section" id="contact-step-3" hidden>
-          <div class="field">
-            <label for="hotelBudget">
-              {t('contact.form.hotelBudget')}
-              <span class="text-small">({t('common.optional')})</span>
-            </label>
-            <select id="hotelBudget" name="hotelBudget">
-              <option value="">{t('contact.form.hotelBudgetPlaceholder')}</option>
-              {hotelBudgetRanges.map((range) => <option value={range.value}>{range.label}</option>)}
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="details">{t('contact.form.details')}</label>
-            <textarea id="details" name="details" rows="5" required></textarea>
-          </div>
-        </div>
-
-        <div class="contact__actions">
-          <button type="button" class="button button--quiet" id="contact-back-button" hidden
-            >{t('carBooking.backButton')}</button
-          >
-          <button type="button" class="button button--primary" id="contact-next-button"
-            >{t('hotelEnquiry.nextButton')}</button
-          >
-          <button class="button button--primary" type="submit" id="contact-submit-button" hidden
-            >{t('contact.form.submit')}</button
-          >
-        </div>
-        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
 
       <div class="contact__other">
@@ -268,6 +284,14 @@ const contactEmail = 'contact@myvipservice.com';
     step1Label: t('contact.form.step1Of3'),
     step2Label: t('contact.form.step2Of3'),
     step3Label: t('contact.form.step3Of3'),
+    enquiryTypes,
+    enquiryTypeLabelText: t('contact.form.enquiryType'),
+    destinationLabelText: t('contact.form.destination'),
+    dateStartLabelText: t('contact.form.dateStart'),
+    dateEndLabelText: t('contact.form.dateEnd'),
+    travellersLabelText: t('contact.form.travellers'),
+    budgetLabelText: t('contact.form.budget'),
+    hotelBudgetLabelText: t('contact.form.hotelBudget'),
   }}
 >
   const form = document.getElementById('contact-form');
@@ -282,6 +306,14 @@ const contactEmail = 'contact@myvipservice.com';
   const nextButton = document.getElementById('contact-next-button');
   const backButton = document.getElementById('contact-back-button');
   const submitButton = document.getElementById('contact-submit-button');
+  const enquiryTypeInputs = form.querySelectorAll('input[name="enquiryType"]');
+  const destinationInput = document.getElementById('destination');
+  const dateStartInput = document.getElementById('dateStart');
+  const dateEndInput = document.getElementById('dateEnd');
+  const travellersInput = document.getElementById('travellers');
+  const budgetSelect = document.getElementById('budget');
+  const hotelBudgetSelect = document.getElementById('hotelBudget');
+  const summaryList = document.getElementById('contact-summary-list');
 
   let current = 0;
 
@@ -292,6 +324,39 @@ const contactEmail = 'contact@myvipservice.com';
   if (about && detailsField && !detailsField.value) {
     detailsField.value = `${aboutPrefix}${about}\n\n`;
   }
+
+  // Mirrors the selections shown, not raw contact info (name/email/phone
+  // aren't shown here either) — same convention as the booking widgets'
+  // own "Your Selection" summaries.
+  function updateSummary() {
+    if (!summaryList) return;
+    const rows = [];
+    const selectedType = [...enquiryTypeInputs].find((input) => input.checked);
+    const typeMatch =
+      selectedType && enquiryTypes.find((type) => type.value === selectedType.value);
+    if (typeMatch) rows.push([enquiryTypeLabelText, typeMatch.label]);
+    if (destinationInput.value) rows.push([destinationLabelText, destinationInput.value]);
+    if (dateStartInput.value) rows.push([dateStartLabelText, dateStartInput.value]);
+    if (dateEndInput.value) rows.push([dateEndLabelText, dateEndInput.value]);
+    if (travellersInput.value) rows.push([travellersLabelText, travellersInput.value]);
+    const budgetOption = budgetSelect.options[budgetSelect.selectedIndex];
+    if (budgetSelect.value && budgetOption) rows.push([budgetLabelText, budgetOption.textContent]);
+    const hotelBudgetOption = hotelBudgetSelect.options[hotelBudgetSelect.selectedIndex];
+    if (hotelBudgetSelect.value && hotelBudgetOption) {
+      rows.push([hotelBudgetLabelText, hotelBudgetOption.textContent]);
+    }
+    summaryList.innerHTML = rows
+      .map(([k, v]) => `<div class="contact__summaryRow"><dt>${k}</dt><dd>${v}</dd></div>`)
+      .join('');
+  }
+
+  enquiryTypeInputs.forEach((input) => input.addEventListener('change', updateSummary));
+  [destinationInput, dateStartInput, dateEndInput, travellersInput].forEach((el) => {
+    el.addEventListener('input', updateSummary);
+    el.addEventListener('change', updateSummary);
+  });
+  budgetSelect.addEventListener('change', updateSummary);
+  hotelBudgetSelect.addEventListener('change', updateSummary);
 
   function showStep(index) {
     steps.forEach((panel, i) => (panel.hidden = i !== index));
@@ -345,6 +410,7 @@ const contactEmail = 'contact@myvipservice.com';
         form.reset();
         current = 0;
         showStep(current);
+        updateSummary();
       })
       .catch(() => {
         if (status) status.textContent = errorMessage;
@@ -352,11 +418,75 @@ const contactEmail = 'contact@myvipservice.com';
   });
 
   showStep(current);
+  updateSummary();
 </script>
 
 <style>
   .contact__layout {
-    max-width: var(--prose-max-width);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 56rem) {
+    .contact__layout {
+      grid-template-columns: 1fr 20rem;
+      align-items: start;
+    }
+
+    .contact__side {
+      position: sticky;
+      top: var(--space-5);
+    }
+  }
+
+  .contact__side {
+    padding: var(--space-4);
+    background: var(--color-bg-inset);
+    border-radius: var(--radius);
+  }
+
+  .contact__summary {
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .contact__summary:empty,
+  .contact__summaryList:empty {
+    display: none;
+  }
+
+  .contact__summaryTitle {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .contact__summaryList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin: 0;
+  }
+
+  /* Built client-side via innerHTML (see updateSummary() in the script
+     above), so these rows never get Astro's scoping attribute — :global()
+     is required for the styles to reach them. */
+  :global(.contact__summaryRow) {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-size: var(--text-small);
+  }
+
+  :global(.contact__summaryRow dt) {
+    color: var(--color-text-muted);
+  }
+
+  :global(.contact__summaryRow dd) {
+    margin: 0;
+    text-align: right;
   }
 
   .contact__email {
@@ -391,7 +521,6 @@ const contactEmail = 'contact@myvipservice.com';
   .contact__actions {
     display: flex;
     gap: var(--space-3);
-    margin-top: var(--space-5);
   }
 
   .contact__actions .button {
