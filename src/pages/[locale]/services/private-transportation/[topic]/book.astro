@@ -50,6 +50,11 @@ const siblingTopics = (
   )
 ).sort((a, b) => a.data.order - b.data.order);
 
+// A ride usually also means somewhere to stay — added alongside the
+// sibling transportation topics rather than as a second related-content
+// block.
+const hotelService = await getEntry('services', `${locale}/hotel-villa-reservations`);
+
 const pageTitle = isTerminal ? t('terminalBooking.title') : t('carBooking.title');
 const pageSubtitle = isTerminal ? t('terminalBooking.subtitle') : t('carBooking.subtitle');
 
@@ -147,22 +152,38 @@ const faqItems = [
   }
 
   {
-    siblingTopics.length > 0 && (
+    (siblingTopics.length > 0 || hotelService) && (
       <RelatedContent
         locale={locale}
         eyebrow={parentService.data.title}
         title={t('services.detail.relatedTopicsHeading')}
-        items={siblingTopics.map((topic) => ({
-          href: `/${locale}/services/private-transportation/${topic.id.split('/').slice(1).join('/')}/`,
-          imageId: topic.data.image ?? parentService.data.image ?? 'service-private-transportation',
-          eyebrow: parentService.data.title,
-          title: topic.data.title,
-          summary: topic.data.summary,
-          meta: topic.data.price
-            ? `${topic.data.price}${topic.data.priceNote ? ` — ${topic.data.priceNote}` : ''}`
-            : undefined,
-          draftLabel: topic.data.draft ? t('badge.draftTranslation') : undefined,
-        }))}
+        items={[
+          ...siblingTopics.map((topic) => ({
+            href: `/${locale}/services/private-transportation/${topic.id.split('/').slice(1).join('/')}/`,
+            imageId:
+              topic.data.image ?? parentService.data.image ?? 'service-private-transportation',
+            eyebrow: parentService.data.title,
+            title: topic.data.title,
+            summary: topic.data.summary,
+            meta: topic.data.price
+              ? `${topic.data.price}${topic.data.priceNote ? ` — ${topic.data.priceNote}` : ''}`
+              : undefined,
+            draftLabel: topic.data.draft ? t('badge.draftTranslation') : undefined,
+          })),
+          ...(hotelService
+            ? [
+                {
+                  href: `/${locale}/services/hotel-villa-reservations/book/`,
+                  imageId: hotelService.data.image ?? 'service-hotel-exterior',
+                  eyebrow: t('nav.services'),
+                  title: hotelService.data.title,
+                  summary: hotelService.data.summary,
+                  meta: undefined,
+                  draftLabel: undefined,
+                },
+              ]
+            : []),
+        ]}
       />
     )
   }
