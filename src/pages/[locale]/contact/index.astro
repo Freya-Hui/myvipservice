@@ -114,13 +114,11 @@ const contactEmail = 'contact@myvipservice.com';
         </p>
 
         <h2>{t('contact.form.heading')}</h2>
+        <p class="contact__stepIndicator" id="contact-step-indicator">
+          {t('contact.form.step1Of3')}
+        </p>
 
-        <div class="form-section">
-          <p class="form-section__heading">
-            <span class="form-section__index" aria-hidden="true">01</span>
-            {t('contact.form.section1')}
-          </p>
-
+        <div class="form-section" id="contact-step-1">
           <fieldset>
             <legend>{t('contact.form.enquiryType')}</legend>
             {
@@ -173,12 +171,7 @@ const contactEmail = 'contact@myvipservice.com';
           </div>
         </div>
 
-        <div class="form-section">
-          <p class="form-section__heading">
-            <span class="form-section__index" aria-hidden="true">02</span>
-            {t('contact.form.section2')}
-          </p>
-
+        <div class="form-section" id="contact-step-2" hidden>
           <div class="field">
             <label for="destination">{t('contact.form.destination')}</label>
             <input type="text" id="destination" name="destination" required />
@@ -215,12 +208,7 @@ const contactEmail = 'contact@myvipservice.com';
           </div>
         </div>
 
-        <div class="form-section">
-          <p class="form-section__heading">
-            <span class="form-section__index" aria-hidden="true">03</span>
-            {t('contact.form.section3')}
-          </p>
-
+        <div class="form-section" id="contact-step-3" hidden>
           <div class="field">
             <label for="hotelBudget">
               {t('contact.form.hotelBudget')}
@@ -238,7 +226,17 @@ const contactEmail = 'contact@myvipservice.com';
           </div>
         </div>
 
-        <button class="button button--primary" type="submit">{t('contact.form.submit')}</button>
+        <div class="contact__actions">
+          <button type="button" class="button button--quiet" id="contact-back-button" hidden
+            >{t('carBooking.backButton')}</button
+          >
+          <button type="button" class="button button--primary" id="contact-next-button"
+            >{t('hotelEnquiry.nextButton')}</button
+          >
+          <button class="button button--primary" type="submit" id="contact-submit-button" hidden
+            >{t('contact.form.submit')}</button
+          >
+        </div>
         <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
 
@@ -265,10 +263,25 @@ const contactEmail = 'contact@myvipservice.com';
     successMessage: t('contact.form.success'),
     errorMessage: t('contact.form.error'),
     aboutPrefix: t('contact.form.aboutPrefix'),
+    step1Label: t('contact.form.step1Of3'),
+    step2Label: t('contact.form.step2Of3'),
+    step3Label: t('contact.form.step3Of3'),
   }}
 >
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
+  const stepIndicator = document.getElementById('contact-step-indicator');
+  const steps = [
+    document.getElementById('contact-step-1'),
+    document.getElementById('contact-step-2'),
+    document.getElementById('contact-step-3'),
+  ];
+  const stepLabels = [step1Label, step2Label, step3Label];
+  const nextButton = document.getElementById('contact-next-button');
+  const backButton = document.getElementById('contact-back-button');
+  const submitButton = document.getElementById('contact-submit-button');
+
+  let current = 0;
 
   // Detail pages link here with ?about=<page title> so a visitor asking
   // about a specific hotel/destination/service doesn't have to retype it.
@@ -278,6 +291,34 @@ const contactEmail = 'contact@myvipservice.com';
     detailsField.value = `${aboutPrefix}${about}\n\n`;
   }
 
+  function showStep(index) {
+    steps.forEach((panel, i) => (panel.hidden = i !== index));
+    stepIndicator.textContent = stepLabels[index];
+    backButton.hidden = index === 0;
+    nextButton.hidden = index === steps.length - 1;
+    submitButton.hidden = index !== steps.length - 1;
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  nextButton?.addEventListener('click', () => {
+    // The hidden attribute doesn't stop constraint validation, so scope the
+    // check to the current step's own fields rather than the whole (mostly
+    // still-hidden) form — novalidate on <form> only suppresses the
+    // automatic submit-time check, not this explicit one.
+    const invalid = steps[current].querySelector(':invalid');
+    if (invalid) {
+      invalid.reportValidity();
+      return;
+    }
+    current = Math.min(current + 1, steps.length - 1);
+    showStep(current);
+  });
+
+  backButton?.addEventListener('click', () => {
+    current = Math.max(current - 1, 0);
+    showStep(current);
+  });
+
   function encodeFormData(data) {
     return Object.keys(data)
       .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
@@ -286,6 +327,11 @@ const contactEmail = 'contact@myvipservice.com';
 
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
+    const invalid = steps[current].querySelector(':invalid');
+    if (invalid) {
+      invalid.reportValidity();
+      return;
+    }
     const data = Object.fromEntries(new FormData(form).entries());
     fetch('/', {
       method: 'POST',
@@ -295,11 +341,15 @@ const contactEmail = 'contact@myvipservice.com';
       .then(() => {
         if (status) status.textContent = successMessage;
         form.reset();
+        current = 0;
+        showStep(current);
       })
       .catch(() => {
         if (status) status.textContent = errorMessage;
       });
   });
+
+  showStep(current);
 </script>
 
 <style>
@@ -328,26 +378,26 @@ const contactEmail = 'contact@myvipservice.com';
     border-top: none;
   }
 
-  .form-section__heading {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    font-family: var(--font-display);
-    font-size: var(--text-h4);
+  .contact__stepIndicator {
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     margin-bottom: var(--space-4);
   }
 
-  .form-section__index {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    flex-shrink: 0;
-    border: 1px solid var(--color-accent);
-    border-radius: 50%;
-    color: var(--color-accent);
-    font-size: var(--text-small);
+  .contact__actions {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .contact__actions .button {
+    flex: 1;
+  }
+
+  .contact__actions .button[hidden] {
+    display: none;
   }
 
   .field {
