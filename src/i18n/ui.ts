@@ -397,7 +397,7 @@ export const ui = {
     'contact.process.title': 'From Enquiry to Itinerary',
     'contact.process.step1.title': 'Share Your Plans',
     'contact.process.step1.description':
-      'Tell us the destination, dates and what matters most — the form below takes a few minutes.',
+      'Tell us the destination, dates and what matters most — the form above takes a few minutes.',
     'contact.process.step2.title': 'We Review It Within 24 Hours',
     'contact.process.step2.description':
       'A consultant reads every enquiry personally and may follow up with a few questions before proposing anything.',
@@ -953,7 +953,7 @@ export const ui = {
     'contact.process.title': '从提交咨询到完整行程',
     'contact.process.step1.title': '提交您的需求',
     'contact.process.step1.description':
-      '告诉我们目的地、日期与您最看重的部分——几分钟即可填完下方表单。',
+      '告诉我们目的地、日期与您最看重的部分——几分钟即可填完上方表单。',
     'contact.process.step2.title': '顾问 24 小时内跟进',
     'contact.process.step2.description':
       '顾问会亲自查看每一条咨询，如有需要会先确认一些细节，再给出方案。',
@@ -1543,7 +1543,7 @@ export const ui = {
     'contact.process.title': 'De la demande à l’itinéraire',
     'contact.process.step1.title': 'Partagez votre projet',
     'contact.process.step1.description':
-      'Indiquez-nous la destination, les dates et vos priorités — le formulaire ci-dessous prend quelques minutes.',
+      'Indiquez-nous la destination, les dates et vos priorités — le formulaire ci-dessus prend quelques minutes.',
     'contact.process.step2.title': 'Nous l’examinons sous 24 heures',
     'contact.process.step2.description':
       'Un conseiller lit personnellement chaque demande et peut vous recontacter pour quelques précisions avant de proposer une offre.',
