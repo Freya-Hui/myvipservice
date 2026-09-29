@@ -76,21 +76,6 @@ const contactEmail = 'contact@myvipservice.com';
     subtitle={t('contact.hero.subtitle')}
   />
 
-  <StoryFeature
-    eyebrow={t('contact.intro.eyebrow')}
-    title={t('contact.intro.title')}
-    body={t('contact.intro.body')}
-    imageId="service-reception-desk-call"
-    locale={locale}
-    compact
-  />
-
-  <ProcessSteps
-    eyebrow={t('contact.process.eyebrow')}
-    title={t('contact.process.title')}
-    steps={processSteps}
-  />
-
   <section class="section contact">
     <div class="container">
       <p class="contact__email text-small">
@@ -273,6 +258,21 @@ const contactEmail = 'contact@myvipservice.com';
       </div>
     </div>
   </section>
+
+  <StoryFeature
+    eyebrow={t('contact.intro.eyebrow')}
+    title={t('contact.intro.title')}
+    body={t('contact.intro.body')}
+    imageId="service-reception-desk-call"
+    locale={locale}
+    compact
+  />
+
+  <ProcessSteps
+    eyebrow={t('contact.process.eyebrow')}
+    title={t('contact.process.title')}
+    steps={processSteps}
+  />
 </BaseLayout>
 
 <script
