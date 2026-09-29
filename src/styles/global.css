@@ -302,16 +302,25 @@ ol {
 }
 
 /* `.container` and `.prose` are combined on one element throughout the
-   site (titles, article bodies, section text). `.container` centers
-   itself in the viewport via margin-inline: auto, and without this rule
-   `.prose`'s narrower max-width re-centers inside that already-centered
-   box — pushing titles and body text rightward, out of line with
-   full-width elements like the header and breadcrumbs above them. This
-   keeps the narrower measure flush against the container's left edge
-   instead, so text consistently starts at the same left position as the
-   rest of the page. */
+   site (titles, article bodies, section text) as its own standalone
+   block, not nested inside a separate `.container` — so a flat
+   `margin-inline: 0` (the old rule here) flushes it against the
+   *viewport* edge, not against where a centered `.container`'s own
+   content actually starts. That's fine only when nothing else on the
+   page centers either. On any viewport wider than --content-max-width
+   it's a real, visible mismatch: breadcrumbs, wide image/gallery
+   sections, and a PageHero with a CTA (whose row renders as plain
+   `.container`, not `.container.prose` — see PageHero.astro) all center
+   via margin-inline: auto and land further right than a flush-left
+   prose block sits beside them (confirmed via getBoundingClientRect on
+   destinations/experiences/services detail pages — body text sat ~150px
+   left of the hero title and gallery above it). Mirroring that same
+   centering offset here, capped at 0 so nothing goes negative once the
+   viewport drops below --content-max-width (where `.container` isn't
+   centering either), makes prose content start at the same left
+   position as everything else, at every viewport width. */
 .container.prose {
-  margin-inline: 0;
+  margin-inline: max(0px, calc((100% - var(--content-max-width)) / 2)) 0;
 }
 
 /* Article-with-sidebar-TOC layout — shared by the journal detail template
