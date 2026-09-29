@@ -4,6 +4,9 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PageHero from '../../../../components/PageHero.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import TicketBookingWidget from '../../../../components/TicketBookingWidget.astro';
+import StoryFeature from '../../../../components/about/StoryFeature.astro';
+import SectionHeading from '../../../../components/SectionHeading.astro';
+import MediaHighlightList from '../../../../components/MediaHighlightList.astro';
 import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
 import { languages, useTranslations, type Locale } from '../../../../i18n/ui';
 
@@ -21,6 +24,17 @@ if (!parentService) {
 
 const pageTitle = t('ticketBooking.title');
 const pageSubtitle = t('ticketBooking.subtitle');
+
+// Same {text | {text,image,href}} normalization the service detail page
+// uses for this same field, so MediaHighlightList doesn't need to branch.
+interface HighlightItem {
+  text: string;
+  image?: string;
+  href?: string;
+}
+const highlights: HighlightItem[] = parentService.data.highlights.map((item) =>
+  typeof item === 'string' ? { text: item } : item,
+);
 ---
 
 <BaseLayout title={pageTitle} description={pageSubtitle} path="services/tickets-events/book">
@@ -44,6 +58,36 @@ const pageSubtitle = t('ticketBooking.subtitle');
     <TicketBookingWidget locale={locale} />
   </div>
 
+  {
+    // The quick-nav shortcut lands directly here, skipping the service
+    // detail page — so the explanation of what this actually includes moves
+    // below the form instead of disappearing. Same storyFeatures/highlights
+    // the detail page renders, not a rewritten summary.
+    parentService.data.storyFeatures.map((feature, index) => (
+      <StoryFeature
+        title={feature.title}
+        body={feature.body}
+        imageId={feature.imageId}
+        locale={locale}
+        reverse={index % 2 === 1}
+      />
+    ))
+  }
+
+  {
+    highlights.length > 0 && (
+      <section class="section highlights-section">
+        <div class="container prose">
+          <SectionHeading
+            eyebrow={parentService.data.title}
+            title={t('services.detail.highlightsTitle')}
+          />
+          <MediaHighlightList items={highlights} locale={locale} />
+        </div>
+      </section>
+    )
+  }
+
   <InquiryCTA
     title={t('home.inquiry.title')}
     body={t('home.inquiry.body')}
@@ -57,5 +101,9 @@ const pageSubtitle = t('ticketBooking.subtitle');
      two-column layout needs more room than the site's usual prose column. */
   :global(.page-hero .container.prose) {
     max-width: var(--content-max-width);
+  }
+
+  .highlights-section {
+    padding-top: 0;
   }
 </style>
