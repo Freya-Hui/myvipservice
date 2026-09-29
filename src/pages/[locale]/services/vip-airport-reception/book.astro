@@ -7,6 +7,7 @@ import VipReceptionBookingWidget from '../../../../components/VipReceptionBookin
 import StoryFeature from '../../../../components/about/StoryFeature.astro';
 import SectionHeading from '../../../../components/SectionHeading.astro';
 import MediaHighlightList from '../../../../components/MediaHighlightList.astro';
+import RelatedContent from '../../../../components/RelatedContent.astro';
 import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
 import { languages, useTranslations, type Locale } from '../../../../i18n/ui';
 
@@ -35,6 +36,28 @@ interface HighlightItem {
 const highlights: HighlightItem[] = parentService.data.highlights.map((item) =>
   typeof item === 'string' ? { text: item } : item,
 );
+
+// After the gate, most people are either heading to a hotel or want a
+// driver waiting — surface both instead of leaving the connection for the
+// visitor to find on their own.
+const chauffeurTopic = await getEntry('transportationTopics', `${locale}/chauffeur`);
+const hotelService = await getEntry('services', `${locale}/hotel-villa-reservations`);
+const relatedServices = [
+  chauffeurTopic && {
+    href: `/${locale}/services/private-transportation/chauffeur/book/`,
+    imageId: chauffeurTopic.data.image ?? 'service-car-interior',
+    eyebrow: t('nav.services'),
+    title: chauffeurTopic.data.title,
+    summary: chauffeurTopic.data.summary,
+  },
+  hotelService && {
+    href: `/${locale}/services/hotel-villa-reservations/book/`,
+    imageId: hotelService.data.image ?? 'service-hotel-exterior',
+    eyebrow: t('nav.services'),
+    title: hotelService.data.title,
+    summary: hotelService.data.summary,
+  },
+].filter((item): item is NonNullable<typeof item> => Boolean(item));
 ---
 
 <BaseLayout title={pageTitle} description={pageSubtitle} path="services/vip-airport-reception/book">
@@ -85,6 +108,17 @@ const highlights: HighlightItem[] = parentService.data.highlights.map((item) =>
           <MediaHighlightList items={highlights} locale={locale} />
         </div>
       </section>
+    )
+  }
+
+  {
+    relatedServices.length > 0 && (
+      <RelatedContent
+        locale={locale}
+        eyebrow={parentService.data.title}
+        title={t('services.detail.relatedTopicsHeading')}
+        items={relatedServices}
+      />
     )
   }
 
