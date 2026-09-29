@@ -292,7 +292,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
         'Scarce seats for tennis, motorsport and sold-out shows, plus a private guided museum tour — Louvre, Orsay, Versailles and beyond.',
       featured: true,
       order: 4,
-      href: '/en/services/tickets-events/',
+      href: '/en/services/tickets-events/book/',
     },
   ],
   zh: [
@@ -326,7 +326,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
       description: '网球、赛车与热门演出的稀缺席位，以及卢浮宫、奥赛、凡尔赛等博物馆专属讲解。',
       featured: true,
       order: 4,
-      href: '/zh/services/tickets-events/',
+      href: '/zh/services/tickets-events/book/',
     },
   ],
   fr: [
@@ -362,7 +362,7 @@ export const quickServices: Record<Locale, TravelType[]> = {
         "Places rares pour le tennis, le sport automobile et les spectacles complets, ainsi qu'une visite guidée privée de musée — Louvre, Orsay, Versailles et plus.",
       featured: true,
       order: 4,
-      href: '/fr/services/tickets-events/',
+      href: '/fr/services/tickets-events/book/',
     },
   ],
 };
