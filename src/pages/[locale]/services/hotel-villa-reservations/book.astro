@@ -5,8 +5,8 @@ import PageHero from '../../../../components/PageHero.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import HotelEnquiryWidget from '../../../../components/HotelEnquiryWidget.astro';
 import StoryFeature from '../../../../components/about/StoryFeature.astro';
-import SectionHeading from '../../../../components/SectionHeading.astro';
-import MediaHighlightList from '../../../../components/MediaHighlightList.astro';
+import Faq from '../../../../components/Faq.astro';
+import RelatedContent from '../../../../components/RelatedContent.astro';
 import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
 import { languages, useTranslations, type Locale } from '../../../../i18n/ui';
 
@@ -25,16 +25,37 @@ if (!parentService) {
 const pageTitle = t('hotelEnquiry.title');
 const pageSubtitle = t('accommodationBooking.subtitle');
 
-// Same {text | {text,image,href}} normalization the service detail page
-// uses for this same field, so MediaHighlightList doesn't need to branch.
-interface HighlightItem {
-  text: string;
-  image?: string;
-  href?: string;
-}
-const highlights: HighlightItem[] = parentService.data.highlights.map((item) =>
-  typeof item === 'string' ? { text: item } : item,
-);
+// Real facts already confirmed on the service page (see its `highlights`
+// field) recast as the questions a visitor actually has, rather than a
+// flat list — nothing here is new information.
+const faqItems = [
+  { question: t('hotelEnquiry.faq.hotels.q'), answer: t('hotelEnquiry.faq.hotels.a') },
+  { question: t('hotelEnquiry.faq.upgrades.q'), answer: t('hotelEnquiry.faq.upgrades.a') },
+  { question: t('hotelEnquiry.faq.pickup.q'), answer: t('hotelEnquiry.faq.pickup.a') },
+  { question: t('hotelEnquiry.faq.pricing.q'), answer: t('hotelEnquiry.faq.pricing.a') },
+];
+
+// A stay usually also needs a ride — surface the two transportation
+// services most people ask about right after booking a hotel, instead of
+// leaving that connection for the visitor to find on their own.
+const chauffeurTopic = await getEntry('transportationTopics', `${locale}/chauffeur`);
+const vipReceptionService = await getEntry('services', `${locale}/vip-airport-reception`);
+const relatedServices = [
+  chauffeurTopic && {
+    href: `/${locale}/services/private-transportation/chauffeur/book/`,
+    imageId: chauffeurTopic.data.image ?? 'service-car-interior',
+    eyebrow: t('nav.services'),
+    title: chauffeurTopic.data.title,
+    summary: chauffeurTopic.data.summary,
+  },
+  vipReceptionService && {
+    href: `/${locale}/services/vip-airport-reception/book/`,
+    imageId: vipReceptionService.data.image ?? 'service-reception-desk-call',
+    eyebrow: t('nav.services'),
+    title: vipReceptionService.data.title,
+    summary: vipReceptionService.data.summary,
+  },
+].filter((item): item is NonNullable<typeof item> => Boolean(item));
 ---
 
 <BaseLayout
@@ -78,17 +99,20 @@ const highlights: HighlightItem[] = parentService.data.highlights.map((item) =>
     ))
   }
 
+  <section class="section highlights-section">
+    <div class="container">
+      <Faq title={t('services.detail.highlightsTitle')} items={faqItems} name="hotel-enquiry-faq" />
+    </div>
+  </section>
+
   {
-    highlights.length > 0 && (
-      <section class="section highlights-section">
-        <div class="container prose">
-          <SectionHeading
-            eyebrow={parentService.data.title}
-            title={t('services.detail.highlightsTitle')}
-          />
-          <MediaHighlightList items={highlights} locale={locale} />
-        </div>
-      </section>
+    relatedServices.length > 0 && (
+      <RelatedContent
+        locale={locale}
+        eyebrow={parentService.data.title}
+        title={t('services.detail.relatedTopicsHeading')}
+        items={relatedServices}
+      />
     )
   }
 
@@ -105,6 +129,14 @@ const highlights: HighlightItem[] = parentService.data.highlights.map((item) =>
      than the site's usual prose column. */
   :global(.page-hero .container.prose) {
     max-width: var(--content-max-width);
+    margin-inline: auto;
+  }
+
+  /* PageHero's own heading has its own narrower prose cap for the normal
+     (no-CTA) case — the override above only widened its parent, so without
+     this it stays flush-left inside the now-wider, centered container. */
+  :global(.page-hero .container.prose .page-hero__heading) {
+    max-width: 100%;
   }
 
   .highlights-section {

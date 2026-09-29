@@ -77,7 +77,7 @@ const highlights: HighlightItem[] = parentService.data.highlights.map((item) =>
   {
     highlights.length > 0 && (
       <section class="section highlights-section">
-        <div class="container prose">
+        <div class="container">
           <SectionHeading
             eyebrow={parentService.data.title}
             title={t('services.detail.highlightsTitle')}
@@ -101,6 +101,14 @@ const highlights: HighlightItem[] = parentService.data.highlights.map((item) =>
      two-column layout needs more room than the site's usual prose column. */
   :global(.page-hero .container.prose) {
     max-width: var(--content-max-width);
+    margin-inline: auto;
+  }
+
+  /* PageHero's own heading has its own narrower prose cap for the normal
+     (no-CTA) case — the override above only widened its parent, so without
+     this it stays flush-left inside the now-wider, centered container. */
+  :global(.page-hero .container.prose .page-hero__heading) {
+    max-width: 100%;
   }
 
   .highlights-section {

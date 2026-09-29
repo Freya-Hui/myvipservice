@@ -272,6 +272,18 @@ export const ui = {
     'hotelEnquiry.step1Heading': 'Destination & Dates',
     'hotelEnquiry.step2Heading': 'Budget & Preferences',
     'hotelEnquiry.nextButton': 'Next',
+    'hotelEnquiry.faq.hotels.q': 'Which hotels can you book?',
+    'hotelEnquiry.faq.hotels.a':
+      'Long-standing partner hotels in Paris — Four Seasons George V, Plaza Athénée, Ritz Paris, Le Meurice, Hôtel de Crillon, Mandarin Oriental, Shangri-La, Cheval Blanc, La Réserve, The Peninsula and Bulgari Hotel Paris — plus a network extending to London, Milan, Rome and other major European cities.',
+    'hotelEnquiry.faq.upgrades.q': 'Can you get me an upgrade or early check-in?',
+    'hotelEnquiry.faq.upgrades.a':
+      'Where available — complimentary upgrades, early check-in, late check-out and priority restaurant reservations.',
+    'hotelEnquiry.faq.pickup.q': 'Can I be picked up straight from the aircraft?',
+    'hotelEnquiry.faq.pickup.a':
+      'Some hotels booked through us can arrange gate-side pickup straight from the aircraft door — ask your advisor for details.',
+    'hotelEnquiry.faq.pricing.q': 'How does pricing and confirmation work?',
+    'hotelEnquiry.faq.pricing.a':
+      "There's no fixed rate to quote upfront — submit your dates and budget and we confirm real availability directly with the hotel, then send you a firm quote before anything is booked.",
     'orderStatus.pageTitle': 'Your Booking',
     'orderStatus.pageDescription': 'Check the status of your MYVIPSERVICE chauffeur booking.',
     'orderStatus.loading': 'Loading your booking…',
@@ -819,6 +831,18 @@ export const ui = {
     'hotelEnquiry.step1Heading': '目的地与日期',
     'hotelEnquiry.step2Heading': '预算与偏好',
     'hotelEnquiry.nextButton': '下一步',
+    'hotelEnquiry.faq.hotels.q': '能预订哪些酒店？',
+    'hotelEnquiry.faq.hotels.a':
+      '巴黎地区的长期合作酒店——乔治五世四季酒店、雅典娜广场、丽兹巴黎、勒莫里斯、克里雍、文华东方、巴黎香格里拉、白马酒店、La Réserve、半岛酒店与宝格丽酒店，网络也延伸至伦敦、米兰、罗马等欧洲主要城市。',
+    'hotelEnquiry.faq.upgrades.q': '能升房或者提前入住吗？',
+    'hotelEnquiry.faq.upgrades.a':
+      '视具体情况而定，我们可以协助争取客房升级、提前入住、延迟退房与优先餐厅预订。',
+    'hotelEnquiry.faq.pickup.q': '能直接从舱门口接机吗？',
+    'hotelEnquiry.faq.pickup.a':
+      '部分酒店经我们预订可安排舱门接机礼遇，从舱门口直接前往座驾——具体请向顾问咨询。',
+    'hotelEnquiry.faq.pricing.q': '价格怎么确认？',
+    'hotelEnquiry.faq.pricing.a':
+      '没有固定报价——提交您的日期和预算后，我们会直接跟酒店核实实际空房情况，再把确定的报价发给您确认，之后才会正式预订。',
     'orderStatus.pageTitle': '您的预订',
     'orderStatus.pageDescription': '查看您在 MYVIPSERVICE 预订的包车订单状态。',
     'orderStatus.loading': '正在加载您的订单…',
@@ -1381,6 +1405,19 @@ export const ui = {
     'hotelEnquiry.step1Heading': 'Destination et dates',
     'hotelEnquiry.step2Heading': 'Budget et préférences',
     'hotelEnquiry.nextButton': 'Suivant',
+    'hotelEnquiry.faq.hotels.q': 'Quels hôtels pouvez-vous réserver ?',
+    'hotelEnquiry.faq.hotels.a':
+      "Nos hôtels partenaires de longue date à Paris — Four Seasons George V, Plaza Athénée, Ritz Paris, Le Meurice, Hôtel de Crillon, Mandarin Oriental, Shangri-La, Cheval Blanc, La Réserve, The Peninsula et Bulgari Hotel Paris — ainsi qu'un réseau étendu à Londres, Milan, Rome et d'autres grandes villes européennes.",
+    'hotelEnquiry.faq.upgrades.q':
+      'Pouvez-vous obtenir un surclassement ou une arrivée anticipée ?',
+    'hotelEnquiry.faq.upgrades.a':
+      'Selon disponibilité — surclassements offerts, arrivée anticipée, départ tardif et réservations prioritaires en restaurant.',
+    'hotelEnquiry.faq.pickup.q': "Puis-je être accueilli dès la descente d'avion ?",
+    'hotelEnquiry.faq.pickup.a':
+      "Certains hôtels réservés via nous peuvent organiser un accueil dès la porte d'embarquement — demandez les détails à votre conseiller.",
+    'hotelEnquiry.faq.pricing.q': 'Comment fonctionnent le tarif et la confirmation ?',
+    'hotelEnquiry.faq.pricing.a':
+      "Il n'y a pas de tarif fixe à annoncer à l'avance — indiquez vos dates et votre budget, nous vérifions la disponibilité réelle directement auprès de l'hôtel, puis vous envoyons un devis ferme avant toute réservation.",
     'orderStatus.pageTitle': 'Votre réservation',
     'orderStatus.pageDescription':
       'Consultez le statut de votre réservation de chauffeur MYVIPSERVICE.',
