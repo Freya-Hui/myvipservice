@@ -346,6 +346,8 @@ export const ui = {
     'contact.section.media': 'Media Enquiries',
     'contact.info.email': 'Email',
     'contact.info.address': 'Address',
+    'contact.info.reach':
+      'Our team works in English, Chinese and French, and every enquiry is reviewed within 24 hours.',
     'contact.form.heading': 'Tell Us About Your Trip',
     'contact.form.section1': 'Contact Details',
     'contact.form.section2': 'Travel Preferences',
@@ -903,6 +905,7 @@ export const ui = {
     'contact.section.media': '媒体咨询',
     'contact.info.email': '邮箱',
     'contact.info.address': '地址',
+    'contact.info.reach': '团队使用中文、英文和法文服务，每条咨询都会在 24 小时内由顾问查看。',
     'contact.form.heading': '告诉我们您的旅行计划',
     'contact.form.section1': '联系方式',
     'contact.form.section2': '旅行偏好',
@@ -1491,6 +1494,8 @@ export const ui = {
     'contact.section.media': 'Demandes presse',
     'contact.info.email': 'E-mail',
     'contact.info.address': 'Adresse',
+    'contact.info.reach':
+      'Notre équipe travaille en français, en anglais et en chinois, et chaque demande est examinée sous 24 heures.',
     'contact.form.heading': 'Parlez-nous de votre voyage',
     'contact.form.section1': 'Coordonnées',
     'contact.form.section2': 'Préférences de voyage',
