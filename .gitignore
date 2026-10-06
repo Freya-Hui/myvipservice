@@ -27,3 +27,6 @@ pnpm-debug.log*
 
 # internal business documents (KBIS, RIB, partnership decks) — never commit
 business-docs/
+
+# 社媒草稿、投放路线与素材（含未发布内容和授权素材，仓库是公开的，不得提交）
+docs/social/
