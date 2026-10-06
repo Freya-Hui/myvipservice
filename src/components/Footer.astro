@@ -50,7 +50,7 @@ const socialLinks = [
 
     <nav aria-label={t('footer.servicesHeading')}>
       <h2 class="text-small footer-heading">{t('footer.servicesHeading')}</h2>
-      <ul class="footer-list">
+      <ul class="footer-list footer-list--cols">
         {
           services.map((service) => (
             <li>
@@ -115,25 +115,6 @@ const socialLinks = [
         }
       </ul>
     </div>
-
-    <nav aria-label={t('footer.languageHeading')}>
-      <h2 class="text-small footer-heading">{t('footer.languageHeading')}</h2>
-      <ul class="footer-list footer-list--inline">
-        {
-          Object.entries(languages).map(([code, label]) => (
-            <li>
-              <a
-                href={getStaticLocaleHref(pathname, code as Locale)}
-                lang={code}
-                aria-current={code === currentLocale ? 'true' : undefined}
-              >
-                {label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
   </div>
 
   <div class="container site-footer__bottom">
@@ -144,6 +125,23 @@ const socialLinks = [
         <li><a href={`/${currentLocale}/privacy-policy/`}>{t('footer.privacyPolicy')}</a></li>
         <li><a href={`/${currentLocale}/legal-notice/`}>{t('footer.legalNotice')}</a></li>
       </ul>
+      <nav class="site-footer__languages" aria-label={t('footer.languageHeading')}>
+        <ul class="footer-list footer-list--inline">
+          {
+            Object.entries(languages).map(([code, label]) => (
+              <li>
+                <a
+                  href={getStaticLocaleHref(pathname, code as Locale)}
+                  lang={code}
+                  aria-current={code === currentLocale ? 'true' : undefined}
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
     </div>
   </div>
 </footer>
@@ -158,9 +156,45 @@ const socialLinks = [
 
   .site-footer__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    grid-template-columns: 1fr;
     gap: var(--space-5);
     margin-bottom: var(--space-6);
+  }
+
+  /* Services is the long list (12 links): give it the widest column and split it in two. */
+  @media (min-width: 40rem) {
+    .site-footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .site-footer__grid > nav:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+
+    .footer-list.footer-list--cols {
+      display: block;
+      columns: 2;
+      column-gap: var(--space-5);
+    }
+
+    .footer-list--cols li {
+      break-inside: avoid;
+      margin-bottom: var(--space-2);
+    }
+
+    .site-footer__languages {
+      margin-inline-start: auto;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .site-footer__grid {
+      grid-template-columns: 1fr 0.7fr 2.4fr 1.1fr;
+    }
+
+    .site-footer__grid > nav:nth-child(3) {
+      grid-column: auto;
+    }
   }
 
   .site-footer__brand .wordmark {
