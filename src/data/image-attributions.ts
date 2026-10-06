@@ -323,21 +323,36 @@ export const imageAttributions: ImageAttribution[] = [
     notes: "The estate's grounds, distinct from the pool-terrace images.",
   },
   {
-    id: 'destination-paris-grand-palais-interior',
-    src: '/images/destination-paris-grand-palais-interior.jpg',
-    sourceUrl:
-      'https://www.pexels.com/photo/elegant-architecture-inside-paris-s-grand-palais-34748962/',
-    sourceName: 'Pexels',
-    author: 'Bingqian Li',
-    license: 'Pexels License',
-    usageStatus: 'temporary',
+    id: 'event-art-basel-paris-2025-aerial',
+    src: '/images/event-art-basel-paris-2025-aerial.jpg',
+    sourceUrl: 'https://myvipservice.com/',
+    sourceName: 'MYVIPSERVICE',
+    author: 'MYVIPSERVICE',
+    license: 'Own photograph',
+    usageStatus: 'licensed',
     altByLocale: {
-      en: 'Visitors on a balcony beneath the green iron-and-glass roof of the Grand Palais in Paris.',
-      zh: '巴黎大皇宫绿色铁艺与玻璃穹顶之下，露台上的几位参观者。',
-      fr: 'Des visiteurs sur un balcon, sous la verrière et la charpente métallique verte du Grand Palais, à Paris.',
+      en: 'Rows of white gallery booths and visitors under the glass roof of the Grand Palais during Art Basel Paris.',
+      zh: '巴黎艺术周期间，大皇宫玻璃穹顶之下一排排白色画廊展位与参观者。',
+      fr: 'Des rangées de stands de galeries blancs et des visiteurs sous la verrière du Grand Palais, pendant Art Basel Paris.',
     },
     notes:
-      'Grand Palais interior (venue of Art Basel Paris). Not an Art Basel event photograph — do not caption it as fair coverage.',
+      'Own photograph taken at the 2025 edition of Art Basel Paris, wide view only. Faces are not identifiable. No individual artwork is the subject.',
+  },
+  {
+    id: 'event-art-basel-paris-2025-hall',
+    src: '/images/event-art-basel-paris-2025-hall.jpg',
+    sourceUrl: 'https://myvipservice.com/',
+    sourceName: 'MYVIPSERVICE',
+    author: 'MYVIPSERVICE',
+    license: 'Own photograph',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'The fair floor seen from a balcony beneath the green iron roof of the Grand Palais, visitors moving between booths.',
+      zh: '从露台望向大皇宫绿色铁艺穹顶下的展厅，参观者在展位之间走动。',
+      fr: 'La salle de la foire vue depuis un balcon, sous la charpente métallique verte du Grand Palais, des visiteurs circulant entre les stands.',
+    },
+    notes:
+      'Own photograph taken at the 2025 edition of Art Basel Paris, wide view only. Faces are not identifiable. No individual artwork is the subject.',
   },
   {
     id: 'destination-paris-grand-palais-night',
