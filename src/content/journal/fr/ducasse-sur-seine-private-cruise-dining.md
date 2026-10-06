@@ -7,6 +7,7 @@ category: 'Food & Dining'
 excerpt: "Le premier bateau-restaurant entièrement électrique de Paris, conduit par l'équipe d'Alain Ducasse — un parcours de deux heures sur la Seine, devant la Tour Eiffel, le Louvre et Notre-Dame. Ce n'est pas une croisière touristique agrémentée d'un dîner. C'est un véritable restaurant, qui se trouve simplement être sur l'eau."
 coverImage: 'experience-ducasse-seine-table-eiffel'
 relatedTravelStyleKeys: ['romantic-escapes']
+enquiryForm: 'ducasse-dinner'
 gallery:
   [
     'experience-ducasse-seine-table-eiffel',
@@ -22,9 +23,11 @@ seoTitle: 'Comment réserver un dîner privé à bord de Ducasse sur Seine | MYV
 seoDescription: "Conduit par l'équipe d'Alain Ducasse, ce bateau-restaurant entièrement électrique sur la Seine — le premier du genre à Paris — suit un parcours de deux heures devant la Tour Eiffel, le Louvre et Notre-Dame. Ce guide explique en quoi il se distingue d'une croisière-dîner touristique classique, et comment le personnaliser pour un groupe ou une occasion particulière."
 status: 'published'
 publishedAt: 2026-09-04
-updatedAt: 2026-09-04
+updatedAt: 2026-10-06
 draft: false
 ---
+
+Envie de réserver ? [Accédez au formulaire en bas de page](#enquiry) — indiquez le nombre de convives et vos coordonnées, nous vous contactons sous 24 heures.
 
 ## Pas un bateau de tourisme — un restaurant qui flotte
 
@@ -56,3 +59,7 @@ Au-delà des deux départs fixes, Ducasse sur Seine propose également des arran
 ## Le point de vue de MYVIPSERVICE
 
 L'erreur la plus fréquente avec une expérience comme celle-ci est de la considérer comme « une simple activité touristique de plus » à réserver sans y réfléchir davantage — ce qui en fait réellement la valeur, c'est de choisir le bon départ, le bon espace, et d'adapter le menu à l'occasion. Pour une demande en mariage ou un anniversaire, l'intimité de La Table du Chef convient mieux que le pont principal ; pour un séminaire d'équipe ou un événement de fidélisation client, c'est la privatisation totale du bateau, associée à un parcours personnalisé, qui prend tout son sens. Nous vous aidons à confirmer les disponibilités, à choisir l'espace adapté selon le nombre de convives, l'occasion et le budget, et à coordonner les détails de toute personnalisation.
+
+## Comment réserver
+
+Laissez trois informations dans le formulaire ci-dessous : le nombre de convives, vos coordonnées, et si vous souhaitez un espace privatif. Nous vous contactons sous 24 heures pour confirmer la date et choisir l’espace adapté à votre groupe, de la Table du Chef (jusqu’à 12 convives) et du Carré (jusqu’à 20) à une privatisation partielle ou de l’ensemble du bateau. Une date souhaitée et d’éventuelles demandes particulières sont facultatives, et peuvent être précisées lors de notre échange.
