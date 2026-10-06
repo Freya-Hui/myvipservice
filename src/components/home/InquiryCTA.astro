@@ -4,9 +4,11 @@ interface Props {
   body: string;
   ctaLabel: string;
   ctaHref: string;
+  emailLabel?: string;
+  email?: string;
 }
 
-const { title, body, ctaLabel, ctaHref } = Astro.props;
+const { title, body, ctaLabel, ctaHref, emailLabel, email } = Astro.props;
 ---
 
 <section class="section inquiry-cta">
@@ -14,6 +16,13 @@ const { title, body, ctaLabel, ctaHref } = Astro.props;
     <h2>{title}</h2>
     <p class="inquiry-cta__body">{body}</p>
     <a class="button button--primary" href={ctaHref}>{ctaLabel}</a>
+    {
+      email && (
+        <p class="inquiry-cta__email">
+          {emailLabel}: <a href={`mailto:${email}`}>{email}</a>
+        </p>
+      )
+    }
   </div>
 </section>
 
@@ -47,6 +56,17 @@ const { title, body, ctaLabel, ctaHref } = Astro.props;
     background: var(--color-accent-strong);
     border-color: var(--color-accent-strong);
     color: var(--color-text);
+  }
+
+  .inquiry-cta__email {
+    margin-top: var(--space-4);
+    font-size: var(--text-small);
+    color: var(--color-bg-inset);
+  }
+
+  .inquiry-cta__email a {
+    color: var(--color-bg);
+    text-underline-offset: 0.25em;
   }
 
   .inquiry-cta .button:hover {
