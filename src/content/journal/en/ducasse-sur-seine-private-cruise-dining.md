@@ -7,6 +7,7 @@ category: 'Food & Dining'
 excerpt: "Paris's first fully electric restaurant boat, run by Alain Ducasse's own team — a two-hour route down the Seine past the Eiffel Tower, the Louvre and Notre-Dame. This isn't a sightseeing cruise with dinner attached. It's a genuine restaurant that happens to be on the water."
 coverImage: 'experience-ducasse-seine-table-eiffel'
 relatedTravelStyleKeys: ['romantic-escapes']
+enquiryForm: 'ducasse-dinner'
 gallery:
   [
     'experience-ducasse-seine-table-eiffel',
@@ -22,9 +23,11 @@ seoTitle: 'How to Book a Private Dinner Cruise on Ducasse sur Seine | MYVIPSERVI
 seoDescription: "Run by Alain Ducasse's own team, this fully electric Seine dinner boat — the first of its kind in Paris — sails a two-hour route past the Eiffel Tower, the Louvre and Notre-Dame. This guide explains how it differs from an ordinary sightseeing dinner cruise, and how to customise it for a group or a significant occasion."
 status: 'published'
 publishedAt: 2026-09-04
-updatedAt: 2026-09-04
+updatedAt: 2026-10-06
 draft: false
 ---
+
+Want to book it? [Jump to the enquiry form below](#enquiry) — leave your number of guests and contact details, and we will contact you within 24 hours.
 
 ## Not a sightseeing boat — a restaurant that happens to float
 
@@ -56,3 +59,7 @@ Beyond the two set sailings, Ducasse sur Seine also supports bespoke arrangement
 ## The MYVIPSERVICE perspective
 
 The easiest mistake with an experience like this is treating it as "just another sightseeing item" to book without much thought — what actually makes it worthwhile is choosing the right sailing, the right space, and matching the menu to the occasion. For a proposal or an anniversary, La Table du Chef's intimacy suits the moment better than the main deck; for a team offsite or a client appreciation event, a full-boat privatisation with a customised route is where the value is. We help confirm availability, choose the right space based on your numbers, occasion and budget, and coordinate the specifics of any custom arrangement.
+
+## How to book
+
+Leave three things in the form below: how many guests, how to reach you, and whether you would like a private, exclusive space. We will contact you within 24 hours to confirm the date and choose the right space for your group — from La Table du Chef (up to 12 guests) and Le Carré (up to 20) to a semi-private or full-boat booking. A preferred date and any special requests are optional, and can be settled when we speak.

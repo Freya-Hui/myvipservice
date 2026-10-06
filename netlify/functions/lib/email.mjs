@@ -701,6 +701,37 @@ export async function sendTicketBookingNotification(booking) {
   });
 }
 
+// Unlike the booking widgets above this has no price or payment step — it's
+// a plain "contact me" enquiry from the Ducasse sur Seine article, so the
+// only follow-up is a reply within 24 hours, not a quote link.
+export async function sendDiningEnquiryNotification(booking) {
+  const lines = [
+    '状态：客户提交，需 24 小时内联系',
+    '',
+    '【客户信息】',
+    `姓名：${booking.name || '—'}`,
+    `邮箱：${booking.email || '—'}`,
+    `电话：${booking.phone || '—'}`,
+    `偏好联系方式：${booking.preferredContactMethod || '—'}`,
+    '',
+    '【需求信息】',
+    '主题：Alain Ducasse · Ducasse sur Seine 晚宴',
+    `人数：${booking.partySize || '—'}`,
+    `期望日期：${booking.date || '未填写'}`,
+    `需要独享私密空间：${booking.wantsPrivateSpace ? '是' : '否'}`,
+  ];
+
+  if (booking.notes) {
+    lines.push('', '【客户备注】', booking.notes);
+  }
+
+  await send({
+    to: ADMIN_ADDRESS,
+    subject: `[24h内联系] Ducasse sur Seine 晚宴咨询 — ${booking.name || '未填写姓名'} · ${booking.partySize || '—'}人`,
+    text: lines.join('\n'),
+  });
+}
+
 export async function sendAccommodationBookingNotification(booking) {
   const lines = [
     '状态：客户提交，等待人工报价确认',

@@ -7,6 +7,7 @@ category: 'Food & Dining'
 excerpt: '巴黎第一艘全电动餐厅船，主厨 Alain Ducasse 团队掌勺，塞纳河上两小时，从埃菲尔铁塔一路开到圣路易岛，中途经过卢浮宫、圣母院——不是一次观光船，是一顿真正意义上的晚餐，只是餐厅在水上。'
 coverImage: 'experience-ducasse-seine-table-eiffel'
 relatedTravelStyleKeys: ['romantic-escapes']
+enquiryForm: 'ducasse-dinner'
 gallery:
   [
     'experience-ducasse-seine-table-eiffel',
@@ -22,9 +23,11 @@ seoTitle: 'Ducasse sur Seine 私人游船晚宴怎么预订？MYVIPSERVICE 定�
 seoDescription: 'Alain Ducasse 团队掌勺的塞纳河电动游船餐厅——巴黎第一艘全电动餐厅船，两小时航程经过埃菲尔铁塔、卢浮宫、圣母院。这篇文章讲清楚它跟普通观光晚餐船的区别，以及可以怎么为团体或重要场合私人定制。'
 status: 'published'
 publishedAt: 2026-09-04
-updatedAt: 2026-09-04
+updatedAt: 2026-10-06
 draft: false
 ---
+
+想直接预订？[跳到页面下方的表单](#enquiry)，留下人数和联系方式，我们会在 24 小时内联系您。
 
 ## 不是观光船，是开在水上的餐厅
 
@@ -56,3 +59,7 @@ draft: false
 ## MYVIPSERVICE 视角
 
 这类体验最容易踩的坑，是把它当成"又一个观光项目"随手订掉——但真正让它值得的，是选对班次、选对空间、把菜单和场合对应起来。如果是求婚或纪念日，主厨餐桌这种私密视角比大厅更合适；如果是团队年会或客户答谢，全船包场配合定制航线才划算。我们会根据人数、场合和预算，帮您确认可用日期、选择合适的空间，并对接活动定制的具体细节。
+
+## 怎么预订
+
+在下方表单里留下三项信息：用餐人数、联系方式，以及是否需要独享私密空间。我们会在 24 小时内联系您，确认日期，并按您的人数和场合选好空间——从主厨餐桌（最多 12 人）、Le Carré（最多 20 人），到半包场或全船包场。期望日期和特别要求是选填项，沟通时再确认也可以。
