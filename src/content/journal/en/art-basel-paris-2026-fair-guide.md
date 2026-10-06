@@ -5,8 +5,8 @@ locale: 'en'
 translationKey: 'art-basel-paris-2026-fair-guide'
 category: 'Art & Culture'
 excerpt: 'A contemporary art fair at the Grand Palais, now in its fifth edition. What it is, how it is organised, what is new this year and how to approach it as a visitor.'
-coverImage: 'experience-art-gallery'
-gallery: ['experience-art-gallery']
+coverImage: 'event-art-basel-paris-2025-aerial'
+gallery: ['event-art-basel-paris-2025-aerial']
 relatedDestinationKeys: ['paris']
 relatedAccommodationKeys: ['hotel-de-crillon', 'maison-villeroy']
 relatedExperienceKeys: ['private-guided-museum-tour']
@@ -20,8 +20,6 @@ draft: false
 
 Art Basel Paris is a contemporary art fair held each October at the Grand Palais. The 2026 edition, its fifth, brings together 211 exhibitors from 41 countries and territories, and opens to the public from 23 to 25 October.
 
-![A large blue-and-gold painting hung on a white gallery wall, viewed from a raised walkway](/images/experience-art-gallery.jpg)
-
 ## What the fair is
 
 At a fair, galleries rather than museums are the exhibitors. Each gallery takes a booth and shows work by the artists it represents, and the work is for sale. For a visitor that makes it an unusually wide survey: dozens of programmes, many countries and several generations of artists in one building, in a few hours.
@@ -30,7 +28,7 @@ Art Basel Paris began in 2022, then under the name Paris+ par Art Basel, held in
 
 In 2026 the fair is directed by Karim Crippa, who describes this edition as shaped by and for Paris.
 
-![Visitors on a balcony beneath the green iron-and-glass roof of the Grand Palais](/images/destination-paris-grand-palais-interior.jpg)
+![The fair floor seen from a balcony beneath the green iron roof of the Grand Palais, visitors moving between booths](/images/event-art-basel-paris-2025-hall.jpg)
 
 ## How it is organised
 
