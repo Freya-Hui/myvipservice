@@ -35,20 +35,7 @@ const socialLinks = [
       <p class="text-small">{t('footer.brandBlurb')}</p>
     </div>
 
-    <nav aria-label={t('footer.quickLinksHeading')}>
-      <h2 class="text-small footer-heading">{t('footer.quickLinksHeading')}</h2>
-      <ul class="footer-list">
-        <li><a href={`/${currentLocale}/`}>{t('nav.home')}</a></li>
-        <li><a href={`/${currentLocale}/about/`}>{t('nav.about')}</a></li>
-        <li><a href={`/${currentLocale}/services/`}>{t('nav.services')}</a></li>
-        <li>
-          <a href={`/${currentLocale}/travel-styles/`}>{t('travelStyles.hero.title')}</a>
-        </li>
-        <li><a href={`/${currentLocale}/contact/`}>{t('nav.contact')}</a></li>
-      </ul>
-    </nav>
-
-    <nav aria-label={t('footer.servicesHeading')}>
+    <nav class="site-footer__services" aria-label={t('footer.servicesHeading')}>
       <h2 class="text-small footer-heading">{t('footer.servicesHeading')}</h2>
       <ul class="footer-list footer-list--cols">
         {
@@ -167,8 +154,10 @@ const socialLinks = [
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .site-footer__grid > nav:nth-child(3) {
+    /* Brand and contact share the first row, the services list takes the full row below. */
+    .site-footer__services {
       grid-column: 1 / -1;
+      order: 3;
     }
 
     .footer-list.footer-list--cols {
@@ -189,11 +178,12 @@ const socialLinks = [
 
   @media (min-width: 64rem) {
     .site-footer__grid {
-      grid-template-columns: 1fr 0.7fr 2.4fr 1.1fr;
+      grid-template-columns: 1fr 2.4fr 1.1fr;
     }
 
-    .site-footer__grid > nav:nth-child(3) {
+    .site-footer__services {
       grid-column: auto;
+      order: 0;
     }
   }
 
