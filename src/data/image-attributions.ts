@@ -323,6 +323,39 @@ export const imageAttributions: ImageAttribution[] = [
     notes: "The estate's grounds, distinct from the pool-terrace images.",
   },
   {
+    id: 'destination-paris-grand-palais-interior',
+    src: '/images/destination-paris-grand-palais-interior.jpg',
+    sourceUrl:
+      'https://www.pexels.com/photo/elegant-architecture-inside-paris-s-grand-palais-34748962/',
+    sourceName: 'Pexels',
+    author: 'Bingqian Li',
+    license: 'Pexels License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'Visitors on a balcony beneath the green iron-and-glass roof of the Grand Palais in Paris.',
+      zh: '巴黎大皇宫绿色铁艺与玻璃穹顶之下，露台上的几位参观者。',
+      fr: 'Des visiteurs sur un balcon, sous la verrière et la charpente métallique verte du Grand Palais, à Paris.',
+    },
+    notes:
+      'Grand Palais interior (venue of Art Basel Paris). Not an Art Basel event photograph — do not caption it as fair coverage.',
+  },
+  {
+    id: 'destination-paris-grand-palais-night',
+    src: '/images/destination-paris-grand-palais-night.jpg',
+    sourceUrl:
+      'https://www.pexels.com/photo/glass-dome-of-grand-palais-in-paris-at-night-29356596/',
+    sourceName: 'Pexels',
+    author: 'Siva Seshappan',
+    license: 'Pexels License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'The glass dome of the Grand Palais in Paris at night, a French flag above the roofline.',
+      zh: '夜晚的巴黎大皇宫玻璃穹顶，屋顶上方飘着法国国旗。',
+      fr: 'La verrière du Grand Palais, à Paris, de nuit, avec un drapeau français au-dessus de la toiture.',
+    },
+    notes: 'Grand Palais exterior, taken 2 November 2024. Not an Art Basel event photograph.',
+  },
+  {
     id: 'experience-art-gallery',
     src: '/images/experience-art-gallery.jpg',
     sourceUrl:

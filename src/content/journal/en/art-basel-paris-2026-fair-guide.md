@@ -30,6 +30,8 @@ Art Basel Paris began in 2022, then under the name Paris+ par Art Basel, held in
 
 In 2026 the fair is directed by Karim Crippa, who describes this edition as shaped by and for Paris.
 
+![Visitors on a balcony beneath the green iron-and-glass roof of the Grand Palais](/images/destination-paris-grand-palais-interior.jpg)
+
 ## How it is organised
 
 The fair has three sectors.
@@ -48,6 +50,8 @@ The fair has three sectors.
 Alongside the fair runs its Public Program, now in its fifth edition, developed with leading Parisian institutions. Miu Miu is the fair's official partner. In 2025 the programme reached beyond the Grand Palais to places including the Institut de France, the Hôtel de la Marine and Place Vendôme, so it is worth checking the 2026 programme for what is open that week.
 
 ## The dates
+
+![The glass dome of the Grand Palais at night, a French flag above the roofline](/images/destination-paris-grand-palais-night.jpg)
 
 According to the fair:
 
