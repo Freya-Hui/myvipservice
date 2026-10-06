@@ -15,6 +15,13 @@ seoTitle: 'Art Basel Paris 2026: Dates, Sectors, What Is New and How to Visit th
 seoDescription: 'Art Basel Paris 2026 opens to the public on 23–25 October at the Grand Palais, with 211 exhibitors from 41 countries. What the fair is, its sectors, what is new this year and how to plan a visit.'
 status: 'published'
 publishedAt: 2026-10-06
+featured: true
+heroHighlights:
+  [
+    'Public days 23–25 October at the Grand Palais',
+    'The fair, its three sectors and what is new this year',
+    'How we plan the hotel, car and museums around your days',
+  ]
 draft: false
 ---
 
