@@ -6,7 +6,7 @@ translationKey: 'paris-palace-vs-boutique-hotels-guide'
 category: 'Hotel Inspiration'
 excerpt: '"Palace" is an official French hotel classification, not a marketing word — and the difference from a boutique hotel is more specific than a star rating suggests.'
 coverImage: 'service-hotels-villas'
-gallery: ['service-hotels-villas', 'destination-paris']
+gallery: []
 relatedDestinationKeys: ['paris']
 relatedAccommodationKeys: ['ritz-paris', 'hotel-de-crillon', 'bulgari', 'la-reserve']
 seoTitle: 'Palace vs. Boutique Hotels in Paris: How to Choose (With Location and Booking Advice)'
@@ -38,13 +38,13 @@ A design-led property like the Bulgari Hotel has fewer rooms and a more unified 
 
 A property like La Réserve is smaller in scale than a Palace hotel but more private in how it's run — well suited to a guest who wants to be looked after quietly, without passing many unfamiliar faces through the lobby.
 
-![La Réserve Paris's townhouse facade with its signature red door](/images/accommodation-la-reserve.jpg)
+![La Réserve Paris's bar, with black lacquer panelling, gilt trim and deep red upholstery](/images/accommodation-la-reserve-bar.jpg)
 
 ## Location is part of the decision too
 
 Most Palace hotels cluster around the Right Bank — the Champs-Élysées and Place Vendôme — close to the luxury boutiques and main sightseeing routes, which suits a trip built around shopping or business. Boutique and private-residence-style properties are more scattered, some tucked into the Left Bank or residential neighbourhoods, better suited to a guest who wants to feel like they're living in the city rather than staying right at the door of its landmarks.
 
-![The Hôtel de Crillon's colonnaded facade on Place de la Concorde, Paris](/images/accommodation-hotel-de-crillon.jpg)
+![The living room of the Suite Marie-Antoinette at Hôtel de Crillon, on Place de la Concorde](/images/accommodation-hotel-de-crillon-marie-antoinette-suite.jpg)
 
 ## How to choose
 

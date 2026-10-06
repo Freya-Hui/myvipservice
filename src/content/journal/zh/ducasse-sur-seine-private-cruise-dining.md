@@ -8,13 +8,7 @@ excerpt: '巴黎第一艘全电动餐厅船，主厨 Alain Ducasse 团队掌勺�
 coverImage: 'experience-ducasse-seine-table-eiffel'
 relatedTravelStyleKeys: ['romantic-escapes']
 enquiryForm: 'ducasse-dinner'
-gallery:
-  [
-    'experience-ducasse-seine-table-eiffel',
-    'experience-ducasse-seine-aerial',
-    'experience-ducasse-seine-dining-room',
-    'experience-ducasse-seine-deck-eiffel',
-  ]
+gallery: []
 relatedDestinationKeys: ['paris']
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

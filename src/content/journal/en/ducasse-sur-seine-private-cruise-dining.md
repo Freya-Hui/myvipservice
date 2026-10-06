@@ -8,13 +8,7 @@ excerpt: "Paris's first fully electric restaurant boat, run by Alain Ducasse's o
 coverImage: 'experience-ducasse-seine-table-eiffel'
 relatedTravelStyleKeys: ['romantic-escapes']
 enquiryForm: 'ducasse-dinner'
-gallery:
-  [
-    'experience-ducasse-seine-table-eiffel',
-    'experience-ducasse-seine-aerial',
-    'experience-ducasse-seine-dining-room',
-    'experience-ducasse-seine-deck-eiffel',
-  ]
+gallery: []
 relatedDestinationKeys: ['paris']
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

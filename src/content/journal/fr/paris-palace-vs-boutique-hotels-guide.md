@@ -6,7 +6,7 @@ translationKey: 'paris-palace-vs-boutique-hotels-guide'
 category: 'Hotel Inspiration'
 excerpt: "« Palace » est une classification hôtelière officielle française, pas un terme marketing — et la différence avec un hôtel boutique est plus précise que ce que suggère un simple nombre d'étoiles."
 coverImage: 'service-hotels-villas'
-gallery: ['service-hotels-villas', 'destination-paris']
+gallery: []
 relatedDestinationKeys: ['paris']
 relatedAccommodationKeys: ['ritz-paris', 'hotel-de-crillon', 'bulgari', 'la-reserve']
 seoTitle: 'Palace vs. hôtels boutique à Paris : comment choisir (emplacement et conseils de réservation)'
@@ -38,13 +38,13 @@ Un établissement au parti pris design comme le Bulgari Hotel compte moins de ch
 
 Un établissement comme La Réserve est plus modeste en taille qu'un Palace, mais plus intime dans sa manière de fonctionner — adapté à un client qui souhaite être pris en charge discrètement, sans croiser de nombreux visages inconnus dans le hall.
 
-![La façade de style hôtel particulier de La Réserve Paris et sa porte rouge emblématique](/images/accommodation-la-reserve.jpg)
+![Le bar de La Réserve Paris, boiseries laquées noires, filets dorés et velours rouge profond](/images/accommodation-la-reserve-bar.jpg)
 
 ## L'emplacement fait aussi partie du choix
 
 La plupart des Palace se concentrent sur la Rive Droite — Champs-Élysées et Place Vendôme — à proximité des boutiques de luxe et des grands axes touristiques, ce qui convient à un séjour organisé autour du shopping ou des affaires. Les hôtels boutique et de type résidence privée sont plus dispersés, certains nichés sur la Rive Gauche ou dans des quartiers résidentiels, mieux adaptés à un client qui souhaite vivre la ville plutôt que loger juste devant ses monuments.
 
-![La façade à colonnes de l'Hôtel de Crillon, place de la Concorde, à Paris](/images/accommodation-hotel-de-crillon.jpg)
+![Le salon de la Suite Marie-Antoinette à l'Hôtel de Crillon, place de la Concorde](/images/accommodation-hotel-de-crillon-marie-antoinette-suite.jpg)
 
 ## Comment choisir
 

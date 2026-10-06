@@ -8,13 +8,7 @@ excerpt: "Le premier bateau-restaurant entièrement électrique de Paris, condui
 coverImage: 'experience-ducasse-seine-table-eiffel'
 relatedTravelStyleKeys: ['romantic-escapes']
 enquiryForm: 'ducasse-dinner'
-gallery:
-  [
-    'experience-ducasse-seine-table-eiffel',
-    'experience-ducasse-seine-aerial',
-    'experience-ducasse-seine-dining-room',
-    'experience-ducasse-seine-deck-eiffel',
-  ]
+gallery: []
 relatedDestinationKeys: ['paris']
 relatedAccommodationKeys: []
 relatedExperienceKeys: []

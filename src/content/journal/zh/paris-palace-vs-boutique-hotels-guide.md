@@ -6,7 +6,7 @@ translationKey: 'paris-palace-vs-boutique-hotels-guide'
 category: 'Hotel Inspiration'
 excerpt: '"Palace"在法国是一个官方认证的酒店等级，不是营销用词——它和精品酒店的差别，比星级数字能说明的更具体。'
 coverImage: 'service-hotels-villas'
-gallery: ['service-hotels-villas', 'destination-paris']
+gallery: []
 relatedDestinationKeys: ['paris']
 relatedAccommodationKeys: ['ritz-paris', 'hotel-de-crillon', 'bulgari', 'la-reserve']
 seoTitle: 'Palace 酒店 vs 精品酒店：巴黎住宿怎么选（附地段与预订建议）'
@@ -38,13 +38,13 @@ draft: false
 
 La Réserve 这类物业规模比 Palace 小，但服务的私密程度更高，适合希望被安静对待、不想在大堂遇到很多陌生面孔的客人。
 
-![拉雷瑟夫巴黎酒店的官邸式立面与标志性红色大门](/images/accommodation-la-reserve.jpg)
+![拉雷瑟夫巴黎酒店酒吧，黑漆护墙板、金色装饰线条与深红色软装](/images/accommodation-la-reserve-bar.jpg)
 
 ## 地段也是选择的一部分
 
 大多数 Palace 集中在右岸香榭丽舍、旺多姆广场一带，靠近奢侈品店和主要观光动线，适合行程本身就以购物、商务为主的客人；精品与私人宅邸型物业分布更分散，部分藏在左岸或住宅区里，更适合想要"住得像本地人"、不追求酒店就在景点门口的客人。
 
-![巴黎协和广场上克里雍酒店的柱廊立面](/images/accommodation-hotel-de-crillon.jpg)
+![克里雍酒店玛丽·安托万内特套房的客厅，酒店位于协和广场](/images/accommodation-hotel-de-crillon-marie-antoinette-suite.jpg)
 
 ## 怎么选
 
