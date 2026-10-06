@@ -751,6 +751,7 @@ export async function sendAccommodationBookingNotification(booking) {
     `入住日期：${booking.checkIn || '—'}`,
     `离店日期：${booking.checkOut || '—'}`,
     booking.hotelBudget ? `预算（每晚）：${booking.hotelBudget}` : '',
+    booking.hotelTypes ? `酒店类型偏好：${booking.hotelTypes}` : '',
     `需要完整雪季行程规划：${booking.wantsFullSeasonPlanning ? '是' : '否'}`,
     `需要备选酒店方案：${booking.wantsAlternativeHotels ? '是' : '否'}`,
   ].filter(Boolean);

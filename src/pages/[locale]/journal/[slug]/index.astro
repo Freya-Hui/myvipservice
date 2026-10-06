@@ -9,6 +9,7 @@ import RelatedContent from '../../../../components/RelatedContent.astro';
 import ContentStatusBadge from '../../../../components/ContentStatusBadge.astro';
 import ArticleTOC from '../../../../components/ArticleTOC.astro';
 import DiningEnquiryWidget from '../../../../components/DiningEnquiryWidget.astro';
+import HotelStayEnquiryWidget from '../../../../components/HotelStayEnquiryWidget.astro';
 import InquiryCTA from '../../../../components/home/InquiryCTA.astro';
 import { getDetailStaticPaths, resolveRelated, excludeShownImages } from '../../../../lib/content';
 import { useTranslations, type Locale } from '../../../../i18n/ui';
@@ -58,6 +59,16 @@ const relatedJourneys = excludeShownImages(
   await resolveRelated('journeys', locale, data.relatedJourneyKeys),
   shownImageIds,
 );
+
+// The hotel enquiry form offers the article's own related hotels as ticks —
+// the unfiltered list, since excludeShownImages above only decides which
+// cards to show, not which hotels the article is about.
+const enquiryHotels =
+  data.enquiryForm === 'hotel-stay'
+    ? (await resolveRelated('accommodations', locale, data.relatedAccommodationKeys)).map(
+        (item) => ({ value: item.data.slug, label: item.data.title }),
+      )
+    : [];
 
 const keyFacts = [
   {
@@ -137,10 +148,13 @@ const structuredData = [
   </section>
 
   {
-    data.enquiryForm === 'ducasse-dinner' && (
+    data.enquiryForm && (
       <section class="section enquiry-section" id="enquiry">
         <div class="container">
-          <DiningEnquiryWidget locale={locale} />
+          {data.enquiryForm === 'ducasse-dinner' && <DiningEnquiryWidget locale={locale} />}
+          {data.enquiryForm === 'hotel-stay' && (
+            <HotelStayEnquiryWidget locale={locale} hotels={enquiryHotels} />
+          )}
         </div>
       </section>
     )

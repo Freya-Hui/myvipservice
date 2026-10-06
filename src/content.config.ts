@@ -505,7 +505,7 @@ const journal = defineCollection({
     /** Embeds the matching enquiry form (anchor `#enquiry`) right after the
      *  article body. Only articles whose topic is a single bookable thing
      *  carry this — e.g. the Ducasse sur Seine dinner. */
-    enquiryForm: z.enum(['ducasse-dinner']).optional(),
+    enquiryForm: z.enum(['ducasse-dinner', 'hotel-stay']).optional(),
     /** 2–3 short bullets specific to THIS article's own content — shown on
      *  hover/focus over its homepage Hero card when `featured` is true.
      *  Only meaningful on a featured entry; harmless (just unused) on any
