@@ -16,7 +16,6 @@ seoDescription: 'How do you plan a French Alps ski holiday? This guide covers th
 status: 'published'
 publishedAt: 2026-08-07
 draft: false
-featured: true
 ---
 
 Not everyone in a travelling group wants to ski all day — some want to chase off-piste terrain, others would rather sleep in and spend a morning on wellness. Rather than compromising to accommodate one side, it's often better to build both into the same trip.
