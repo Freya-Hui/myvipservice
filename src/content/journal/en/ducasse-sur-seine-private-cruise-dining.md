@@ -35,11 +35,17 @@ There's no shortage of dinner cruises on the Seine, and most of them run on the 
 
 The boat itself is worth mentioning too — it's Paris's first fully electric restaurant boat, producing roughly a twelfth of the carbon emissions per passenger of a traditional diesel cruise boat (12g/km versus 146g/km), with a quiet, vibration-free sail and no diesel fumes. The interior was designed by Maurizio Galante and Tal Lancman, drawing inspiration from the Seine itself and from Parisian haute couture.
 
+![A plated starter of beetroot and cured fish on a plate printed with a map of Paris.](/images/experience-ducasse-seine-dish-map.jpg)
+
 ## Two sailings, two different moods
 
 **"Déjeuner sur Seine," the lunch route**: departs at 12:45, taking in Paris's architecture in daylight — a relaxed fit for a business lunch or a family gathering.
 
+![A table laid with wine glasses beside the windows, the Seine and a stone bridge visible in daylight.](/images/experience-ducasse-seine-daylight-table.jpg)
+
 **"Nuit Étoilée," the dinner route**: departs at 20:30, right as the city lights come on — and the best window for photographs, catching the Eiffel Tower's hourly light show and the illuminated bridges and buildings along the way.
+
+![The Pont Alexandre III lit at dusk with the Eiffel Tower in the distance, seen from the river.](/images/experience-ducasse-seine-alexandre-bridge.jpg)
 
 The full sailing runs about two hours, departing from Port Debilly beside the Eiffel Tower, passing the Trocadéro, Les Invalides, the Musée d'Orsay, Saint-Germain-des-Prés, Notre-Dame and the Hôtel de Ville, sailing as far as the Jardin des Plantes before turning back — taking in the finest stretch of the Seine alongside a proper sit-down dinner.
 
@@ -52,13 +58,19 @@ The boat is divided into several distinct spaces, chosen according to your numbe
 - **La Table du Chef**: at the very centre of the boat, up to 12 guests, facing the Eiffel Tower directly — a more intimate atmosphere, well suited to a family dinner or a significant occasion.
 - **Full-boat privatisation**: main deck and upper deck combined, up to 122 guests including terrace access — suited to corporate events, product launches or larger private celebrations.
 
+![Tables laid in the glass-walled dining room in daylight, under a mirrored ceiling.](/images/experience-ducasse-seine-dining-room-day.jpg)
+
 ## What can be customised
 
 Beyond the two set sailings, Ducasse sur Seine also supports bespoke arrangements: guided commentary during the sail, an onboard sound system, a pontoon cocktail reception (weather permitting), a dedicated breakfast or afternoon tea sailing, business meetings, product launches, floral styling, and adjustments to the route itself — all of which can be arranged individually around the occasion.
 
+![A place setting with a branded charger plate, cutlery and a small salt dish on a white tablecloth.](/images/experience-ducasse-seine-place-setting.jpg)
+
 ## The MYVIPSERVICE perspective
 
 The easiest mistake with an experience like this is treating it as "just another sightseeing item" to book without much thought — what actually makes it worthwhile is choosing the right sailing, the right space, and matching the menu to the occasion. For a proposal or an anniversary, La Table du Chef's intimacy suits the moment better than the main deck; for a team offsite or a client appreciation event, a full-boat privatisation with a customised route is where the value is. We help confirm availability, choose the right space based on your numbers, occasion and budget, and coordinate the specifics of any custom arrangement.
+
+![A server pouring wine at a window table while the river passes outside.](/images/experience-ducasse-seine-service.jpg)
 
 ## How to book
 

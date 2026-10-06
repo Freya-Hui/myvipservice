@@ -2569,6 +2569,102 @@ export const imageAttributions: ImageAttribution[] = [
       "Extracted from the partner's own event brochure, shared directly by MYVIPSERVICE with permission to use for promotional purposes — not an Unsplash placeholder.",
   },
   {
+    id: 'experience-ducasse-seine-dish-map',
+    src: '/images/experience-ducasse-seine-dish-map.jpg',
+    sourceUrl: 'https://www.ducasse-seine.com',
+    sourceName: 'Ducasse sur Seine',
+    author: 'Pierre Monetta',
+    license: 'Provided by partner for promotional use',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'A plated starter of beetroot and cured fish on a plate printed with a map of Paris.',
+      zh: '盘面印有巴黎街区地图的餐盘，盛着甜菜与腌制鱼的前菜。',
+      fr: 'Une entrée de betterave et de poisson mariné dans une assiette imprimée d’un plan de Paris.',
+    },
+    notes:
+      "Extracted from the partner's own event brochure, shared directly by MYVIPSERVICE with permission to use for promotional purposes — not an Unsplash placeholder. Cropped to 4:3.",
+  },
+  {
+    id: 'experience-ducasse-seine-daylight-table',
+    src: '/images/experience-ducasse-seine-daylight-table.jpg',
+    sourceUrl: 'https://www.ducasse-seine.com',
+    sourceName: 'Ducasse sur Seine',
+    author: 'Pierre Monetta',
+    license: 'Provided by partner for promotional use',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'A table laid with wine glasses beside the windows, the Seine and a stone bridge visible in daylight.',
+      zh: '窗边摆好酒杯的餐桌，白天可以看到塞纳河和石桥。',
+      fr: 'Une table dressée avec des verres à vin près des baies vitrées, la Seine et un pont de pierre en plein jour.',
+    },
+    notes:
+      "Extracted from the partner's own event brochure, shared directly by MYVIPSERVICE with permission to use for promotional purposes — not an Unsplash placeholder. Cropped to 4:3.",
+  },
+  {
+    id: 'experience-ducasse-seine-alexandre-bridge',
+    src: '/images/experience-ducasse-seine-alexandre-bridge.jpg',
+    sourceUrl: 'https://www.ducasse-seine.com',
+    sourceName: 'Ducasse sur Seine',
+    author: 'Pierre Monetta',
+    license: 'Provided by partner for promotional use',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'The Pont Alexandre III lit at dusk with the Eiffel Tower in the distance, seen from the river.',
+      zh: '暮色中亮灯的亚历山大三世桥，远处是埃菲尔铁塔，从河面上望去。',
+      fr: 'Le pont Alexandre III illuminé au crépuscule, la tour Eiffel au loin, vu depuis le fleuve.',
+    },
+    notes:
+      "Extracted from the partner's own event brochure, shared directly by MYVIPSERVICE with permission to use for promotional purposes — not an Unsplash placeholder. Cropped to 4:3.",
+  },
+  {
+    id: 'experience-ducasse-seine-dining-room-day',
+    src: '/images/experience-ducasse-seine-dining-room-day.jpg',
+    sourceUrl: 'https://www.ducasse-seine.com',
+    sourceName: 'Ducasse sur Seine',
+    author: 'Pierre Monetta',
+    license: 'Provided by partner for promotional use',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'Tables laid in the glass-walled dining room in daylight, under a mirrored ceiling.',
+      zh: '白天的玻璃船舱餐厅，餐桌已摆好，头顶是镜面天花板。',
+      fr: 'Des tables dressées dans la salle vitrée en plein jour, sous un plafond en miroirs.',
+    },
+    notes:
+      "Extracted from the partner's own event brochure, shared directly by MYVIPSERVICE with permission to use for promotional purposes — not an Unsplash placeholder. Cropped to 4:3.",
+  },
+  {
+    id: 'experience-ducasse-seine-place-setting',
+    src: '/images/experience-ducasse-seine-place-setting.jpg',
+    sourceUrl: 'https://www.ducasse-seine.com',
+    sourceName: 'Ducasse sur Seine',
+    author: 'Pierre Monetta',
+    license: 'Provided by partner for promotional use',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'A place setting with a branded charger plate, cutlery and a small salt dish on a white tablecloth.',
+      zh: '白色桌布上的餐位摆设：带标识的装饰餐盘、餐具和一小碟盐。',
+      fr: 'Un couvert avec assiette de présentation siglée, couverts et petite coupelle de sel sur une nappe blanche.',
+    },
+    notes:
+      "Extracted from the partner's own event brochure, shared directly by MYVIPSERVICE with permission to use for promotional purposes — not an Unsplash placeholder. Cropped to 4:3.",
+  },
+  {
+    id: 'experience-ducasse-seine-service',
+    src: '/images/experience-ducasse-seine-service.jpg',
+    sourceUrl: 'https://www.ducasse-seine.com',
+    sourceName: 'Ducasse sur Seine',
+    author: 'Pierre Monetta',
+    license: 'Provided by partner for promotional use',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'A server pouring wine at a window table while the river passes outside.',
+      zh: '服务生在靠窗的餐桌旁斟酒，窗外是流动的河面。',
+      fr: 'Un serveur versant le vin à une table près de la baie vitrée, le fleuve défilant dehors.',
+    },
+    notes:
+      "Extracted from the partner's own event brochure, shared directly by MYVIPSERVICE with permission to use for promotional purposes — not an Unsplash placeholder. Cropped to 4:3.",
+  },
+  {
     id: 'destination-courchevel-1850-gondola',
     src: '/images/destination-courchevel-1850-gondola.jpg',
     sourceUrl: 'https://www.courchevel.com',
