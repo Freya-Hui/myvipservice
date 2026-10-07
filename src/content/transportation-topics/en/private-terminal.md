@@ -3,13 +3,7 @@ title: 'The Private Terminal Experience'
 summary: 'Extime Exclusive Paris, the dedicated VIP terminal at Charles de Gaulle — arrival, departure and connection handled end to end, without ever entering a public terminal.'
 order: 4
 image: experience-extime-tarmac
-gallery:
-  [
-    'experience-extime-tarmac',
-    'experience-extime-checkin',
-    'experience-extime-lounge',
-    'experience-extime-salon',
-  ]
+gallery: []
 price: 'From €5,000 for 1–4 people.'
 priceNote: 'For parties of 5 or more, contact us for a custom quote. Please submit your request at least 48 hours before travel — we confirm within 24 hours, subject to airline eligibility.'
 highlights:
@@ -20,7 +14,7 @@ highlights:
   ]
 ---
 
-We arrange access to Extime Exclusive Paris, the official VIP terminal at Charles de Gaulle — for a more private arrival or departure, no public terminal at any point from landing to customs, with no one else around.
+We arrange access to Extime Exclusive Paris, the official VIP terminal at Charles de Gaulle — for a more private arrival or departure, no public terminal at any point from landing to customs, with no one else around. The terminal is booked through a private channel that is not open to the public: through us, with one advisor from the first message to the last day.
 
 ## Why choose the private terminal over fast-tracked customs
 
@@ -34,6 +28,8 @@ Once the aircraft is on stand, you're met at the gate and driven straight from t
 
 At the terminal, a concierge handles check-in and duty-free formalities one on one, with security and customs on their own dedicated channel. From there you can eat, rest or arrange a spa treatment in the lounge — when you're ready, the car takes you straight onto the runway to the aircraft.
 
+![The arched check-in hall at Extime Exclusive Paris, with a porter and dedicated staff on hand.](/images/experience-extime-checkin.jpg)
+
 ## Connection
 
 Met at the arrival gate, you're driven straight from the runway to the terminal to rest, eat, shop or book a treatment — and when it's time for the next leg, the same car takes you straight back onto the runway, with no time spent in a public transit area.
@@ -41,6 +37,10 @@ Met at the arrival gate, you're driven straight from the runway to the terminal 
 ## Inside Extime Exclusive Paris
 
 The terminal's own architecture is part of the experience — Jacques Garcia's design runs from an arched, gold-leaf check-in hall to private lounges finished in crimson velvet, with a full-height wall of engraved glass mapping Paris itself behind the seating. A separate salon in the customs zone, connected to a French-garden courtyard, is where champagne is served while formalities are handled out of sight — it comes with its own private bathroom, alongside spa rooms with a bathtub and shower for anyone who wants to arrive, or board, properly rested.
+
+![The private lounge at Extime Exclusive Paris, with crimson velvet armchairs beneath an engraved glass wall.](/images/experience-extime-lounge.jpg)
+
+![A private salon in the customs zone at Extime Exclusive Paris, with champagne service and a garden view.](/images/experience-extime-salon.jpg)
 
 A dedicated concierge coordinates the whole visit, meals are prepared by a chef on site, and the wine cellar is chosen by a sommelier. Given enough notice, a fashion or jewellery house can send an advisor to the terminal for a private shopping session in its own boutique space, or a spa treatment can be arranged.
 
