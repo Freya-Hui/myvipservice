@@ -1,0 +1,494 @@
+---
+import { useTranslations, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<div class="dining-enquiry" id="dining-enquiry-root">
+  <p class="eyebrow">{t('diningEnquiry.eyebrow')}</p>
+  <h2>{t('diningEnquiry.title')}</h2>
+  <p class="dining-enquiry__subtitle">{t('diningEnquiry.subtitle')}</p>
+
+  <form id="dining-enquiry-form">
+    <p class="visually-hidden">
+      <label>
+        Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off" />
+      </label>
+    </p>
+    <input type="hidden" name="locale" value={locale} />
+
+    <div class="dining-enquiry__layout">
+      <div class="dining-enquiry__main">
+        <div class="dining-enquiry__panel" id="de-step-1">
+          <h3 class="dining-enquiry__stepHeading">{t('diningEnquiry.step1Heading')}</h3>
+
+          <div class="field-group__row">
+            <div class="field">
+              <label for="de-party-size">{t('ticketBooking.partySizeLabel')}</label>
+              <input type="number" id="de-party-size" name="partySize" min="1" value="2" required />
+            </div>
+            <div class="field">
+              <label for="de-date">{t('diningEnquiry.dateLabel')}</label>
+              <input type="date" id="de-date" name="date" />
+            </div>
+          </div>
+
+          <label class="dining-enquiry__checkbox">
+            <input type="checkbox" id="de-private" name="wantsPrivateSpace" value="yes" />
+            <span>
+              {t('diningEnquiry.privateSpaceLabel')}
+              <small>{t('diningEnquiry.privateSpaceHint')}</small>
+            </span>
+          </label>
+        </div>
+
+        <div class="dining-enquiry__panel" id="de-step-2" hidden>
+          <h3 class="dining-enquiry__stepHeading">{t('carBooking.section.contact')}</h3>
+
+          <fieldset class="field-group">
+            <legend class="visually-hidden">{t('carBooking.section.contact')}</legend>
+            <div class="field-group__row">
+              <div class="field">
+                <label for="de-name">{t('carBooking.nameLabel')}</label>
+                <input type="text" id="de-name" name="name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="de-email">{t('carBooking.emailLabel')}</label>
+                <input type="email" id="de-email" name="email" autocomplete="email" required />
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="de-phone">{t('carBooking.phoneLabel')}</label>
+            <div class="dining-enquiry__phoneRow">
+              <select
+                id="de-phone-code"
+                name="phoneCountryCode"
+                aria-label={t('carBooking.phoneCodeLabel')}
+              >
+                <option value="+86">China +86</option>
+                <option value="+33">France +33</option>
+                <option value="+44">UK +44</option>
+                <option value="+49">Germany +49</option>
+                <option value="+39">Italy +39</option>
+                <option value="+34">Spain +34</option>
+                <option value="+41">Switzerland +41</option>
+                <option value="+7">Russia +7</option>
+                <option value="+1">US/Canada +1</option>
+                <option value="+852">Hong Kong +852</option>
+                <option value="+65">Singapore +65</option>
+                <option value="+81">Japan +81</option>
+              </select>
+              <input type="tel" id="de-phone" name="phoneWechat" autocomplete="tel" required />
+            </div>
+            <p class="dining-enquiry__note">{t('carBooking.whatsappNote')}</p>
+          </div>
+
+          <div class="field">
+            <span class="dining-enquiry__label">{t('carBooking.contactMethodLabel')}</span>
+            <div class="dining-enquiry__pills" role="radiogroup">
+              <button type="button" class="pill is-active" data-contact-method="whatsapp"
+                >{t('carBooking.contactMethod.whatsapp')}</button
+              >
+              <button type="button" class="pill" data-contact-method="email"
+                >{t('carBooking.contactMethod.email')}</button
+              >
+              <button type="button" class="pill" data-contact-method="imessage"
+                >{t('carBooking.contactMethod.imessage')}</button
+              >
+            </div>
+            <input
+              type="hidden"
+              name="preferredContactMethod"
+              id="de-contact-method-field"
+              value="whatsapp"
+            />
+          </div>
+
+          <div class="field">
+            <label for="de-notes">{t('carBooking.notesLabel')}</label>
+            <textarea
+              id="de-notes"
+              name="notes"
+              rows="3"
+              placeholder={t('carBooking.notesPlaceholder')}></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="dining-enquiry__side">
+        <p class="dining-enquiry__stepIndicator" id="de-step-indicator">
+          {t('diningEnquiry.step1Of2')}
+        </p>
+
+        <div class="dining-enquiry__summary" id="de-summary">
+          <p class="dining-enquiry__summaryTitle">{t('carBooking.summaryTitle')}</p>
+          <dl class="dining-enquiry__summaryList" id="de-summary-list"></dl>
+        </div>
+
+        <div class="dining-enquiry__actions">
+          <button type="button" class="button button--quiet" id="de-back-button" hidden
+            >{t('carBooking.backButton')}</button
+          >
+          <button type="button" class="button button--primary" id="de-next-button"
+            >{t('hotelEnquiry.nextButton')}</button
+          >
+          <button type="submit" class="button button--primary" id="de-submit-button" hidden
+            >{t('accommodationBooking.submit')}</button
+          >
+        </div>
+        <p class="dining-enquiry__reach">{t('diningEnquiry.reachNote')}</p>
+        <p class="dining-enquiry__status" id="de-status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script
+  define:vars={{
+    step1Label: t('diningEnquiry.step1Of2'),
+    step2Label: t('diningEnquiry.step2Of2'),
+    receivedNote: t('diningEnquiry.success'),
+    genericErrorNote: t('carBooking.genericErrorNote'),
+    partySizeLabelText: t('ticketBooking.partySizeLabel'),
+    dateLabelText: t('diningEnquiry.dateLabel'),
+    privateLabelText: t('diningEnquiry.summaryPrivate'),
+    yesText: t('diningEnquiry.yes'),
+    noText: t('diningEnquiry.no'),
+  }}
+>
+  (function () {
+    const root = document.getElementById('dining-enquiry-root');
+    if (!root) return;
+
+    const form = document.getElementById('dining-enquiry-form');
+    const stepIndicator = document.getElementById('de-step-indicator');
+    const steps = [document.getElementById('de-step-1'), document.getElementById('de-step-2')];
+    const stepLabels = [step1Label, step2Label];
+    const nextButton = document.getElementById('de-next-button');
+    const backButton = document.getElementById('de-back-button');
+    const submitButton = document.getElementById('de-submit-button');
+    const partySizeInput = document.getElementById('de-party-size');
+    const dateInput = document.getElementById('de-date');
+    const privateInput = document.getElementById('de-private');
+    const contactMethodPills = root.querySelectorAll('[data-contact-method]');
+    const contactMethodField = document.getElementById('de-contact-method-field');
+    const summaryList = document.getElementById('de-summary-list');
+    const statusEl = document.getElementById('de-status');
+
+    let current = 0;
+
+    dateInput.min = new Date().toISOString().slice(0, 10);
+
+    // Same convention as the booking widgets' summaries: the choices made,
+    // not the contact details the visitor just typed.
+    function updateSummary() {
+      const rows = [];
+      if (partySizeInput.value) rows.push([partySizeLabelText, partySizeInput.value]);
+      if (dateInput.value) rows.push([dateLabelText, dateInput.value]);
+      rows.push([privateLabelText, privateInput.checked ? yesText : noText]);
+      summaryList.innerHTML = rows
+        .map(([k, v]) => `<div class="dining-enquiry__summaryRow"><dt>${k}</dt><dd>${v}</dd></div>`)
+        .join('');
+    }
+
+    [partySizeInput, dateInput, privateInput].forEach((el) => {
+      el.addEventListener('input', updateSummary);
+      el.addEventListener('change', updateSummary);
+    });
+
+    function showStep(index) {
+      steps.forEach((panel, i) => (panel.hidden = i !== index));
+      stepIndicator.textContent = stepLabels[index];
+      backButton.hidden = index === 0;
+      nextButton.hidden = index === steps.length - 1;
+      submitButton.hidden = index !== steps.length - 1;
+      root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    nextButton.addEventListener('click', () => {
+      const invalid = steps[current].querySelector(':invalid');
+      if (invalid) {
+        invalid.reportValidity();
+        return;
+      }
+      current = Math.min(current + 1, steps.length - 1);
+      showStep(current);
+    });
+
+    backButton.addEventListener('click', () => {
+      current = Math.max(current - 1, 0);
+      showStep(current);
+    });
+
+    contactMethodPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        contactMethodPills.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        contactMethodField.value = btn.getAttribute('data-contact-method');
+      });
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const invalid = steps[current].querySelector(':invalid');
+      if (invalid) {
+        invalid.reportValidity();
+        return;
+      }
+      submitButton.disabled = true;
+      statusEl.textContent = '…';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch('/.netlify/functions/notify-dining-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error('failed');
+        statusEl.textContent = receivedNote;
+        form.reset();
+        contactMethodPills.forEach((b) =>
+          b.classList.toggle('is-active', b.dataset.contactMethod === 'whatsapp'),
+        );
+        contactMethodField.value = 'whatsapp';
+        current = 0;
+        showStep(current);
+        updateSummary();
+      } catch {
+        statusEl.textContent = genericErrorNote;
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    showStep(current);
+    updateSummary();
+  })();
+</script>
+
+<style>
+  .dining-enquiry__subtitle {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-5);
+  }
+
+  .dining-enquiry__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 56rem) {
+    .dining-enquiry__layout {
+      grid-template-columns: 1fr 20rem;
+      align-items: start;
+    }
+
+    .dining-enquiry__side {
+      position: sticky;
+      top: var(--space-5);
+    }
+  }
+
+  .dining-enquiry__stepIndicator {
+    font-size: var(--text-small);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-4);
+  }
+
+  .dining-enquiry__panel[hidden] {
+    display: none;
+  }
+
+  .dining-enquiry__stepHeading {
+    font-size: var(--text-h4);
+    margin-bottom: var(--space-4);
+  }
+
+  .field {
+    margin-bottom: var(--space-4);
+  }
+
+  .field label,
+  .dining-enquiry__label {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+  }
+
+  .field-group {
+    border: none;
+    padding: 0;
+    margin: 0 0 var(--space-4);
+  }
+
+  .field-group__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .dining-enquiry__checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--text-body);
+  }
+
+  .dining-enquiry__checkbox input {
+    width: auto;
+    margin-top: 0.3rem;
+  }
+
+  .dining-enquiry__checkbox small {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+  }
+
+  .dining-enquiry__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .pill {
+    font: inherit;
+    font-size: var(--text-small);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    background: var(--color-bg-elevated);
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .pill.is-active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg-elevated);
+  }
+
+  .dining-enquiry__note {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+    margin-bottom: var(--space-3);
+  }
+
+  .dining-enquiry__phoneRow {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .dining-enquiry__phoneRow select {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .dining-enquiry__phoneRow input {
+    flex: 1;
+  }
+
+  .dining-enquiry__side {
+    padding: var(--space-4);
+    background: var(--color-bg-inset);
+    border-radius: var(--radius);
+  }
+
+  .dining-enquiry__summary {
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .dining-enquiry__summary:empty,
+  .dining-enquiry__summaryList:empty {
+    display: none;
+  }
+
+  .dining-enquiry__summaryTitle {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .dining-enquiry__summaryList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin: 0;
+  }
+
+  /* Built client-side via innerHTML (see updateSummary() above), so these
+     rows never get Astro's scoping attribute — :global() is required for
+     the styles to reach them. */
+  :global(.dining-enquiry__summaryRow) {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-size: var(--text-small);
+  }
+
+  :global(.dining-enquiry__summaryRow dt) {
+    color: var(--color-text-muted);
+  }
+
+  :global(.dining-enquiry__summaryRow dd) {
+    margin: 0;
+    text-align: right;
+  }
+
+  .dining-enquiry__actions {
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .dining-enquiry__actions .button {
+    flex: 1;
+  }
+
+  .dining-enquiry__actions .button[hidden] {
+    display: none;
+  }
+
+  .dining-enquiry__reach {
+    margin-top: var(--space-3);
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .dining-enquiry__status {
+    margin-top: var(--space-2);
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+</style>

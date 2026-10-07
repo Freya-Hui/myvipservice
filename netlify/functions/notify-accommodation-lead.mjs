@@ -34,6 +34,8 @@ export const handler = async (event) => {
     // these, since propertyName already says where.
     destination: raw.destination || '',
     hotelBudget: raw.hotelBudget || '',
+    // Only set by the Journal hotel-enquiry form (HotelStayEnquiryWidget).
+    hotelTypes: raw.hotelTypes || '',
     partySize: Number(raw.partySize) || null,
     checkIn: raw.checkIn || '',
     checkOut: raw.checkOut || '',
