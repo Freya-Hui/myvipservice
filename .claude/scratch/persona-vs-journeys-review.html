@@ -1,0 +1,800 @@
+<title>人群与主题游架构</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+
+  :root {
+    --paper: #f7f3ec;
+    --paper-raised: #fffdf9;
+    --ink: #24201b;
+    --ink-soft: #55503f;
+    --muted: #8a8271;
+    --hairline: #e2d9c4;
+    --accent: #7c2d34;
+    --accent-soft: #f1e2df;
+    --tag-persona-bg: #eef1e4;
+    --tag-persona-fg: #4a5a2f;
+    --tag-theme-bg: #f4e9d8;
+    --tag-theme-fg: #8a5a1f;
+    --tag-warn-bg: #f6e2df;
+    --tag-warn-fg: #9c3b32;
+    --code-bg: #efe7d5;
+    --shadow: 0 1px 2px rgba(36, 32, 27, 0.06), 0 8px 24px rgba(36, 32, 27, 0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --paper: #1b1713;
+      --paper-raised: #221d18;
+      --ink: #ece4d6;
+      --ink-soft: #c3b9a6;
+      --muted: #8f8672;
+      --hairline: #3a3327;
+      --accent: #d98f92;
+      --accent-soft: #322220;
+      --tag-persona-bg: #313826;
+      --tag-persona-fg: #c3d19f;
+      --tag-theme-bg: #3a2f1e;
+      --tag-theme-fg: #e3b978;
+      --tag-warn-bg: #3d2422;
+      --tag-warn-fg: #e39d95;
+      --code-bg: #2a251d;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  :root[data-theme='dark'] {
+    --paper: #1b1713;
+    --paper-raised: #221d18;
+    --ink: #ece4d6;
+    --ink-soft: #c3b9a6;
+    --muted: #8f8672;
+    --hairline: #3a3327;
+    --accent: #d98f92;
+    --accent-soft: #322220;
+    --tag-persona-bg: #313826;
+    --tag-persona-fg: #c3d19f;
+    --tag-theme-bg: #3a2f1e;
+    --tag-theme-fg: #e3b978;
+    --tag-warn-bg: #3d2422;
+    --tag-warn-fg: #e39d95;
+    --code-bg: #2a251d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 64px 24px 120px;
+  }
+
+  .masthead {
+    margin-bottom: 56px;
+  }
+
+  .masthead .kicker {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4.2vw, 38px);
+    line-height: 1.3;
+    margin: 10px 0 14px;
+    text-wrap: balance;
+  }
+
+  .masthead .dek {
+    color: var(--ink-soft);
+    font-size: 16.5px;
+    max-width: 60ch;
+  }
+
+  .toc {
+    margin-top: 28px;
+    padding: 16px 20px;
+    background: var(--paper-raised);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    font-size: 14.5px;
+  }
+
+  .toc-label {
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 1.3em;
+    display: grid;
+    gap: 4px;
+  }
+
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .toc a:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  section {
+    margin-top: 64px;
+  }
+
+  .section-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 25px;
+    font-weight: 700;
+    margin: 6px 0 18px;
+    text-wrap: balance;
+    border-bottom: 2px solid var(--hairline);
+    padding-bottom: 14px;
+  }
+
+  h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 32px 0 10px;
+  }
+
+  p {
+    margin: 0 0 16px;
+    max-width: 68ch;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  .lede {
+    font-size: 17px;
+    color: var(--ink-soft);
+  }
+
+  /* comparison table */
+  .compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 8px;
+    font-size: 14.5px;
+    background: var(--paper-raised);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .compare th,
+  .compare td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--hairline);
+    vertical-align: top;
+  }
+
+  .compare th {
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--accent-soft);
+  }
+
+  .compare td:first-child {
+    font-weight: 600;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    width: 26%;
+  }
+
+  .compare tr:last-child td {
+    border-bottom: none;
+  }
+
+  .compare-wrap {
+    overflow-x: auto;
+  }
+
+  /* status cards */
+  .cardgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 12px;
+    margin: 18px 0 8px;
+  }
+
+  .card {
+    background: var(--paper-raised);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .card-title {
+    font-weight: 600;
+    font-size: 14.5px;
+    margin-bottom: 6px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+
+  .tag-persona {
+    background: var(--tag-persona-bg);
+    color: var(--tag-persona-fg);
+  }
+
+  .tag-theme {
+    background: var(--tag-theme-bg);
+    color: var(--tag-theme-fg);
+  }
+
+  .tag-warn {
+    background: var(--tag-warn-bg);
+    color: var(--tag-warn-fg);
+  }
+
+  .tag-ok {
+    background: var(--tag-persona-bg);
+    color: var(--tag-persona-fg);
+  }
+
+  .card-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* open questions box */
+  .questions {
+    background: var(--accent-soft);
+    border: 1px solid var(--hairline);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 22px 0;
+  }
+
+  .questions .card-title {
+    color: var(--accent);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .questions ol {
+    margin: 0;
+    padding-left: 1.3em;
+    display: grid;
+    gap: 8px;
+    font-size: 15px;
+  }
+
+  /* skill document embed */
+  .skill-doc {
+    margin-top: 24px;
+    background: var(--paper-raised);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .skill-doc-head {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--hairline);
+    background: var(--accent-soft);
+  }
+
+  .skill-doc-head .skill-name {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    font-size: 19px;
+  }
+
+  .skill-doc-head .skill-desc {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+
+  .skill-doc-body {
+    padding: 8px 28px 28px;
+  }
+
+  .skill-doc-body h3 {
+    font-size: 16.5px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 22px;
+    margin-top: 26px;
+  }
+
+  .skill-doc-body h3:first-child {
+    border-top: none;
+    padding-top: 20px;
+    margin-top: 8px;
+  }
+
+  .skill-doc-body ul,
+  .skill-doc-body ol {
+    padding-left: 1.4em;
+    margin: 0 0 14px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .skill-doc-body li {
+    max-width: 68ch;
+  }
+
+  .skill-doc-body li::marker {
+    color: var(--accent);
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-family: ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
+  }
+
+  .checklist {
+    list-style: none;
+    padding-left: 0 !important;
+  }
+
+  .checklist li {
+    position: relative;
+    padding-left: 1.6em;
+  }
+
+  .checklist li::before {
+    content: '☐';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  footer {
+    margin-top: 72px;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+
+  @media (max-width: 560px) {
+    .page {
+      padding: 40px 18px 90px;
+    }
+    .compare td:first-child {
+      white-space: normal;
+    }
+  }
+</style>
+
+<div class="page">
+  <div class="masthead">
+    <span class="kicker">MYVIPSERVICE · 内容架构备忘</span>
+    <h1>人群板块与主题游板块，怎么分工</h1>
+    <p class="dek lede">
+      整理了这两个板块目前各自的定位、数据来源和完成度，方便今晚对照着看、标注要改的地方。第二部分是"主题游写作"skill的全文，直接照搬了当前版本，可以在里面圈改。
+    </p>
+    <nav class="toc">
+      <span class="toc-label">目录</span>
+      <ol>
+        <li><a href="#difference">一、根本区别：回答什么问题</a></li>
+        <li><a href="#status">二、现状盘点</a></li>
+        <li><a href="#questions">三、还没定的三件事</a></li>
+        <li><a href="#skill">四、「主题游写作」skill 全文</a></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section id="difference">
+    <span class="section-num">Part 01</span>
+    <h2>根本区别：两者回答的是不同的问题</h2>
+    <p>
+      <strong>人群板块</strong>回答的是"这是为你准备的吗？"——帮一个刚落地的访客，在几秒内认出自己是不是我们服务的对象。它是入口，不是终点，所以内容必须短、必须一眼能对上号。
+    </p>
+    <p>
+      <strong>主题游板块</strong>回答的是"具体会怎么安排？"——访客已经确认了大方向之后，给出一条有天数、有地点、有真实机构名的完整行程框架。它是终点前的最后一站，内容必须具体、必须经得起追问。
+    </p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>维度</th>
+            <th>人群板块</th>
+            <th>主题游板块</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>数据位置</td>
+            <td><code>site-content.ts</code> 里 <code>travelTypes</code> 数组，代码里硬编</td>
+            <td><code>journeys</code> 内容集合，每个主题一个独立 Markdown 文件</td>
+          </tr>
+          <tr>
+            <td>呈现位置</td>
+            <td>首页照片马赛克 + 「定制旅行规划」服务页的卡片网格（同一份数据，两种视觉）</td>
+            <td>每个主题自己的独立页面（<code>/journeys/&lt;slug&gt;/</code>）</td>
+          </tr>
+          <tr>
+            <td>内容深度</td>
+            <td>一句话描述 + 链接，够识别就行</td>
+            <td>逐日行程、亮点、关联体验/目的地/Journal文章，够执行才行</td>
+          </tr>
+          <tr>
+            <td>组织逻辑</td>
+            <td>目前人群和主题混着来，还没统一成纯人群（上次讨论的方向）</td>
+            <td>本来就是按主题/产区打包，逻辑天然吻合，不需要重构</td>
+          </tr>
+          <tr>
+            <td>当前完成度</td>
+            <td>8个展示分类里4个是人群、4个其实是主题；另有8个"孤儿"分类只有英文、没上线</td>
+            <td>6个主题，3个三语齐全，1个刚补齐英法文，2个仅中文</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="status">
+    <span class="section-num">Part 02</span>
+    <h2>现状盘点</h2>
+
+    <h3>人群板块：目前的 8 个展示分类</h3>
+    <p style="font-size: 14px; color: var(--muted); margin-bottom: 14px">
+      绿色标签是"真人群"（按谁来分），黄色标签是"其实是主题"（按玩法来分，和主题游板块有概念上的重叠，是上次讨论想解决的问题）。
+    </p>
+    <div class="cardgrid">
+      <div class="card">
+        <div class="card-title">家庭旅行</div>
+        <span class="tag tag-persona">人群</span>
+      </div>
+      <div class="card">
+        <div class="card-title">浪漫之旅</div>
+        <span class="tag tag-persona">人群</span>
+      </div>
+      <div class="card">
+        <div class="card-title">庆典与特别时刻</div>
+        <span class="tag tag-persona">人群</span>
+      </div>
+      <div class="card">
+        <div class="card-title">商务与贵宾出行</div>
+        <span class="tag tag-persona">人群</span>
+      </div>
+      <div class="card">
+        <div class="card-title">艺术与文化</div>
+        <span class="tag tag-theme">其实是主题</span>
+      </div>
+      <div class="card">
+        <div class="card-title">美食与美酒</div>
+        <span class="tag tag-theme">其实是主题</span>
+      </div>
+      <div class="card">
+        <div class="card-title">滑雪与阿尔卑斯之旅</div>
+        <span class="tag tag-theme">其实是主题</span>
+      </div>
+      <div class="card">
+        <div class="card-title">海岸与游艇假期</div>
+        <span class="tag tag-theme">其实是主题</span>
+      </div>
+    </div>
+    <p class="card-note" style="margin-top: 14px">
+      还有 8 个"孤儿"分类只存在英文、没有图/没有链接/从未上线：时尚购物、养生疗愈、多代同游、长住欧洲、私人小型团体、儿童向旅行、夏校家庭支持、多城市欧洲行。其中"多代同游""私人小型团体"是纯人群，重构时可以直接扶正。
+    </p>
+
+    <h3>主题游板块：目前的 6 个主题</h3>
+    <div class="cardgrid">
+      <div class="card">
+        <div class="card-title">阿尔卑斯与日内瓦湖</div>
+        <span class="tag tag-ok">三语齐全</span>
+        <div class="card-note">疗养 + 野雪滑雪</div>
+      </div>
+      <div class="card">
+        <div class="card-title">巴黎与卢瓦河谷</div>
+        <span class="tag tag-ok">三语齐全</span>
+        <div class="card-note">艺术、历史、工艺</div>
+      </div>
+      <div class="card">
+        <div class="card-title">里维埃拉·摩纳哥·普罗旺斯</div>
+        <span class="tag tag-ok">三语齐全</span>
+        <div class="card-note">海岸与游艇</div>
+      </div>
+      <div class="card">
+        <div class="card-title">波尔多 & 勃艮第</div>
+        <span class="tag tag-ok">三语齐全</span>
+        <div class="card-note">私人葡萄酒之旅 · 今天刚补齐英法文</div>
+      </div>
+      <div class="card">
+        <div class="card-title">地中海奢华邮轮</div>
+        <span class="tag tag-warn">仅中文</span>
+        <div class="card-note">英法文缺失</div>
+      </div>
+      <div class="card">
+        <div class="card-title">北欧峡湾奢华邮轮</div>
+        <span class="tag tag-warn">仅中文</span>
+        <div class="card-note">英法文缺失，且和法国核心业务关联较弱</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="questions">
+    <span class="section-num">Part 03</span>
+    <h2>还没定的三件事</h2>
+    <div class="questions">
+      <div class="card-title">需要您拍板</div>
+      <ol>
+        <li>
+          人群板块要不要按上次讨论的方向重构成纯人群分类？这个改动会同时影响首页马赛克和「定制旅行规划」服务页，因为两处共用同一份数据。
+        </li>
+        <li>北欧峡湾邮轮这个主题要保留、翻译补齐，还是直接下线？和法国核心业务关联较弱，值得单独确认。</li>
+        <li>
+          新的主题游方向里，时尚与高定、教育夏校、庆典与人生里程碑、赛事门票通道，先做哪一个？素材现成度从高到低大致是这个顺序。
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="skill">
+    <span class="section-num">Part 04</span>
+    <h2>「主题游写作」skill 全文</h2>
+    <p>
+      下面是当前版本的完整内容，逐字照搬自
+      <code>.claude/skills/主题游写作/SKILL.md</code>，方便直接在需要修改的段落上留言。
+    </p>
+
+    <div class="skill-doc">
+      <div class="skill-doc-head">
+        <div class="skill-name">主题游写作</div>
+        <div class="skill-desc">
+          在 MYVIPSERVICE 网站新建或修改主题游页面（journeys content
+          collection）时使用的写作与开发规范——与
+          experiences/destinations/journal
+          的引用关系、素材来源、页面结构、写作风格、三语同步、验收流程。
+        </div>
+      </div>
+      <div class="skill-doc-body">
+        <p style="margin-top: 20px">
+          MYVIPSERVICE 的主题游页面是 <code>src/content/journeys/{zh,en,fr}/&lt;slug&gt;.md</code>，渲染模板固定为
+          <code>src/pages/[locale]/journeys/[slug]/index.astro</code>。一个主题一次做完（核实关联内容→内容→三语→验证部署），不要多个主题同时铺开。
+        </p>
+        <p>
+          主题游是"围绕一个主题打包的多日行程"（如波尔多勃艮第品酒之旅、阿尔卑斯疗养滑雪之旅），不是单次体验（那是
+          <code>experiences</code>
+          集合的职责），也不是单一住宿或目的地页面——它是把已有的 destinations/experiences/journal
+          内容串成一条有叙事的路线。
+        </p>
+        <p style="background: var(--accent-soft); border-left: 4px solid var(--accent); padding: 14px 18px; border-radius: 6px">
+          <strong>总原则（站内所有文章的第一要求，不限于主题游）：图文必须穿插</strong>，不能是一堆文字后面单独挂一条纯文字列表。这条已经在今天当场落实——<code>itinerary</code> 和
+          <code>highlights</code> 的 schema 都加上了可选 <code>image</code>
+          字段，波尔多勃艮第葡萄酒之旅已经按这个标准改完并重新部署，下面的条目说明已同步更新为当前状态。
+        </p>
+
+        <h3>一、与其他内容集合的引用关系（写之前必须先核实）</h3>
+        <ul>
+          <li>
+            <strong><code>includedExperienceKeys</code> 绝不能编造</strong>：schema
+            注释明确写着"a journey never invents its own
+            activities"——这个字段的每个值都必须是
+            <code>src/content/experiences/&lt;locale&gt;/*.md</code>
+            里真实存在、已发布（<code>status: 'published'</code>）的
+            <code>translationKey</code>。写新主题游前先
+            <code>ls src/content/experiences/en/</code>
+            看有没有匹配的体验；没有的话，要么先去补一个 experience
+            条目，要么这个字段留空数组，不要硬编一个不存在的 key（页面上会静默不显示，但内容文件本身就是错的）。
+          </li>
+          <li>
+            <code>destinationKeys</code> 同理，必须对应
+            <code>src/content/destinations/&lt;locale&gt;/*.md</code> 里真实存在的 <code>translationKey</code>。
+          </li>
+          <li>
+            <code>relatedJournalKeys</code> 指向
+            <code>src/content/journal/</code>——如果这个主题已经有对应的 Journal
+            深度文章（比如"波尔多勃艮第之旅"对应
+            <code>bordeaux-burgundy-private-wine-journey.md</code>），一定要关联上，且<strong>素材和文风要参考该
+              Journal 文章</strong>，不要另起炉灶重新编一套事实——Journal
+            文章通常信息量更大（具体酒庄产区、具体菜品、具体流程），主题游页面是从中提炼出的行程框架，两者事实必须一致。
+          </li>
+          <li>
+            写完后自查：<code>includedExperienceKeys</code>/<code>destinationKeys</code>/<code
+              >relatedJournalKeys</code
+            >
+            里的每个 key，都要能在对应集合的对应语言目录里找到同名 <code>translationKey</code> 的文件。
+          </li>
+          <li>
+            <strong
+              ><code>relatedJournalKeys</code>/<code>includedExperienceKeys</code>
+              关联的卡片，如果和这个主题游自己的 <code>coverImage</code>
+              用了同一张图，会被模板静默过滤掉，不显示这张卡片</strong
+            >（<code>index.astro</code> 里 <code>excludeShownImages</code>
+            的设计行为，代码注释写的是"supplementary content, a duplicate-image one is dropped rather than
+            shown looking identical"）——这不是
+            bug，验收时如果发现"关联 Journal
+            文章"区块整个没渲染，先检查是不是这个原因（关联文章的
+            <code>coverImage</code> 是否和主题游自己的 <code>coverImage</code>/<code>gallery</code>
+            重复），不用当成故障去排查。反过来说，如果想让某篇关联 Journal 文章确实显示出来，它的
+            <code>coverImage</code> 就不能和这个主题游自己用的图重复。
+          </li>
+        </ul>
+
+        <h3>二、素材收集</h3>
+        <ul>
+          <li>
+            如果这个主题已有同名/相关的 Journal
+            文章（三语或至少英文版），<strong>优先从那篇文章提炼事实和写作角度</strong>，不要脱离已有内容凭空写。Journal
+            文章通常已经包含了具体产区、具体流程、具体机构名称（如"Hospices de
+            Beaune""Côte de Nuits""Saint-Émilion"），直接复用这些具体细节，不要泛化成"著名酒庄""知名产区"这类空话。
+          </li>
+          <li>
+            如果没有现成 Journal 文章打底，按照「旅游酒店写作」skill
+            同样的原则：去官网/权威资料源核实真实地名、机构名、可行的行程逻辑（比如从 A 城到 B
+            城的实际车程/交通方式是否合理），不虚构可验证的具体数据。
+          </li>
+          <li>
+            每个主题游至少要覆盖 <code>destinationKeys</code>
+            对应的每个目的地——如果主题横跨两个产区/城市，行程里两边都要有实质内容，不能重一边轻一边。
+          </li>
+        </ul>
+
+        <h3>三、页面结构（模板已固定）</h3>
+        <p style="margin-bottom: 10px"><code>content.config.ts</code> 里 journeys schema 的字段对应关系，按页面从上到下顺序：</p>
+        <ol>
+          <li>
+            <strong><code>theme</code></strong
+            >——自由文本，不是枚举，但在页面上被反复复用（PageHero 的
+            eyebrow、highlights
+            区块的 eyebrow、行程区块的 eyebrow、三个关联内容区块的 eyebrow
+            全部用这一个字段），<strong>必须短、好记、适合反复出现</strong>（如"波尔多与勃艮第"），不要写成一整句描述。
+          </li>
+          <li>
+            <strong><code>coverImage</code> + <code>gallery</code></strong
+            >——<strong>注意这里和酒店页面规则相反</strong>：酒店页面里
+            <code>coverImage</code> 单独渲染一次，<code>highlights</code>/<code>roomTypes</code>
+            不能再重复用同一张图；但主题游页面的 <code>Gallery</code> 组件只读 <code>data.gallery</code>（<code
+              >coverImage</code
+            >
+            不会被单独渲染，只用于 OG/结构化数据等页面外的元信息），所以<strong
+              ><code>coverImage</code> 必须作为 <code>gallery</code> 数组的第一项一起放进去</strong
+            >，不放的话这张图在页面正文里根本不会出现。写完先看一眼 <code>gallery[0]</code> 是不是等于
+            <code>coverImage</code>。
+          </li>
+          <li><strong><code>description</code></strong>——房源概览式的开篇简介，对应"行程概览"标题下的正文。</li>
+          <li>
+            <strong><code>itinerary</code></strong> (<code>{day, title, body, image?}[]</code
+            >)——<strong>逐日行程，是这个内容类型最核心的部分，不要留空</strong>。现状排查发现：<code
+              >alps-geneva-journey</code
+            >/<code>paris-loire-valley-journey</code>/<code>cote-dazur-provence-journey</code>
+            这三个主题游的中文版都写了完整
+            itinerary，但对应的英文/法文版<strong>全部缺失这个字段</strong>，导致这三个页面的英法文版本上直接少了"行程安排"整个区块（模板里
+            <code>data.itinerary.length &gt; 0</code>
+            才渲染，留空数组等于该区块从页面消失）。<strong
+              >新写或翻译任何一个主题游，itinerary 三语必须同时补齐，不能只做中文</strong
+            >；如果发现现有主题游某个语言缺 itinerary，顺手一起补上而不是绕过去。每天可选配一张
+            <code>image</code>（由 <code>DayItinerary.astro</code> 渲染在当天文字下方），按"总原则"判断该不该配。
+          </li>
+          <li>
+            <strong><code>highlights</code></strong
+            >——和酒店页面的 highlights 同一种结构：数组每项可以是纯字符串，也可以是
+            <code>{text, image}</code> 对象（<code>highlightItem</code> 这个 zod union
+            类型两边共用），由 <code>MediaHighlightList.astro</code> 统一渲染，能配图的条目就配图，不必每条都配。
+          </li>
+          <li>
+            <strong><code>customisationNotes</code></strong
+            >——收尾说明"这是起点不是固定套餐"，具体到"如果只想专注一个产区/只有 5
+            天怎么调整""带不太参与主线活动的同行者怎么办"这类真实可执行的弹性说明，不是套话。
+          </li>
+          <li>
+            <strong><code>duration</code></strong
+            >——如"5–7 天"，可选字段但建议都填，页面会展示在 KeyFacts 里。
+          </li>
+        </ol>
+
+        <h3>四、写作风格</h3>
+        <ul>
+          <li>
+            延续「旅游酒店写作」skill
+            里已经验证过的写作纪律：<strong>YAML
+              撇号/引号规则完全一样</strong
+            >——正文含英文撇号（如 château
+            相关的人名地名、"day's visits"这类所有格）用双引号包裹整条字符串，不用
+            <code>\'</code>
+            转义；中文正文用直引号强调词时改用单引号包裹。<strong
+              ><code>itinerary</code> 的 <code>body</code> 字段尤其容易踩这个坑</strong
+            >——日程描述里经常出现"the day's visits""estate's
+            director"这类所有格，写完那一天的 body
+            就顺手看一眼有没有用错引号，不要攒到全部写完再统一查（波尔多勃艮第主题游第一次写 EN
+            版时，highlights 和 itinerary 里各踩了一次这个坑，都是所有格撇号触发的）。写完整个文件后再跑一遍
+            <code>grep -n "\\'" src/content/journeys/*/*.md</code> 兜底自查。
+          </li>
+          <li>中文版不是机械翻译，保持自己的语言组织；法文侧重专业度与当地知识（如具体产区分级逻辑），中文侧重实操信息（带小孩/不喝酒的同行者怎么安排、行程天数怎么压缩）。</li>
+          <li>不能出现暴露内部工作状态的话，价格话术统一"价格需咨询"。</li>
+          <li>
+            <code>itinerary</code>
+            每天的 body 要有具体动作和地点，不是"探索这座城市"这种空泛描述——参考波尔多勃艮第主题游中文版的写法："转往左岸梅多克产区继续探访，感受与右岸不同的风格；如有收藏需求，可同步协调心仪酒款的寻找与采购"，具体到产区名+具体安排。
+          </li>
+        </ul>
+
+        <h3>五、三语同步</h3>
+        <ul>
+          <li>三语的 <code>itinerary</code> 天数和内容顺序要一致（不能中文 7 天、英文只写 5 天），细节措辞可以有各自侧重，但行程框架必须对齐。</li>
+          <li>参考已有 Journal 文章的三语版本保持事实、地名、机构名一致（如 "Hospices de Beaune" 在三语里都应该是这个专有名词，不要意译）。</li>
+        </ul>
+
+        <h3>六、验收</h3>
+        <p style="margin-bottom: 10px">在跑验证命令前自查：</p>
+        <ul class="checklist">
+          <li><code>includedExperienceKeys</code>/<code>destinationKeys</code>/<code>relatedJournalKeys</code> 里的每个 key 都能在对应集合对应语言目录下找到真实文件。</li>
+          <li><code>gallery[0]</code> 是否等于 <code>coverImage</code>（这里和酒店页面规则相反，别混淆）。</li>
+          <li><code>itinerary</code> 三语是否都写了，天数和框架是否一致。</li>
+          <li>如果有对应 Journal 文章，事实细节（地名、产区、机构名）是否与之一致。</li>
+          <li><code>itinerary</code>/<code>highlights</code> 是否图文穿插了，还是写成了一堆纯文字——有素材可配的条目是否都配了图。</li>
+        </ul>
+        <p style="margin-bottom: 10px">自查完再跑：</p>
+        <ul>
+          <li><code>npm run format:check && npm run lint && npm run check && npm run build</code> 全绿。</li>
+          <li>浏览器里三语言都看一遍，确认"行程安排"区块（itinerary）确实渲染出来了、关联的体验/目的地/Journal 卡片都指向真实存在的内容而不是空白。</li>
+          <li>部署到线上生产环境前跟用户确认一次，除非当前对话已有范围明确的授权。</li>
+        </ul>
+
+        <h3>七、自我更新</h3>
+        <p style="margin-bottom: 0">
+          <strong>每完成一个主题游任务后，如果过程中发现了新的坑、新的模式或者上面的规则有误，主动更新这个
+            SKILL.md</strong
+          >（不用等用户要求）——比如又踩到一次字段渲染逻辑的误解、又发现一处三语不同步的真实bug、或者摸索出了更好的素材复用方式，都要把"为什么"和"怎么应对"写回对应章节，保持这份skill和实际踩过的坑同步，而不是停留在写skill那一刻的认知。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    可以直接在需要改的段落下面留评论——回来后我会照着调整正文和 skill 文件。
+  </footer>
+</div>
