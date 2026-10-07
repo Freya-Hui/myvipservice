@@ -46,51 +46,53 @@ heroHighlights:
 
 第一次来选酒店，很容易有个误会：反正都在 1850，住哪里应该都差不多。其实完全不是——酒店沿着山坡和雪道分布，位置不同，每天的节奏会很不一样。**Jardin Alpin** 在小镇上方，海拔更高，被森林和雪道包围，是最安静私密的一带，顶奢酒店也最集中在这里——库尔雪维尔旅游局甚至专门为这一带设计了一条冬季步行路线；白马庄园（Cheval Blanc）和新开业的瑰丽都在 Jardin Alpin，适合想要滑雪方便又不想被打扰的行程；**Bellecôte** 沿着同名雪道一路连到 1850 中心，住在这里几乎是"推门就是雪道"，早上出门滑雪、下午顺着雪道回酒店；**La Croisette** 才是真正的镇中心，缆车、滑雪学校、餐厅商店都在这一带，不用靠酒店接驳车，适合滑完雪还想逛逛街、换着馆子吃饭的行程。
 
+![一间俯瞰 Bellecôte 雪道、配四柱床的 Ski Piste 客房。](/images/accommodation-aman-le-melezin-chambre-ski-piste.jpg)
+
 选位置更多是选"想要什么样的一天"，而不是选雪道范围的大小——三山谷这么大的雪场，各个位置最终都能滑进同一片雪道。
 
 ## 推荐酒店
 
 滑雪在这里只是一天的开始：早上从酒店直接踏进雪道，中午在山上找家餐厅吃饭，下午顺着雪道滑回酒店，泡热水浴、去水疗，晚上再去米其林餐厅——雪道或许都是那片雪道，滑完雪回到怎样的地方，才是各家酒店真正较劲的地方。库尔雪维尔 1850 目前在营业的顶级酒店不少，位置、餐厅和调性各有不同，没有哪一家能代表全部——下面这几家是我们比较推荐的。
 
+清晨出门滑雪从来不用自己动手——[**Fouquet's Courchevel**](/zh/accommodations/hotel-barriere-les-neiges-courchevel/)（原芭莉葳雪山酒店）的滑雪管家早就把靴子、手套焐热，雪板也摆在雪道边等着了。酒店就贴着 Bellecôte 雪道，餐厅 Loulou 走的是意式路线，和它从前的名字一样，骨子里还是那股阿尔卑斯木屋的踏实感。
+
 ![黄昏时分的 Fouquet's Courchevel，木屋外墙上暖黄色的灯饰映衬着粉紫色天空](/images/accommodation-fouquets-courchevel-facade.jpg)
 
-清晨出门滑雪从来不用自己动手——[**Fouquet's Courchevel**](/zh/accommodations/hotel-barriere-les-neiges-courchevel/)（原芭莉葳雪山酒店）的滑雪管家早就把靴子、手套焐热，雪板也摆在雪道边等着了。酒店就贴着 Bellecôte 雪道，餐厅 Loulou 走的是意式路线，和它从前的名字一样，骨子里还是那股阿尔卑斯木屋的踏实感。
+同样坐落在 Bellecôte 雪道上，[**Aman Le Mélézin**](/zh/accommodations/aman-le-melezin-courchevel/) 走的却是完全不同的路子——只有 28 间客房，老橡木、木饰墙面、壁炉，安静得更像一座藏在雪道边的法式山间宅邸，而不是常见的那种宫殿感雪山酒店。
 
 ![一名滑雪者滑向 Aman Le Mélézin 木屋，招牌在雪山背景下清晰可见](/images/accommodation-aman-le-melezin-exterior.jpg)
 
-同样坐落在 Bellecôte 雪道上，[**Aman Le Mélézin**](/zh/accommodations/aman-le-melezin-courchevel/) 走的却是完全不同的路子——只有 31 间客房，老橡木、木饰墙面、壁炉，安静得更像一座藏在雪道边的法式山间宅邸，而不是常见的那种宫殿感雪山酒店。
+往山坡上走，**Le K2 Palace** 的规模是完全另一种气势：从客房、套房木屋到独栋私人木屋一路铺开，像一整座藏在松林里的小村落，喜马拉雅与西藏元素贯穿室内设计，还有一家米其林二星餐厅坐镇。
 
 ![Le K2 Palace 沿山坡分布的木屋群航拍，散落在松林之间](/images/accommodation-le-k2-palace-exterior.jpg)
 
-往山坡上走，**Le K2 Palace** 的规模是完全另一种气势：从客房、套房木屋到独栋私人木屋一路铺开，像一整座藏在松林里的小村落，喜马拉雅与西藏元素贯穿室内设计，还有一家米其林二星餐厅坐镇。
+同一家族经营的 **Le K2 Altitude** 走的是更安静的一条线，海拔约 1900 米，紧邻 Pralong 雪道，招牌是米其林一星餐厅 L'Altitude——适合想离热闹人群远一点的行程。
 
 ![Le K2 Altitude 木石结构的外观，圆形招牌挂在入口上方](/images/accommodation-le-k2-altitude-exterior.jpg)
 
-同一家族经营的 **Le K2 Altitude** 走的是更安静的一条线，海拔约 1900 米，紧邻 Pralong 雪道，招牌是米其林一星餐厅 L'Altitude——适合想离热闹人群远一点的行程。
+**Hôtel Le Strato** 同样在 Rue de Bellecôte 这条黄金地段，酒店里的 Baumanière 1850 拿下了米其林二星，水疗中心超过 900 平方米——滑完雪的下午整个人都能沉进去。
 
 ![Hôtel Le Strato 紧邻雪道而建，积雪覆盖的木屋外墙上可见招牌](/images/accommodation-le-strato-exterior.jpg)
 
-**Hôtel Le Strato** 同样在 Rue de Bellecôte 这条黄金地段，酒店里的 Baumanière 1850 拿下了米其林二星，水疗中心超过 900 平方米——滑完雪的下午整个人都能沉进去。
+**L'Apogée Courchevel** 建在库尔雪维尔地势最高的 Jardin Alpin、曾经的奥运跳台旧址上，对带孩子出行的家庭格外照顾，还配了两栋独立的多卧室木屋，适合两三家人一起包下来住。
 
 ![L'Apogée Courchevel 的一间套房，棋盘格地板搭配宝石色调的家具](/images/accommodation-lapogee-courchevel-suite.jpg)
 
-**L'Apogée Courchevel** 建在库尔雪维尔地势最高的 Jardin Alpin、曾经的奥运跳台旧址上，对带孩子出行的家庭格外照顾，还配了两栋独立的多卧室木屋，适合两三家人一起包下来住。
+以 19 世纪奥匈帝国城堡为设计灵感的 **Les Airelles**，是法国官方认证的"Palace"——法国酒店体系里的最高等级，城堡感的外墙立在 Jardin Alpin 雪道边，雪地里格外显眼。
 
 ![Les Airelles 手绘城堡风格的外墙，门外雪地上摆着几副雪板](/images/accommodation-les-airelles-facade.jpg)
 
-以 19 世纪奥匈帝国城堡为设计灵感的 **Les Airelles**，是法国官方认证的"Palace"——法国酒店体系里的最高等级，城堡感的外墙立在 Jardin Alpin 雪道边，雪地里格外显眼。
+背靠 LVMH 的 **Cheval Blanc Courchevel**，招牌是酒店里的 Le 1947——库尔雪维尔唯一一家米其林三星餐厅，主厨 Yannick Alléno 掌勺，不少客人是冲着这一桌订的房。
 
 ![Cheval Blanc Courchevel 黄色木屋航拍，四周是积雪的松林](/images/accommodation-cheval-blanc-courchevel-exterior.jpg)
 
-背靠 LVMH 的 **Cheval Blanc Courchevel**，招牌是酒店里的 Le 1947——库尔雪维尔唯一一家米其林三星餐厅，主厨 Yannick Alléno 掌勺，不少客人是冲着这一桌订的房。
+2025 年 12 月才开业的 **Rosewood Courchevel Le Jardin Alpin**，是瑰丽在法国阿尔卑斯的第一家酒店，设计师 Tristan Auer 操刀，风格比传统阿尔卑斯木屋轻盈、现代不少，算是这几年库尔雪维尔最新的一张面孔。
 
 ![Rosewood Courchevel Le Jardin Alpin 的一间卧室，床头石墙在台灯下泛着暖光](/images/accommodation-rosewood-courchevel-interior.jpg)
 
-2025 年 12 月才开业的 **Rosewood Courchevel Le Jardin Alpin**，是瑰丽在法国阿尔卑斯的第一家酒店，设计师 Tristan Auer 操刀，风格比传统阿尔卑斯木屋轻盈、现代不少，算是这几年库尔雪维尔最新的一张面孔。
+**Six Senses Residences Courchevel** 严格说不是传统意义上的酒店，而是最多五卧室的长住公寓，配滑雪接驳班车和专属的滑雪管家点，适合想住得久一点、又不想牺牲服务的行程。
 
 ![Six Senses Residences Courchevel 石木结构的外观，晴朗的蓝天为背景](/images/accommodation-six-senses-courchevel-exterior.jpg)
-
-**Six Senses Residences Courchevel** 严格说不是传统意义上的酒店，而是最多五卧室的长住公寓，配滑雪接驳班车和专属的滑雪管家点，适合想住得久一点、又不想牺牲服务的行程。
 
 ## 订房规则要提前留意
 

@@ -46,51 +46,53 @@ Courchevel regroupe en réalité plusieurs villages à des altitudes différente
 
 Les visiteurs qui découvrent la station pensent souvent que, tout étant à 1850, l'emplacement précis importe peu. C'est inexact. Les hôtels sont répartis le long du versant et des pistes, et le choix du secteur détermine le rythme de chaque journée. **Jardin Alpin**, au-dessus du centre et plus haut sur la montagne, est le secteur le plus calme et le plus privé, entouré de forêt et de pistes — c'est aussi là que se concentre la plus forte densité de grands hôtels ; l'office de tourisme y a même conçu un sentier de promenade hivernal dédié. Cheval Blanc et le nouveau Rosewood s'y trouvent tous les deux, un choix pertinent pour skier facilement sans affluence. **Bellecôte** longe la piste du même nom jusqu'au centre de 1850 — y séjourner revient presque à un ski aux pieds littéral, sortie sur la piste le matin et retour par la piste l'après-midi. **La Croisette** est le véritable centre de la station — remontées, école de ski, restaurants et boutiques à portée de main, sans dépendre d'une navette d'hôtel, un choix pertinent pour flâner et changer de table après le ski.
 
+![Une chambre Ski Piste avec lit à baldaquin donnant sur la piste de la Bellecôte.](/images/accommodation-aman-le-melezin-chambre-ski-piste.jpg)
+
 Choisir son secteur revient à choisir le type de journée que l'on souhaite vivre, plus que la surface de domaine accessible — les 3 Vallées sont assez vastes pour que chaque secteur rejoigne finalement le même réseau de pistes.
 
 ## Où loger : nos recommandations
 
 Le ski n'est ici que le début de la journée : sortie sur la piste depuis l'hôtel le matin, déjeuner dans un restaurant d'altitude, retour en ski l'après-midi, un moment au spa, puis dîner dans une table étoilée. La piste reste globalement la même où que l'on séjourne — ce qui distingue vraiment les hôtels, c'est le reste de la journée. Courchevel 1850 compte de nombreux grands hôtels actuellement en activité, chacun avec sa position, ses restaurants et son caractère propres — aucun ne résume l'ensemble. Voici quelques adresses que nous recommandons volontiers.
 
+Sortir le matin ne demande aucun effort — les majordomes de ski de [**Fouquet's Courchevel**](/fr/accommodations/hotel-barriere-les-neiges-courchevel/) (anciennement Hôtel Barrière Les Neiges) ont déjà réchauffé chaussures et gants, skis posés en bord de piste. L'hôtel est directement sur la piste de la Bellecôte ; le restaurant maison, Loulou, propose une cuisine italienne, tandis que l'établissement conserve la sobriété chaleureuse du chalet alpin que son ancien nom évoquait.
+
 ![Fouquet’s Courchevel à la tombée du jour, façade en bois éclairée de lumières chaudes sur un ciel rose et violet](/images/accommodation-fouquets-courchevel-facade.jpg)
 
-Sortir le matin ne demande aucun effort — les majordomes de ski de [**Fouquet's Courchevel**](/fr/accommodations/hotel-barriere-les-neiges-courchevel/) (anciennement Hôtel Barrière Les Neiges) ont déjà réchauffé chaussures et gants, skis posés en bord de piste. L'hôtel est directement sur la piste de la Bellecôte ; le restaurant maison, Loulou, propose une cuisine italienne, tandis que l'établissement conserve la sobriété chaleureuse du chalet alpin que son ancien nom évoquait.
+Également sur la piste de la Bellecôte mais dans un tout autre registre, [**Aman Le Mélézin**](/fr/accommodations/aman-le-melezin-courchevel/) ne compte que 28 chambres — vieux chêne, boiseries, cheminées — plus proche d'une maison de montagne française privée que du grand hôtel façon palace pour lequel Courchevel est connue.
 
 ![Un skieur approche du chalet Aman Le Mélézin, enseigne visible sur fond de montagne enneigée](/images/accommodation-aman-le-melezin-exterior.jpg)
 
-Également sur la piste de la Bellecôte mais dans un tout autre registre, [**Aman Le Mélézin**](/fr/accommodations/aman-le-melezin-courchevel/) ne compte que 31 chambres — vieux chêne, boiseries, cheminées — plus proche d'une maison de montagne française privée que du grand hôtel façon palace pour lequel Courchevel est connue.
+Plus haut sur le versant, **Le K2 Palace** joue dans une tout autre catégorie — chambres, suites en chalet et chalets privés indépendants forment comme un petit village niché dans les pins, avec une décoration intérieure aux influences himalayennes et tibétaines, et un restaurant deux étoiles Michelin sur place.
 
 ![Vue aérienne des chalets du K2 Palace répartis sur le versant, au milieu des pins](/images/accommodation-le-k2-palace-exterior.jpg)
 
-Plus haut sur le versant, **Le K2 Palace** joue dans une tout autre catégorie — chambres, suites en chalet et chalets privés indépendants forment comme un petit village niché dans les pins, avec une décoration intérieure aux influences himalayennes et tibétaines, et un restaurant deux étoiles Michelin sur place.
+Sous la même direction, **Le K2 Altitude** adopte une ligne plus discrète — à environ 1 900 m, tout près de la piste de Pralong, avec pour signature le restaurant une étoile Michelin L'Altitude — un choix pertinent pour prendre un peu de distance avec les zones les plus animées.
 
 ![Façade en bois et pierre du K2 Altitude, enseigne circulaire au-dessus de l’entrée](/images/accommodation-le-k2-altitude-exterior.jpg)
 
-Sous la même direction, **Le K2 Altitude** adopte une ligne plus discrète — à environ 1 900 m, tout près de la piste de Pralong, avec pour signature le restaurant une étoile Michelin L'Altitude — un choix pertinent pour prendre un peu de distance avec les zones les plus animées.
+**L'Hôtel Le Strato** occupe le même secteur privilégié de la rue de Bellecôte ; son restaurant, Baumanière 1850, détient deux étoiles Michelin, et le spa dépasse les 900 m² — de quoi véritablement s'y perdre après une journée de ski.
 
 ![L’Hôtel Le Strato construit directement sur la piste, façade en bois enneigée avec l’enseigne visible](/images/accommodation-le-strato-exterior.jpg)
 
-**L'Hôtel Le Strato** occupe le même secteur privilégié de la rue de Bellecôte ; son restaurant, Baumanière 1850, détient deux étoiles Michelin, et le spa dépasse les 900 m² — de quoi véritablement s'y perdre après une journée de ski.
+**L'Apogée Courchevel** est bâti sur le Jardin Alpin, le point le plus élevé de Courchevel et ancien site d'un tremplin olympique ; l'hôtel porte une attention particulière aux familles et dispose de deux chalets indépendants à plusieurs chambres, une option pertinente pour deux ou trois familles voyageant ensemble.
 
 ![Une suite de L’Apogée Courchevel, sol en damier et mobilier aux teintes précieuses](/images/accommodation-lapogee-courchevel-suite.jpg)
 
-**L'Apogée Courchevel** est bâti sur le Jardin Alpin, le point le plus élevé de Courchevel et ancien site d'un tremplin olympique ; l'hôtel porte une attention particulière aux familles et dispose de deux chalets indépendants à plusieurs chambres, une option pertinente pour deux ou trois familles voyageant ensemble.
+Inspiré d'un château austro-hongrois du XIXe siècle, **Les Airelles** porte la distinction officielle de Palace — le plus haut niveau de la classification hôtelière française — et sa façade façon château se remarque immédiatement sur fond de neige, sur la piste du Jardin Alpin.
 
 ![Façade inspirée d’un château des Airelles, quelques paires de skis posées dans la neige devant l’entrée](/images/accommodation-les-airelles-facade.jpg)
 
-Inspiré d'un château austro-hongrois du XIXe siècle, **Les Airelles** porte la distinction officielle de Palace — le plus haut niveau de la classification hôtelière française — et sa façade façon château se remarque immédiatement sur fond de neige, sur la piste du Jardin Alpin.
+Adossé au groupe LVMH, **Cheval Blanc Courchevel** a pour signature Le 1947, seule table trois étoiles Michelin de Courchevel, sous la houlette de Yannick Alléno — de nombreux clients y réservent spécifiquement pour cette table.
 
 ![Vue aérienne du chalet jaune du Cheval Blanc Courchevel, entouré de pins enneigés](/images/accommodation-cheval-blanc-courchevel-exterior.jpg)
 
-Adossé au groupe LVMH, **Cheval Blanc Courchevel** a pour signature Le 1947, seule table trois étoiles Michelin de Courchevel, sous la houlette de Yannick Alléno — de nombreux clients y réservent spécifiquement pour cette table.
+Ouvert en décembre 2025, **Rosewood Courchevel Le Jardin Alpin** est le premier établissement de la marque dans les Alpes françaises, conçu par le designer Tristan Auer, avec une lecture plus légère et contemporaine que le chalet alpin traditionnel — sans doute l'adresse la plus récente à connaître à Courchevel aujourd'hui.
 
 ![Une chambre du Rosewood Courchevel Le Jardin Alpin, mur en pierre en tête de lit éclairé par une lampe de chevet](/images/accommodation-rosewood-courchevel-interior.jpg)
 
-Ouvert en décembre 2025, **Rosewood Courchevel Le Jardin Alpin** est le premier établissement de la marque dans les Alpes françaises, conçu par le designer Tristan Auer, avec une lecture plus légère et contemporaine que le chalet alpin traditionnel — sans doute l'adresse la plus récente à connaître à Courchevel aujourd'hui.
+**Six Senses Residences Courchevel** n'est pas un hôtel classique à proprement parler — il s'agit de résidences longue durée jusqu'à cinq chambres, avec navette ski et point de service de majordome de ski dédié, une formule adaptée à un séjour plus long sans renoncer au niveau de service.
 
 ![Façade en pierre et bois des Six Senses Residences Courchevel sur fond de ciel bleu](/images/accommodation-six-senses-courchevel-exterior.jpg)
-
-**Six Senses Residences Courchevel** n'est pas un hôtel classique à proprement parler — il s'agit de résidences longue durée jusqu'à cinq chambres, avec navette ski et point de service de majordome de ski dédié, une formule adaptée à un séjour plus long sans renoncer au niveau de service.
 
 ## Conditions de réservation à connaître
 

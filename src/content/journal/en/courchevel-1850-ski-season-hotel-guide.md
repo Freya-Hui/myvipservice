@@ -46,51 +46,53 @@ Courchevel is really several villages at different altitudes. **1850** — where
 
 First-time visitors often assume that since everything's in 1850, location within it barely matters. It does. Hotels are spread across the slope and the pistes, and where you stay shapes the rhythm of each day. **Jardin Alpin**, above the town centre and higher up the mountain, is the quietest and most private stretch, ringed by forest and pistes — it's also where the highest concentration of grand hotels sits; the local tourist board even designed a dedicated winter walking trail through it. Cheval Blanc and the new Rosewood are both here, a good fit if you want easy skiing without much foot traffic. **Bellecôte** runs along the piste of the same name straight into the centre of 1850 — staying here is close to literal ski-in/ski-out, out onto the piste in the morning and back down it in the afternoon. **La Croisette** is the actual centre of town — lifts, ski school, restaurants and shops all within reach without relying on a hotel shuttle, a better fit if you want to wander and try different places to eat after skiing.
 
+![A Chambre/Suite Ski Piste bedroom with a four-poster bed overlooking the Bellecôte piste.](/images/accommodation-aman-le-melezin-chambre-ski-piste.jpg)
+
 Choosing a location is really choosing what kind of day you want, not how much terrain you can reach — Les 3 Vallées is large enough that every position here eventually skis into the same network.
 
 ## Hotels we'd recommend
 
 Skiing here is really just the start of the day: out onto the piste from the hotel in the morning, lunch at a mountain restaurant, skiing back down in the afternoon, a soak and a spa treatment, then dinner at a Michelin table. The piste is more or less the same piste wherever you stay — what each hotel is actually competing on is what the rest of the day looks like. Courchevel 1850 has no shortage of grand hotels currently open, each with its own position, restaurants and character — no single one covers everything. Here are a few we'd point you toward.
 
+Getting out the door in the morning takes no effort at all — the ski butlers at [**Fouquet's Courchevel**](/en/accommodations/hotel-barriere-les-neiges-courchevel/) (formerly Hôtel Barrière Les Neiges) have your boots and gloves warmed and your skis already waiting slopeside. The hotel sits right on the Bellecôte piste; the in-house restaurant, Loulou, leans Italian, though the hotel itself keeps the solid, grounded feel of an Alpine chalet its previous name implied.
+
 ![Fouquet's Courchevel at dusk, warm lights along the chalet façade against a pink-violet sky](/images/accommodation-fouquets-courchevel-facade.jpg)
 
-Getting out the door in the morning takes no effort at all — the ski butlers at [**Fouquet's Courchevel**](/en/accommodations/hotel-barriere-les-neiges-courchevel/) (formerly Hôtel Barrière Les Neiges) have your boots and gloves warmed and your skis already waiting slopeside. The hotel sits right on the Bellecôte piste; the in-house restaurant, Loulou, leans Italian, though the hotel itself keeps the solid, grounded feel of an Alpine chalet its previous name implied.
+Also on the Bellecôte piste but in a completely different register, [**Aman Le Mélézin**](/en/accommodations/aman-le-melezin-courchevel/) has just 28 rooms — old oak, timber panelling, open fires — quieter and closer to a private French mountain house than the palace-style grand hotel Courchevel is known for.
 
 ![A skier approaching the Aman Le Mélézin chalet, its sign visible against the snow-covered mountain](/images/accommodation-aman-le-melezin-exterior.jpg)
 
-Also on the Bellecôte piste but in a completely different register, [**Aman Le Mélézin**](/en/accommodations/aman-le-melezin-courchevel/) has just 31 rooms — old oak, timber panelling, open fires — quieter and closer to a private French mountain house than the palace-style grand hotel Courchevel is known for.
+Further up the slope, **Le K2 Palace** operates on an entirely different scale — rooms, suite chalets and standalone private chalets spread out like a small village tucked into the pines, with Himalayan and Tibetan design touches running through the interiors and a two-Michelin-star restaurant on site.
 
 ![Aerial view of Le K2 Palace's cluster of chalets spread across the slope among pine trees](/images/accommodation-le-k2-palace-exterior.jpg)
 
-Further up the slope, **Le K2 Palace** operates on an entirely different scale — rooms, suite chalets and standalone private chalets spread out like a small village tucked into the pines, with Himalayan and Tibetan design touches running through the interiors and a two-Michelin-star restaurant on site.
+Under the same ownership, **Le K2 Altitude** takes a quieter line — around 1,900m, right by the Pralong piste, anchored by the one-Michelin-star L'Altitude — a good fit if you want some distance from the busier parts of town.
 
 ![Le K2 Altitude's timber-and-stone exterior, a circular sign above the entrance](/images/accommodation-le-k2-altitude-exterior.jpg)
 
-Under the same ownership, **Le K2 Altitude** takes a quieter line — around 1,900m, right by the Pralong piste, anchored by the one-Michelin-star L'Altitude — a good fit if you want some distance from the busier parts of town.
+**Hôtel Le Strato** sits on the same prime stretch of Rue de Bellecôte; its restaurant, Baumanière 1850, holds two Michelin stars, and the spa runs past 900m² — enough to properly disappear into on a post-ski afternoon.
 
 ![Hôtel Le Strato built right onto the piste, its snow-covered chalet façade with the hotel's sign visible](/images/accommodation-le-strato-exterior.jpg)
 
-**Hôtel Le Strato** sits on the same prime stretch of Rue de Bellecôte; its restaurant, Baumanière 1850, holds two Michelin stars, and the spa runs past 900m² — enough to properly disappear into on a post-ski afternoon.
+**L'Apogée Courchevel** is built on Jardin Alpin, Courchevel's highest point and the site of a former Olympic ski jump, and pays particular attention to families — it also has two separate multi-bedroom chalets, a good option for two or three families travelling together.
 
 ![A suite at L'Apogée Courchevel, checkerboard flooring against jewel-toned furnishings](/images/accommodation-lapogee-courchevel-suite.jpg)
 
-**L'Apogée Courchevel** is built on Jardin Alpin, Courchevel's highest point and the site of a former Olympic ski jump, and pays particular attention to families — it also has two separate multi-bedroom chalets, a good option for two or three families travelling together.
+Designed around a 19th-century Austro-Hungarian castle, **Les Airelles** carries France's official Palace distinction — the top tier of the French hotel classification system — and its castle-like façade is hard to miss against the snow on the Jardin Alpin piste.
 
 ![Les Airelles' castle-inspired façade, a few pairs of skis propped in the snow outside](/images/accommodation-les-airelles-facade.jpg)
 
-Designed around a 19th-century Austro-Hungarian castle, **Les Airelles** carries France's official Palace distinction — the top tier of the French hotel classification system — and its castle-like façade is hard to miss against the snow on the Jardin Alpin piste.
+Backed by LVMH, **Cheval Blanc Courchevel**'s signature is Le 1947, the only three-Michelin-star restaurant in Courchevel, helmed by Yannick Alléno — plenty of guests book here specifically for that table.
 
 ![Aerial view of Cheval Blanc Courchevel's yellow chalet, surrounded by snow-laden pines](/images/accommodation-cheval-blanc-courchevel-exterior.jpg)
 
-Backed by LVMH, **Cheval Blanc Courchevel**'s signature is Le 1947, the only three-Michelin-star restaurant in Courchevel, helmed by Yannick Alléno — plenty of guests book here specifically for that table.
+Opened in December 2025, **Rosewood Courchevel Le Jardin Alpin** is Rosewood's first property in the French Alps, designed by Tristan Auer, with a lighter, more contemporary take than the traditional Alpine chalet look — arguably the newest name to know in Courchevel right now.
 
 ![A bedroom at Rosewood Courchevel Le Jardin Alpin, a stone headboard wall glowing under a bedside lamp](/images/accommodation-rosewood-courchevel-interior.jpg)
 
-Opened in December 2025, **Rosewood Courchevel Le Jardin Alpin** is Rosewood's first property in the French Alps, designed by Tristan Auer, with a lighter, more contemporary take than the traditional Alpine chalet look — arguably the newest name to know in Courchevel right now.
+**Six Senses Residences Courchevel** isn't a conventional hotel in the strict sense — it's long-stay residences of up to five bedrooms, with ski shuttle service and a dedicated ski valet point, a good fit if you're staying longer and don't want to give up service to do it.
 
 ![Six Senses Residences Courchevel's stone-and-timber exterior against a clear blue sky](/images/accommodation-six-senses-courchevel-exterior.jpg)
-
-**Six Senses Residences Courchevel** isn't a conventional hotel in the strict sense — it's long-stay residences of up to five bedrooms, with ski shuttle service and a dedicated ski valet point, a good fit if you're staying longer and don't want to give up service to do it.
 
 ## Booking terms worth knowing ahead of time
 
