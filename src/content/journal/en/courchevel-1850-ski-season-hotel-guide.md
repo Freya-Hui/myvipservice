@@ -4,14 +4,14 @@ slug: 'courchevel-1850-ski-season-hotel-guide'
 locale: 'en'
 translationKey: 'courchevel-1850-ski-season-hotel-guide'
 category: 'Seasonal Travel'
-excerpt: "Courchevel 1850 has a genuine cluster of grand hotels, each with its own position and character — this guide covers what we've confirmed so far, and we'll keep it updated. For current rates and availability, it's best to check with us directly."
+excerpt: "Courchevel 1850 has a genuine cluster of grand hotels, each with its own position and character — this guide covers this season's dates, when to go, where to stay and how to book. For current rates and availability, check with us directly."
 coverImage: 'destination-courchevel-1850-gondola'
 gallery: []
 relatedDestinationKeys: ['french-alps']
 relatedJourneyKeys: ['alps-geneva-journey']
 relatedAccommodationKeys: ['hotel-barriere-les-neiges-courchevel', 'aman-le-melezin-courchevel']
 seoTitle: 'Courchevel 1850 Ski Season Guide: Timing and Choosing a Hotel'
-seoDescription: "A Courchevel 1850 ski season guide — this year's dates, the trade-offs between different weeks, how to choose a location within 1850, recommended hotels, and when to book. Updated as we confirm more."
+seoDescription: 'A Courchevel 1850 ski season guide — the 2026/27 dates, the trade-offs between different weeks, how to choose a location within 1850, recommended hotels, and when to book.'
 status: 'published'
 publishedAt: 2026-09-10
 draft: false
@@ -20,11 +20,11 @@ heroHighlights:
   [
     "Ten of Courchevel 1850's grand hotels, compared firsthand",
     'How to choose between Jardin Alpin, Bellecôte and La Croisette',
-    'Book 3–6 months ahead for peak weeks — we hold the room',
+    'Book 3–6 months ahead for peak weeks',
   ]
 ---
 
-The gondola climbs through cloud, and the moment it breaks through, the ridgeline of snow peaks below finally comes into view — that's most people's first real impression of Courchevel 1850. Cheval Blanc, Aman, Les Airelles, Le K2, Rosewood, Six Senses — nearly every grand hotel name you'd recognise has staked a claim in this small town. This guide covers what we've confirmed so far about the season at Courchevel 1850, and we'll keep updating it.
+The gondola climbs through cloud, and the moment it breaks through, the ridgeline of snow peaks below finally comes into view — that's most people's first real impression of Courchevel 1850. Cheval Blanc, Aman, Les Airelles, Le K2, Rosewood, Six Senses — nearly every grand hotel name you'd recognise has staked a claim in this small town. This guide covers the 2026/27 season at Courchevel 1850: when to go, where to stay and how to book.
 
 Courchevel sits within Les 3 Vallées, the largest linked ski area in the world — 600km of runs across 334 pistes, a top elevation of 3,230m, with 85% of the terrain above 1,800m. Courchevel 1850 itself has been built out as a resort since 1946, with the first hotels opening in 1947; decades on, it's become one of the densest concentrations of grand hotels, private chalets and Michelin tables anywhere in the Alps. Ski-in/ski-out stopped being a selling point here a long time ago — it's the baseline. What actually separates one hotel from another is what happens after you get back from the mountain.
 
@@ -32,7 +32,7 @@ Courchevel sits within Les 3 Vallées, the largest linked ski area in the world 
 
 ## When this year's season runs
 
-Courchevel's season typically opens in early December and runs through around mid-April, with exact opening and closing dates set by the ski area each year. Most of the top hotels in Courchevel 1850 are genuinely small — usually somewhere between twenty and forty rooms — so Christmas–New Year and the French February school holidays are the first two windows to sell out. If you already have a rough month in mind, it's worth reaching out 3–6 months ahead to lock in a room, especially for either of those two stretches.
+The 2026/27 season at Courchevel runs from 4 December 2026 to 18 April 2027; the ski area sets the dates each year. Most of the top hotels in Courchevel 1850 are genuinely small — usually somewhere between twenty and forty rooms — so Christmas–New Year and the French February school holidays are the first two windows to sell out. If you already have a rough month in mind, it's worth reaching out 3–6 months ahead to lock in a room, especially for either of those two stretches.
 
 ![A small group of skiers pausing on a piste, snow peaks rising behind them](/images/destination-courchevel-1850-ski-group.jpg)
 
@@ -98,4 +98,6 @@ Most of these hotels require a minimum multi-night stay, and some packages need 
 
 ## Let us handle it
 
-If you'd rather not compare hotels and chase current rates yourself, tell us roughly when you're travelling, how many are in your party, and your budget, and we'll check live availability and the latest packages across these properties and send you a proposal to confirm.
+If you'd rather not compare hotels and chase current rates yourself, tell us roughly when you're travelling, how many are in your party, and your budget. We check live availability and the latest packages across these properties and send you a proposal to confirm.
+
+Booking through us means partner rates, with upgrades, breakfast and other perks depending on the hotel, and one advisor from your first message to the last day of the trip. If you are already thinking of Fouquet's Courchevel, see [this winter's offer](/en/journal/fouquets-courchevel-paris-winter-offer/).

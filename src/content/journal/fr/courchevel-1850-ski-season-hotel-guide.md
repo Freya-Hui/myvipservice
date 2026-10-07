@@ -4,14 +4,14 @@ slug: 'courchevel-1850-ski-season-hotel-guide'
 locale: 'fr'
 translationKey: 'courchevel-1850-ski-season-hotel-guide'
 category: 'Seasonal Travel'
-excerpt: 'Courchevel 1850 réunit une vraie concentration de grands hôtels, chacun avec sa propre position et son propre caractère — ce guide rassemble ce que nous avons confirmé à ce jour, mis à jour au fil du temps. Pour les tarifs et disponibilités actuels, mieux vaut nous contacter directement.'
+excerpt: 'Courchevel 1850 réunit une vraie concentration de grands hôtels, chacun avec sa propre position et son propre caractère — ce guide présente les dates de la saison, quand partir, où loger et comment réserver. Pour les tarifs et disponibilités actuels, mieux vaut nous contacter directement.'
 coverImage: 'destination-courchevel-1850-gondola'
 gallery: []
 relatedDestinationKeys: ['french-alps']
 relatedJourneyKeys: ['alps-geneva-journey']
 relatedAccommodationKeys: ['hotel-barriere-les-neiges-courchevel', 'aman-le-melezin-courchevel']
 seoTitle: 'Courchevel 1850, guide de la saison de ski : dates et choix de l’hôtel'
-seoDescription: 'Guide de la saison de ski à Courchevel 1850 — dates de la saison, arbitrages selon la période, comment choisir son secteur au sein de 1850, hôtels recommandés et quand réserver. Mis à jour au fil de nos confirmations.'
+seoDescription: 'Guide de la saison de ski à Courchevel 1850 — dates de la saison, arbitrages selon la période, comment choisir son secteur au sein de 1850, hôtels recommandés et quand réserver. '
 status: 'published'
 publishedAt: 2026-09-10
 draft: false
@@ -20,11 +20,11 @@ heroHighlights:
   [
     'Dix grands hôtels de Courchevel 1850, comparés sur le terrain',
     'Comment choisir entre Jardin Alpin, Bellecôte et La Croisette',
-    'Réservez 3 à 6 mois à l’avance en haute saison — nous bloquons la chambre',
+    'Réservez 3 à 6 mois à l’avance en haute saison ',
   ]
 ---
 
-La télécabine grimpe à travers les nuages, et au moment où elle en sort, la ligne de crête enneigée apparaît enfin en contrebas — c'est souvent la première vraie image que l'on garde de Courchevel 1850. Cheval Blanc, Aman, Les Airelles, Le K2, Rosewood, Six Senses : la plupart des grandes signatures hôtelières se sont installées dans cette petite station. Ce guide rassemble ce que nous avons confirmé à ce jour sur la saison à Courchevel 1850, et nous le mettrons à jour au fil du temps.
+La télécabine grimpe à travers les nuages, et au moment où elle en sort, la ligne de crête enneigée apparaît enfin en contrebas — c'est souvent la première vraie image que l'on garde de Courchevel 1850. Cheval Blanc, Aman, Les Airelles, Le K2, Rosewood, Six Senses : la plupart des grandes signatures hôtelières se sont installées dans cette petite station. Ce guide présente la saison 2026/27 à Courchevel 1850 : quand partir, où loger et comment réserver.
 
 Courchevel fait partie des 3 Vallées, le plus grand domaine skiable relié au monde — 600 km de pistes réparties sur 334 tracés, un point culminant à 3 230 m, et 85 % du domaine situé au-dessus de 1 800 m. Courchevel 1850 est aménagée en station depuis 1946, avec les premiers hôtels ouverts dès 1947 ; des décennies plus tard, elle est devenue l'une des concentrations les plus denses de grands hôtels, de chalets privés et de tables étoilées des Alpes. Le ski aux pieds n'est plus, depuis longtemps, un argument de vente ici — c'est le minimum attendu. Ce qui distingue vraiment un hôtel d'un autre, c'est ce qui se passe une fois redescendu des pistes.
 
@@ -32,7 +32,7 @@ Courchevel fait partie des 3 Vallées, le plus grand domaine skiable relié au m
 
 ## Les dates de la saison
 
-La saison à Courchevel s'ouvre généralement début décembre et se termine vers la mi-avril, les dates exactes étant fixées chaque année par le domaine skiable. La plupart des grands hôtels de Courchevel 1850 comptent réellement peu de chambres — souvent entre vingt et quarante — si bien que Noël–Nouvel An et les vacances scolaires françaises de février sont les deux premières fenêtres à se remplir. Si une période approximative est déjà arrêtée, il est préférable de nous contacter 3 à 6 mois à l'avance pour bloquer une chambre, en particulier sur ces deux périodes.
+La saison 2026/27 à Courchevel va du 4 décembre 2026 au 18 avril 2027 ; les dates sont fixées chaque année par le domaine skiable. La plupart des grands hôtels de Courchevel 1850 comptent réellement peu de chambres — souvent entre vingt et quarante — si bien que Noël–Nouvel An et les vacances scolaires françaises de février sont les deux premières fenêtres à se remplir. Si une période approximative est déjà arrêtée, il est préférable de nous contacter 3 à 6 mois à l'avance pour bloquer une chambre, en particulier sur ces deux périodes.
 
 ![Un petit groupe de skieurs marque une pause sur une piste, sommets enneigés en arrière-plan](/images/destination-courchevel-1850-ski-group.jpg)
 
@@ -98,4 +98,6 @@ La plupart de ces hôtels imposent une durée minimale de séjour sur plusieurs 
 
 ## Confiez-nous l'organisation
 
-Si vous préférez ne pas comparer vous-même les hôtels et suivre les tarifs en temps réel, indiquez-nous vos dates approximatives, le nombre de personnes et votre budget : nous vérifierons les disponibilités actuelles et les offres en cours auprès de ces établissements, puis vous enverrons une proposition à valider.
+Si vous préférez ne pas comparer vous-même les hôtels et suivre les tarifs en temps réel, indiquez-nous vos dates approximatives, le nombre de voyageurs et votre budget : nous vérifions les disponibilités et les derniers forfaits de ces établissements et vous envoyons une proposition à valider.
+
+Réserver avec nous, ce sont des tarifs partenaires, avec surclassements, petit-déjeuner et autres attentions selon l'hôtel, et un seul conseiller de votre premier message au dernier jour du voyage. Si vous pensez déjà à Fouquet's Courchevel, voyez [l'offre de cet hiver](/fr/journal/fouquets-courchevel-paris-winter-offer/).
