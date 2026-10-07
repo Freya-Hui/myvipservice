@@ -3,13 +3,7 @@ title: '私人航站楼体验'
 summary: 'Extime Exclusive Paris——戴高乐机场官方专属贵宾航站楼，抵达、出发与转机全程办理，从落地到出关都不经过公共航站楼。'
 order: 4
 image: experience-extime-tarmac
-gallery:
-  [
-    'experience-extime-tarmac',
-    'experience-extime-checkin',
-    'experience-extime-lounge',
-    'experience-extime-salon',
-  ]
+gallery: []
 price: '4人以内起价 €5,000。'
 priceNote: '5人以上请联系我们单独报价。请至少提前48小时提交预约申请，我们会在24小时内确认（需符合航空公司条件）。'
 highlights:
@@ -20,7 +14,7 @@ highlights:
   ]
 ---
 
-我们可以为您安排 Extime Exclusive Paris——戴高乐机场官方专属贵宾候机楼。想要更私密的出行体验，从落地到出关全程不经过公共航站楼，全程只有自己人。
+我们可以为您安排 Extime Exclusive Paris——戴高乐机场官方专属贵宾候机楼。想要更私密的出行体验，从落地到出关全程不经过公共航站楼，全程只有自己人。该航站楼通过不对公众开放的私人渠道预约：由我们办理，从第一条消息到最后一天都由同一位顾问负责。
 
 ## 为什么选择私人航站楼，而不只是快速通关
 
@@ -34,6 +28,8 @@ highlights:
 
 抵达候机楼后，专属礼宾一对一办理值机与免税购物手续，安检与海关同样有专属通道；随后可以在贵宾厅用餐、休息或安排水疗，一切准备就绪后专车直接开上跑道，送至舷梯。
 
+![Extime Exclusive Paris 拱形值机大厅，专属礼宾与行李管家随时待命。](/images/experience-extime-checkin.jpg)
+
 ## 转机
 
 在登机口迎接后，专车直接把您从跑道送往候机楼，休息、用餐、购物或水疗都可以安排；衔接下一程时同样由专车直接送上跑道，全程不必挤在公共候机区等待。
@@ -41,6 +37,10 @@ highlights:
 ## Extime Exclusive Paris 内部
 
 候机楼本身的建筑设计就是体验的一部分——Jacques Garcia 操刀，从拱形挑高、镶金箔的值机大厅，到深红丝绒座椅的专属候机厅，座椅背后是一整面雕刻着巴黎城市地图的落地玻璃墙。海关区还有一处独立沙龙，与法式花园风格的户外庭院相连，办理手续的同时可以在这里喝一杯香槟——沙龙配有独立私人浴室，另外还有带浴缸和淋浴间的水疗室，方便想以最佳状态抵达或登机的旅客。
+
+![Extime Exclusive Paris 专属候机厅，深红丝绒座椅，背景是雕刻玻璃墙面。](/images/experience-extime-lounge.jpg)
+
+![Extime Exclusive Paris 海关区贵宾沙龙，备有香槟服务，窗外是花园景致。](/images/experience-extime-salon.jpg)
 
 候机楼内配有专属礼宾负责全程协调，餐食由主厨现场准备，专业侍酒师挑选酒窖；如果时间充裕，还可以安排时装与珠宝品牌顾问直接到候机楼的独立精品空间提供私人选购服务，或预约水疗放松。
 
