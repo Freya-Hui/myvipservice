@@ -700,6 +700,73 @@ export const imageAttributions: ImageAttribution[] = [
     },
   },
   {
+    id: 'experience-louvre-zurbaran-san-serapio',
+    src: '/images/experience-louvre-zurbaran-san-serapio.jpg',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:San_Serapio,_por_Francisco_de_Zurbar%C3%A1n.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Francisco de Zurbarán',
+    license: 'Public domain',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'Saint Serapion, a painting by Francisco de Zurbarán: a monk in a white habit with his head fallen to one shoulder.',
+      zh: '弗朗西斯科·德·苏巴朗的画作《圣塞拉皮翁》：一位身穿白色修士袍、头垂向一侧肩膀的修士。',
+      fr: 'Saint Sérapion, tableau de Francisco de Zurbarán : un moine en habit blanc, la tête retombée sur l’épaule.',
+    },
+    notes: 'Representative work by the artist, not a claim that this canvas is in the exhibition.',
+  },
+  {
+    id: 'experience-louvre-fernandez-paso-angustia',
+    src: '/images/experience-louvre-fernandez-paso-angustia.jpg',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Valladolid-Museo_Nacional_de_Escultura-4-Paso_de_la_6%C2%AA_Angustia_(Gregorio_Fern%C3%A1ndez).jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Javi Guerra Hernando',
+    license: 'CC BY-SA 4.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'A painted wooden sculpture group by Gregorio Fernández at the Museo Nacional de Escultura in Valladolid: two crosses and a mourning figure.',
+      zh: '格雷戈里奥·费尔南德斯的彩绘木雕群像，藏于巴利亚多利德国家雕塑博物馆：两个十字架与一位哀悼的人物。',
+      fr: 'Groupe sculpté en bois polychrome de Gregorio Fernández au Museo Nacional de Escultura de Valladolid : deux croix et une figure en deuil.',
+    },
+    notes:
+      'Representative work from the lending museum, not a claim that this piece is in the exhibition.',
+  },
+  {
+    id: 'experience-orsay-cassatt-goodnight-hug',
+    src: '/images/experience-orsay-cassatt-goodnight-hug.jpg',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Mary_Cassatt_-_Mother_and_Child_(The_Goodnight_Hug).jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Mary Cassatt',
+    license: 'Public domain',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'Mother and Child (The Goodnight Hug), a pastel by Mary Cassatt: a mother holding a small child close.',
+      zh: '玛丽·卡萨特的粉彩画《母与子（晚安的拥抱）》：母亲把年幼的孩子紧紧抱在怀里。',
+      fr: 'Mère et enfant (Le câlin du soir), pastel de Mary Cassatt : une mère serre un jeune enfant contre elle.',
+    },
+    notes: 'Representative work by the artist, not a claim that this work is in the exhibition.',
+  },
+  {
+    id: 'experience-versailles-marie-antoinette-portrait',
+    src: '/images/experience-versailles-marie-antoinette-portrait.jpg',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Marie-Antoinette_en_grand_habit_de_cour_-_1778_-_Elisabeth_Louise_Vig%C3%A9e_Le_Brun.jpg',
+    sourceName: 'Wikimedia Commons',
+    author:
+      'Yann Caradec (photograph of a public-domain painting by Élisabeth Louise Vigée Le Brun)',
+    license: 'CC BY-SA 2.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'Marie-Antoinette in Court Dress, 1778, a portrait by Élisabeth Louise Vigée Le Brun.',
+      zh: '伊丽莎白·路易丝·维热·勒布伦 1778 年所作肖像《身着宫廷盛装的玛丽·安托瓦内特》。',
+      fr: 'Marie-Antoinette en grand habit de cour, 1778, portrait par Élisabeth Louise Vigée Le Brun.',
+    },
+    notes:
+      'Representative portrait of the subject, not a claim that this painting is in the exhibition.',
+  },
+  {
     id: 'experience-louvre-gallery-ceiling',
     src: '/images/experience-louvre-gallery-ceiling.jpg',
     sourceUrl: 'https://unsplash.com/photos/louvre-museum-interior-Xpjl7cahHgo',

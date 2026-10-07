@@ -10,15 +10,7 @@ featured: false
 focusThemeKeys: ['Paris']
 status: 'published'
 coverImage: 'experience-louvre-pyramid'
-gallery:
-  [
-    'experience-louvre-pyramid',
-    'experience-louvre-apollon-gallery',
-    'experience-orsay-clock',
-    'experience-versailles-petit-trianon',
-    'experience-louvre-gallery-ceiling',
-    'experience-art-gallery',
-  ]
+gallery: ['experience-louvre-pyramid']
 duration: '2–3 小时'
 suitableFor: ['情侣', '小型团体', '艺术收藏家']
 familySuitable: false
@@ -26,17 +18,34 @@ languages: ['中文', '英语', '法语']
 highlights:
   [
     {
-      text: '卢浮宫：导览带您直奔想看的几件作品，节奏由您决定。目前展出（据博物馆 2026 年 10 月公布）：Zurbarán 与 Sculpting Colour，均为 2026 年 10 月 7 日至 2027 年 1 月 25 日。',
+      text: '卢浮宫。塞纳河畔的前王宫，如今是世界上规模最大的博物馆之一，镇馆之宝包括《蒙娜丽莎》，另有著名的阿波罗长廊。',
       image: 'experience-louvre-apollon-gallery',
     },
     {
-      text: '奥赛博物馆：由熟悉馆藏的人带您看印象派及其周边。目前展出：Mary Cassatt，2026 年 10 月 6 日至 2027 年 1 月 31 日。',
+      text: '卢浮宫目前展出：Zurbarán（苏巴朗）特展，近 50 幅西班牙大师的画作，包括为修道院绘制的大幅作品、肖像和静物（2026 年 10 月 7 日至 2027 年 1 月 25 日）。配图：《圣塞拉皮翁》。',
+      image: 'experience-louvre-zurbaran-san-serapio',
+    },
+    {
+      text: '同在卢浮宫、同一空间、同样日期：Sculpting Colour（彩绘雕塑）特展，展出来自巴利亚多利德国家雕塑博物馆的 23 件西班牙巴洛克彩绘木雕。配图：该馆收藏的格雷戈里奥·费尔南德斯作品。',
+      image: 'experience-louvre-fernandez-paso-angustia',
+    },
+    {
+      text: '奥赛博物馆。为 1900 年世博会建造的学院派风格火车站，如今收藏着最重要的一批印象派作品，以及 1848 至 1914 年间的法国艺术。',
       image: 'experience-orsay-clock',
     },
     {
-      text: '凡尔赛宫：宫殿与庄园，围绕您想看的内容安排。小特里亚农目前展出：Marie-Antoinette，2026 年 9 月 22 日至 2027 年 1 月 24 日；宫殿内：Versailles à Morellet，展至 2026 年 11 月 1 日。',
+      text: '奥赛目前展出：Mary Cassatt（玛丽·卡萨特）. L’indépendante，近 80 件作品，是法国国家博物馆首次为这位美国画家举办大型回顾展，纪念她逝世 100 周年（2026 年 10 月 6 日至 2027 年 1 月 31 日）。配图：《母与子（晚安的拥抱）》。',
+      image: 'experience-orsay-cassatt-goodnight-hug',
+    },
+    {
+      text: '凡尔赛宫。路易十四的宫殿与庄园，从镜厅到大特里亚农，以及花园边缘的小特里亚农。',
       image: 'experience-versailles-petit-trianon',
     },
+    {
+      text: '小特里亚农目前展出：Marie-Antoinette（玛丽·安托瓦内特），纪念索菲亚·科波拉同名电影问世 20 周年（2026 年 9 月 22 日至 2027 年 1 月 24 日）。配图：维热·勒布伦所作肖像。',
+      image: 'experience-versailles-marie-antoinette-portrait',
+    },
+    '宫殿内目前展出：Versailles à Morellet，展至 2026 年 11 月 1 日。',
     '专属金牌导览，不是通用语音导览或跟大团',
     '参观路线围绕您想看的馆藏、时期、艺术家或当前特展安排',
     '不限一家：卢浮宫、奥赛博物馆、凡尔赛宫等主要博物馆均可安排',
