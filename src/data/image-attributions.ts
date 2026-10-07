@@ -657,6 +657,63 @@ export const imageAttributions: ImageAttribution[] = [
     },
   },
   {
+    id: 'experience-louvre-apollon-gallery',
+    src: '/images/experience-louvre-apollon-gallery.jpg',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Galerie_d%27Apollon_(Louvre).jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'Wilfredor',
+    license: 'CC0 1.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: "The Galerie d'Apollon at the Louvre, its gilded and painted ceiling receding down the gallery.",
+      zh: '卢浮宫阿波罗长廊，镀金与彩绘的天顶一路延伸向长廊深处。',
+      fr: "La galerie d'Apollon au Louvre, avec son plafond doré et peint qui se prolonge le long de la galerie.",
+    },
+  },
+  {
+    id: 'experience-orsay-clock',
+    src: '/images/experience-orsay-clock.jpg',
+    sourceUrl: 'https://unsplash.com/photos/a-clock-on-a-wall-qapcR1wFgvs',
+    sourceName: 'Unsplash',
+    author: 'Bev Griffith',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: "One of the large clocks of the Musée d'Orsay, seen from inside against the light.",
+      zh: '奥赛博物馆的大钟之一，从馆内逆光望去。',
+      fr: "L'une des grandes horloges du musée d'Orsay, vue de l'intérieur à contre-jour.",
+    },
+  },
+  {
+    id: 'experience-versailles-petit-trianon',
+    src: '/images/experience-versailles-petit-trianon.jpg',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Petit_Trianon_at_the_Palace_of_Versailles.jpg',
+    sourceName: 'Wikimedia Commons',
+    author: 'DiscoA340',
+    license: 'CC BY-SA 4.0',
+    usageStatus: 'licensed',
+    altByLocale: {
+      en: 'The facade of the Petit Trianon at the Palace of Versailles under a cloudy sky.',
+      zh: '凡尔赛宫小特里亚农的外立面，天空多云。',
+      fr: 'La façade du Petit Trianon au château de Versailles, sous un ciel nuageux.',
+    },
+  },
+  {
+    id: 'experience-louvre-gallery-ceiling',
+    src: '/images/experience-louvre-gallery-ceiling.jpg',
+    sourceUrl: 'https://unsplash.com/photos/louvre-museum-interior-Xpjl7cahHgo',
+    sourceName: 'Unsplash',
+    author: 'Camila Camacho',
+    license: 'Unsplash License',
+    usageStatus: 'temporary',
+    altByLocale: {
+      en: 'A painted and gilded ceiling inside the Louvre.',
+      zh: '卢浮宫内的彩绘镀金天顶。',
+      fr: 'Un plafond peint et doré à l’intérieur du Louvre.',
+    },
+  },
+  {
     id: 'experience-louvre-pyramid',
     src: '/images/experience-louvre-pyramid.jpg',
     sourceUrl:
