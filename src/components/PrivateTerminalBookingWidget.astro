@@ -217,14 +217,16 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     let PARIS_AIRPORT = { standard: 150, aviation: 170 };
 
     function updatePrice() {
-      const withChauffeur = chauffeurCheckbox.checked;
-      // A connection can't be priced as a single transfer, so the chauffeur
-      // is quoted by an advisor in that case.
-      const chauffeur = !withChauffeur
-        ? null
-        : scenarioField.value === 'connection'
-          ? 'quote'
-          : PARIS_AIRPORT[vehicleField.value || 'standard'] || 'quote';
+      // A connection stays inside the airport, so no chauffeur is offered.
+      const connection = scenarioField.value === 'connection';
+      chauffeurCheckbox.disabled = connection;
+      if (connection && chauffeurCheckbox.checked) {
+        chauffeurCheckbox.checked = false;
+        vehiclesField.hidden = true;
+      }
+      const chauffeur = chauffeurCheckbox.checked
+        ? PARIS_AIRPORT[vehicleField.value || 'standard'] || 'quote'
+        : null;
       const rows = [];
       let totalText = `€${TERMINAL_PRICE.toLocaleString('en-US')}`;
       if (chauffeur !== null) {

@@ -307,7 +307,6 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     // listed rate), or null when no chauffeur is selected.
     function chauffeurPrice() {
       if (!chauffeurCheckbox.checked) return null;
-      if (scenario === 'connection') return 'quote';
       const country = countrySelect.value;
       const price =
         country === 'france'
@@ -316,9 +315,20 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
       return price > 0 ? price : 'quote';
     }
 
+    // A connection stays inside the airport, so no chauffeur is offered.
+    function syncChauffeurAvailability() {
+      const connection = scenario === 'connection';
+      chauffeurCheckbox.disabled = connection;
+      if (connection && chauffeurCheckbox.checked) {
+        chauffeurCheckbox.checked = false;
+        vehiclesField.hidden = true;
+      }
+    }
+
     let breakdownRows = [];
 
     function updatePrice() {
+      syncChauffeurAvailability();
       const base = RATES[countrySelect.value];
       const chauffeur = chauffeurPrice();
       breakdownRows = [];

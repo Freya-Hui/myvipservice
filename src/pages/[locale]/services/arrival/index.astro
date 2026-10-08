@@ -127,6 +127,7 @@ const nav = t('nav.services');
       reception: t('arrival.note.reception'),
       terminal: t('arrival.note.terminal'),
       none: t('arrival.none'),
+      connection: t('arrival.connectionNote'),
     },
   }}
 >
@@ -150,8 +151,19 @@ const nav = t('nav.services');
       return null;
     }
 
+    function scenarioOf(panel) {
+      const field = document.getElementById(
+        panel === 'reception' ? 'vr-scenario-field' : 'tb-scenario-field',
+      );
+      return field ? field.value : '';
+    }
+
     function render() {
       const shown = activePanel();
+      // A connection stays inside the airport, so the chauffeur can't be added.
+      const connection =
+        (shown === 'reception' || shown === 'terminal') && scenarioOf(shown) === 'connection';
+      if (connection) state.chauffeur = false;
       Object.keys(panels).forEach(function (key) {
         panels[key].hidden = key !== shown;
       });
@@ -159,8 +171,11 @@ const nav = t('nav.services');
         const key = btn.getAttribute('data-arrival-toggle');
         btn.classList.toggle('is-active', state[key]);
         btn.setAttribute('aria-pressed', state[key] ? 'true' : 'false');
+        if (key === 'chauffeur') btn.disabled = connection;
       });
-      note.textContent = shown ? notes[shown] : notes.none;
+      note.textContent = shown
+        ? notes[shown] + (connection ? ' ' + notes.connection : '')
+        : notes.none;
       // The widgets own their chauffeur checkbox (it also reveals the
       // vehicle choice), so drive it and let the widget's own handler run.
       if (shown && chauffeurBox[shown]) {
@@ -180,6 +195,12 @@ const nav = t('nav.services');
         if (state[key] && key === 'terminal') state.reception = false;
         render();
       });
+    });
+
+    // Scenario pills live inside the widgets; re-render after any of them
+    // changes so the chauffeur toggle follows (connection = no chauffeur).
+    document.addEventListener('click', function (event) {
+      if (event.target.closest('[data-scenario]')) setTimeout(render, 0);
     });
 
     // Deep links: ?mode=reception|terminal|chauffeur, plus &chauffeur=1 to
@@ -225,6 +246,11 @@ const nav = t('nav.services');
     background: var(--color-bg-elevated);
     color: inherit;
     cursor: pointer;
+  }
+
+  .arrival-choose__pills .pill:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   .arrival-choose__pills .pill.is-active {

@@ -245,6 +245,8 @@ export const ui = {
     'arrival.line.quote': 'To be quoted',
     'arrival.line.chauffeurQuote': 'Chauffeur: quoted by an advisor',
     'arrival.learnMore': 'See the full page',
+    'arrival.connectionNote':
+      'For a connection you stay inside the airport, so no chauffeur is needed.',
     'terminalBooking.title': 'Enquire About Private Terminal Access',
     'terminalBooking.subtitle':
       'Tell us about your journey — we confirm availability and airline eligibility within 24 hours.',
@@ -895,6 +897,7 @@ export const ui = {
     'arrival.line.quote': '待报价',
     'arrival.line.chauffeurQuote': '司机：由顾问报价',
     'arrival.learnMore': '查看完整介绍',
+    'arrival.connectionNote': '转机全程不出机场，不需要司机。',
     'terminalBooking.title': '私人航站楼预约咨询',
     'terminalBooking.subtitle': '告诉我们您的行程安排，我们会在24小时内确认可用性与航空公司条件。',
     'terminalBooking.scenarioLabel': '这次预约是',
@@ -1544,6 +1547,8 @@ export const ui = {
     'arrival.line.quote': 'Sur devis',
     'arrival.line.chauffeurQuote': 'Chauffeur : chiffré par un conseiller',
     'arrival.learnMore': 'Voir la page complète',
+    'arrival.connectionNote':
+      "Lors d'une correspondance, vous restez dans l'aéroport : aucun chauffeur n'est nécessaire.",
     'terminalBooking.title': "Demande d'accès au terminal privé",
     'terminalBooking.subtitle':
       "Indiquez-nous votre trajet — nous confirmons la disponibilité et l'éligibilité de la compagnie aérienne sous 24 heures.",
