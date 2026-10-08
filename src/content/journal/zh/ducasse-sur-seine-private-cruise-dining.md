@@ -7,13 +7,8 @@ category: 'Food & Dining'
 excerpt: '巴黎第一艘全电动餐厅船，主厨 Alain Ducasse 团队掌勺，塞纳河上两小时，从埃菲尔铁塔一路开到圣路易岛，中途经过卢浮宫、圣母院——不是一次观光船，是一顿真正意义上的晚餐，只是餐厅在水上。'
 coverImage: 'experience-ducasse-seine-table-eiffel'
 relatedTravelStyleKeys: ['romantic-escapes']
-gallery:
-  [
-    'experience-ducasse-seine-table-eiffel',
-    'experience-ducasse-seine-aerial',
-    'experience-ducasse-seine-dining-room',
-    'experience-ducasse-seine-deck-eiffel',
-  ]
+enquiryForm: 'ducasse-dinner'
+gallery: []
 relatedDestinationKeys: ['paris']
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
@@ -22,9 +17,11 @@ seoTitle: 'Ducasse sur Seine 私人游船晚宴怎么预订？MYVIPSERVICE 定�
 seoDescription: 'Alain Ducasse 团队掌勺的塞纳河电动游船餐厅——巴黎第一艘全电动餐厅船，两小时航程经过埃菲尔铁塔、卢浮宫、圣母院。这篇文章讲清楚它跟普通观光晚餐船的区别，以及可以怎么为团体或重要场合私人定制。'
 status: 'published'
 publishedAt: 2026-09-04
-updatedAt: 2026-09-04
+updatedAt: 2026-10-06
 draft: false
 ---
+
+想直接预订？[跳到页面下方的表单](#enquiry)，留下人数和联系方式，我们会在 24 小时内联系您。
 
 ## 不是观光船，是开在水上的餐厅
 
@@ -32,11 +29,17 @@ draft: false
 
 船本身也值得一提——这是巴黎第一艘全电动餐厅船，每位乘客的碳排放只有传统柴油游船的十二分之一左右（12g/km 对比 146g/km），航行安静、没有引擎振动和柴油味。船舱内部由设计师 Maurizio Galante 和 Tal Lancman 操刀，灵感来自塞纳河与巴黎高级定制时装。
 
+![盘面印有巴黎街区地图的餐盘，盛着甜菜与腌制鱼的前菜。](/images/experience-ducasse-seine-dish-map.jpg)
+
 ## 两个班次，两种气氛
 
 **午餐航线"Déjeuner sur Seine"**：12:45 出发，白天光线里看巴黎建筑，适合商务午餐或家庭聚会，气氛更轻松。
 
+![窗边摆好酒杯的餐桌，白天可以看到塞纳河和石桥。](/images/experience-ducasse-seine-daylight-table.jpg)
+
 **晚餐航线"Nuit Étoilée"**：20:30 出发，正是华灯初上的时段，也是拍出最好照片的时段——埃菲尔铁塔的整点灯光秀、被灯光照亮的桥梁与建筑，都会在这两小时的航程里遇到。
+
+![暮色中亮灯的亚历山大三世桥，远处是埃菲尔铁塔，从河面上望去。](/images/experience-ducasse-seine-alexandre-bridge.jpg)
 
 整段航程约两小时，从埃菲尔铁塔旁的德比伊码头出发，途经特罗卡德罗、荣军院、奥赛博物馆、圣日耳曼德佩、巴黎圣母院、市政厅，一路开到植物园附近再折返——等于把巴黎最精华的一段塞纳河风光，配着一顿正式晚餐一起看完。
 
@@ -49,10 +52,20 @@ draft: false
 - **主厨餐桌（La Table du Chef）**：船体正中央，最多 12 人，视野正对埃菲尔铁塔，氛围更私密、更适合家宴或重要场合。
 - **全船包场**：主甲板+上层甲板合计最多 122 人，连同露台一起使用，适合企业活动、产品发布或大型私人庆典。
 
+![白天的玻璃船舱餐厅，餐桌已摆好，头顶是镜面天花板。](/images/experience-ducasse-seine-dining-room-day.jpg)
+
 ## 可以定制的部分
 
 除了固定的两个航班时段，Ducasse sur Seine 也支持按需定制：讲解式航行、船上音响系统、码头迎宾酒会（视天气情况）、早餐或下午茶专场、商务会议、产品发布会、鲜花布置，以及航线本身的调整——这些都可以根据具体场合单独安排。
 
+![白色桌布上的餐位摆设：带标识的装饰餐盘、餐具和一小碟盐。](/images/experience-ducasse-seine-place-setting.jpg)
+
 ## MYVIPSERVICE 视角
 
 这类体验最容易踩的坑，是把它当成"又一个观光项目"随手订掉——但真正让它值得的，是选对班次、选对空间、把菜单和场合对应起来。如果是求婚或纪念日，主厨餐桌这种私密视角比大厅更合适；如果是团队年会或客户答谢，全船包场配合定制航线才划算。我们会根据人数、场合和预算，帮您确认可用日期、选择合适的空间，并对接活动定制的具体细节。
+
+![服务生在靠窗的餐桌旁斟酒，窗外是流动的河面。](/images/experience-ducasse-seine-service.jpg)
+
+## 怎么预订
+
+在下方表单里留下三项信息：用餐人数、联系方式，以及是否需要独享私密空间。我们会在 24 小时内联系您，确认日期，并按您的人数和场合选好空间——从主厨餐桌（最多 12 人）、Le Carré（最多 20 人），到半包场或全船包场。期望日期和特别要求是选填项，沟通时再确认也可以。

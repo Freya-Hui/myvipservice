@@ -92,6 +92,8 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
         </button>
       </div>
       <input type="hidden" name="vehicle" id="tb-vehicle-field" value="standard" />
+      <input type="hidden" name="estimatedTotal" id="tb-total-field" />
+      <input type="hidden" name="priceBreakdown" id="tb-breakdown-field" />
     </div>
 
     <div class="field">
@@ -166,6 +168,7 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
         <span class="terminal-booking__priceLabel">{t('terminalBooking.priceLabel')}</span>
         <span class="terminal-booking__priceValue" id="tb-price-value">€5,000</span>
       </p>
+      <dl class="terminal-booking__breakdown" id="tb-breakdown" hidden></dl>
       <p class="terminal-booking__note">{t('terminalBooking.leadTimeNote')}</p>
     </div>
 
@@ -181,6 +184,9 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     requestReceivedNote: t('carBooking.requestReceivedNote'),
     genericErrorNote: t('carBooking.genericErrorNote'),
     leadTimeError: t('carBooking.leadTimeError'),
+    lineTerminalText: t('arrival.line.terminal'),
+    lineChauffeurText: t('arrival.line.chauffeur'),
+    lineQuoteText: t('arrival.line.quote'),
   }}
 >
   (function () {
@@ -198,14 +204,59 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     const contactMethodPills = root.querySelectorAll('[data-contact-method]');
     const contactMethodField = document.getElementById('tb-contact-method-field');
     const priceEl = document.getElementById('tb-price');
+    const priceValueEl = document.getElementById('tb-price-value');
+    const breakdownEl = document.getElementById('tb-breakdown');
+    const totalField = document.getElementById('tb-total-field');
+    const breakdownField = document.getElementById('tb-breakdown-field');
     const submitButton = document.getElementById('tb-submit');
     const statusEl = document.getElementById('tb-status');
+
+    const TERMINAL_PRICE = 5000;
+    // Chauffeur airport transfer from Charles de Gaulle — same figures as the
+    // chauffeur booking widget (refreshed from /admin/pricing below).
+    let PARIS_AIRPORT = { standard: 150, aviation: 170 };
+
+    function updatePrice() {
+      // A connection stays inside the airport, so no chauffeur is offered.
+      const connection = scenarioField.value === 'connection';
+      chauffeurCheckbox.disabled = connection;
+      if (connection && chauffeurCheckbox.checked) {
+        chauffeurCheckbox.checked = false;
+        vehiclesField.hidden = true;
+      }
+      const chauffeur = chauffeurCheckbox.checked
+        ? PARIS_AIRPORT[vehicleField.value || 'standard'] || 'quote'
+        : null;
+      const rows = [];
+      let totalText = `€${TERMINAL_PRICE.toLocaleString('en-US')}`;
+      if (chauffeur !== null) {
+        rows.push([lineTerminalText, totalText]);
+        if (typeof chauffeur === 'number') {
+          rows.push([lineChauffeurText, `€${chauffeur}`]);
+          totalText = `€${(TERMINAL_PRICE + chauffeur).toLocaleString('en-US')}`;
+        } else {
+          rows.push([lineChauffeurText, lineQuoteText]);
+          totalText = `${totalText} +`;
+        }
+      }
+      priceValueEl.textContent = totalText;
+      breakdownEl.hidden = rows.length === 0;
+      breakdownEl.innerHTML = rows
+        .map(
+          ([k, v]) =>
+            `<div class="terminal-booking__breakdownRow"><dt>${k}</dt><dd>${v}</dd></div>`,
+        )
+        .join('');
+      totalField.value = totalText;
+      breakdownField.value = rows.map(([k, v]) => `${k} ${v}`).join(' + ');
+    }
 
     scenarioPills.forEach((btn) => {
       btn.addEventListener('click', () => {
         scenarioPills.forEach((b) => b.classList.remove('is-active'));
         btn.classList.add('is-active');
         scenarioField.value = btn.getAttribute('data-scenario');
+        updatePrice();
       });
     });
 
@@ -227,6 +278,7 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
 
     chauffeurCheckbox.addEventListener('change', () => {
       vehiclesField.hidden = !chauffeurCheckbox.checked;
+      updatePrice();
     });
 
     vehicleCards.forEach((btn) => {
@@ -234,8 +286,18 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
         vehicleCards.forEach((b) => b.classList.remove('is-active'));
         btn.classList.add('is-active');
         vehicleField.value = btn.getAttribute('data-vehicle');
+        updatePrice();
       });
     });
+
+    updatePrice();
+    fetch('/.netlify/functions/get-pricing')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((result) => {
+        if (result?.rates?.parisRates?.airport) PARIS_AIRPORT = result.rates.parisRates.airport;
+        updatePrice();
+      })
+      .catch(() => {});
 
     contactMethodPills.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -427,6 +489,26 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
   .terminal-booking__priceLabel {
     font-size: var(--text-small);
     color: var(--color-text-muted);
+  }
+
+  .terminal-booking__breakdown {
+    margin: var(--space-2) 0 0;
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  .terminal-booking__breakdown[hidden] {
+    display: none;
+  }
+
+  .terminal-booking__breakdownRow {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .terminal-booking__breakdownRow dd {
+    margin: 0;
   }
 
   .terminal-booking__priceValue {

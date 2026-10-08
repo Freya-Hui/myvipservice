@@ -47,3 +47,5 @@ A dedicated concierge coordinates the whole visit, meals are prepared by a chef 
 ## Want a lighter option?
 
 If a dedicated terminal building is more than you need, [VIP Airport Reception](/en/services/vip-airport-reception/) still gets you a dedicated concierge and a private chauffeur through fast-tracked customs, at a lower investment.
+
+Not sure which suits you? [Choose and combine them on one page](/en/services/arrival/).

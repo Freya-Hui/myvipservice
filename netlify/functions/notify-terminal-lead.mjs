@@ -43,6 +43,10 @@ export const handler = async (event) => {
     phone: `${raw.phoneCountryCode || ''}${raw.phoneWechat || ''}`,
     preferredContactMethod: raw.preferredContactMethod || '',
     notes: raw.notes || '',
+    // The page's own indicative figures, kept so the quote can start from
+    // what the customer was shown (never trusted as a price).
+    estimatedTotal: String(raw.estimatedTotal || '').slice(0, 40),
+    priceBreakdown: String(raw.priceBreakdown || '').slice(0, 200),
   };
 
   try {

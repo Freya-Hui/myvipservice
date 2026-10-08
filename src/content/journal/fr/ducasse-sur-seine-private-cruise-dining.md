@@ -7,13 +7,8 @@ category: 'Food & Dining'
 excerpt: "Le premier bateau-restaurant entièrement électrique de Paris, conduit par l'équipe d'Alain Ducasse — un parcours de deux heures sur la Seine, devant la Tour Eiffel, le Louvre et Notre-Dame. Ce n'est pas une croisière touristique agrémentée d'un dîner. C'est un véritable restaurant, qui se trouve simplement être sur l'eau."
 coverImage: 'experience-ducasse-seine-table-eiffel'
 relatedTravelStyleKeys: ['romantic-escapes']
-gallery:
-  [
-    'experience-ducasse-seine-table-eiffel',
-    'experience-ducasse-seine-aerial',
-    'experience-ducasse-seine-dining-room',
-    'experience-ducasse-seine-deck-eiffel',
-  ]
+enquiryForm: 'ducasse-dinner'
+gallery: []
 relatedDestinationKeys: ['paris']
 relatedAccommodationKeys: []
 relatedExperienceKeys: []
@@ -22,9 +17,11 @@ seoTitle: 'Comment réserver un dîner privé à bord de Ducasse sur Seine | MYV
 seoDescription: "Conduit par l'équipe d'Alain Ducasse, ce bateau-restaurant entièrement électrique sur la Seine — le premier du genre à Paris — suit un parcours de deux heures devant la Tour Eiffel, le Louvre et Notre-Dame. Ce guide explique en quoi il se distingue d'une croisière-dîner touristique classique, et comment le personnaliser pour un groupe ou une occasion particulière."
 status: 'published'
 publishedAt: 2026-09-04
-updatedAt: 2026-09-04
+updatedAt: 2026-10-06
 draft: false
 ---
+
+Envie de réserver ? [Accédez au formulaire en bas de page](#enquiry) — indiquez le nombre de convives et vos coordonnées, nous vous contactons sous 24 heures.
 
 ## Pas un bateau de tourisme — un restaurant qui flotte
 
@@ -32,11 +29,17 @@ Les croisières-dîners sur la Seine ne manquent pas, et la plupart suivent la m
 
 Le bateau lui-même mérite d'être mentionné — c'est le premier bateau-restaurant entièrement électrique de Paris, avec des émissions de carbone par passager environ douze fois inférieures à celles d'un bateau de croisière diesel traditionnel (12 g/km contre 146 g/km), une navigation silencieuse, sans vibrations ni odeurs de gasoil. L'intérieur a été conçu par les designers Maurizio Galante et Tal Lancman, s'inspirant de la Seine elle-même et de la haute couture parisienne.
 
+![Une entrée de betterave et de poisson mariné dans une assiette imprimée d’un plan de Paris.](/images/experience-ducasse-seine-dish-map.jpg)
+
 ## Deux départs, deux ambiances
 
 **« Déjeuner sur Seine »**, le service du midi : départ à 12h45, pour découvrir l'architecture parisienne en pleine lumière — un cadre adapté à un déjeuner d'affaires ou à une réunion de famille.
 
+![Une table dressée avec des verres à vin près des baies vitrées, la Seine et un pont de pierre en plein jour.](/images/experience-ducasse-seine-daylight-table.jpg)
+
 **« Nuit Étoilée »**, le service du soir : départ à 20h30, au moment précis où la ville s'illumine — et la meilleure fenêtre pour les photographies, avec le scintillement horaire de la Tour Eiffel et les ponts et monuments illuminés tout au long du parcours.
+
+![Le pont Alexandre III illuminé au crépuscule, la tour Eiffel au loin, vu depuis le fleuve.](/images/experience-ducasse-seine-alexandre-bridge.jpg)
 
 La navigation dure environ deux heures, au départ du Port Debilly, juste à côté de la Tour Eiffel, en passant devant le Trocadéro, les Invalides, le Musée d'Orsay, Saint-Germain-des-Prés, Notre-Dame et l'Hôtel de Ville, jusqu'au Jardin des Plantes avant de faire demi-tour — pour découvrir le plus beau tronçon de la Seine, accompagné d'un véritable dîner assis.
 
@@ -49,10 +52,20 @@ Le bateau se divise en plusieurs espaces distincts, à choisir selon le nombre d
 - **La Table du Chef** : au cœur même du bateau, jusqu'à 12 personnes, face à la Tour Eiffel — une atmosphère plus intime, idéale pour un dîner en famille ou une occasion particulière.
 - **Privatisation totale du bateau** : Pont Principal et pont supérieur réunis, jusqu'à 122 convives, terrasses comprises — adaptée aux événements d'entreprise, lancements de produits ou grandes célébrations privées.
 
+![Des tables dressées dans la salle vitrée en plein jour, sous un plafond en miroirs.](/images/experience-ducasse-seine-dining-room-day.jpg)
+
 ## Ce qui peut être personnalisé
 
 Au-delà des deux départs fixes, Ducasse sur Seine propose également des arrangements sur mesure : commentaire guidé pendant la navigation, système de sonorisation à bord, réception cocktail sur le ponton (selon les conditions météorologiques), service dédié petit-déjeuner ou afternoon tea, réunions d'affaires, lancements de produits, décoration florale, ainsi que des ajustements du parcours lui-même — autant d'éléments qui peuvent être organisés individuellement selon l'occasion.
 
+![Un couvert avec assiette de présentation siglée, couverts et petite coupelle de sel sur une nappe blanche.](/images/experience-ducasse-seine-place-setting.jpg)
+
 ## Le point de vue de MYVIPSERVICE
 
 L'erreur la plus fréquente avec une expérience comme celle-ci est de la considérer comme « une simple activité touristique de plus » à réserver sans y réfléchir davantage — ce qui en fait réellement la valeur, c'est de choisir le bon départ, le bon espace, et d'adapter le menu à l'occasion. Pour une demande en mariage ou un anniversaire, l'intimité de La Table du Chef convient mieux que le pont principal ; pour un séminaire d'équipe ou un événement de fidélisation client, c'est la privatisation totale du bateau, associée à un parcours personnalisé, qui prend tout son sens. Nous vous aidons à confirmer les disponibilités, à choisir l'espace adapté selon le nombre de convives, l'occasion et le budget, et à coordonner les détails de toute personnalisation.
+
+![Un serveur versant le vin à une table près de la baie vitrée, le fleuve défilant dehors.](/images/experience-ducasse-seine-service.jpg)
+
+## Comment réserver
+
+Laissez trois informations dans le formulaire ci-dessous : le nombre de convives, vos coordonnées, et si vous souhaitez un espace privatif. Nous vous contactons sous 24 heures pour confirmer la date et choisir l’espace adapté à votre groupe, de la Table du Chef (jusqu’à 12 convives) et du Carré (jusqu’à 20) à une privatisation partielle ou de l’ensemble du bateau. Une date souhaitée et d’éventuelles demandes particulières sont facultatives, et peuvent être précisées lors de notre échange.

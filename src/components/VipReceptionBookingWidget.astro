@@ -102,6 +102,8 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
             </button>
           </div>
           <input type="hidden" name="vehicle" id="vr-vehicle-field" value="standard" />
+          <input type="hidden" name="estimatedTotal" id="vr-total-field" />
+          <input type="hidden" name="priceBreakdown" id="vr-breakdown-field" />
         </div>
 
         <div class="field">
@@ -217,6 +219,9 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     dateLabelText: t('carBooking.dateLabel'),
     flightNumberLabelText: t('carBooking.flightNumberLabel'),
     carTypeLabelText: t('carBooking.carTypeLabel'),
+    lineReceptionText: t('arrival.line.reception'),
+    lineChauffeurText: t('arrival.line.chauffeur'),
+    lineQuoteText: t('arrival.line.quote'),
   }}
 >
   (function () {
@@ -226,6 +231,18 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     // priced at twice the one-direction rate. Countries without a listed
     // rate show the custom-quote note instead of a number.
     const RATES = { france: 189, germany: 200 };
+    // Chauffeur airport transfer, same figures as the chauffeur booking
+    // widget (refreshed from /admin/pricing below). Used only to show a
+    // combined estimate when a chauffeur is added on top of the reception.
+    let PARIS_AIRPORT = { standard: 150, aviation: 170 };
+    let COUNTRY_AIRPORT = {
+      france: 150,
+      uk: 200,
+      germany: 200,
+      italy: 150,
+      spain: 150,
+      switzerland: 200,
+    };
 
     const root = document.getElementById('vip-reception-root');
     const scenarioPills = root.querySelectorAll('[data-scenario]');
@@ -246,6 +263,8 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     ];
     const priceNoteEl = document.getElementById('vr-price-note');
     const summaryList = document.getElementById('vr-summary-list');
+    const totalField = document.getElementById('vr-total-field');
+    const breakdownField = document.getElementById('vr-breakdown-field');
     const form = document.getElementById('vip-reception-form');
     const submitButton = document.getElementById('vr-submit');
     const statusEl = document.getElementById('vr-status');
@@ -277,21 +296,69 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
           activeVehicle ? activeVehicle.querySelector('.vehicle-card__name').textContent : '',
         ]);
       }
+      breakdownRows.forEach((row) => rows.push(row));
       summaryList.innerHTML = rows
         .map(([k, v]) => `<div class="vip-reception__summaryRow"><dt>${k}</dt><dd>${v}</dd></div>`)
         .join('');
     }
 
+    // Returns the chauffeur's airport-transfer price for this journey: a number,
+    // 'quote' when it can't be priced here (connection, or a country with no
+    // listed rate), or null when no chauffeur is selected.
+    function chauffeurPrice() {
+      if (!chauffeurCheckbox.checked) return null;
+      const country = countrySelect.value;
+      const price =
+        country === 'france'
+          ? PARIS_AIRPORT[vehicleField.value || 'standard']
+          : COUNTRY_AIRPORT[country];
+      return price > 0 ? price : 'quote';
+    }
+
+    // A connection stays inside the airport, so no chauffeur is offered.
+    function syncChauffeurAvailability() {
+      const connection = scenario === 'connection';
+      chauffeurCheckbox.disabled = connection;
+      if (connection && chauffeurCheckbox.checked) {
+        chauffeurCheckbox.checked = false;
+        vehiclesField.hidden = true;
+      }
+    }
+
+    let breakdownRows = [];
+
     function updatePrice() {
+      syncChauffeurAvailability();
       const base = RATES[countrySelect.value];
+      const chauffeur = chauffeurPrice();
+      breakdownRows = [];
+      let totalText = '';
+      let breakdownText = '';
       if (!base) {
         priceValueEls.forEach((el) => (el.textContent = '—'));
         priceNoteEl.textContent = customQuoteNote;
       } else {
-        const total = scenario === 'connection' ? base * 2 : base;
-        priceValueEls.forEach((el) => (el.textContent = `€${total}`));
+        const reception = scenario === 'connection' ? base * 2 : base;
+        if (chauffeur === null) {
+          totalText = `€${reception}`;
+          priceValueEls.forEach((el) => (el.textContent = totalText));
+        } else {
+          breakdownRows.push([lineReceptionText, `€${reception}`]);
+          if (typeof chauffeur === 'number') {
+            breakdownRows.push([lineChauffeurText, `€${chauffeur}`]);
+            totalText = `€${reception + chauffeur}`;
+            priceValueEls.forEach((el) => (el.textContent = totalText));
+          } else {
+            breakdownRows.push([lineChauffeurText, lineQuoteText]);
+            totalText = `€${reception} +`;
+            priceValueEls.forEach((el) => (el.textContent = totalText));
+          }
+          breakdownText = breakdownRows.map(([k, v]) => `${k} ${v}`).join(' + ');
+        }
         priceNoteEl.textContent = '';
       }
+      totalField.value = totalText;
+      breakdownField.value = breakdownText;
       updateSummary();
     }
 
@@ -312,9 +379,19 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
     });
     updatePrice();
 
+    fetch('/.netlify/functions/get-pricing')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((result) => {
+        if (!result?.rates) return;
+        if (result.rates.parisRates?.airport) PARIS_AIRPORT = result.rates.parisRates.airport;
+        if (result.rates.countryAirportRates) COUNTRY_AIRPORT = result.rates.countryAirportRates;
+        updatePrice();
+      })
+      .catch(() => {});
+
     chauffeurCheckbox.addEventListener('change', () => {
       vehiclesField.hidden = !chauffeurCheckbox.checked;
-      updateSummary();
+      updatePrice();
     });
 
     vehicleCards.forEach((btn) => {
@@ -322,7 +399,7 @@ const aviationVehicleImage = getImage('service-car-aviation-seats');
         vehicleCards.forEach((b) => b.classList.remove('is-active'));
         btn.classList.add('is-active');
         vehicleField.value = btn.getAttribute('data-vehicle');
-        updateSummary();
+        updatePrice();
       });
     });
 
