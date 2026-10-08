@@ -29,12 +29,12 @@ storyFeatures:
     },
     {
       title: 'Ready-to-Wear and Leather Goods',
-      body: 'Appointments at the flagships on Avenue Montaigne and Rue Saint-Honoré, among them Chanel, Hermès, Brunello Cucinelli, Loro Piana and Dolce & Gabbana, with a sales contact who knows the house and access to a private lounge.',
+      body: 'Appointments at the flagships on Avenue Montaigne and Rue Saint-Honoré and the other Paris maisons, with a sales contact who knows the house and access to a private lounge. Ready-to-wear: Chanel, Dior, Saint Laurent, Celine, Givenchy, Valentino, Balenciaga, Brunello Cucinelli, Loro Piana and Dolce & Gabbana. Leather goods: Hermès, Louis Vuitton, Goyard, Loewe, Fendi, Prada, Gucci, Bottega Veneta and Delvaux.',
       imageId: 'service-boutique-appointment',
     },
     {
       title: 'Department Stores and Shopping Centres',
-      body: 'A shopping day at the major Paris department stores runs without the usual queues, with tax-refund support so the paperwork does not eat into the day. We can build the whole day around the stops you choose.',
+      body: 'A shopping day at Galeries Lafayette Haussmann, Printemps Haussmann, Le Bon Marché Rive Gauche and La Samaritaine runs without the usual queues, with tax-refund support so the paperwork does not eat into the day. For a longer shopping stop, we can add La Vallée Village. We build the whole day around the stops you choose.',
       imageId: 'service-fashion-department-store-dome',
     },
   ]

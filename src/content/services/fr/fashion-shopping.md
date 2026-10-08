@@ -29,12 +29,12 @@ storyFeatures:
     },
     {
       title: 'Prêt-à-porter et maroquinerie',
-      body: 'Rendez-vous dans les boutiques phares de l’avenue Montaigne et de la rue Saint-Honoré, dont Chanel, Hermès, Brunello Cucinelli, Loro Piana et Dolce & Gabbana, avec un conseiller de vente qui connaît la maison et un accès à un salon privé.',
+      body: 'Rendez-vous dans les boutiques phares de l’avenue Montaigne et de la rue Saint-Honoré et chez les autres maisons parisiennes, avec un conseiller de vente qui connaît la maison et un accès à un salon privé. Prêt-à-porter : Chanel, Dior, Saint Laurent, Celine, Givenchy, Valentino, Balenciaga, Brunello Cucinelli, Loro Piana et Dolce & Gabbana. Maroquinerie : Hermès, Louis Vuitton, Goyard, Loewe, Fendi, Prada, Gucci, Bottega Veneta et Delvaux.',
       imageId: 'service-boutique-appointment',
     },
     {
       title: 'Grands magasins et centres commerciaux',
-      body: 'Une journée shopping dans les grands magasins parisiens se déroule sans les files d’attente habituelles, avec une assistance à la détaxe pour que les formalités ne grignotent pas la journée. Nous pouvons organiser toute la journée autour des étapes que vous choisissez.',
+      body: 'Une journée shopping aux Galeries Lafayette Haussmann, au Printemps Haussmann, au Bon Marché Rive Gauche et à La Samaritaine se déroule sans les files d’attente habituelles, avec une assistance à la détaxe pour que les formalités ne grignotent pas la journée. Pour une étape shopping plus longue, nous pouvons ajouter La Vallée Village. Nous organisons toute la journée autour des étapes que vous choisissez.',
       imageId: 'service-fashion-department-store-dome',
     },
   ]

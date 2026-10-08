@@ -29,12 +29,12 @@ storyFeatures:
     },
     {
       title: '成衣与皮具',
-      body: '蒙田大道与圣奥诺雷路旗舰店的预约，包括香奈儿、爱马仕、Brunello Cucinelli、Loro Piana 与杜嘉班纳，由熟悉这家店的销售接待，并附贵宾休息室。',
+      body: '蒙田大道、圣奥诺雷路旗舰店及巴黎各大品牌的预约，由熟悉这家店的销售接待，并附贵宾休息室。成衣：香奈儿、迪奥、圣罗兰、思琳、纪梵希、华伦天奴、巴黎世家、Brunello Cucinelli、Loro Piana、杜嘉班纳。皮具：爱马仕、路易威登、Goyard、Loewe、芬迪、普拉达、古驰、葆蝶家、Delvaux。',
       imageId: 'service-boutique-appointment',
     },
     {
       title: '百货公司与购物中心',
-      body: '在巴黎各大百货公司购物，不用按常规排队，并提供退税协助，让手续不占用您的购物时间。整天行程可以围绕您想去的几站来安排。',
+      body: '在老佛爷百货（Haussmann 店）、巴黎春天百货（Haussmann 店）、乐蓬马歇（左岸店）和莎玛丽丹购物，不用按常规排队，并提供退税协助，让手续不占用您的购物时间。想要更长的一站购物，还可以加上 La Vallée Village 购物村。整天行程围绕您选的几站来安排。',
       imageId: 'service-fashion-department-store-dome',
     },
   ]
