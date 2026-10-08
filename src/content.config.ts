@@ -102,6 +102,19 @@ const transportationTopics = defineCollection({
     image: z.string().optional(),
     gallery: z.array(z.string()).default([]),
     highlights: z.array(z.string()).default([]),
+    /** Vehicle line-up shown as cards (see FleetGrid.astro) — only models the
+     *  business actually offers, with spec rows the visitor can compare. */
+    fleetIntro: z.string().optional(),
+    fleet: z
+      .array(
+        z.object({
+          name: z.string(),
+          summary: z.string(),
+          image: z.string(),
+          specs: z.array(z.object({ label: z.string(), value: z.string() })),
+        }),
+      )
+      .default([]),
     /** Indicative price, shown only where set — omitted for zh, same
      *  editorial policy as quickServices in site-content.ts. */
     price: z.string().optional(),

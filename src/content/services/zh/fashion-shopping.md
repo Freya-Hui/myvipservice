@@ -9,21 +9,39 @@ storyFeatures:
   [
     {
       title: '直接被认出来，而不是排队等候',
-      body: '这份网络覆盖三大领域。高级珠宝：梵克雅宝、卡地亚、戴比尔斯、格拉夫、海瑞温斯顿、Cindy Chao、宝诗龙、伯爵、布契拉提与 Damiani。名表：百达翡丽、F.P.Journe、理查德米勒与爱彼。高级定制：乔治·阿玛尼、Elie Saab、Georges Hobeika、Zuhair Murad 与 Stephane Rolland。具体能否安排——私享鉴赏、试装或秀场席位——均需逐一确认，从不提前假设。部分品牌对新客户并不轻易开放，这种情况下，通过我们的网络引荐，往往是"石沉大海"与"真正得到回应"之间的差别。',
+      body: '多年和客户耳熟能详的各大品牌建立的合作关系，让我们能在您到达之前，就帮您联系到一位熟悉这家店的销售。有些品牌很少直接接待新客户，这时候经由我们网络的一次引荐，往往就是石沉大海和得到真正答复的区别。能否安排——私享鉴赏、试装或秀场席位——始终按个案确认，从不提前预设。',
       imageId: 'service-atelier-fitting',
     },
     {
-      title: '有预约，不用排队',
-      body: '在蒙田大道与圣奥诺雷路的旗舰精品店——包括爱马仕、香奈儿、Brunello Cucinelli 与 Loro Piana——预约会附带贵宾休息室与各大百货公司的退税协助，让购物这一天不必排队等候。',
+      title: '高级珠宝',
+      body: '旺多姆广场及更多品牌的私享鉴赏与引荐：梵克雅宝、卡地亚、戴比尔斯、格拉夫、海瑞温斯顿、Cindy Chao、宝诗龙、伯爵、布契拉提、Damiani 与宝格丽。按预约进行，不是临时到店。',
+      imageId: 'service-fashion-place-vendome',
+    },
+    {
+      title: '名表',
+      body: '百达翡丽、F.P.Journe、理查德米勒与爱彼的引荐，无论是第一次购买，还是为收藏再添一件，都在您到达之前把沟通安排好。',
+      imageId: 'service-watchmaking-detail',
+    },
+    {
+      title: '高级定制',
+      body: '乔治·阿玛尼、Elie Saab、Georges Hobeika、Zuhair Murad 与 Stephane Rolland 的试装与私人发布会，并在可行时为您申请秀场席位。2027 春夏高级定制时装周为 2027 年 1 月 25 日至 28 日。',
+      imageId: 'service-fashion-couture-gown',
+    },
+    {
+      title: '成衣与皮具',
+      body: '蒙田大道与圣奥诺雷路旗舰店的预约，包括香奈儿、爱马仕、Brunello Cucinelli、Loro Piana 与杜嘉班纳，由熟悉这家店的销售接待，并附贵宾休息室。',
       imageId: 'service-boutique-appointment',
+    },
+    {
+      title: '百货公司与购物中心',
+      body: '在巴黎各大百货公司购物，不用按常规排队，并提供退税协助，让手续不占用您的购物时间。整天行程可以围绕您想去的几站来安排。',
+      imageId: 'service-fashion-department-store-dome',
     },
   ]
 highlights:
   [
-    '高级珠宝合作网络，覆盖梵克雅宝、卡地亚、戴比尔斯、格拉夫、海瑞温斯顿、Cindy Chao、宝诗龙、伯爵、布契拉提与Damiani',
-    '名表引荐，覆盖百达翡丽、F.P.Journe、理查德米勒与爱彼',
-    '高级定制通道，覆盖乔治·阿玛尼、Elie Saab、Georges Hobeika、Zuhair Murad 与 Stephane Rolland，视具体情况安排试装与时装周席位申请',
-    '蒙田大道与圣奥诺雷路旗舰精品店的私人导购预约——包括爱马仕、香奈儿、Brunello Cucinelli 与 Loro Piana——附贵宾休息室与退税协助',
+    '五大类集中在一处：高级珠宝、名表、高级定制、成衣与皮具、各大百货公司',
+    '熟悉这家店的销售联系人、旗舰店贵宾休息室和退税协助',
     {
       text: '米兰专柜私人预约购物，节奏完全按您想找的东西来定，不是固定路线',
       href: '/zh/experiences/private-milan-atelier-shopping/',
