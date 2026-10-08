@@ -213,7 +213,7 @@ export const ui = {
     'arrival.optionsEyebrow': 'Three ways',
     'arrival.optionsTitle': 'How would you like to land?',
     'arrival.summary.chauffeur':
-      'A driver waits in the arrivals hall holding your name. Mercedes S-Class for two, V-Class for up to seven.',
+      'A driver waits in the arrivals hall holding your name. Mercedes V-Class, up to seven seats, with room for the luggage.',
     'arrival.summary.reception':
       'A concierge meets you at the gate and stays with you through fast-tracked customs, baggage and tax refund.',
     'arrival.summary.terminal':
@@ -224,7 +224,7 @@ export const ui = {
     'arrival.chooseEyebrow': 'Choose',
     'arrival.chooseTitle': 'Build your arrival',
     'arrival.step1': 'At the airport',
-    'arrival.mode.chauffeur': 'Chauffeur only',
+    'arrival.mode.chauffeur': 'Private chauffeur',
     'arrival.mode.reception': 'VIP airport reception',
     'arrival.mode.terminal': 'Private terminal',
     'arrival.addChauffeur': 'Add a private chauffeur',
@@ -233,9 +233,11 @@ export const ui = {
     'arrival.note.terminal':
       'This is an enquiry: we confirm availability and airline eligibility within 24 hours.',
     'arrival.exclusive':
-      'The private terminal replaces VIP reception: they are alternatives, not add-ons.',
-    'arrival.other': 'Another airport, or a different plan?',
+      'Tap to add or remove. A chauffeur can be added to either one; VIP reception and the private terminal are alternatives.',
+    'arrival.other': 'A smaller car, another airport, or a different plan?',
     'arrival.otherLink': 'Talk to an advisor',
+    'arrival.none': 'Choose at least one service above to continue.',
+    'arrival.moreAbout': 'More about each:',
     'terminalBooking.title': 'Enquire About Private Terminal Access',
     'terminalBooking.subtitle':
       'Tell us about your journey — we confirm availability and airline eligibility within 24 hours.',
@@ -856,7 +858,7 @@ export const ui = {
     'arrival.optionsEyebrow': '三种方式',
     'arrival.optionsTitle': '您想怎么落地？',
     'arrival.summary.chauffeur':
-      '司机在到达厅举着您的姓名牌等候。梅赛德斯 S 级适合两人，V 级最多七座。',
+      '司机在到达厅举着您的姓名牌等候。梅赛德斯 V 级，最多七座，行李空间充裕。',
     'arrival.summary.reception': '一位礼宾在登机口接您，全程陪同快速通关、行李和退税。',
     'arrival.summary.terminal': '停机坪旁的私人建筑，一位礼宾全程陪同，全程不经过公共航站楼。',
     'arrival.price.chauffeur': '每趟 €150 起',
@@ -865,16 +867,18 @@ export const ui = {
     'arrival.chooseEyebrow': '选择',
     'arrival.chooseTitle': '组合您的抵达方式',
     'arrival.step1': '在机场里',
-    'arrival.mode.chauffeur': '只要司机',
+    'arrival.mode.chauffeur': '私人司机',
     'arrival.mode.reception': 'VIP 机场接待',
     'arrival.mode.terminal': '私人航站楼',
     'arrival.addChauffeur': '加一位私人司机',
     'arrival.note.chauffeur': '价格立即显示，可在线付款。',
     'arrival.note.reception': '这是咨询：我们确认后给您报价。',
     'arrival.note.terminal': '这是咨询：我们会在 24 小时内确认可用性和航空公司条件。',
-    'arrival.exclusive': '私人航站楼取代 VIP 接待，二者是替代关系，不能叠加。',
-    'arrival.other': '其他机场，或者有不同的安排？',
+    'arrival.exclusive': '点选即可添加或取消。司机可以和任一项叠加；VIP 接待和私人航站楼二选一。',
+    'arrival.other': '需要小一些的车、其他机场，或者有不同的安排？',
     'arrival.otherLink': '联系顾问',
+    'arrival.none': '请在上方至少选择一项服务。',
+    'arrival.moreAbout': '详细介绍：',
     'terminalBooking.title': '私人航站楼预约咨询',
     'terminalBooking.subtitle': '告诉我们您的行程安排，我们会在24小时内确认可用性与航空公司条件。',
     'terminalBooking.scenarioLabel': '这次预约是',
@@ -1491,7 +1495,7 @@ export const ui = {
     'arrival.optionsEyebrow': 'Trois façons',
     'arrival.optionsTitle': 'Comment souhaitez-vous arriver ?',
     'arrival.summary.chauffeur':
-      "Un chauffeur vous attend dans le hall des arrivées avec votre nom. Mercedes Classe S pour deux, Classe V jusqu'à sept.",
+      "Un chauffeur vous attend dans le hall des arrivées avec votre nom. Mercedes Classe V, jusqu'à sept places, avec de la place pour les bagages.",
     'arrival.summary.reception':
       "Un concierge vous accueille à la porte d'embarquement et reste avec vous jusqu'à la douane accélérée, les bagages et la détaxe.",
     'arrival.summary.terminal':
@@ -1502,7 +1506,7 @@ export const ui = {
     'arrival.chooseEyebrow': 'Choisir',
     'arrival.chooseTitle': 'Composez votre arrivée',
     'arrival.step1': "À l'aéroport",
-    'arrival.mode.chauffeur': 'Chauffeur seul',
+    'arrival.mode.chauffeur': 'Chauffeur privé',
     'arrival.mode.reception': "Accueil VIP à l'aéroport",
     'arrival.mode.terminal': 'Terminal privé',
     'arrival.addChauffeur': 'Ajouter un chauffeur privé',
@@ -1512,9 +1516,11 @@ export const ui = {
     'arrival.note.terminal':
       "Il s'agit d'une demande : nous confirmons la disponibilité et l'éligibilité de la compagnie sous 24 heures.",
     'arrival.exclusive':
-      "Le terminal privé remplace l'accueil VIP : ce sont deux alternatives, pas des options cumulables.",
-    'arrival.other': 'Un autre aéroport, ou un autre projet ?',
+      "Touchez pour ajouter ou retirer. Un chauffeur peut s'ajouter à l'un ou l'autre ; l'accueil VIP et le terminal privé sont des alternatives.",
+    'arrival.other': 'Une voiture plus petite, un autre aéroport, ou un autre projet ?',
     'arrival.otherLink': 'Parler à un conseiller',
+    'arrival.none': 'Choisissez au moins un service ci-dessus pour continuer.',
+    'arrival.moreAbout': 'En savoir plus :',
     'terminalBooking.title': "Demande d'accès au terminal privé",
     'terminalBooking.subtitle':
       "Indiquez-nous votre trajet — nous confirmons la disponibilité et l'éligibilité de la compagnie aérienne sous 24 heures.",

@@ -3,7 +3,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PageHero from '../../../../components/PageHero.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import SectionHeading from '../../../../components/SectionHeading.astro';
-import RelatedContent from '../../../../components/RelatedContent.astro';
+import StoryFeature from '../../../../components/about/StoryFeature.astro';
 import CarBookingWidget from '../../../../components/CarBookingWidget.astro';
 import VipReceptionBookingWidget from '../../../../components/VipReceptionBookingWidget.astro';
 import PrivateTerminalBookingWidget from '../../../../components/PrivateTerminalBookingWidget.astro';
@@ -22,29 +22,23 @@ const t = useTranslations(locale);
 // one case with a computed price (instant online payment); VIP reception and
 // the private terminal are enquiries confirmed by an advisor. The hub only
 // decides which widget to show, so no pricing rule is duplicated here.
-const cards = [
+const features = [
   {
+    key: 'chauffeur',
     href: `/${locale}/services/private-transportation/chauffeur/`,
     imageId: 'service-car-aviation-seats',
-    title: t('arrival.mode.chauffeur'),
-    summary: t('arrival.summary.chauffeur'),
-    meta: t('arrival.price.chauffeur'),
   },
   {
+    key: 'reception',
     href: `/${locale}/services/vip-airport-reception/`,
     imageId: 'service-concierge',
-    title: t('arrival.mode.reception'),
-    summary: t('arrival.summary.reception'),
-    meta: t('arrival.price.reception'),
   },
   {
+    key: 'terminal',
     href: `/${locale}/services/private-transportation/private-terminal/`,
     imageId: 'experience-extime-lounge',
-    title: t('arrival.mode.terminal'),
-    summary: t('arrival.summary.terminal'),
-    meta: t('arrival.price.terminal'),
   },
-];
+] as const;
 
 const nav = t('nav.services');
 ---
@@ -62,12 +56,31 @@ const nav = t('nav.services');
 
   <PageHero eyebrow={nav} title={t('arrival.title')} subtitle={t('arrival.subtitle')} />
 
-  <RelatedContent
-    locale={locale}
-    eyebrow={t('arrival.optionsEyebrow')}
-    title={t('arrival.optionsTitle')}
-    items={cards}
-  />
+  {
+    features.map((feature) => (
+      <StoryFeature
+        eyebrow={t(`arrival.price.${feature.key}`)}
+        title={t(`arrival.mode.${feature.key}`)}
+        body={t(`arrival.summary.${feature.key}`)}
+        imageId={feature.imageId}
+        locale={locale}
+      />
+    ))
+  }
+
+  <div class="container arrival-more">
+    <p>
+      {t('arrival.moreAbout')}
+      {
+        features.map((feature, index) => (
+          <>
+            {index > 0 && ' · '}
+            <a href={feature.href}>{t(`arrival.mode.${feature.key}`)}</a>
+          </>
+        ))
+      }
+    </p>
+  </div>
 
   <section class="section arrival-choose" id="choose">
     <div class="container">
@@ -75,27 +88,24 @@ const nav = t('nav.services');
 
       <div class="arrival-choose__controls">
         <span class="arrival-choose__label">{t('arrival.step1')}</span>
-        <div class="arrival-choose__pills" role="radiogroup" aria-label={t('arrival.step1')}>
-          <button type="button" class="pill is-active" data-arrival-mode="chauffeur">
+        <div class="arrival-choose__pills" role="group" aria-label={t('arrival.step1')}>
+          <button
+            type="button"
+            class="pill is-active"
+            data-arrival-toggle="chauffeur"
+            aria-pressed="true"
+          >
             {t('arrival.mode.chauffeur')}
           </button>
-          <button type="button" class="pill" data-arrival-mode="reception">
+          <button type="button" class="pill" data-arrival-toggle="reception" aria-pressed="false">
             {t('arrival.mode.reception')}
           </button>
-          <button type="button" class="pill" data-arrival-mode="terminal">
+          <button type="button" class="pill" data-arrival-toggle="terminal" aria-pressed="false">
             {t('arrival.mode.terminal')}
           </button>
         </div>
-
-        <label class="arrival-choose__add" id="arrival-add" hidden>
-          <input type="checkbox" id="arrival-add-chauffeur" />
-          {t('arrival.addChauffeur')}
-        </label>
-
+        <p class="arrival-choose__exclusive">{t('arrival.exclusive')}</p>
         <p class="arrival-choose__note" id="arrival-note" aria-live="polite"></p>
-        <p class="arrival-choose__exclusive" id="arrival-exclusive" hidden>
-          {t('arrival.exclusive')}
-        </p>
       </div>
 
       <div id="arrival-panel-chauffeur"><CarBookingWidget locale={locale} /></div>
@@ -128,73 +138,71 @@ const nav = t('nav.services');
       chauffeur: t('arrival.note.chauffeur'),
       reception: t('arrival.note.reception'),
       terminal: t('arrival.note.terminal'),
+      none: t('arrival.none'),
     },
   }}
 >
   (function () {
-    const pills = document.querySelectorAll('[data-arrival-mode]');
-    const addWrap = document.getElementById('arrival-add');
-    const add = document.getElementById('arrival-add-chauffeur');
+    const toggles = document.querySelectorAll('[data-arrival-toggle]');
     const note = document.getElementById('arrival-note');
-    const exclusive = document.getElementById('arrival-exclusive');
     const panels = {
       chauffeur: document.getElementById('arrival-panel-chauffeur'),
       reception: document.getElementById('arrival-panel-reception'),
       terminal: document.getElementById('arrival-panel-terminal'),
     };
-    const chauffeurBox = {
-      reception: 'vr-chauffeur',
-      terminal: 'tb-chauffeur',
-    };
-    let mode = 'chauffeur';
+    const chauffeurBox = { reception: 'vr-chauffeur', terminal: 'tb-chauffeur' };
+    // chauffeur stacks with either airport service; VIP reception and the
+    // private terminal are alternatives (turning one on turns the other off).
+    const state = { chauffeur: true, reception: false, terminal: false };
+
+    function activePanel() {
+      if (state.reception) return 'reception';
+      if (state.terminal) return 'terminal';
+      if (state.chauffeur) return 'chauffeur';
+      return null;
+    }
 
     function render() {
+      const shown = activePanel();
       Object.keys(panels).forEach(function (key) {
-        panels[key].hidden = key !== mode;
+        panels[key].hidden = key !== shown;
       });
-      pills.forEach(function (pill) {
-        const active = pill.getAttribute('data-arrival-mode') === mode;
-        pill.classList.toggle('is-active', active);
-        pill.setAttribute('aria-checked', active ? 'true' : 'false');
+      toggles.forEach(function (btn) {
+        const key = btn.getAttribute('data-arrival-toggle');
+        btn.classList.toggle('is-active', state[key]);
+        btn.setAttribute('aria-pressed', state[key] ? 'true' : 'false');
       });
-      const airport = mode !== 'chauffeur';
-      addWrap.hidden = !airport;
-      exclusive.hidden = !airport;
-      note.textContent = notes[mode];
-      if (airport) {
-        // The widgets own their chauffeur checkbox (it also reveals the
-        // vehicle choice), so drive that one and let its own handler run.
-        const box = document.getElementById(chauffeurBox[mode]);
-        if (box && box.checked !== add.checked) {
-          box.checked = add.checked;
+      note.textContent = shown ? notes[shown] : notes.none;
+      // The widgets own their chauffeur checkbox (it also reveals the
+      // vehicle choice), so drive it and let the widget's own handler run.
+      if (shown && chauffeurBox[shown]) {
+        const box = document.getElementById(chauffeurBox[shown]);
+        if (box && box.checked !== state.chauffeur) {
+          box.checked = state.chauffeur;
           box.dispatchEvent(new Event('change', { bubbles: true }));
         }
       }
     }
 
-    pills.forEach(function (pill) {
-      pill.addEventListener('click', function () {
-        mode = pill.getAttribute('data-arrival-mode');
+    toggles.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const key = btn.getAttribute('data-arrival-toggle');
+        state[key] = !state[key];
+        if (state[key] && key === 'reception') state.terminal = false;
+        if (state[key] && key === 'terminal') state.reception = false;
         render();
       });
     });
-    add.addEventListener('change', render);
 
-    // Keep the hub toggle honest if the visitor ticks the widget's own box.
-    Object.keys(chauffeurBox).forEach(function (key) {
-      const box = document.getElementById(chauffeurBox[key]);
-      if (box) {
-        box.addEventListener('change', function () {
-          if (key === mode) add.checked = box.checked;
-        });
-      }
-    });
-
-    // Deep links: ?mode=terminal / reception / chauffeur (+ &chauffeur=1).
+    // Deep links: ?mode=reception|terminal|chauffeur, plus &chauffeur=1 to
+    // stack the chauffeur on an airport service.
     const params = new URLSearchParams(location.search);
     const wanted = params.get('mode');
-    if (wanted && panels[wanted]) mode = wanted;
-    if (params.get('chauffeur') === '1') add.checked = true;
+    if (wanted === 'reception' || wanted === 'terminal') {
+      state.reception = wanted === 'reception';
+      state.terminal = wanted === 'terminal';
+      state.chauffeur = params.get('chauffeur') === '1';
+    }
     render();
   })();
 </script>
@@ -237,29 +245,12 @@ const nav = t('nav.services');
     color: var(--color-bg-elevated);
   }
 
-  .arrival-choose__add {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--text-body);
-  }
-
-  .arrival-choose__add input {
-    width: auto;
-    flex-shrink: 0;
-  }
-
   /* The hub's own toggle drives the widgets' chauffeur checkbox, so the
      duplicate row inside each widget is hidden here (the widgets still read
      the checkbox value on submit). */
   .arrival-choose :global(.vip-reception__checkbox),
   .arrival-choose :global(.terminal-booking__checkbox) {
     display: none !important; /* beats the widgets' own scoped display rule */
-  }
-
-  .arrival-choose__add[hidden],
-  .arrival-choose__exclusive[hidden] {
-    display: none;
   }
 
   .arrival-choose__note {
@@ -272,6 +263,11 @@ const nav = t('nav.services');
     color: var(--color-text-muted);
     font-size: var(--text-small);
     margin: 0;
+  }
+
+  .arrival-more {
+    margin-block: var(--space-4) var(--space-5);
+    color: var(--color-text-muted);
   }
 
   .arrival-choose__other {
