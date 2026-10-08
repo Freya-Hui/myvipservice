@@ -33,3 +33,5 @@ Pendant le festival, la Croisette et les zones réglementées environnantes ne l
 ## Vous arrivez à Paris ?
 
 Pour l'aéroport spécifiquement, deux options plus confidentielles : [Accueil VIP Aéroport](/fr/services/vip-airport-reception/) associe un chauffeur privé à un concierge dédié pour la douane accélérée, et [L'expérience du terminal privé](/fr/services/private-transportation/private-terminal/) évite entièrement le terminal public.
+
+Pas sûr de ce qui vous convient ? [Choisissez et combinez sur une seule page](/fr/services/arrival/).

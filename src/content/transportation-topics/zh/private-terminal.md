@@ -47,3 +47,5 @@ highlights:
 ## 想要更轻量的选择？
 
 如果不需要整栋专属候机楼，[VIP礼遇接待](/zh/services/vip-airport-reception/)同样配有专属礼宾与专属座驾陪同快速通关，投入更轻。
+
+不确定哪种适合？[在同一页面选择并组合](/zh/services/arrival/)。

@@ -33,3 +33,5 @@ During the festival, the Croisette and the surrounding restricted zones only adm
 ## Flying into Paris?
 
 For the airport specifically, two more private options: [VIP Airport Reception](/en/services/vip-airport-reception/) pairs a chauffeur with a dedicated concierge through fast-tracked customs, and [The Private Terminal Experience](/en/services/private-transportation/private-terminal/) skips the public terminal entirely.
+
+Not sure which suits you? [Choose and combine them on one page](/en/services/arrival/).

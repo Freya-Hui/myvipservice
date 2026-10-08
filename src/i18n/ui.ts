@@ -207,6 +207,35 @@ export const ui = {
       'Thanks — your request is in. Your advisor will confirm and send a secure payment link shortly.',
     'carBooking.genericErrorNote':
       'Something went wrong — please try again or contact us directly.',
+    'arrival.title': 'Landing in Paris',
+    'arrival.subtitle':
+      'Choose how you move through the airport, and add a chauffeur if you like. Prices shown are starting prices, confirmed by an advisor where they need to be.',
+    'arrival.optionsEyebrow': 'Three ways',
+    'arrival.optionsTitle': 'How would you like to land?',
+    'arrival.summary.chauffeur':
+      'A driver waits in the arrivals hall holding your name. Mercedes S-Class for two, V-Class for up to seven.',
+    'arrival.summary.reception':
+      'A concierge meets you at the gate and stays with you through fast-tracked customs, baggage and tax refund.',
+    'arrival.summary.terminal':
+      'A private building beside the tarmac, one concierge, no public terminal at any point.',
+    'arrival.price.chauffeur': 'From €150 per trip',
+    'arrival.price.reception': 'From €189 one way',
+    'arrival.price.terminal': 'From €5,000 for 1–4 people',
+    'arrival.chooseEyebrow': 'Choose',
+    'arrival.chooseTitle': 'Build your arrival',
+    'arrival.step1': 'At the airport',
+    'arrival.mode.chauffeur': 'Chauffeur only',
+    'arrival.mode.reception': 'VIP airport reception',
+    'arrival.mode.terminal': 'Private terminal',
+    'arrival.addChauffeur': 'Add a private chauffeur',
+    'arrival.note.chauffeur': 'You see the price straight away and can pay online.',
+    'arrival.note.reception': 'This is an enquiry: we confirm and send you a quote.',
+    'arrival.note.terminal':
+      'This is an enquiry: we confirm availability and airline eligibility within 24 hours.',
+    'arrival.exclusive':
+      'The private terminal replaces VIP reception: they are alternatives, not add-ons.',
+    'arrival.other': 'Another airport, or a different plan?',
+    'arrival.otherLink': 'Talk to an advisor',
     'terminalBooking.title': 'Enquire About Private Terminal Access',
     'terminalBooking.subtitle':
       'Tell us about your journey — we confirm availability and airline eligibility within 24 hours.',
@@ -821,6 +850,31 @@ export const ui = {
     'carBooking.paymentCancelledNote': '未完成支付——可以在下方重新提交。',
     'carBooking.requestReceivedNote': '请求已收到，谢谢——顾问确认后会尽快发送安全支付链接给您。',
     'carBooking.genericErrorNote': '出了点问题——请重试，或直接联系我们。',
+    'arrival.title': '落地巴黎',
+    'arrival.subtitle':
+      '选择您在机场里怎么走，也可以加一位私人司机。页面显示的是起价，需要确认的由顾问确认。',
+    'arrival.optionsEyebrow': '三种方式',
+    'arrival.optionsTitle': '您想怎么落地？',
+    'arrival.summary.chauffeur':
+      '司机在到达厅举着您的姓名牌等候。梅赛德斯 S 级适合两人，V 级最多七座。',
+    'arrival.summary.reception': '一位礼宾在登机口接您，全程陪同快速通关、行李和退税。',
+    'arrival.summary.terminal': '停机坪旁的私人建筑，一位礼宾全程陪同，全程不经过公共航站楼。',
+    'arrival.price.chauffeur': '每趟 €150 起',
+    'arrival.price.reception': '单程 €189 起',
+    'arrival.price.terminal': '1–4 人 €5,000 起',
+    'arrival.chooseEyebrow': '选择',
+    'arrival.chooseTitle': '组合您的抵达方式',
+    'arrival.step1': '在机场里',
+    'arrival.mode.chauffeur': '只要司机',
+    'arrival.mode.reception': 'VIP 机场接待',
+    'arrival.mode.terminal': '私人航站楼',
+    'arrival.addChauffeur': '加一位私人司机',
+    'arrival.note.chauffeur': '价格立即显示，可在线付款。',
+    'arrival.note.reception': '这是咨询：我们确认后给您报价。',
+    'arrival.note.terminal': '这是咨询：我们会在 24 小时内确认可用性和航空公司条件。',
+    'arrival.exclusive': '私人航站楼取代 VIP 接待，二者是替代关系，不能叠加。',
+    'arrival.other': '其他机场，或者有不同的安排？',
+    'arrival.otherLink': '联系顾问',
     'terminalBooking.title': '私人航站楼预约咨询',
     'terminalBooking.subtitle': '告诉我们您的行程安排，我们会在24小时内确认可用性与航空公司条件。',
     'terminalBooking.scenarioLabel': '这次预约是',
@@ -1431,6 +1485,36 @@ export const ui = {
       'Merci — votre demande est bien reçue. Votre conseiller confirmera puis vous enverra un lien de paiement sécurisé sous peu.',
     'carBooking.genericErrorNote':
       'Une erreur est survenue — veuillez réessayer ou nous contacter directement.',
+    'arrival.title': 'Arriver à Paris',
+    'arrival.subtitle':
+      "Choisissez comment traverser l'aéroport, et ajoutez un chauffeur si vous le souhaitez. Les prix affichés sont des tarifs « à partir de », confirmés par un conseiller lorsque c'est nécessaire.",
+    'arrival.optionsEyebrow': 'Trois façons',
+    'arrival.optionsTitle': 'Comment souhaitez-vous arriver ?',
+    'arrival.summary.chauffeur':
+      "Un chauffeur vous attend dans le hall des arrivées avec votre nom. Mercedes Classe S pour deux, Classe V jusqu'à sept.",
+    'arrival.summary.reception':
+      "Un concierge vous accueille à la porte d'embarquement et reste avec vous jusqu'à la douane accélérée, les bagages et la détaxe.",
+    'arrival.summary.terminal':
+      'Un bâtiment privé en bordure de piste, un seul concierge, aucun terminal public.',
+    'arrival.price.chauffeur': 'À partir de 150 € par trajet',
+    'arrival.price.reception': 'À partir de 189 €, aller simple',
+    'arrival.price.terminal': 'À partir de 5 000 € pour 1 à 4 personnes',
+    'arrival.chooseEyebrow': 'Choisir',
+    'arrival.chooseTitle': 'Composez votre arrivée',
+    'arrival.step1': "À l'aéroport",
+    'arrival.mode.chauffeur': 'Chauffeur seul',
+    'arrival.mode.reception': "Accueil VIP à l'aéroport",
+    'arrival.mode.terminal': 'Terminal privé',
+    'arrival.addChauffeur': 'Ajouter un chauffeur privé',
+    'arrival.note.chauffeur': "Le prix s'affiche immédiatement, paiement en ligne possible.",
+    'arrival.note.reception':
+      "Il s'agit d'une demande : nous confirmons et vous envoyons un devis.",
+    'arrival.note.terminal':
+      "Il s'agit d'une demande : nous confirmons la disponibilité et l'éligibilité de la compagnie sous 24 heures.",
+    'arrival.exclusive':
+      "Le terminal privé remplace l'accueil VIP : ce sont deux alternatives, pas des options cumulables.",
+    'arrival.other': 'Un autre aéroport, ou un autre projet ?',
+    'arrival.otherLink': 'Parler à un conseiller',
     'terminalBooking.title': "Demande d'accès au terminal privé",
     'terminalBooking.subtitle':
       "Indiquez-nous votre trajet — nous confirmons la disponibilité et l'éligibilité de la compagnie aérienne sous 24 heures.",

@@ -33,3 +33,5 @@ highlights:
 ---
 
 Quelqu'un vous attend à la porte d'embarquement, pancarte à votre nom, prêt à vous conduire directement vers le passage douanier accéléré pendant que vos bagages sont pris en charge à part — pas besoin de chercher votre chemin ni de faire la queue.
+
+Pas sûr de ce qui vous convient ? [Choisissez et combinez sur une seule page](/fr/services/arrival/).

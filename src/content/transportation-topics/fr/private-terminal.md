@@ -47,3 +47,5 @@ Un concierge dédié coordonne l'ensemble du séjour, les repas sont préparés 
 ## Vous cherchez une option plus légère ?
 
 Si un terminal entièrement dédié est plus que ce dont vous avez besoin, [Accueil VIP Aéroport](/fr/services/vip-airport-reception/) vous offre tout de même un concierge dédié et un chauffeur privé pour la douane accélérée, pour un investissement moindre.
+
+Pas sûr de ce qui vous convient ? [Choisissez et combinez sur une seule page](/fr/services/arrival/).

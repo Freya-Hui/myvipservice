@@ -30,3 +30,5 @@ highlights:
 ---
 
 Dès l'atterrissage, quelqu'un prend le relais — un chauffeur agréé, un jet affrété, ou, pour les arrivées les plus confidentielles, un terminal qui vous est entièrement dédié.
+
+Pas sûr de ce qui vous convient ? [Choisissez et combinez sur une seule page](/fr/services/arrival/).

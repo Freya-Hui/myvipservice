@@ -31,3 +31,5 @@ highlights:
 ## 飞往巴黎？
 
 如果需求集中在机场环节，还有两种更高私密度的选择：[VIP礼遇接待](/zh/services/vip-airport-reception/)将专属座驾与礼宾陪同快速通关结合在一起，[私人航站楼体验](/zh/services/private-transportation/private-terminal/)则完全不经过公共航站楼。
+
+不确定哪种适合？[在同一页面选择并组合](/zh/services/arrival/)。
