@@ -15,9 +15,23 @@ interface Props {
    *  whatever follows it, rather than the full-height version used
    *  elsewhere (About page, service detail pages). */
   compact?: boolean;
+  /** Optional page this feature describes; when set the image and title link there. */
+  href?: string;
+  linkLabel?: string;
 }
 
-const { id, eyebrow, title, body, imageId, locale, reverse = false, compact = false } = Astro.props;
+const {
+  id,
+  eyebrow,
+  title,
+  body,
+  imageId,
+  locale,
+  reverse = false,
+  compact = false,
+  href,
+  linkLabel,
+} = Astro.props;
 const image = getImage(imageId);
 // Unsplash License needs no credit; other licenses (e.g. Pixabay, Wikimedia
 // Commons CC BY-SA) are conditioned on attribution, so surface it.
@@ -31,13 +45,30 @@ const needsCredit = image.license !== 'Unsplash License';
 >
   <div class="container story-feature__grid">
     <div class="figure figure--standard">
-      <img
-        src={image.src}
-        alt={image.altByLocale[locale]}
-        width="1600"
-        height="1200"
-        loading="lazy"
-      />
+      {
+        href && (
+          <a class="story-feature__imageLink" href={href} aria-label={title}>
+            <img
+              src={image.src}
+              alt={image.altByLocale[locale]}
+              width="1600"
+              height="1200"
+              loading="lazy"
+            />
+          </a>
+        )
+      }
+      {
+        !href && (
+          <img
+            src={image.src}
+            alt={image.altByLocale[locale]}
+            width="1600"
+            height="1200"
+            loading="lazy"
+          />
+        )
+      }
       {
         needsCredit && (
           <p class="story-feature__credit text-small">
@@ -52,13 +83,31 @@ const needsCredit = image.license !== 'Unsplash License';
     </div>
     <div class="story-feature__content prose">
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-      <h2>{title}</h2>
+      <h2>{href ? <a href={href}>{title}</a> : title}</h2>
       <p class="story-feature__body">{body}</p>
+      {
+        href && linkLabel && (
+          <p>
+            <a class="story-feature__more" href={href}>
+              {linkLabel} →
+            </a>
+          </p>
+        )
+      }
     </div>
   </div>
 </section>
 
 <style>
+  .story-feature__imageLink {
+    display: block;
+  }
+
+  .story-feature__content h2 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .story-feature__grid {
     display: grid;
     grid-template-columns: 1fr;

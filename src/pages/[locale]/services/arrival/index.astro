@@ -64,23 +64,11 @@ const nav = t('nav.services');
         body={t(`arrival.summary.${feature.key}`)}
         imageId={feature.imageId}
         locale={locale}
+        href={feature.href}
+        linkLabel={t('arrival.learnMore')}
       />
     ))
   }
-
-  <div class="container arrival-more">
-    <p>
-      {t('arrival.moreAbout')}
-      {
-        features.map((feature, index) => (
-          <>
-            {index > 0 && ' · '}
-            <a href={feature.href}>{t(`arrival.mode.${feature.key}`)}</a>
-          </>
-        ))
-      }
-    </p>
-  </div>
 
   <section class="section arrival-choose" id="choose">
     <div class="container">
@@ -139,7 +127,6 @@ const nav = t('nav.services');
       reception: t('arrival.note.reception'),
       terminal: t('arrival.note.terminal'),
       none: t('arrival.none'),
-      combo: t('arrival.comboNote'),
     },
   }}
 >
@@ -173,10 +160,7 @@ const nav = t('nav.services');
         btn.classList.toggle('is-active', state[key]);
         btn.setAttribute('aria-pressed', state[key] ? 'true' : 'false');
       });
-      const withChauffeur = shown && shown !== 'chauffeur' && state.chauffeur;
-      note.textContent = shown
-        ? notes[shown] + (withChauffeur ? ' ' + notes.combo : '')
-        : notes.none;
+      note.textContent = shown ? notes[shown] : notes.none;
       // The widgets own their chauffeur checkbox (it also reveals the
       // vehicle choice), so drive it and let the widget's own handler run.
       if (shown && chauffeurBox[shown]) {

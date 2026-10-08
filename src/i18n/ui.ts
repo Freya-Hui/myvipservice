@@ -213,11 +213,11 @@ export const ui = {
     'arrival.optionsEyebrow': 'Three ways',
     'arrival.optionsTitle': 'How would you like to land?',
     'arrival.summary.chauffeur':
-      'A driver waits in the arrivals hall holding your name. Mercedes V-Class, up to seven seats, with room for the luggage.',
+      'A licensed driver waits in the arrivals hall holding your name, with meet and greet as standard. The car is a Mercedes V-Class with up to seven seats and room for the luggage, and the same driver can stay with you for the rest of the day. Your flight is tracked, so a delay never means a missed pickup.',
     'arrival.summary.reception':
-      'A concierge meets you at the gate and stays with you through fast-tracked customs, baggage and tax refund.',
+      'A dedicated concierge meets you at the gate, or at the arrivals door, and stays with you rather than handing you between checkpoints. They take you through fast-tracked customs, bring your luggage to you, and handle the tax-refund paperwork alongside you. It works for an arrival, a departure or a connection, and a chauffeur can be added to it.',
     'arrival.summary.terminal':
-      'A private building beside the tarmac, one concierge, no public terminal at any point.',
+      'Extime Exclusive Paris is a private building beside the tarmac at Charles de Gaulle, with no public terminal at any point. One concierge handles check-in, security, customs, tax refund and baggage in a single private channel, and the interiors are designed by Jacques Garcia. It suits larger parties, heavier luggage and anyone who wants more security and discretion.',
     'arrival.price.chauffeur': 'From €150 per trip',
     'arrival.price.reception': 'From €189 one way',
     'arrival.price.terminal': 'From €5,000 for 1–4 people',
@@ -238,8 +238,13 @@ export const ui = {
     'arrival.otherLink': 'Talk to an advisor',
     'arrival.none': 'Choose at least one service above to continue.',
     'arrival.moreAbout': 'More about each:',
-    'arrival.comboNote':
-      'With a chauffeur added, the estimate shown covers the airport service only; the chauffeur is quoted together with it.',
+    'arrival.line.reception': 'VIP airport reception',
+    'arrival.line.terminal': 'Private terminal',
+    'arrival.line.chauffeur': 'Private chauffeur',
+    'arrival.line.total': 'Estimated total',
+    'arrival.line.quote': 'To be quoted',
+    'arrival.line.chauffeurQuote': 'Chauffeur: quoted by an advisor',
+    'arrival.learnMore': 'See the full page',
     'terminalBooking.title': 'Enquire About Private Terminal Access',
     'terminalBooking.subtitle':
       'Tell us about your journey — we confirm availability and airline eligibility within 24 hours.',
@@ -860,9 +865,11 @@ export const ui = {
     'arrival.optionsEyebrow': '三种方式',
     'arrival.optionsTitle': '您想怎么落地？',
     'arrival.summary.chauffeur':
-      '司机在到达厅举着您的姓名牌等候。梅赛德斯 V 级，最多七座，行李空间充裕。',
-    'arrival.summary.reception': '一位礼宾在登机口接您，全程陪同快速通关、行李和退税。',
-    'arrival.summary.terminal': '停机坪旁的私人建筑，一位礼宾全程陪同，全程不经过公共航站楼。',
+      '持牌司机在到达厅举着您的姓名牌等候，迎接是标配。车辆是梅赛德斯 V 级，最多七座，行李空间充裕，同一位司机也可以陪您跑完当天的其他行程。航班会被实时跟踪，延误不会错过接机。',
+    'arrival.summary.reception':
+      '一位专属礼宾在登机口或到达口接您，全程陪同，不会在各个关卡之间把您交来交去。他们带您走快速通关，把行李送到您手上，并在您身边办理退税手续。抵达、出发、转机都可以安排，也可以加一位司机。',
+    'arrival.summary.terminal':
+      'Extime Exclusive Paris 是戴高乐机场停机坪旁的私人建筑，全程不经过公共航站楼。一位礼宾在同一条私密通道里办理值机、安检、海关、退税和行李，室内由 Jacques Garcia 设计。适合人数多、行李多，或者希望更安全、更私密的客人。',
     'arrival.price.chauffeur': '每趟 €150 起',
     'arrival.price.reception': '单程 €189 起',
     'arrival.price.terminal': '1–4 人 €5,000 起',
@@ -881,7 +888,13 @@ export const ui = {
     'arrival.otherLink': '联系顾问',
     'arrival.none': '请在上方至少选择一项服务。',
     'arrival.moreAbout': '详细介绍：',
-    'arrival.comboNote': '加了司机后，页面显示的预估只包含机场服务，司机费用会一起报价。',
+    'arrival.line.reception': 'VIP 机场接待',
+    'arrival.line.terminal': '私人航站楼',
+    'arrival.line.chauffeur': '私人司机',
+    'arrival.line.total': '预估合计',
+    'arrival.line.quote': '待报价',
+    'arrival.line.chauffeurQuote': '司机：由顾问报价',
+    'arrival.learnMore': '查看完整介绍',
     'terminalBooking.title': '私人航站楼预约咨询',
     'terminalBooking.subtitle': '告诉我们您的行程安排，我们会在24小时内确认可用性与航空公司条件。',
     'terminalBooking.scenarioLabel': '这次预约是',
@@ -1498,11 +1511,11 @@ export const ui = {
     'arrival.optionsEyebrow': 'Trois façons',
     'arrival.optionsTitle': 'Comment souhaitez-vous arriver ?',
     'arrival.summary.chauffeur':
-      "Un chauffeur vous attend dans le hall des arrivées avec votre nom. Mercedes Classe V, jusqu'à sept places, avec de la place pour les bagages.",
+      "Un chauffeur titulaire de la licence vous attend dans le hall des arrivées avec votre nom, l'accueil personnalisé étant systématique. Le véhicule est une Mercedes Classe V jusqu'à sept places, avec de la place pour les bagages, et le même chauffeur peut vous accompagner le reste de la journée. Votre vol est suivi : un retard ne fait jamais manquer la prise en charge.",
     'arrival.summary.reception':
-      "Un concierge vous accueille à la porte d'embarquement et reste avec vous jusqu'à la douane accélérée, les bagages et la détaxe.",
+      "Un concierge dédié vous accueille à la porte d'embarquement ou à la sortie des arrivées et reste avec vous, sans vous confier d'un contrôle à l'autre. Il vous accompagne à la douane accélérée, vous apporte vos bagages et gère les formalités de détaxe à vos côtés. Le service convient à une arrivée, un départ ou une correspondance, et un chauffeur peut y être ajouté.",
     'arrival.summary.terminal':
-      'Un bâtiment privé en bordure de piste, un seul concierge, aucun terminal public.',
+      "Extime Exclusive Paris est un bâtiment privé en bordure de piste à Charles de Gaulle, sans aucun passage par un terminal public. Un seul concierge gère l'enregistrement, la sûreté, la douane, la détaxe et les bagages dans un même circuit privé, et les intérieurs sont signés Jacques Garcia. Il convient aux groupes plus nombreux, aux bagages volumineux et à ceux qui recherchent davantage de sécurité et de discrétion.",
     'arrival.price.chauffeur': 'À partir de 150 € par trajet',
     'arrival.price.reception': 'À partir de 189 €, aller simple',
     'arrival.price.terminal': 'À partir de 5 000 € pour 1 à 4 personnes',
@@ -1524,8 +1537,13 @@ export const ui = {
     'arrival.otherLink': 'Parler à un conseiller',
     'arrival.none': 'Choisissez au moins un service ci-dessus pour continuer.',
     'arrival.moreAbout': 'En savoir plus :',
-    'arrival.comboNote':
-      "Avec un chauffeur ajouté, l'estimation affichée ne couvre que le service aéroportuaire ; le chauffeur est chiffré avec lui.",
+    'arrival.line.reception': "Accueil VIP à l'aéroport",
+    'arrival.line.terminal': 'Terminal privé',
+    'arrival.line.chauffeur': 'Chauffeur privé',
+    'arrival.line.total': 'Total estimé',
+    'arrival.line.quote': 'Sur devis',
+    'arrival.line.chauffeurQuote': 'Chauffeur : chiffré par un conseiller',
+    'arrival.learnMore': 'Voir la page complète',
     'terminalBooking.title': "Demande d'accès au terminal privé",
     'terminalBooking.subtitle':
       "Indiquez-nous votre trajet — nous confirmons la disponibilité et l'éligibilité de la compagnie aérienne sous 24 heures.",

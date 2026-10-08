@@ -611,6 +611,9 @@ export async function sendTerminalBookingNotification(booking) {
     booking.wantsChauffeur
       ? `同时需要专属司机：是（${VEHICLE_LABELS[booking.vehicle] || booking.vehicle || '未选车型'}）`
       : '同时需要专属司机：否',
+    booking.estimatedTotal &&
+      `页面显示的预估合计：${booking.estimatedTotal}（仅供参考，以人工确认为准）`,
+    booking.priceBreakdown && `预估明细：${booking.priceBreakdown}`,
   ].filter(Boolean);
 
   if (booking.notes) {
@@ -643,6 +646,9 @@ export async function sendVipReceptionBookingNotification(booking) {
     booking.wantsChauffeur
       ? `同时加购专属座驾：是（${VEHICLE_LABELS[booking.vehicle] || booking.vehicle || '未选车型'}）`
       : '同时加购专属座驾：否',
+    booking.estimatedTotal &&
+      `页面显示的预估合计：${booking.estimatedTotal}（仅供参考，以人工报价为准）`,
+    booking.priceBreakdown && `预估明细：${booking.priceBreakdown}`,
   ].filter(Boolean);
 
   if (booking.notes) {
