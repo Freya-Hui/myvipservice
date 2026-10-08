@@ -1,0 +1,104 @@
+---
+import { getImage } from '../data/image-attributions';
+import ContentGrid from './ContentGrid.astro';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  items: {
+    name: string;
+    summary: string;
+    image: string;
+    specs: { label: string; value: string }[];
+  }[];
+}
+
+const { locale, items } = Astro.props;
+---
+
+<ContentGrid>
+  {
+    items.map((item) => {
+      const image = getImage(item.image);
+      // Same rule as StoryFeature: only Unsplash needs no credit line.
+      const needsCredit = image.license !== 'Unsplash License';
+      return (
+        <li class="fleet-card">
+          <div class="figure figure--standard">
+            <img
+              src={image.src}
+              alt={image.altByLocale[locale]}
+              width="1600"
+              height="1200"
+              loading="lazy"
+            />
+          </div>
+          <div class="fleet-card__body">
+            <h3>{item.name}</h3>
+            <p class="text-small fleet-card__summary">{item.summary}</p>
+            <dl class="fleet-card__specs text-small">
+              {item.specs.map((spec) => (
+                <div>
+                  <dt>{spec.label}</dt>
+                  <dd>{spec.value}</dd>
+                </div>
+              ))}
+            </dl>
+            {needsCredit && image.author && (
+              <p class="fleet-card__credit text-small">
+                {image.author} / {image.sourceName}, {image.license}
+              </p>
+            )}
+          </div>
+        </li>
+      );
+    })
+  }
+</ContentGrid>
+
+<style>
+  .fleet-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .fleet-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .fleet-card__summary {
+    color: var(--color-text-muted);
+  }
+
+  .fleet-card__specs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin: 0;
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .fleet-card__specs div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .fleet-card__specs dt {
+    color: var(--color-text-muted);
+  }
+
+  .fleet-card__specs dd {
+    margin: 0;
+    text-align: right;
+  }
+
+  .fleet-card__credit {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+  }
+</style>
