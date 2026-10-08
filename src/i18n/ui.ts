@@ -238,6 +238,8 @@ export const ui = {
     'arrival.otherLink': 'Talk to an advisor',
     'arrival.none': 'Choose at least one service above to continue.',
     'arrival.moreAbout': 'More about each:',
+    'arrival.comboNote':
+      'With a chauffeur added, the estimate shown covers the airport service only; the chauffeur is quoted together with it.',
     'terminalBooking.title': 'Enquire About Private Terminal Access',
     'terminalBooking.subtitle':
       'Tell us about your journey — we confirm availability and airline eligibility within 24 hours.',
@@ -879,6 +881,7 @@ export const ui = {
     'arrival.otherLink': '联系顾问',
     'arrival.none': '请在上方至少选择一项服务。',
     'arrival.moreAbout': '详细介绍：',
+    'arrival.comboNote': '加了司机后，页面显示的预估只包含机场服务，司机费用会一起报价。',
     'terminalBooking.title': '私人航站楼预约咨询',
     'terminalBooking.subtitle': '告诉我们您的行程安排，我们会在24小时内确认可用性与航空公司条件。',
     'terminalBooking.scenarioLabel': '这次预约是',
@@ -1521,6 +1524,8 @@ export const ui = {
     'arrival.otherLink': 'Parler à un conseiller',
     'arrival.none': 'Choisissez au moins un service ci-dessus pour continuer.',
     'arrival.moreAbout': 'En savoir plus :',
+    'arrival.comboNote':
+      "Avec un chauffeur ajouté, l'estimation affichée ne couvre que le service aéroportuaire ; le chauffeur est chiffré avec lui.",
     'terminalBooking.title': "Demande d'accès au terminal privé",
     'terminalBooking.subtitle':
       "Indiquez-nous votre trajet — nous confirmons la disponibilité et l'éligibilité de la compagnie aérienne sous 24 heures.",

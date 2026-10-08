@@ -139,6 +139,7 @@ const nav = t('nav.services');
       reception: t('arrival.note.reception'),
       terminal: t('arrival.note.terminal'),
       none: t('arrival.none'),
+      combo: t('arrival.comboNote'),
     },
   }}
 >
@@ -172,7 +173,10 @@ const nav = t('nav.services');
         btn.classList.toggle('is-active', state[key]);
         btn.setAttribute('aria-pressed', state[key] ? 'true' : 'false');
       });
-      note.textContent = shown ? notes[shown] : notes.none;
+      const withChauffeur = shown && shown !== 'chauffeur' && state.chauffeur;
+      note.textContent = shown
+        ? notes[shown] + (withChauffeur ? ' ' + notes.combo : '')
+        : notes.none;
       // The widgets own their chauffeur checkbox (it also reveals the
       // vehicle choice), so drive it and let the widget's own handler run.
       if (shown && chauffeurBox[shown]) {
